@@ -1,7 +1,14 @@
+using ConsidKompetens_Data.Data;
+using ConsidKompetens_Services.DataServices;
+using ConsidKompetens_Services.Interfaces;
+using ConsidKompetens_Web.Areas.Identity;
 using ConsidKompetens_Web.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,12 +29,33 @@ namespace ConsidKompetens_Web
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<ApplicationDbContext>(options =>
-          options.UseSqlServer(
-              Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(
+          Configuration.GetConnectionString("DefaultConnection")));
+
+      services.AddDbContext<UserDataContext>(options =>
+        options.UseSqlServer(
+          Configuration.GetConnectionString("UserDataConnection")));
+
       services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
           .AddEntityFrameworkStores<ApplicationDbContext>();
-      services.AddControllersWithViews();
+      //services.AddControllersWithViews();
+      services.AddControllers(config =>
+      {
+        var policy = new AuthorizationPolicyBuilder()
+          .RequireAuthenticatedUser()
+          .Build();
+        config.Filters.Add(new AuthorizeFilter(policy));
+      });
+      
+
+      services.AddScoped<IUserDataService, UserDataService>();
+      services.AddScoped<IHostingStartup, IdentityHostingStartup>();
       services.AddRazorPages();
+
+      services.AddSpaStaticFiles(configuration =>
+      {
+        configuration.RootPath = "ClientApp/build";
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,18 +74,28 @@ namespace ConsidKompetens_Web
       }
       app.UseHttpsRedirection();
       app.UseStaticFiles();
+      app.UseSpaStaticFiles();
 
       app.UseRouting();
 
       app.UseAuthentication();
       app.UseAuthorization();
-
-      app.UseEndpoints(endpoints =>
+      //app.UseIdentityServer();
+      //app.UseEndpoints(endpoints =>
+      //{
+      //  endpoints.MapControllerRoute(
+      //            name: "default",
+      //            pattern: "{controller=Home}/{action=Index}/{id?}");
+      //  endpoints.MapRazorPages();
+      //});
+      app.UseSpa(spa =>
       {
-        endpoints.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Home}/{action=Index}/{id?}");
-        endpoints.MapRazorPages();
+        spa.Options.SourcePath = "ClientApp";
+
+        if (env.IsDevelopment())
+        {
+          spa.UseReactDevelopmentServer(npmScript: "start");
+        }
       });
     }
   }
