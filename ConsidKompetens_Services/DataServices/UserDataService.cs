@@ -1,20 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Services.DataServices
 {
   public class UserDataService : IUserDataService
   {
-    //var ctx = new ConsidKompetens_Data.Services.GetUserData();
-
     private readonly UserDataContext _userDataContext;
 
     public UserDataService(UserDataContext userDataContext)
     {
       _userDataContext = userDataContext;
+    }
+
+    public Task<List<EmployeeUserModel>> GetAllUsersAsync()
+    {
+      try
+      {
+        return _userDataContext.EmployeeUsers.ToListAsync();
+      }
+      catch (Exception e)
+      {
+        
+        throw new Exception(e.Message);
+      }
     }
 
     public async Task<EmployeeUserModel> GetUserByIdAsync(Guid id)
@@ -30,7 +43,7 @@ namespace ConsidKompetens_Services.DataServices
 
     }
 
-    public async Task<EmployeeUserModel> EditUserByIdAsync(EmployeeUserModel userModel)
+    public async Task<EmployeeUserModel> EditUserByIdAsync(Guid id, EmployeeUserModel userModel)
     {
       try
       {

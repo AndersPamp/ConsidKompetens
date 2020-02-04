@@ -91,6 +91,7 @@ namespace ConsidKompetens_Web
       app.UseSpa(spa =>
       {
         spa.Options.SourcePath = "ClientApp";
+        spa.Options.DefaultPage = "index.html";
 
         if (env.IsDevelopment())
         {
