@@ -9,12 +9,9 @@ namespace ConsidKompetens_Data.Data
   public class UserDataContext : DbContext
   {
     public DbSet<EmployeeUserModel> EmployeeUsers { get; set; }
-
     public DbSet<CompetenceModel> CompetenceModels { get; set; }
-
     public DbSet<OfficeModel> OfficeModels { get; set; }
-
-    public DbSet<RegionModel> RegionModels { get; set; }
+    public DbSet<ProjectModel> ProjectModels { get; set; }
 
     public UserDataContext(DbContextOptions<UserDataContext> options) : base(options)
     {

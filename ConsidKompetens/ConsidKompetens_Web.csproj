@@ -38,4 +38,9 @@
     <ProjectReference Include="..\ConsidKompetens_Services\ConsidKompetens_Services.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="ClientApp\Images\" />
+  </ItemGroup>
+
 </Project>

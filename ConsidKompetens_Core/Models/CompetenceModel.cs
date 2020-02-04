@@ -1,6 +1,4 @@
-﻿using System.Net.Security;
-
-namespace ConsidKompetens_Core.Models
+﻿namespace ConsidKompetens_Core.Models
 {
   public class CompetenceModel : BaseEntity
   {
