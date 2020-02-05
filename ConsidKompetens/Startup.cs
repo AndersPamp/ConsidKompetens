@@ -1,6 +1,6 @@
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.DataServices;
-using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Areas.Identity;
 using ConsidKompetens_Web.Data;
 using Microsoft.AspNetCore.Authorization;

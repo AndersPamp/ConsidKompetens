@@ -3,6 +3,7 @@
 "Message":"",
 	"Framework":{
 		"Api":{"GetUserUrl":"",
+		"ReturnUrl":"",
 		"Links":{"LinkedInUrl":"", "FacebookUrl":"", "TwitterUrl":"", "InstagramUrl":""},
 		"Offices":[{"Id":int, "Created":DateTime, "Modified":DateTime, "City":""}],
 		"Competences":[Competences],

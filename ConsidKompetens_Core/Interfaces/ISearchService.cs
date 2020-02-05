@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 
-namespace ConsidKompetens_Services.Interfaces
+namespace ConsidKompetens_Core.Interfaces
 {
   public interface ISearchService
   {

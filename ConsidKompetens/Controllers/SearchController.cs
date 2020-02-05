@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
-using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Communication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

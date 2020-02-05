@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
-using ConsidKompetens_Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Services.DataServices
@@ -17,57 +17,67 @@ namespace ConsidKompetens_Services.DataServices
     {
       _userDataContext = userDataContext;
     }
-    public async Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOfficeIds)
+
+    public async Task<List<EmployeeUserModel>> GetAllUsers()
     {
       try
       {
-        var selectedOffices = new List<OfficeModel>();
-        foreach (var officeId in selectedOfficeIds)
-        {
-          var officeDelta = await _userDataContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
-          selectedOffices.Add(officeDelta);
-        }
-        return selectedOffices;
+        return await _userDataContext.EmployeeUsers.Include(x=>x.Competences)
+          .Include(x=>x.Projects).Include(x=>x.ProfileImage).ToListAsync();
       }
       catch (Exception e)
       {
         throw new Exception(e.Message);
       }
     }
-
+    public async Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOfficeIds)
+    {
+      try
+      {
+        var result = new List<OfficeModel>();
+        foreach (var officeId in selectedOfficeIds)
+        {
+          var officeDelta = await _userDataContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
+          result.Add(officeDelta);
+        }
+        return result;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
     public async Task<List<EmployeeUserModel>> GetUsersByCompetenceAsync(int competenceId)
     {
       try
       {
         var competence = await _userDataContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
-        var allEmps = _userDataContext.EmployeeUsers.Include(c => c.Competences)
-          .Include(p => p.Projects).ToListAsync().Result;
-        var empsDelta = new List<EmployeeUserModel>();
+        var users = await GetAllUsers();
+        var result = new List<EmployeeUserModel>();
 
-        foreach (var emp in allEmps)
+        foreach (var user in users)
         {
-          if (emp.Competences.Contains(competence))
+          if (user.Competences.Contains(competence))
           {
-            empsDelta.Add(emp);
+            result.Add(user);
           }
         }
 
-        return empsDelta;
+        return result;
       }
       catch (Exception e)
       {
         throw new Exception(e.Message);
       }
     }
-
     public async Task<List<EmployeeUserModel>> GetUsersByNameAsync(string input)
     {
       try
       {
-        var allEmps = await _userDataContext.EmployeeUsers.Include(x => x.Competences).ToListAsync();
+        var users = await GetAllUsers();
 
-        var resultFirst = allEmps.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
-        var resultLast = allEmps.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
+        var resultFirst = users.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
+        var resultLast = users.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
         var result = new List<EmployeeUserModel>();
         foreach (var first in resultFirst)
         {

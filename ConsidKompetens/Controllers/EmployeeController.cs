@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
-using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Communication;
 using Microsoft.AspNetCore.Mvc;
 
