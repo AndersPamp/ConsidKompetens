@@ -80,6 +80,7 @@ namespace ConsidKompetens_Web.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var newProfile = new EmployeeUserModel {OwnerID = user.Id};
+                await _userDataService.CreateNewUserAsync(newProfile);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
