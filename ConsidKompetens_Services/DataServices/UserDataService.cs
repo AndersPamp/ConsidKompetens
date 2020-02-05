@@ -17,11 +17,11 @@ namespace ConsidKompetens_Services.DataServices
       _userDataContext = userDataContext;
     }
 
-    public Task<List<EmployeeUserModel>> GetAllUsersAsync()
+    public async Task<List<EmployeeUserModel>> GetAllUsersAsync()
     {
       try
       {
-        return _userDataContext.EmployeeUsers.ToListAsync();
+        return await _userDataContext.EmployeeUsers.ToListAsync();
       }
       catch (Exception e)
       {
@@ -30,7 +30,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<EmployeeUserModel> GetUserByIdAsync(Guid id)
+    public async Task<EmployeeUserModel> GetUserByIdAsync(int id)
     {
       try
       {
@@ -43,7 +43,7 @@ namespace ConsidKompetens_Services.DataServices
 
     }
 
-    public async Task<EmployeeUserModel> EditUserByIdAsync(Guid id, EmployeeUserModel userModel)
+    public async Task<EmployeeUserModel> EditUserByIdAsync(int id, EmployeeUserModel userModel)
     {
       try
       {
@@ -52,7 +52,7 @@ namespace ConsidKompetens_Services.DataServices
         user.ProfileImage = userModel.ProfileImage;
         _userDataContext.EmployeeUsers.Update(user);
         await _userDataContext.SaveChangesAsync();
-        return await _userDataContext.EmployeeUsers.FindAsync(user.Id);
+        return userModel;
       }
       catch (Exception e)
       {
