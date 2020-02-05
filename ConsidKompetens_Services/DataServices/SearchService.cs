@@ -39,16 +39,19 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var emps = await _userDataContext.EmployeeUsers.Include(c => c.Competences)
-          .Include(p => p.Projects).ToListAsync();
+        var competence = await _userDataContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
+        var allEmps = _userDataContext.EmployeeUsers.Include(c => c.Competences)
+          .Include(p => p.Projects).ToListAsync().Result;
         var empsDelta = new List<EmployeeUserModel>();
-        foreach (var emp in emps)
+
+        foreach (var emp in allEmps)
         {
-          if (emp.CompetenceIds.Contains(competenceId))
+          if (emp.Competences.Contains(competence))
           {
             empsDelta.Add(emp);
           }
         }
+
         return empsDelta;
       }
       catch (Exception e)

@@ -37,7 +37,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // GET: api/Employee/5
     [HttpGet("{id}", Name = "Get")]
-    public ActionResult<EmployeeUserModel> Get(Guid id)
+    public ActionResult<EmployeeUserModel> Get(int id)
     {
       try
       {
@@ -61,7 +61,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // PUT: api/Employee/5
     [HttpPut("{id}")]
-    public ActionResult<bool> Put(Guid id, [FromBody] EmployeeUserModel value)
+    public ActionResult<bool> Put(int id, [FromBody] EmployeeUserModel value)
     {
       if (ModelState.IsValid)
       {
