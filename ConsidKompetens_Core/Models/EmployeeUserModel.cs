@@ -14,7 +14,9 @@ namespace ConsidKompetens_Core.Models
     public int OfficeId { get; set; }
     public ImageModel ProfileImage { get; set; }
     public List<int> CompetenceIds { get; set; }
+    public List<CompetenceModel> Competences { get; set; }
     public List<int> ProjectIds { get; set; }
+    public List<ProjectModel> Projects { get; set; }
     public ushort Experience { get; set; }
   }
 
