@@ -1,6 +1,6 @@
-import { Register } from  '../../../Controllers/HomeController.cs/';
+import { Register } from  '../../../Controllers/RegisterController.cs';
 
-export const createUser = async (request: Register) => {
+export const createUser = async (registerModel: Register) => {
     try {
         let options: any = {
             method: 'POST',
@@ -8,12 +8,12 @@ export const createUser = async (request: Register) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            contentType: 'application/json',
-            body: JSON.stringify(request)
+            body: JSON.stringify(registerModel)
         };
-        let response = await fetch('api/register/registerUser', options);
-        if(response.ok) {
+        let response = await fetch('api/register/post', options);
+        if(response.created) {
             let data = await response.json();
+            localStorage.setItem('token', data.jwt);
             return data;
         }else {
             return null;
