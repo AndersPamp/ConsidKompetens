@@ -6,14 +6,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\Images\**" />
     <Compile Remove="ClientApp\node_modules\**" />
     <Compile Remove="ClientApp\spa\**" />
+    <Compile Remove="Views\**" />
+    <Content Remove="ClientApp\Images\**" />
     <Content Remove="ClientApp\node_modules\**" />
     <Content Remove="ClientApp\spa\**" />
+    <Content Remove="Views\**" />
+    <EmbeddedResource Remove="ClientApp\Images\**" />
     <EmbeddedResource Remove="ClientApp\node_modules\**" />
     <EmbeddedResource Remove="ClientApp\spa\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <None Remove="ClientApp\Images\**" />
     <None Remove="ClientApp\node_modules\**" />
     <None Remove="ClientApp\spa\**" />
+    <None Remove="Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Identity\Pages\Account\Register.cshtml.cs" />
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Controllers\OidcConfigurationController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Account\Register.cshtml" />
   </ItemGroup>
 
 
@@ -35,13 +53,9 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\ConsidKompetens_Core\ConsidKompetens_Core.csproj" />
     <ProjectReference Include="..\ConsidKompetens_Data\ConsidKompetens_Data.csproj" />
     <ProjectReference Include="..\ConsidKompetens_Services\ConsidKompetens_Services.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="ClientApp\Images\" />
   </ItemGroup>
 
 </Project>

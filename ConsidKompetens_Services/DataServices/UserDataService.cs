@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
-using ConsidKompetens_Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Services.DataServices
@@ -17,24 +17,26 @@ namespace ConsidKompetens_Services.DataServices
       _userDataContext = userDataContext;
     }
 
-    public Task<List<EmployeeUserModel>> GetAllUsersAsync()
+    public async Task<List<EmployeeUserModel>> GetAllUsersAsync()
     {
       try
       {
-        return _userDataContext.EmployeeUsers.ToListAsync();
+        return await _userDataContext.EmployeeUsers.Include(x => x.Competences)
+          .Include(x => x.Projects).ToListAsync();
       }
       catch (Exception e)
       {
-        
+
         throw new Exception(e.Message);
       }
     }
 
-    public async Task<EmployeeUserModel> GetUserByIdAsync(Guid id)
+    public async Task<EmployeeUserModel> GetUserByIdAsync(int id)
     {
       try
       {
-        return await _userDataContext.EmployeeUsers.FindAsync(id);
+        return await _userDataContext.EmployeeUsers.Include(x => x.Competences)
+          .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
       }
       catch (Exception e)
       {
@@ -43,16 +45,17 @@ namespace ConsidKompetens_Services.DataServices
 
     }
 
-    public async Task<EmployeeUserModel> EditUserByIdAsync(Guid id, EmployeeUserModel userModel)
+    public async Task<EmployeeUserModel> EditUserByIdAsync(int id, EmployeeUserModel userModel)
     {
       try
       {
-        var user = await _userDataContext.EmployeeUsers.FindAsync(userModel.Id);
+        var user = await _userDataContext.EmployeeUsers.Include(x => x.Competences)
+          .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
         user.AboutMe = userModel.AboutMe;
         user.ProfileImage = userModel.ProfileImage;
         _userDataContext.EmployeeUsers.Update(user);
         await _userDataContext.SaveChangesAsync();
-        return await _userDataContext.EmployeeUsers.FindAsync(user.Id);
+        return userModel;
       }
       catch (Exception e)
       {
