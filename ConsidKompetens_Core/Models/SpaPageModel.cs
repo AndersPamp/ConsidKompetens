@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ConsidKompetens_Core.Models
 {
-  public class SpaPageModel : PageModel
+  public class SpaPageModel
   {
     public string PageTitle { get; set; }
     public bool Ok { get; set; }

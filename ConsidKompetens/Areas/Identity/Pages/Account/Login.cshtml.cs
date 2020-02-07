@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
@@ -8,16 +9,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ConsidKompetens_Core.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ConsidKompetens_Web.Areas.Identity.Pages.Account
 {
   [AllowAnonymous]
-  public class LoginModel : SpaPageModel
+  public class LoginModel : PageModel
   {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly ILogger<LoginModel> _logger;
-    private readonly SpaPageModel _spaPageModel;
 
     public LoginModel(SignInManager<IdentityUser> signInManager,
         ILogger<LoginModel> logger,
@@ -26,7 +28,6 @@ namespace ConsidKompetens_Web.Areas.Identity.Pages.Account
       _userManager = userManager;
       _signInManager = signInManager;
       _logger = logger;
-      _spaPageModel = new SpaPageModel();
     }
 
     [BindProperty]

@@ -1,53 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ConsidKompetens_Core.Models;
-using Microsoft.AspNetCore.Http;
+﻿using ConsidKompetens_Web.Areas.Identity.Pages.Account;
+using ConsidKompetens_Web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
+  [AllowAnonymous]
   [Route("api/[controller]")]
   [ApiController]
   public class LoginController : ControllerBase
   {
-    private readonly SpaPageModel _model;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly ILogger<LoginModel> _logger;
 
-    public LoginController()
+    public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
     {
-      _model = new SpaPageModel();
+      _userManager = userManager;
+      _signInManager = signInManager;
+      _logger = logger;
     }
-    // GET: api/Login
+
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult Get()
     {
-      return new string[] { "value1", "value2" };
+      return null;
     }
-
-    // GET: api/Login/5
-    [HttpGet("{id}", Name = "Get")]
-    public string Get(int id)
-    {
-      return "value";
-    }
-
     // POST: api/Login
     [HttpPost]
-    public void Post([FromBody] string value)
+    public IActionResult Post([FromBody] LoginModelReq loginModel)
     {
-    }
-
-    // PUT: api/Login/5
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
-    }
-
-    // DELETE: api/ApiWithActions/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
+      return Ok();
     }
   }
 }
