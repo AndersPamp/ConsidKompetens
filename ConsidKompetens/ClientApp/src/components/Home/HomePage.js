@@ -2,6 +2,8 @@ import React from 'react';
 import HomeImage from '../../images/hero-image.jpg';
 import '../../css/Home.css';
 import SearchIcon from '../../images/search.png';
+//import { Footer } from '@/../..components';
+import {Footer} from '../../components';
 
 const HomePage = () => {
     return(
@@ -12,6 +14,7 @@ const HomePage = () => {
             <div>
                 <label>Välj kontor</label>
             </div>
+            <Footer/>
         </div>
     )
 }
