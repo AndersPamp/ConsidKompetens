@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
+using IdentityServer4.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Services.DataServices
@@ -32,9 +33,14 @@ namespace ConsidKompetens_Services.DataServices
     }
     public async Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOfficeIds)
     {
+      var result = new List<OfficeModel>();
+      if (selectedOfficeIds.IsNullOrEmpty())
+      {
+        return await _userDataContext.OfficeModels.ToListAsync();
+      }
       try
       {
-        var result = new List<OfficeModel>();
+        
         foreach (var officeId in selectedOfficeIds)
         {
           var officeDelta = await _userDataContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);

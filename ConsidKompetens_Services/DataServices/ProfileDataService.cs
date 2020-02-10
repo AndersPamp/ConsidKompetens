@@ -47,7 +47,7 @@ namespace ConsidKompetens_Services.DataServices
 
     public async Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId)
     {
-      if (ownerId!=null)
+      if (ownerId != null)
       {
         try
         {
@@ -58,20 +58,30 @@ namespace ConsidKompetens_Services.DataServices
           throw new Exception(e.Message);
         }
       }
-      throw new Exception(message:"No such profile could be found");
+      throw new Exception(message: "No such profile could be found");
     }
 
-    public async Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel userModel)
+    public async Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel profileModel)
     {
       try
       {
-        var user = await _profileDataContext.ProfileModels.Include(x => x.Competences)
+        var profile = await _profileDataContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
-        user.AboutMe = userModel.AboutMe;
-        user.ProfileImage = userModel.ProfileImage;
-        _profileDataContext.ProfileModels.Update(user);
+
+        profile.Competences = profileModel.Competences;
+        profile.Experience = profileModel.Experience;
+        profile.AboutMe = profileModel.AboutMe;
+        profile.FirstName = profileModel.FirstName;
+        profile.LastName = profileModel.LastName;
+        profile.OfficeId = profileModel.OfficeId;
+        profile.ProfileImage = profileModel.ProfileImage;
+        profile.Projects = profileModel.Projects;
+        profile.Role = profileModel.Role;
+        profile.Title = profile.Title;
+
+        _profileDataContext.ProfileModels.Update(profile);
         await _profileDataContext.SaveChangesAsync();
-        return userModel;
+        return profileModel;
       }
       catch (Exception e)
       {
@@ -79,20 +89,20 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> CreateNewProfileAsync(ProfileModel userModel)
+    public async Task<ProfileModel> CreateNewProfileAsync(ProfileModel profileModel)
     {
       try
       {
         var newUserModel = new ProfileModel()
         {
-          AboutMe = userModel.AboutMe,
-          ProfileImage = userModel.ProfileImage,
-          Competences = userModel.Competences
+          AboutMe = profileModel.AboutMe,
+          ProfileImage = profileModel.ProfileImage,
+          Competences = profileModel.Competences
         };
         await _profileDataContext.ProfileModels.AddAsync(newUserModel);
         await _profileDataContext.SaveChangesAsync();
 
-        return userModel;
+        return profileModel;
       }
       catch (Exception e)
       {

@@ -43,7 +43,7 @@ namespace ConsidKompetens_Web.Services
         var newUser = new IdentityUser(newModel.UserName);
         await _userManager.CreateAsync(newUser);
         await _userManager.AddPasswordAsync(newUser, newModel.PassWord);
-        await _profileDataService.CreateNewProfileAsync(new ProfileModel { OwnerID = newUser.Id });
+        await _profileDataService.CreateNewProfileAsync(new ProfileModel { OwnerID = newUser.Id, Created = DateTime.UtcNow });
         return true;
       }
       catch (Exception e)
