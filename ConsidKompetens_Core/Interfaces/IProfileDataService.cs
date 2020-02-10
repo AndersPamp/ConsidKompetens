@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ConsidKompetens_Core.Models;
+
+namespace ConsidKompetens_Core.Interfaces
+{
+  public interface IProfileDataService
+  {
+    Task<List<ProfileModel>> GetAllProfilesAsync();
+    Task<ProfileModel> GetProfileByIdAsync(int id);
+    Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId);
+    Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel userModel);
+    Task<ProfileModel> CreateNewProfileAsync(ProfileModel userModel);
+  }
+}

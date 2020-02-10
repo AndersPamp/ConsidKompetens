@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Data.Data
 {
-  public class UserDataContext : DbContext
+  public class ProfileDataContext : DbContext
   {
-    public DbSet<EmployeeUserModel> EmployeeUsers { get; set; }
+    public DbSet<ProfileModel> ProfileModels { get; set; }
     public DbSet<CompetenceModel> CompetenceModels { get; set; }
     public DbSet<OfficeModel> OfficeModels { get; set; }
     public DbSet<ProjectModel> ProjectModels { get; set; }
 
-    public UserDataContext(DbContextOptions<UserDataContext> options) : base(options)
+    public ProfileDataContext(DbContextOptions<ProfileDataContext> options) : base(options)
     {
 
     }

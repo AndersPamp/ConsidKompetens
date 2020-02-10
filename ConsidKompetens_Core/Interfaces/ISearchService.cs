@@ -7,7 +7,7 @@ namespace ConsidKompetens_Core.Interfaces
   public interface ISearchService
   {
     Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOffices);
-    Task<List<EmployeeUserModel>> GetUsersByCompetenceAsync(int competenceId);
-    Task<List<EmployeeUserModel>> GetUsersByNameAsync(string input);
+    Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId);
+    Task<List<ProfileModel>> GetProfilesByNameAsync(string input);
   }
 }

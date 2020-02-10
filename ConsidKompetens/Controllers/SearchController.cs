@@ -24,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
       }
 
       [HttpGet]
-      public ActionResult<List<EmployeeUserModel>> Get(string input)
+      public ActionResult<List<ProfileModel>> Get(string input)
       {
         try
         {
