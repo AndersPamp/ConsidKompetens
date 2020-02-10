@@ -12,9 +12,9 @@ namespace ConsidKompetens_Services.DataServices
 {
   public class SearchService : ISearchDataService
   {
-    private readonly DataDbContext _userDataContext;
+    private readonly ProfileDataContext _userDataContext;
 
-    public SearchService(DataDbContext userDataContext)
+    public SearchService(ProfileDataContext userDataContext)
     {
       _userDataContext = userDataContext;
     }
