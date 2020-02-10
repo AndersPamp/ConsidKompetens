@@ -1,0 +1,20 @@
+"PageTitle":"",
+"Ok":true/false,
+"Message":"",
+	"Framework":{
+		"Api":{"GetUserUrl":"",
+		"ReturnUrl":"",
+		"Links":{"LinkedInUrl":"", "FacebookUrl":"", "TwitterUrl":"", "InstagramUrl":""},
+		"Offices":[{"Id":int, "Created":DateTime, "Modified":DateTime, "City":""}],
+		"Competences":[Competences],
+		"Projects":[Projects]
+		}
+	,
+	"Consultants":[{"Id":int, "Created":DateTime, "Modified":DateTime,"OwnerId":Guid,
+	"FirstName":"", "LastName":"","AboutMe":"","Role":enum,
+	"Title":"", "OfficeId":int, "ImageModel":{}, "Competences":[Competences],
+	"Experience":ushort}],
+	
+	"Projects":[{"Id":int, "Created":DateTime, "Modified":DateTime, "Name":"", 
+	"Description":"", "Role":enum, "Techniques":[enum], "TimePeriod":""}]
+}

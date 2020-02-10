@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsidKompetens_Data.Migrations
 {
-    [DbContext(typeof(UserDataContext))]
+    [DbContext(typeof(ProfileDataContext))]
     partial class UserDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
