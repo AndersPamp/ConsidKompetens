@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ConsidKompetens_Data.Migrations
+namespace ConsidKompetens_Data.Migrations.ProfileData
 {
     public partial class Initial : Migration
     {
@@ -11,7 +11,8 @@ namespace ConsidKompetens_Data.Migrations
                 name: "ImageModel",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     Url = table.Column<string>(nullable: true),
@@ -23,69 +24,51 @@ namespace ConsidKompetens_Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegionModels",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegionModels", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OfficeModels",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     City = table.Column<string>(nullable: true),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    PostalCode = table.Column<long>(nullable: false),
-                    TelephoneNumber = table.Column<long>(nullable: false),
-                    RegionModelId = table.Column<Guid>(nullable: true)
+                    TelephoneNumber = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OfficeModels", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OfficeModels_RegionModels_RegionModelId",
-                        column: x => x.RegionModelId,
-                        principalTable: "RegionModels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeUsers",
+                name: "ProfileModels",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     OwnerID = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     AboutMe = table.Column<string>(nullable: true),
-                    ProfileImageId = table.Column<Guid>(nullable: true),
-                    Status = table.Column<int>(nullable: false),
-                    OfficeModelId = table.Column<Guid>(nullable: true)
+                    Role = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    OfficeId = table.Column<int>(nullable: false),
+                    ProfileImageId = table.Column<int>(nullable: true),
+                    Experience = table.Column<int>(nullable: false),
+                    OfficeModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeUsers", x => x.Id);
+                    table.PrimaryKey("PK_ProfileModels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeUsers_OfficeModels_OfficeModelId",
+                        name: "FK_ProfileModels_OfficeModels_OfficeModelId",
                         column: x => x.OfficeModelId,
                         principalTable: "OfficeModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_EmployeeUsers_ImageModel_ProfileImageId",
+                        name: "FK_ProfileModels_ImageModel_ProfileImageId",
                         column: x => x.ProfileImageId,
                         principalTable: "ImageModel",
                         principalColumn: "Id",
@@ -96,58 +79,58 @@ namespace ConsidKompetens_Data.Migrations
                 name: "CompetenceModels",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Level = table.Column<int>(nullable: false),
-                    IconId = table.Column<Guid>(nullable: true),
-                    EmployeeUserModelId = table.Column<Guid>(nullable: true)
+                    IconId = table.Column<int>(nullable: true),
+                    ProfileModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompetenceModels", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CompetenceModels_EmployeeUsers_EmployeeUserModelId",
-                        column: x => x.EmployeeUserModelId,
-                        principalTable: "EmployeeUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CompetenceModels_ImageModel_IconId",
                         column: x => x.IconId,
                         principalTable: "ImageModel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProjectModel",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    EmployeeUserModelId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectModel", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectModel_EmployeeUsers_EmployeeUserModelId",
-                        column: x => x.EmployeeUserModelId,
-                        principalTable: "EmployeeUsers",
+                        name: "FK_CompetenceModels_ProfileModels_ProfileModelId",
+                        column: x => x.ProfileModelId,
+                        principalTable: "ProfileModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CompetenceModels_EmployeeUserModelId",
-                table: "CompetenceModels",
-                column: "EmployeeUserModelId");
+            migrationBuilder.CreateTable(
+                name: "ProjectModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Role = table.Column<int>(nullable: false),
+                    Techniques = table.Column<int>(nullable: false),
+                    TimePeriod = table.Column<string>(nullable: true),
+                    ProfileModelId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectModels_ProfileModels_ProfileModelId",
+                        column: x => x.ProfileModelId,
+                        principalTable: "ProfileModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompetenceModels_IconId",
@@ -155,24 +138,24 @@ namespace ConsidKompetens_Data.Migrations
                 column: "IconId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeUsers_OfficeModelId",
-                table: "EmployeeUsers",
+                name: "IX_CompetenceModels_ProfileModelId",
+                table: "CompetenceModels",
+                column: "ProfileModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProfileModels_OfficeModelId",
+                table: "ProfileModels",
                 column: "OfficeModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeUsers_ProfileImageId",
-                table: "EmployeeUsers",
+                name: "IX_ProfileModels_ProfileImageId",
+                table: "ProfileModels",
                 column: "ProfileImageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OfficeModels_RegionModelId",
-                table: "OfficeModels",
-                column: "RegionModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectModel_EmployeeUserModelId",
-                table: "ProjectModel",
-                column: "EmployeeUserModelId");
+                name: "IX_ProjectModels_ProfileModelId",
+                table: "ProjectModels",
+                column: "ProfileModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -181,19 +164,16 @@ namespace ConsidKompetens_Data.Migrations
                 name: "CompetenceModels");
 
             migrationBuilder.DropTable(
-                name: "ProjectModel");
+                name: "ProjectModels");
 
             migrationBuilder.DropTable(
-                name: "EmployeeUsers");
+                name: "ProfileModels");
 
             migrationBuilder.DropTable(
                 name: "OfficeModels");
 
             migrationBuilder.DropTable(
                 name: "ImageModel");
-
-            migrationBuilder.DropTable(
-                name: "RegionModels");
         }
     }
 }

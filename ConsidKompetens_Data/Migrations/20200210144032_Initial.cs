@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ConsidKompetens_Web.Migrations
+namespace ConsidKompetens_Data.Migrations
 {
     public partial class Initial : Migration
     {
