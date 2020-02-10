@@ -11,18 +11,18 @@ namespace ConsidKompetens_Services.DataServices
 {
   public class SearchService : ISearchService
   {
-    private readonly UserDataContext _userDataContext;
+    private readonly ProfileDataContext _userDataContext;
 
-    public SearchService(UserDataContext userDataContext)
+    public SearchService(ProfileDataContext userDataContext)
     {
       _userDataContext = userDataContext;
     }
 
-    public async Task<List<EmployeeUserModel>> GetAllUsers()
+    public async Task<List<ProfileModel>> GetAllProfiles()
     {
       try
       {
-        return await _userDataContext.EmployeeUsers.Include(x=>x.Competences)
+        return await _userDataContext.ProfileModels.Include(x=>x.Competences)
           .Include(x=>x.Projects).Include(x=>x.ProfileImage).ToListAsync();
       }
       catch (Exception e)
@@ -47,13 +47,13 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    public async Task<List<EmployeeUserModel>> GetUsersByCompetenceAsync(int competenceId)
+    public async Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId)
     {
       try
       {
         var competence = await _userDataContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
-        var users = await GetAllUsers();
-        var result = new List<EmployeeUserModel>();
+        var users = await GetAllProfiles();
+        var result = new List<ProfileModel>();
 
         foreach (var user in users)
         {
@@ -70,15 +70,15 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    public async Task<List<EmployeeUserModel>> GetUsersByNameAsync(string input)
+    public async Task<List<ProfileModel>> GetProfilesByNameAsync(string input)
     {
       try
       {
-        var users = await GetAllUsers();
+        var users = await GetAllProfiles();
 
         var resultFirst = users.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
         var resultLast = users.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
-        var result = new List<EmployeeUserModel>();
+        var result = new List<ProfileModel>();
         foreach (var first in resultFirst)
         {
           result.Add(first);

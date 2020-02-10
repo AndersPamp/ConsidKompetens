@@ -7,6 +7,6 @@ namespace ConsidKompetens_Core.Models
   {
     public string City { get; set; }
     public uint TelephoneNumber { get; set; }
-    public List<EmployeeUserModel> Employees { get; set; }
+    public List<ProfileModel> Employees { get; set; }
   }
 }

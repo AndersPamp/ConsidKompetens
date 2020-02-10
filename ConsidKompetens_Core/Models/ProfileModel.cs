@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsidKompetens_Core.Models
 {
-  public class EmployeeUserModel : BaseEntity
+  public class ProfileModel : BaseEntity
   {
     public string OwnerID { get; set; }
     public string FirstName { get; set; }

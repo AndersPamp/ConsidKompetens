@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using ConsidKompetens_Core.Interfaces;
-using ConsidKompetens_Web.Areas.Identity.Pages.Account;
+﻿using System;
+using System.Threading.Tasks;
+using ConsidKompetens_Services.Interfaces;
+using ConsidKompetens_Web.Communication;
 using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RegisterService = ConsidKompetens_Web.Services.RegisterService;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -15,27 +15,31 @@ namespace ConsidKompetens_Web.Controllers
   [AllowAnonymous]
   public class RegisterController : ControllerBase
   {
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
     private readonly ILogger<RegisterModelReq> _logger;
-    private readonly IEmailSender _emailSender;
-    private readonly IUserDataService _userDataService;
-
-    public RegisterController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<RegisterModelReq> logger, IEmailSender emailSender, IUserDataService userDataService)
+    private readonly IRegisterService _registerService;
+    public RegisterController(ILogger<RegisterModelReq> logger, IRegisterService registerService)
     {
-      _signInManager = signInManager;
-      _userManager = userManager;
       _logger = logger;
-      _emailSender = emailSender;
-      _userDataService = userDataService;
+      _registerService = registerService;
     }
 
     // POST: api/Register
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] RegisterModelReq registerModel)
     {
-      var newModel = new RegisterModelReq();
-      return Created("", newModel);
+      if (ModelState.IsValid)
+      {
+        //1. Check if user already exists
+        if (!await _registerService.CheckIfUserExistsAsync(registerModel.UserName))
+        {
+          //2. If not create new identity user
+          await _registerService.RegisterNewUserAsync(registerModel);
+          return Ok("User and new profile created successfully");
+        }
+
+        return BadRequest("An account with the specified e-mail address already exists");
+      }
+      return BadRequest(_logger.ToString());
 
     }
   }

@@ -12,7 +12,7 @@ namespace ConsidKompetens_Core.Models
   }
   public class ApiModel
   {
-    public string GetUserUrl { get; set; }
+    public string GetProfileUrl { get; set; }
     public string ReturnUrl { get; set; }
   }
 }
