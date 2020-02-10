@@ -11,7 +11,7 @@ namespace ConsidKompetens_Core.Models
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
     public int Id { get; set; }
-    public DateTime Created { get; set; }
+    public DateTime Created { get; set; }=DateTime.Now;
     public DateTime Modified { get; set; }
   }
 }
