@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  ThemeProvider,
-  makeStyles,
-  createMuiTheme
-} from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import { Container } from 'reactstrap';
+import '../../css/User.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(1),
-  },
+  }
 }));
 
 const theme = createMuiTheme({
@@ -28,23 +26,30 @@ const UserPage = () => {
   const classes = useStyles();
 
   return (
+    <Container>
         <ThemeProvider theme={theme}>        
             <Grid container spacing={0}>
                 <Grid item xs={7}>
-                    <TextField
-                        className={classes.margin}
-                        style={{display: 'block'}}
-                        label="Förnamn"
-                        id="mui-theme-provider-standard-input"/>
-                    <TextField
-                        className={classes.margin}
-                        style={{display: 'block'}}
-                        label="Efternamn"
-                        id="mui-theme-provider-standard-input"/>
+                    <div className='textfield-container'>
+                      <TextField
+                          className={classes.margin}
+                          style={{display: 'block'}}
+                          label="Förnamn"
+                          id="mui-theme-provider-standard-input"/>
+                      <TextField
+                          className={classes.margin}
+                          style={{display: 'block'}}
+                          label="Efternamn"
+                          id="mui-theme-provider-standard-input"/>
+                    </div> 
                 </Grid>
                 <Grid item xs={5}>
-                    <img src="" alt="ladda upp bild"/>
-                    <button className='login-button'>Ladda upp bild</button>
+                    <div className='img-container'>
+                        <img className='user-img' 
+                             src="https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg" 
+                             alt="ladda upp bild"/>
+                    </div>
+                    <button className='load-img-button'>Ladda upp bild</button>
                 </Grid>
             </Grid>
             <TextField
@@ -79,6 +84,7 @@ const UserPage = () => {
                 </Grid>
             </Grid>
         </ThemeProvider>
+    </Container>
   );
 }
 

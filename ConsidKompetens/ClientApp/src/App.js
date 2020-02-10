@@ -6,6 +6,7 @@ import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import UserPage from './components/Users/UserPage';
 import NavMenu from './components/Header/NavMenu';
+import { Footer } from '../src/components';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/register' component={RegisterPage}/>
         <Route path='/user' component={UserPage}/>
       </Switch>
+      <Footer/>
     </div>
   );
 }

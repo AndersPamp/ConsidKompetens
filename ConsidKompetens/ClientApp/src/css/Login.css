@@ -22,19 +22,24 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.login-forgot-password:hover{
+    color: black;
+}
+
 .login-inner-box{
     padding-left: 25%;
 }
 
 .login-password-button{
-    padding-left: 35px;
+    padding-left: 55px;
     border: none;
     background-color: white;
     display: block;
 }
 
+
 .login-button{
-    margin-top: 10%;
+    margin-top: 5%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
     width: 60%;
