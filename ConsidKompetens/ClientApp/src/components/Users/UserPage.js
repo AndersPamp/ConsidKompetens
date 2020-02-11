@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Container } from 'reactstrap';
+import offices from '../../Helper/Offices.json';
 import '../../css/User.css';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +19,11 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(1),
-  }
+  }, 
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
 const theme = createMuiTheme({
@@ -24,6 +34,11 @@ const theme = createMuiTheme({
 
 const UserPage = () => {
   const classes = useStyles();
+  const [office, setOffice] = React.useState('');
+
+  const handleChange = event => {
+    setOffice(event.target.value);
+  };
 
   return (
     <Container>
@@ -59,11 +74,14 @@ const UserPage = () => {
                 id="mui-theme-provider-standard-input"/>
             <Grid container spacing={0}>
                 <Grid item xs={6}>
-                    <TextField
-                        className={classes.margin}
-                        style={{display: 'block'}}
-                        label="Kontor"
-                        id="mui-theme-provider-standard-input"/>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
+                        <Select labelId="demo-simple-select-label" id="demo-simple-select">
+                          {offices.map(list => {
+                            return <MenuItem value={list.office} key={list.id}>{list.office}</MenuItem>
+                          })}
+                        </Select>
+                    </FormControl>
                     <TextField
                         className={classes.margin}
                         style={{display: 'block'}}

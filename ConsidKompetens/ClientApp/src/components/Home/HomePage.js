@@ -11,8 +11,9 @@ const officeList = [
     {id: 3, officeOne: "Norrköping", officeTwo: "Värnamo", officeThree: "Växjö" },
     {id: 4, officeOne: "Ljungby" , officeTwo: "Örebro" , officeThree: "Sundsvall" },
     {id: 5, officeOne: "Helsingborg" , officeTwo: "Karlshamn" , officeThree: "Karlskrona" },
-    {id: 6, officeOne: "Gävle", officeTwo: "Nyköping" , officeThree: "Borås" },
+    {id: 6, officeOne: "Gävle", officeTwo: "Nyköping" , officeThree: "Borås" }
 ]
+
 
 const HomePage = () => {
     return(
@@ -40,6 +41,14 @@ const HomePage = () => {
                         </Grid>
                    )
                })}
+               <Grid container spacing={0}>
+                            <Grid item xs={4}>
+                                <a className='home-item-extra' href="#" >Kalmar</a>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <a className='home-item-extra' href="#" >Västerås</a>
+                            </Grid>
+                        </Grid>
             </Container>
         </div>
     )
