@@ -1,0 +1,105 @@
+.homeContainer{
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  
+  .homeImg{
+    height: 500px;
+    width: 100%;
+    box-shadow: 0 0 8px 8px white inset;
+  }
+  
+  .homeInput{
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    top: 17%;
+    width: 50%;
+    left: 25%;
+    padding-left: 10px;
+    font-size: 150%;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .homeInput:focus{
+    outline: none;
+  }
+
+  .search-button{
+      position: absolute;
+      top: 17%;
+      left: 77%;
+      background-color: rgb(9, 9, 47);
+      border: none;
+      outline: none;
+      border-radius: 50%;
+  }
+
+  .search-button:focus{
+    outline: none;
+  }
+
+  .search-button:hover{
+    border: 1px solid white;
+  }
+
+  .home-welcome-label{
+    position: absolute;
+    top: 21%;
+    left: 54%;
+    font-size: 160%;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+  }
+
+  .home-label{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 220%;
+    font-weight: bold;
+    padding-top: 2%;
+    padding-left: 45%;
+    margin-bottom: 2%;
+  }
+
+  .home-item{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 30px;
+    color: black;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 25%;
+    width: 230px;
+  }
+
+  .home-item:hover{
+    color: white;
+    background-color: rgb(28, 24, 49);
+    text-decoration: none;
+  }
+
+  .home-item-extra{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 30px;
+    color: black;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 25%;
+    width: 230px;
+  }
+
+  .home-item-extra:hover{
+    color: white;
+    background-color: rgb(28, 24, 49);
+    text-decoration: none;
+  }

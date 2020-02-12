@@ -1,0 +1,25 @@
+
+[
+    {"id": 1, "office": "Jönköping"},
+    {"id": 2, "office": "Göteborg"},
+    {"id": 3, "office": "Norrköping"},
+    {"id": 4, "office": "Ljungby"},
+    {"id": 5, "office": "Helsingborg"},
+    {"id": 6, "office": "Gävle"},
+    {"id": 7, "office": "Stockholm"},
+    {"id": 8, "office": "Uppsala"},
+    {"id": 9, "office": "Linköping"},
+    {"id": 10, "office": "Malmö"},
+    {"id": 11, "office": "Värnamo"},
+    {"id": 12, "office": "Växjö"},
+    {"id": 13, "office": "Örebro"},
+    {"id": 14, "office": "Karlshamn"},
+    {"id": 15, "office": "Karlskrona"},
+    {"id": 16, "office": "Nyköping"},
+    {"id": 17, "office": "Borås"},
+    {"id": 18, "office": "Sundsvall"},
+    {"id": 19, "office": "Västerås"},
+    {"id": 20, "office": "Kalmar"}
+]
+
+
