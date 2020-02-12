@@ -1,0 +1,54 @@
+.login-img{
+    height: 90%;
+    width: 90%;
+}
+
+.login-box{
+    padding: 15%;
+    margin-right: 10%;
+    margin-top: 10%;
+    box-shadow: 2px 2px 5px 2px rgb(172, 172, 172);
+}
+
+.login-label{
+    font-size: 180%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-forgot-password{
+    font-size: 80%;
+    color: black;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-forgot-password:hover{
+    color: black;
+}
+
+.login-inner-box{
+    padding-left: 25%;
+}
+
+.login-password-button{
+    padding-left: 55px;
+    border: none;
+    background-color: white;
+    display: block;
+}
+
+
+.login-button{
+    margin-top: 5%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 60%;
+    background-color: white;
+    border: 1px solid rgb(248, 64, 64);
+    color: rgb(248, 64, 64);
+}
+
+.login-button:hover{
+    background-color: red;
+    color: white;
+}
