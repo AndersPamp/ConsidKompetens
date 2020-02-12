@@ -20,7 +20,7 @@ const HomePage = () => {
         <div className="homeContainer">
             <input className="homeInput" type="text" placeholder="Sök.."/>
             <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
-            <label className='home-welcome-label'>Vad letar du efter idag?</label>
+            <label className='home-welcome-label'>Vad letar du efter?</label>
             <img className="homeImg" src={HomeImage} alt="ConsidCoffee"/>
             <div>
                 <label className='home-label'>Välj kontor</label>
