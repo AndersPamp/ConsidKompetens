@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Communication;
+using ConsidKompetens_Web.Helpers;
 using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RegisterService = ConsidKompetens_Web.Services.RegisterService;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -32,15 +31,18 @@ namespace ConsidKompetens_Web.Controllers
         //1. Check if user already exists
         if (!await _registerService.CheckIfUserExistsAsync(registerModel.UserName))
         {
-          //2. If not create new identity user
-          await _registerService.RegisterNewUserAsync(registerModel);
-          return Ok("User and new profile created successfully");
+          //2. Check if password is strong enough
+          if (PasswordStrength.CheckPasswordComplexity(registerModel.PassWord))
+          {
+            //3. Create new identity user
+            await _registerService.RegisterNewUserAsync(registerModel);
+            return Ok("User and new profile created successfully");
+          }
+          return BadRequest(new JsonResponse {Ok = false, Message = "Password doesn't meet criteria"});
         }
-
         return BadRequest("An account with the specified e-mail address already exists");
       }
       return BadRequest(_logger.ToString());
-
     }
   }
 }
