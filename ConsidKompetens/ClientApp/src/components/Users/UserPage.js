@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -34,11 +34,6 @@ const theme = createMuiTheme({
 
 const UserPage = () => {
   const classes = useStyles();
-  const [office, setOffice] = React.useState('');
-
-  const handleChange = event => {
-    setOffice(event.target.value);
-  };
 
   return (
     <Container>
