@@ -17,9 +17,9 @@ namespace ConsidKompetens_Web.Controllers
   public class ProfileController : ControllerBase
   {
     private readonly IProfileDataService _profileDataService;
-    private readonly ISearchService _searchService;
+    private readonly ISearchDataService _searchService;
 
-    public ProfileController(IProfileDataService profileDataService, ISearchService searchService)
+    public ProfileController(IProfileDataService profileDataService, ISearchDataService searchService)
     {
       _profileDataService = profileDataService;
       _searchService = searchService;
@@ -27,11 +27,11 @@ namespace ConsidKompetens_Web.Controllers
 
     // GET: api/Employee
     [HttpGet]
-    public ActionResult<IEnumerable<ProfileModel>> Get()
+    public async Task<ActionResult<IEnumerable<ProfileModel>>> Get()
     {
       try
       {
-        var users = _profileDataService.GetAllProfilesAsync().Result;
+        var users = await _profileDataService.GetAllProfilesAsync();
         return Ok(new SpaPageModel() { PageTitle = "AllProfiles", Ok = true, Consultants = users });
       }
       catch (Exception e)
@@ -42,11 +42,11 @@ namespace ConsidKompetens_Web.Controllers
 
     // GET: api/Employee/5
     [HttpGet("{id}", Name = "Get")]
-    public ActionResult<ProfileModel> Get(int id)
+    public async Task<ActionResult<ProfileModel>> Get(int id)
     {
       try
       {
-        var user = _profileDataService.GetProfileByIdAsync(id).Result;
+        var user = await _profileDataService.GetProfileByIdAsync(id);
         return Ok(new SpaPageModel { PageTitle = user.FirstName + user.LastName, Ok = true, Consultants = new List<ProfileModel> { user } });
       }
       catch (Exception e)

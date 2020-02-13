@@ -1,4 +1,4 @@
-﻿namespace ConsidKompetens_Web.Helpers
+﻿namespace ConsidKompetens_Services.Helpers
 {
   public class AppSettings
   {

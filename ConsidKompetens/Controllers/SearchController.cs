@@ -16,9 +16,9 @@ namespace ConsidKompetens_Web.Controllers
     [Authorize]
     public class SearchController : ControllerBase
     {
-      private readonly ISearchService _searchService;
+      private readonly ISearchDataService _searchService;
 
-      public SearchController(ISearchService searchService)
+      public SearchController(ISearchDataService searchService)
       {
         _searchService = searchService;
       }

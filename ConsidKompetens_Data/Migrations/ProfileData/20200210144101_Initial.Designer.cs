@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsidKompetens_Data.Migrations.ProfileData
 {
-    [DbContext(typeof(ProfileDataContext))]
+    [DbContext(typeof(DataDbContext))]
     [Migration("20200210144101_Initial")]
     partial class Initial
     {
