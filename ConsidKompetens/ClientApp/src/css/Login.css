@@ -52,3 +52,7 @@
     background-color: red;
     color: white;
 }
+
+.login-button:focus{
+    outline: none;
+}
