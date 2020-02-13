@@ -12,10 +12,19 @@ namespace ConsidKompetens_Services.DataServices
   public class CompetenceDataService:ICompetenceDataService
   {
     private readonly DataDbContext _dbContext;
+<<<<<<< HEAD
 
     public CompetenceDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
+=======
+    private readonly ILogger<CompetenceDataService> _logger;
+
+    public CompetenceDataService(DataDbContext dbContext, ILogger<CompetenceDataService> logger)
+    {
+      _dbContext = dbContext;
+      _logger = logger;
+>>>>>>> Add Officemodel logic
     }
     public async Task<IEnumerable<CompetenceModel>> GetAllCompetencesAsync()
     {
@@ -25,7 +34,11 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
+<<<<<<< HEAD
         throw new Exception(e.Message);
+=======
+        throw new Exception(_logger + e.Message);
+>>>>>>> Add Officemodel logic
       }
     }
 
@@ -37,7 +50,11 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
+<<<<<<< HEAD
         throw new Exception(e.Message);
+=======
+        throw new Exception(_logger + e.Message);
+>>>>>>> Add Officemodel logic
       }
     }
 
@@ -49,7 +66,11 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
+<<<<<<< HEAD
         throw new Exception(e.Message);
+=======
+        throw new Exception(_logger + e.Message);
+>>>>>>> Add Officemodel logic
       }
     }
   }

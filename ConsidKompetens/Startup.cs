@@ -52,6 +52,17 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = false;
       });
+<<<<<<< HEAD
+
+      services.AddScoped<ILoginService, LoginService>();
+      services.AddScoped<IRegisterService, RegisterService>();
+      services.AddScoped<IProfileDataService, ProfileDataService>();
+      services.AddScoped<ISearchDataService, SearchService>();
+      services.AddScoped<IOfficeDataService, OfficeDataService>();
+      services.AddScoped<ICompetenceDataService, CompetenceDataService>();
+      services.AddScoped<IProjectDataService, ProjectDataService>();
+=======
+>>>>>>> Add Officemodel logic
 
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
@@ -61,12 +72,6 @@ namespace ConsidKompetens_Web
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
 
-      
-      services.AddScoped<ILoginService, LoginService>();
-      services.AddScoped<IRegisterService, RegisterService>();
-      services.AddScoped<IProfileDataService, ProfileDataService>();
-      services.AddScoped<ISearchService, SearchService>();
-
       services.AddControllers(config =>
       {
         var policy = new AuthorizationPolicyBuilder()
@@ -74,10 +79,20 @@ namespace ConsidKompetens_Web
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
       });
-      
-      
+
+      //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+      // {
+      //   options.Password.RequiredLength = 8;
+      //   options.Password.RequireNonAlphanumeric = false;
+      //   options.Password.RequireUppercase = true;
+      //   options.Password.RequireLowercase = true;
+      //   //Set to true when email service is in place
+      //   options.SignIn.RequireConfirmedEmail = false;
+      // });
+
+
       //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
-      
+
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
       services.Configure<AppSettings>(appSettingsSection);
@@ -93,7 +108,7 @@ namespace ConsidKompetens_Web
       {
         token.RequireHttpsMetadata = false;
         token.SaveToken = true;
-        token.TokenValidationParameters=new TokenValidationParameters
+        token.TokenValidationParameters = new TokenValidationParameters
         {
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = new SymmetricSecurityKey(key),
@@ -102,6 +117,7 @@ namespace ConsidKompetens_Web
         };
       });
 
+<<<<<<< HEAD
       //services.AddIdentity<IdentityUser, IdentityRole>(options =>
       // {
       //   options.Password.RequiredLength = 8;
@@ -138,6 +154,8 @@ namespace ConsidKompetens_Web
         };
       });
 
+=======
+>>>>>>> Add Officemodel logic
       services.AddSpaStaticFiles(configuration =>
       {
         configuration.RootPath = "ClientApp/build";
