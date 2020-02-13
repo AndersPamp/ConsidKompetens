@@ -6,7 +6,6 @@ using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RegisterService = ConsidKompetens_Web.Services.RegisterService;
 
 namespace ConsidKompetens_Web.Controllers
 {
