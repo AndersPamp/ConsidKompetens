@@ -6,10 +6,11 @@ namespace ConsidKompetens_Core.Interfaces
 {
   public interface IProfileDataService
   {
-    Task<List<ProfileModel>> GetAllProfilesAsync();
+    Task<IEnumerable<ProfileModel>> GetAllProfilesAsync();
     Task<ProfileModel> GetProfileByIdAsync(int id);
     Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId);
+    Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
     Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel userModel);
-    Task<ProfileModel> CreateNewProfileAsync(ProfileModel userModel);
+    Task<ProfileModel> CreateNewProfileAsync(string ownerId, ProfileModel profileModel);
   }
 }

@@ -10,21 +10,25 @@
     <Compile Remove="ClientApp\Images\**" />
     <Compile Remove="ClientApp\node_modules\**" />
     <Compile Remove="ClientApp\spa\**" />
+    <Compile Remove="Services\**" />
     <Compile Remove="Views\**" />
     <Content Remove="Areas\**" />
     <Content Remove="ClientApp\Images\**" />
     <Content Remove="ClientApp\node_modules\**" />
     <Content Remove="ClientApp\spa\**" />
+    <Content Remove="Services\**" />
     <Content Remove="Views\**" />
     <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="ClientApp\Images\**" />
     <EmbeddedResource Remove="ClientApp\node_modules\**" />
     <EmbeddedResource Remove="ClientApp\spa\**" />
+    <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="Views\**" />
     <None Remove="Areas\**" />
     <None Remove="ClientApp\Images\**" />
     <None Remove="ClientApp\node_modules\**" />
     <None Remove="ClientApp\spa\**" />
+    <None Remove="Services\**" />
     <None Remove="Views\**" />
   </ItemGroup>
 

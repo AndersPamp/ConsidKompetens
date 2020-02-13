@@ -3,14 +3,12 @@ using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
-using ConsidKompetens_Web.Communication;
-using ConsidKompetens_Web.Helpers;
 using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
 
-namespace ConsidKompetens_Web.Services
+namespace ConsidKompetens_Services.IdentityServices
 {
   public class RegisterService : IRegisterService
   {

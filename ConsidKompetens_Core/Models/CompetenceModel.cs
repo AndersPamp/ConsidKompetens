@@ -5,6 +5,7 @@
     public string Name { get; set; }
     public string Description { get; set; }
     public Level Level { get; set; }
+    public ushort Experience { get; set; }
     public ImageModel Icon { get; set; }
   }
 
