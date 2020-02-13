@@ -2,10 +2,10 @@ using System.Text;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.DataServices;
+using ConsidKompetens_Services.Helpers;
+using ConsidKompetens_Services.IdentityServices;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Data;
-using ConsidKompetens_Web.Helpers;
-using ConsidKompetens_Web.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -33,22 +33,32 @@ namespace ConsidKompetens_Web
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddDbContext<ApplicationDbContext>(options =>
+      services.AddDbContext<IdentityDbContext>(options =>
         options.UseSqlServer(
           Configuration.GetConnectionString("DefaultConnection")));
 
-      services.AddDbContext<ProfileDataContext>(options =>
+      services.AddDbContext<DataDbContext>(options =>
         options.UseSqlServer(
           Configuration.GetConnectionString("UserDataConnection")));
 
-      services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-          .AddEntityFrameworkStores<ApplicationDbContext>();
+      services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+      //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+      services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.SignIn.RequireConfirmedEmail = false;
+      });
 
-      
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
       services.AddScoped<IProfileDataService, ProfileDataService>();
-      services.AddScoped<ISearchService, SearchService>();
+      services.AddScoped<ISearchDataService, SearchService>();
+      services.AddScoped<IOfficeDataService, OfficeDataService>();
+      services.AddScoped<ICompetenceDataService, CompetenceDataService>();
+      services.AddScoped<IProjectDataService, ProjectDataService>();
 
       services.AddControllers(config =>
       {
@@ -57,10 +67,20 @@ namespace ConsidKompetens_Web
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
       });
-      
-      
+
+      //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+      // {
+      //   options.Password.RequiredLength = 8;
+      //   options.Password.RequireNonAlphanumeric = false;
+      //   options.Password.RequireUppercase = true;
+      //   options.Password.RequireLowercase = true;
+      //   //Set to true when email service is in place
+      //   options.SignIn.RequireConfirmedEmail = false;
+      // });
+
+
       //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
-      
+
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
       services.Configure<AppSettings>(appSettingsSection);
@@ -76,24 +96,13 @@ namespace ConsidKompetens_Web
       {
         token.RequireHttpsMetadata = false;
         token.SaveToken = true;
-        token.TokenValidationParameters=new TokenValidationParameters
+        token.TokenValidationParameters = new TokenValidationParameters
         {
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = new SymmetricSecurityKey(key),
           ValidateIssuer = false,
           ValidateAudience = false
         };
-      });
-
-
-      services.Configure<IdentityOptions>(options =>
-      {
-        options.Password.RequiredLength = 8;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = true;
-        options.Password.RequireLowercase = true;
-        options.SignIn.RequireConfirmedEmail = false;
-        
       });
 
       services.AddSpaStaticFiles(configuration =>
@@ -116,10 +125,12 @@ namespace ConsidKompetens_Web
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
+
       app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
       app.UseRouting();
+
       app.UseAuthentication();
       app.UseAuthorization();
 
@@ -129,8 +140,8 @@ namespace ConsidKompetens_Web
                   name: "default",
                   pattern: "{controller=Login}/{action=Post}/{id?}");
         endpoints.MapControllerRoute(
-                  name:"register",
-                  pattern:"{controller=Register}/{action=Post}/{id?}");
+                  name: "register",
+                  pattern: "{controller=Register}/{action=Post}/{id?}");
       });
 
       //app.UseMvc(routes =>

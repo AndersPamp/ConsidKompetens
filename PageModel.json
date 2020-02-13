@@ -8,8 +8,8 @@
 		"Offices":[{"Id":int, "Created":DateTime, "Modified":DateTime, "City":""}],
 		"Competences":[Competences],
 		"Projects":[Projects]
-		}
-	,
+		},
+	
 	"Consultants":[{"Id":int, "Created":DateTime, "Modified":DateTime,"OwnerId":Guid,
 	"FirstName":"", "LastName":"","AboutMe":"","Role":enum,
 	"Title":"", "OfficeId":int, "ImageModel":{}, "Competences":[Competences],

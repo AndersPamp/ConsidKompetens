@@ -1,33 +1,38 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
   public class ProfileDataService : IProfileDataService
   {
-    private readonly ProfileDataContext _profileDataContext;
+    private readonly DataDbContext _dataDbContext;
+    private readonly ILogger<ProfileDataService> _logger;
 
-    public ProfileDataService(ProfileDataContext profileDataContext)
+    public ProfileDataService(DataDbContext DataDbContext)
     {
-      _profileDataContext = profileDataContext;
+      _dataDbContext = DataDbContext;
     }
 
-    public async Task<List<ProfileModel>> GetAllProfilesAsync()
+    public async Task<IEnumerable<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
-        return await _profileDataContext.ProfileModels.Include(x => x.Competences)
+        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.Projects).ToListAsync();
       }
       catch (Exception e)
       {
 
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
 
@@ -35,12 +40,12 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _profileDataContext.ProfileModels.Include(x => x.Competences)
+        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
 
     }
@@ -51,22 +56,44 @@ namespace ConsidKompetens_Services.DataServices
       {
         try
         {
-          return await _profileDataContext.ProfileModels.FirstOrDefaultAsync(x => x.OwnerID == ownerId);
+          return await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.OwnerID == ownerId);
         }
         catch (Exception e)
         {
-          throw new Exception(e.Message);
+          throw new Exception(_logger + e.Message);
         }
       }
-      throw new Exception(message: "No such profile could be found");
+      throw new Exception(_logger.ToString());
+    }
+
+    public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
+    {
+      var result = new List<ProfileModel>();
+      try
+      {
+        foreach (var officeId in officeIds)
+        {
+          var delta1 = (await _dataDbContext.ProfileModels.Include(x => x.Competences).Include(x => x.Projects)
+            .Include(x => x.ProfileImage).Where(x => x.OfficeId == officeId).ToListAsync());
+          foreach (var delta in delta1)
+          {
+            result.Add(delta);
+          }
+        }
+        return result;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(_logger + e.Message);
+      }
     }
 
     public async Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel profileModel)
     {
       try
       {
-        var profile = await _profileDataContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
+        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
+          .Include(x => x.Projects).Include(x=>x.Links).FirstOrDefaultAsync(x => x.Id == id);
 
         profile.Competences = profileModel.Competences;
         profile.Experience = profileModel.Experience;
@@ -76,37 +103,38 @@ namespace ConsidKompetens_Services.DataServices
         profile.OfficeId = profileModel.OfficeId;
         profile.ProfileImage = profileModel.ProfileImage;
         profile.Projects = profileModel.Projects;
+        profile.Links = profileModel.Links;
         profile.Role = profileModel.Role;
         profile.Title = profile.Title;
+        profile.Modified = DateTime.UtcNow;
 
-        _profileDataContext.ProfileModels.Update(profile);
-        await _profileDataContext.SaveChangesAsync();
+        _dataDbContext.ProfileModels.Update(profile);
+        await _dataDbContext.SaveChangesAsync();
         return profileModel;
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
 
-    public async Task<ProfileModel> CreateNewProfileAsync(ProfileModel profileModel)
+    public async Task<ProfileModel> CreateNewProfileAsync(string id, ProfileModel profileModel)
     {
       try
       {
-        var newUserModel = new ProfileModel()
+        var newUserModel = new ProfileModel
         {
-          AboutMe = profileModel.AboutMe,
-          ProfileImage = profileModel.ProfileImage,
-          Competences = profileModel.Competences
+          OwnerID = id,
+          Created = DateTime.UtcNow
         };
-        await _profileDataContext.ProfileModels.AddAsync(newUserModel);
-        await _profileDataContext.SaveChangesAsync();
+        await _dataDbContext.ProfileModels.AddAsync(newUserModel);
+        await _dataDbContext.SaveChangesAsync();
 
         return profileModel;
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
   }
