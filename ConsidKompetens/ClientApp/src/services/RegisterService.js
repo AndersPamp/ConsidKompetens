@@ -1,4 +1,5 @@
 import { Register } from  '../../../Controllers/RegisterController.cs';
+import jwt from '../Helper/jwt';
 
 export const createUser = async (registerModel: Register) => {
     try {
@@ -13,7 +14,7 @@ export const createUser = async (registerModel: Register) => {
         let response = await fetch('api/register/post', options);
         if(response.created) {
             let data = await response.json();
-            localStorage.setItem('token', data.jwt);
+            localStorage.setItem('secret', data.jwt);
             return data;
         }else {
             return null;

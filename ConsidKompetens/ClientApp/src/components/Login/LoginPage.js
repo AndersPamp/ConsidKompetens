@@ -31,7 +31,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
 
-    handleClick = (event) => {
+    function handleClick(event) {
       let baseUrl = 'https://localhost:.../api/login';
       let succeeded = this.props.succeeded;
       let failed = this.props.failed;
@@ -78,7 +78,7 @@ const LoginPage = () => {
                                         label='Lösenord:'
                                         onChange={(event, newValue) => setPassword({ password: newValue})}
                                         />
-                                <button className='login-button' onClick={this.handleClick}>Logga in</button>
+                                <button className='login-button' onClick={(event) => handleClick(event)}>Logga in</button>
                                 <button className='login-password-button'>
                                     <a className='login-forgot-password' href="#">Glömt ditt lösenord?</a>
                                 </button> 

@@ -14,7 +14,7 @@
     position: absolute;
     border-radius: 10px;
     border: none;
-    top: 17%;
+    top: 8%;
     width: 50%;
     left: 25%;
     padding-left: 10px;
@@ -28,7 +28,7 @@
 
   .search-button{
       position: absolute;
-      top: 17%;
+      top: 8%;
       left: 77%;
       background-color: rgb(9, 9, 47);
       border: none;
@@ -46,7 +46,7 @@
 
   .home-welcome-label{
     position: absolute;
-    top: 21%;
+    top: 10%;
     left: 57%;
     font-size: 160%;
     font-family: 'Montserrat', sans-serif;
@@ -58,7 +58,7 @@
     font-size: 220%;
     font-weight: bold;
     padding-top: 2%;
-    padding-left: 45%;
+    padding-left: 43%;
     margin-bottom: 2%;
   }
 
@@ -102,4 +102,26 @@
     color: white;
     background-color: rgb(28, 24, 49);
     text-decoration: none;
+  }
+
+  .office-list{
+    box-sizing: border-box;
+    border: 1px solid rgb(199, 199, 199);
+    padding: 25px;
+    display: inline-block;
+    margin: 10px;
+    width: 30%;
+    margin-left: 2%;
+    box-shadow: 1px 1px 1px 1px rgb(185, 185, 185);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+
+  .office-list-a{
+    color: black;
+  }
+
+  .office-list:hover{
+    background-color: rgb(21, 32, 58);
+    color: white;
   }
