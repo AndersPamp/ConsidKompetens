@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
@@ -19,7 +21,7 @@ namespace ConsidKompetens_Services.DataServices
       _dataDbContext = DataDbContext;
     }
 
-    public async Task<List<ProfileModel>> GetAllProfilesAsync()
+    public async Task<IEnumerable<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
@@ -29,7 +31,7 @@ namespace ConsidKompetens_Services.DataServices
       catch (Exception e)
       {
 
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
 
@@ -42,7 +44,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
 
     }
@@ -57,7 +59,7 @@ namespace ConsidKompetens_Services.DataServices
         }
         catch (Exception e)
         {
-          throw new Exception(e.Message);
+          throw new Exception(_logger + e.Message);
         }
       }
       throw new Exception("");
@@ -111,7 +113,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
 
@@ -131,7 +133,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(e.Message);
+        throw new Exception(_logger + e.Message);
       }
     }
   }

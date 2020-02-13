@@ -61,45 +61,12 @@ namespace ConsidKompetens_Web
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
 
-      
-      services.AddScoped<ILoginService, LoginService>();
-      services.AddScoped<IRegisterService, RegisterService>();
-      services.AddScoped<IProfileDataService, ProfileDataService>();
-      services.AddScoped<ISearchService, SearchService>();
-
       services.AddControllers(config =>
       {
         var policy = new AuthorizationPolicyBuilder()
           .RequireAuthenticatedUser()
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
-      });
-      
-      
-      //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
-      
-      var appSettingsSection = Configuration.GetSection("AppSettings");
-
-      services.Configure<AppSettings>(appSettingsSection);
-
-      var appSettings = appSettingsSection.Get<AppSettings>();
-      var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-      services.AddAuthentication(x =>
-      {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-      }).AddJwtBearer(token =>
-      {
-        token.RequireHttpsMetadata = false;
-        token.SaveToken = true;
-        token.TokenValidationParameters=new TokenValidationParameters
-        {
-          ValidateIssuerSigningKey = true,
-          IssuerSigningKey = new SymmetricSecurityKey(key),
-          ValidateIssuer = false,
-          ValidateAudience = false
-        };
       });
 
       //services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -113,6 +80,7 @@ namespace ConsidKompetens_Web
       // });
 
 
+      //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
 
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
