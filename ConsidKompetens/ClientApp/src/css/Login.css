@@ -7,7 +7,7 @@
     padding: 15%;
     margin-right: 10%;
     margin-top: 10%;
-    box-shadow: 2px 2px 5px 2px rgb(172, 172, 172);
+    box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
 }
 
 .login-label{
@@ -42,14 +42,15 @@
     margin-top: 5%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 60%;
+    width: 40%;
     background-color: white;
-    border: 1px solid rgb(248, 64, 64);
-    color: rgb(248, 64, 64);
+    border: 1px solid #DD0332;;
+    color: #DD0332;
+    font-weight: bold;
 }
 
 .login-button:hover{
-    background-color: red;
+    background-color: #DD0332;;
     color: white;
 }
 
