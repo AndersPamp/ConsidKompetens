@@ -21,7 +21,7 @@ namespace ConsidKompetens_Services.DataServices
       _dataDbContext = DataDbContext;
     }
 
-    public async Task<IEnumerable<ProfileModel>> GetAllProfilesAsync()
+    public async Task<List<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
@@ -31,7 +31,7 @@ namespace ConsidKompetens_Services.DataServices
       catch (Exception e)
       {
 
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -44,7 +44,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
 
     }
@@ -59,7 +59,7 @@ namespace ConsidKompetens_Services.DataServices
         }
         catch (Exception e)
         {
-          throw new Exception(_logger + e.Message);
+          throw new Exception(e.Message);
         }
       }
       throw new Exception("");
@@ -113,7 +113,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -133,7 +133,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }

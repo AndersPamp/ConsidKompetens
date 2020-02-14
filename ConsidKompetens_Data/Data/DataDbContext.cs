@@ -1,7 +1,7 @@
 ﻿using ConsidKompetens_Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsidKompetens_Web.Data
+namespace ConsidKompetens_Data.Data
 {
   public class DataDbContext:DbContext
   {

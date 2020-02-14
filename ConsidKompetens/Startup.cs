@@ -5,7 +5,6 @@ using ConsidKompetens_Services.DataServices;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.IdentityServices;
 using ConsidKompetens_Services.Interfaces;
-using ConsidKompetens_Web.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ConsidKompetens_Web

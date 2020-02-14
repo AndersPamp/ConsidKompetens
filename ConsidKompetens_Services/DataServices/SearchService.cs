@@ -13,24 +13,23 @@ namespace ConsidKompetens_Services.DataServices
 {
   public class SearchService : ISearchDataService
   {
-    private readonly DataDbContext _userDataContext;
+    private readonly DataDbContext _dbContext;
 
-    public SearchService(DataDbContext userDataContext)
+    public SearchService(DataDbContext dbContext)
     {
-      _userDataContext = userDataContext;
-      _logger = logger;
+      _dbContext = dbContext;
     }
 
     public async Task<List<ProfileModel>> GetAllProfiles()
     {
       try
       {
-        return await _userDataContext.ProfileModels.Include(x=>x.Competences)
+        return await _dbContext.ProfileModels.Include(x=>x.Competences)
           .Include(x=>x.Projects).Include(x=>x.ProfileImage).ToListAsync();
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOfficeIds)
@@ -38,28 +37,28 @@ namespace ConsidKompetens_Services.DataServices
       var result = new List<OfficeModel>();
       if (selectedOfficeIds.IsNullOrEmpty())
       {
-        return await _userDataContext.OfficeModels.ToListAsync();
+        return await _dbContext.OfficeModels.ToListAsync();
       }
       try
       {
         
         foreach (var officeId in selectedOfficeIds)
         {
-          var officeDelta = await _userDataContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
+          var officeDelta = await _dbContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
           result.Add(officeDelta);
         }
         return result;
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId)
     {
       try
       {
-        var competence = await _userDataContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
+        var competence = await _dbContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
         var users = await GetAllProfiles();
         var result = new List<ProfileModel>();
 
@@ -75,7 +74,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<ProfileModel>> GetProfilesByNameAsync(string input)
@@ -101,7 +100,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }
