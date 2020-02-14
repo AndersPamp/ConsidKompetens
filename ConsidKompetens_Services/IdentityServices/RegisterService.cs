@@ -38,7 +38,7 @@ namespace ConsidKompetens_Services.IdentityServices
       {
         var newUser = new IdentityUser(newModel.UserName) { Email = newModel.UserName };
         //remove once email service is in place
-        //newUser.EmailConfirmed = true;
+        newUser.EmailConfirmed = true;
         await _userManager.CreateAsync(newUser);
 
         await _userManager.AddPasswordAsync(newUser, newModel.PassWord);

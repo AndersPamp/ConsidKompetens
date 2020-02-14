@@ -7,16 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ConsidKompetens_Data.Migrations.DataDb
+namespace ConsidKompetens_Data.Migrations.ProfileData
 {
     [DbContext(typeof(DataDbContext))]
-<<<<<<< HEAD:ConsidKompetens_Data/Migrations/DataDb/20200214094650_Initial.Designer.cs
-    [Migration("20200214094650_Initial")]
-    partial class Initial
-=======
     [Migration("20200214085535_secundo")]
     partial class secundo
->>>>>>> backend:ConsidKompetens_Data/Migrations/ProfileData/20200214085535_secundo.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,37 +82,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("ImageModels");
-                });
-
-            modelBuilder.Entity("ConsidKompetens_Core.Models.LinkModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FacebookUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InstagramUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LinkedInUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TwitterUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LinkModels");
+                    b.ToTable("ImageModel");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.LinkModel", b =>
