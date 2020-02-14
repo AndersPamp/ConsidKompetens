@@ -22,10 +22,5 @@ namespace ConsidKompetens_Web.Controllers
       _projectService = projectService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ProjectModel>> Get()
-    {
-      return null;
-    }
   }
 }

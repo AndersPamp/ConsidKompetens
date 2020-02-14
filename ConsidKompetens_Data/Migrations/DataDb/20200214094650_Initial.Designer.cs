@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ConsidKompetens_Data.Migrations.ProfileData
+namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20200214085535_secundo")]
-    partial class secundo
+    [Migration("20200214094650_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,7 +82,7 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
 
                     b.HasKey("Id");
 
-                    b.ToTable("ImageModel");
+                    b.ToTable("ImageModels");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.LinkModel", b =>
@@ -112,7 +112,7 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
 
                     b.HasKey("Id");
 
-                    b.ToTable("LinkModel");
+                    b.ToTable("LinkModels");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.OfficeModel", b =>
