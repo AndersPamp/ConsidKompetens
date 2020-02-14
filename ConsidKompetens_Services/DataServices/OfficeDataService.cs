@@ -11,12 +11,10 @@ namespace ConsidKompetens_Services.DataServices
   public class OfficeDataService : IOfficeDataService
   {
     private readonly DataDbContext _dbContext;
-    private readonly ILogger _logger;
 
-    public OfficeDataService(DataDbContext dbContext, ILogger logger)
+    public OfficeDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
-      _logger = logger;
     }
 
     public async Task<IEnumerable<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds)
@@ -32,7 +30,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger+e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -45,7 +43,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -63,7 +61,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }

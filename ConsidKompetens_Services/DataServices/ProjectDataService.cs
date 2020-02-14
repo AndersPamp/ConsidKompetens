@@ -13,12 +13,10 @@ namespace ConsidKompetens_Services.DataServices
   public class ProjectDataService : IProjectDataService
   {
     private readonly DataDbContext _dbContext;
-    private readonly ILogger<IProjectDataService> _logger;
 
-    public ProjectDataService(DataDbContext dbContext, ILogger<IProjectDataService> logger)
+    public ProjectDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
-      _logger = logger;
     }
     public async Task<IEnumerable<ProjectModel>> GetAllProjectsAsync()
     {
@@ -28,7 +26,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -40,7 +38,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -52,7 +50,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }
