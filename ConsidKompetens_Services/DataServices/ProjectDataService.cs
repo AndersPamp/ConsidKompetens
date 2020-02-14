@@ -17,7 +17,6 @@ namespace ConsidKompetens_Services.DataServices
     public ProjectDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
-
     }
     public async Task<IEnumerable<ProjectModel>> GetAllProjectsAsync()
     {

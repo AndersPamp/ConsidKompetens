@@ -14,12 +14,10 @@ namespace ConsidKompetens_Services.DataServices
   public class SearchService : ISearchDataService
   {
     private readonly DataDbContext _userDataContext;
-    private readonly ILogger<SearchService> _logger;
 
-    public SearchService(DataDbContext userDataContext, ILogger<SearchService> logger)
+    public SearchService(DataDbContext userDataContext)
     {
       _userDataContext = userDataContext;
-      _logger = logger;
     }
 
     public async Task<List<ProfileModel>> GetAllProfiles()
@@ -31,7 +29,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOfficeIds)
@@ -53,7 +51,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId)
@@ -76,7 +74,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
     public async Task<List<ProfileModel>> GetProfilesByNameAsync(string input)
@@ -102,7 +100,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }
