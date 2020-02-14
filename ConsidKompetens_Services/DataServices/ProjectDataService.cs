@@ -13,19 +13,11 @@ namespace ConsidKompetens_Services.DataServices
   public class ProjectDataService : IProjectDataService
   {
     private readonly DataDbContext _dbContext;
-<<<<<<< HEAD
 
     public ProjectDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
-=======
-    private readonly ILogger<IProjectDataService> _logger;
 
-    public ProjectDataService(DataDbContext dbContext, ILogger<IProjectDataService> logger)
-    {
-      _dbContext = dbContext;
-      _logger = logger;
->>>>>>> Add Officemodel logic
     }
     public async Task<IEnumerable<ProjectModel>> GetAllProjectsAsync()
     {
@@ -35,11 +27,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-<<<<<<< HEAD
         throw new Exception(e.Message);
-=======
-        throw new Exception(_logger + e.Message);
->>>>>>> Add Officemodel logic
       }
     }
 
@@ -51,11 +39,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-<<<<<<< HEAD
         throw new Exception(e.Message);
-=======
-        throw new Exception(_logger + e.Message);
->>>>>>> Add Officemodel logic
       }
     }
 
@@ -67,11 +51,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-<<<<<<< HEAD
         throw new Exception(e.Message);
-=======
-        throw new Exception(_logger + e.Message);
->>>>>>> Add Officemodel logic
       }
     }
   }

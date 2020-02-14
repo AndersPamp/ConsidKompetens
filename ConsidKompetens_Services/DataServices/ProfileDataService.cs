@@ -15,17 +15,13 @@ namespace ConsidKompetens_Services.DataServices
   public class ProfileDataService : IProfileDataService
   {
     private readonly DataDbContext _dataDbContext;
-<<<<<<< HEAD
-=======
-    private readonly ILogger<ProfileDataService> _logger;
->>>>>>> Add Officemodel logic
 
     public ProfileDataService(DataDbContext DataDbContext)
     {
       _dataDbContext = DataDbContext;
     }
 
-    public async Task<IEnumerable<ProfileModel>> GetAllProfilesAsync()
+    public async Task<List<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
@@ -35,7 +31,7 @@ namespace ConsidKompetens_Services.DataServices
       catch (Exception e)
       {
 
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -48,7 +44,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
 
     }
@@ -63,14 +59,10 @@ namespace ConsidKompetens_Services.DataServices
         }
         catch (Exception e)
         {
-          throw new Exception(_logger + e.Message);
+          throw new Exception(e.Message);
         }
       }
-<<<<<<< HEAD
       throw new Exception("");
-=======
-      throw new Exception(_logger.ToString());
->>>>>>> Add Officemodel logic
     }
 
     public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
@@ -91,11 +83,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-<<<<<<< HEAD
         throw new Exception(e.Message);
-=======
-        throw new Exception(_logger + e.Message);
->>>>>>> Add Officemodel logic
       }
     }
 
@@ -125,7 +113,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -145,7 +133,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }
