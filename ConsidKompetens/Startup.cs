@@ -5,7 +5,6 @@ using ConsidKompetens_Services.DataServices;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.IdentityServices;
 using ConsidKompetens_Services.Interfaces;
-using ConsidKompetens_Web.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;

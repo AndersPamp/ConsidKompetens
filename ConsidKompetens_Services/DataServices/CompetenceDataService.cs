@@ -17,6 +17,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       _dbContext = dbContext;
     }
+
     public async Task<IEnumerable<CompetenceModel>> GetAllCompetencesAsync()
     {
       try
