@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ConsidKompetens_Web
@@ -79,7 +80,6 @@ namespace ConsidKompetens_Web
       // });
 
 
-      //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
 
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
