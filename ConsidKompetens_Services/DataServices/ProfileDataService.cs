@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
@@ -15,14 +13,13 @@ namespace ConsidKompetens_Services.DataServices
   public class ProfileDataService : IProfileDataService
   {
     private readonly DataDbContext _dataDbContext;
-    private readonly ILogger<ProfileDataService> _logger;
 
     public ProfileDataService(DataDbContext DataDbContext)
     {
       _dataDbContext = DataDbContext;
     }
 
-    public async Task<IEnumerable<ProfileModel>> GetAllProfilesAsync()
+    public async Task<List<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
@@ -32,7 +29,7 @@ namespace ConsidKompetens_Services.DataServices
       catch (Exception e)
       {
 
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -45,7 +42,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
 
     }
@@ -60,10 +57,10 @@ namespace ConsidKompetens_Services.DataServices
         }
         catch (Exception e)
         {
-          throw new Exception(_logger + e.Message);
+          throw new Exception(e.Message);
         }
       }
-      throw new Exception(_logger.ToString());
+      throw new Exception("");
     }
 
     public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
@@ -84,7 +81,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -114,7 +111,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
 
@@ -134,7 +131,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       catch (Exception e)
       {
-        throw new Exception(_logger + e.Message);
+        throw new Exception(e.Message);
       }
     }
   }

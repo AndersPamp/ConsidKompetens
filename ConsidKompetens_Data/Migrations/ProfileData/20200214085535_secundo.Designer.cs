@@ -4,14 +4,16 @@ using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsidKompetens_Data.Migrations.ProfileData
 {
     [DbContext(typeof(DataDbContext))]
-    partial class ProfileDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200214085535_secundo")]
+    partial class secundo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
