@@ -34,7 +34,7 @@ const RegisterPage = () => {
 
     function submitHendler(e) {
         e.preventDefault();
-        axios.post('https://localhost:44323/api/register', userName, passWord ,{ headers: {'Authorization': `Bearer ${jwt}`} } )
+        axios.post('https://localhost:44323/api/register', userName, passWord )
             .then(response => {
                 alert('User has been registered');
                 setUserName({userName: ''});
