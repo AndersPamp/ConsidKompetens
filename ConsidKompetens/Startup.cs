@@ -80,7 +80,6 @@ namespace ConsidKompetens_Web
       // });
 
 
-      //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
 
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
