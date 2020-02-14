@@ -31,11 +31,7 @@ namespace ConsidKompetens_Web.Controllers
     {
       try
       {
-<<<<<<< HEAD
-        List<ProfileModel> users = await _profileDataService.GetAllProfilesAsync();
-=======
         var users = await _profileDataService.GetAllProfilesAsync();
->>>>>>> Add Officemodel logic
         return Ok(new SpaPageModel() { PageTitle = "AllProfiles", Ok = true, Consultants = users });
       }
       catch (Exception e)

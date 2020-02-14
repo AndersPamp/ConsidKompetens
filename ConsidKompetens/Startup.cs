@@ -51,17 +51,6 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = false;
       });
-<<<<<<< HEAD
-
-      services.AddScoped<ILoginService, LoginService>();
-      services.AddScoped<IRegisterService, RegisterService>();
-      services.AddScoped<IProfileDataService, ProfileDataService>();
-      services.AddScoped<ISearchDataService, SearchService>();
-      services.AddScoped<IOfficeDataService, OfficeDataService>();
-      services.AddScoped<ICompetenceDataService, CompetenceDataService>();
-      services.AddScoped<IProjectDataService, ProjectDataService>();
-=======
->>>>>>> Add Officemodel logic
 
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
@@ -79,44 +68,8 @@ namespace ConsidKompetens_Web
         config.Filters.Add(new AuthorizeFilter(policy));
       });
 
-      //services.AddIdentity<IdentityUser, IdentityRole>(options =>
-      // {
-      //   options.Password.RequiredLength = 8;
-      //   options.Password.RequireNonAlphanumeric = false;
-      //   options.Password.RequireUppercase = true;
-      //   options.Password.RequireLowercase = true;
-      //   //Set to true when email service is in place
-      //   options.SignIn.RequireConfirmedEmail = false;
-      // });
-
-
       //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
 
-      var appSettingsSection = Configuration.GetSection("AppSettings");
-
-      services.Configure<AppSettings>(appSettingsSection);
-
-      var appSettings = appSettingsSection.Get<AppSettings>();
-      var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-      services.AddAuthentication(x =>
-      {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-      }).AddJwtBearer(token =>
-      {
-        token.RequireHttpsMetadata = false;
-        token.SaveToken = true;
-        token.TokenValidationParameters = new TokenValidationParameters
-        {
-          ValidateIssuerSigningKey = true,
-          IssuerSigningKey = new SymmetricSecurityKey(key),
-          ValidateIssuer = false,
-          ValidateAudience = false
-        };
-      });
-
-<<<<<<< HEAD
       //services.AddIdentity<IdentityUser, IdentityRole>(options =>
       // {
       //   options.Password.RequiredLength = 8;
@@ -153,8 +106,6 @@ namespace ConsidKompetens_Web
         };
       });
 
-=======
->>>>>>> Add Officemodel logic
       services.AddSpaStaticFiles(configuration =>
       {
         configuration.RootPath = "ClientApp/build";
