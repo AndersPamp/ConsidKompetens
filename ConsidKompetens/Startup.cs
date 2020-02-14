@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ConsidKompetens_Web
@@ -39,7 +40,7 @@ namespace ConsidKompetens_Web
 
       services.AddDbContext<DataDbContext>(options =>
         options.UseSqlServer(
-          Configuration.GetConnectionString("UserDataConnection")));
+          Configuration.GetConnectionString("DataConnection")));
 
       services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
       //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -79,7 +80,6 @@ namespace ConsidKompetens_Web
       // });
 
 
-      //services.AddScoped<IHostingStartup, IdentityHostingStartup>();
 
       var appSettingsSection = Configuration.GetSection("AppSettings");
 
@@ -146,7 +146,6 @@ namespace ConsidKompetens_Web
 
       //app.UseMvc(routes =>
       //  routes.MapRoute("default", "{controller=Login}/{action=Get}/{id?}"));
-
 
       app.UseSpa(spa =>
       {
