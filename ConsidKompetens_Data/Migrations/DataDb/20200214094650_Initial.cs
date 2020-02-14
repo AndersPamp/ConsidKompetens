@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ConsidKompetens_Data.Migrations.ProfileData
+namespace ConsidKompetens_Data.Migrations.DataDb
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ImageModel",
+                name: "ImageModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,7 +20,25 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ImageModel", x => x.Id);
+                    table.PrimaryKey("PK_ImageModels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LinkModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    LinkedInUrl = table.Column<string>(nullable: true),
+                    FacebookUrl = table.Column<string>(nullable: true),
+                    TwitterUrl = table.Column<string>(nullable: true),
+                    InstagramUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LinkModels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,11 +74,18 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                     OfficeId = table.Column<int>(nullable: false),
                     ProfileImageId = table.Column<int>(nullable: true),
                     Experience = table.Column<int>(nullable: false),
+                    LinksId = table.Column<int>(nullable: true),
                     OfficeModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProfileModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProfileModels_LinkModels_LinksId",
+                        column: x => x.LinksId,
+                        principalTable: "LinkModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProfileModels_OfficeModels_OfficeModelId",
                         column: x => x.OfficeModelId,
@@ -68,9 +93,9 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProfileModels_ImageModel_ProfileImageId",
+                        name: "FK_ProfileModels_ImageModels_ProfileImageId",
                         column: x => x.ProfileImageId,
-                        principalTable: "ImageModel",
+                        principalTable: "ImageModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -86,6 +111,7 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Level = table.Column<int>(nullable: false),
+                    Experience = table.Column<int>(nullable: false),
                     IconId = table.Column<int>(nullable: true),
                     ProfileModelId = table.Column<int>(nullable: true)
                 },
@@ -93,9 +119,9 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                 {
                     table.PrimaryKey("PK_CompetenceModels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompetenceModels_ImageModel_IconId",
+                        name: "FK_CompetenceModels_ImageModels_IconId",
                         column: x => x.IconId,
-                        principalTable: "ImageModel",
+                        principalTable: "ImageModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -143,6 +169,11 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                 column: "ProfileModelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProfileModels_LinksId",
+                table: "ProfileModels",
+                column: "LinksId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProfileModels_OfficeModelId",
                 table: "ProfileModels",
                 column: "OfficeModelId");
@@ -170,10 +201,13 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                 name: "ProfileModels");
 
             migrationBuilder.DropTable(
+                name: "LinkModels");
+
+            migrationBuilder.DropTable(
                 name: "OfficeModels");
 
             migrationBuilder.DropTable(
-                name: "ImageModel");
+                name: "ImageModels");
         }
     }
 }

@@ -12,9 +12,9 @@ namespace ConsidKompetens_Services.DataServices
   {
     private readonly DataDbContext _dbContext;
 
-    public OfficeDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
+    public OfficeDataService(DataDbContext dbContext)
     }
 
     public async Task<IEnumerable<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds)

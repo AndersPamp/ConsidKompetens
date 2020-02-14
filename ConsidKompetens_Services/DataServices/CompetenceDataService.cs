@@ -13,9 +13,9 @@ namespace ConsidKompetens_Services.DataServices
   {
     private readonly DataDbContext _dbContext;
 
-    public CompetenceDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
+    public CompetenceDataService(DataDbContext dbContext)
     }
     public async Task<IEnumerable<CompetenceModel>> GetAllCompetencesAsync()
     {

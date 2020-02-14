@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ConsidKompetens_Data.Migrations.ProfileData
+namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20200210144101_Initial")]
+    [Migration("20200214094650_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
 
                     b.Property<int?>("IconId")
                         .HasColumnType("int");
@@ -79,7 +82,37 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
 
                     b.HasKey("Id");
 
-                    b.ToTable("ImageModel");
+                    b.ToTable("ImageModels");
+                });
+
+            modelBuilder.Entity("ConsidKompetens_Core.Models.LinkModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FacebookUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedInUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TwitterUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LinkModels");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.OfficeModel", b =>
@@ -128,6 +161,9 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LinksId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
@@ -150,6 +186,8 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LinksId");
 
                     b.HasIndex("OfficeModelId");
 
@@ -209,6 +247,10 @@ namespace ConsidKompetens_Data.Migrations.ProfileData
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProfileModel", b =>
                 {
+                    b.HasOne("ConsidKompetens_Core.Models.LinkModel", "Links")
+                        .WithMany()
+                        .HasForeignKey("LinksId");
+
                     b.HasOne("ConsidKompetens_Core.Models.OfficeModel", null)
                         .WithMany("Employees")
                         .HasForeignKey("OfficeModelId");
