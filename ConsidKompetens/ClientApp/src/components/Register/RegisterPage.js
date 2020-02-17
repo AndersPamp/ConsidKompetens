@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
 import axios from 'axios/index';
-import {getJwt} from '../../Helper/jwt';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,26 +23,26 @@ const theme = createMuiTheme({
   },
 });
 
-const jwt = getJwt();
 
 const RegisterPage = () => {
     const classes = useStyles();
 
-    const [userName, setUserName] = useState('');
-    const [passWord, setPassWord] = useState('');
+    const [userRegister, setUserRegister] = useState({UserName: '', PassWord: ''});
 
     function submitHendler(e) {
         e.preventDefault();
-        axios.post('https://localhost:44323/api/register', userName, passWord )
+        axios.post('https://localhost:44323/api/register', userRegister)
             .then(response => {
                 alert('User has been registered');
-                setUserName({userName: ''});
-                setPassWord({passWord: ''});
             })
             .catch(error => {
                 console.log(error);
             });
     };
+
+    const handleChange = (event) => {
+      setUserRegister({...userRegister, [event.target.name]: event.target.value});
+    }
 
     return(
         <div> 
@@ -60,21 +59,25 @@ const RegisterPage = () => {
                                 <TextField 
                                         className={classes.margin} 
                                         style={{display: 'block'}} 
-                                        id='mui-theme-provider-standard-input' 
+                                        id='mui-theme-provider-standard-input 1' 
                                         label='E-post:'
-                                        onChange={(event, newValue) => setUserName({ userName: newValue})}>
+                                        name= 'UserName'
+                                        value={userRegister.userName}
+                                        onChange={handleChange}>
                                 </TextField>
                                 <TextField 
                                         className={classes.margin} 
                                         style={{display: 'block'}} 
                                         type='password' 
-                                        id='mui-theme-provider-standard-input' 
+                                        id='mui-theme-provider-standard-input 2' 
                                         label='Lösenord:'
-                                        onChange={(event, newValue) => setPassWord({ passWord: newValue})}>
+                                        name= 'PassWord'
+                                        value={userRegister.passWord}
+                                        onChange={handleChange}>
                                 </TextField> 
-                                <button className='login-button'>Registrera</button>
+                                <button type='submit' className='login-button'>Registrera</button>
                             </div>              
-                        </div>
+                          </div>
                         </form>
                     </Grid>
                 </Grid>
