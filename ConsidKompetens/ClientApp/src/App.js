@@ -33,7 +33,7 @@ function App() {
  
 
   return (
-    <div>
+    <div className='App-div'>
       <NavMenu/>
       <Switch>
         <Route exact path="/" component={() => <HomePage/>}/>
@@ -48,6 +48,7 @@ function App() {
       </Switch>
       <Footer/>
     </div>
+    
   );
 }
 

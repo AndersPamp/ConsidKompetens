@@ -14,7 +14,7 @@ a.navbar-brand {
   }
   
   .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, .05);
   }
   
   .ConsidLogoBig{
@@ -33,6 +33,9 @@ a.navbar-brand {
   }
 
   .links:hover{
-    font-size: 150%; 
+    border-bottom: 1px solid black;
+  }
+
+  .links:focus{
     border-bottom: 1px solid black;
   }

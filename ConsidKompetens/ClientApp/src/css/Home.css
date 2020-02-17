@@ -29,26 +29,30 @@
   .search-button{
       position: absolute;
       top: 8%;
-      left: 77%;
-      background-color: rgb(9, 9, 47);
+      left: 76%;
       border: none;
       outline: none;
-      border-radius: 50%;
+      background: none;
   }
 
   .search-button:focus{
     outline: none;
   }
 
-  .search-button:hover{
-    border: 1px solid white;
+  .search-button img{
+    height: 30px;
+    margin: auto;
+  }
+
+  .search-button img:hover{
+    height: 35px;
   }
 
   .home-welcome-label{
     position: absolute;
     top: 10%;
-    left: 57%;
-    font-size: 160%;
+    left: 55%;
+    font-size: 150%;
     font-family: 'Montserrat', sans-serif;
     color: white;
   }

@@ -2,7 +2,7 @@ import React from 'react';
 //import Grid from '@material-ui/core/Grid';
 import { Container } from 'reactstrap';
 import HomeImage from '../../images/hero-img5.jpg';
-import SearchIcon from '../../images/search.png';
+import SearchIcon from '../../images/search-icon.png';
 import offices from '../../Helper/Offices.json';
 import '../../css/Home.css';
 
