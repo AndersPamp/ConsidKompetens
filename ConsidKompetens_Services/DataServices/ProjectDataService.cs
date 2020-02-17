@@ -6,7 +6,6 @@ using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
@@ -18,11 +17,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       _dbContext = dbContext;
     }
-    public async Task<IEnumerable<ProjectModel>> GetAllProjectsAsync()
+    public async Task<List<ProjectModel>> GetAllProjectsAsync()
     {
       try
       {
-        return await _dbContext.ProjectModels.ToListAsync();
+        return await _dbContext.ProjectModels.Include(x=>x.ProfileModels).ToListAsync();
       }
       catch (Exception e)
       {
@@ -30,11 +29,11 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<IEnumerable<ProjectModel>> GetProjectsByNameAsync(string input)
+    public async Task<List<ProjectModel>> GetProjectsByNameAsync(string input)
     {
       try
       {
-        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).ToListAsync();
+        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x=>x.ProfileModels).ToListAsync();
       }
       catch (Exception e)
       {
@@ -46,7 +45,41 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.ProjectModels.Include(x=>x.ProfileModels).FirstOrDefaultAsync(x => x.Id == id);
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<ProjectModel> EditProjectAsync(ProjectModel projectModel)
+    {
+      try
+      {
+        var project = await _dbContext.ProjectModels.FindAsync(projectModel.Id);
+        project.Description = projectModel.Description;
+        project.Name = projectModel.Name;
+        project.Roles = projectModel.Roles;
+        project.Techniques = projectModel.Techniques;
+        project.TimePeriod = projectModel.TimePeriod;
+        project.ProfileModels = projectModel.ProfileModels;
+        await _dbContext.SaveChangesAsync();
+        return projectModel;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<ProjectModel> CreateNewProjectAsync(ProjectModel projectModel)
+    {
+      try
+      {
+        await _dbContext.ProjectModels.AddAsync(projectModel);
+        await _dbContext.SaveChangesAsync();
+        return projectModel;
       }
       catch (Exception e)
       {

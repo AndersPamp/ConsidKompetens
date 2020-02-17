@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Communication;
 using ConsidKompetens_Web.Helpers;
@@ -36,13 +37,13 @@ namespace ConsidKompetens_Web.Controllers
           {
             //3. Create new identity user
             await _registerService.RegisterNewUserAsync(registerModel);
-            return Ok("User and new profile created successfully");
+            return Ok(new SpaPageModel{PageTitle = "Register", Ok = true,Message = "User and new profile created successfully" });
           }
-          return BadRequest(new JsonResponse {Ok = false, Message = "Password doesn't meet criteria"});
+          return BadRequest(new SpaPageModel{ PageTitle = "Register", Ok = false, Message = "Password doesn't meet criteria"});
         }
-        return BadRequest("An account with the specified e-mail address already exists");
+        return BadRequest(new SpaPageModel{PageTitle = "Register", Ok = false, Message = "An account with the specified e-mail address already exists" });
       }
-      return BadRequest(_logger.ToString());
+      return BadRequest(new SpaPageModel{PageTitle = "Register", Ok = false, Message = _logger.ToString()});
     }
   }
 }

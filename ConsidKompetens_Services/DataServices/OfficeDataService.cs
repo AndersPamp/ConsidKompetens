@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConsidKompetens_Services.DataServices
 {
@@ -16,14 +18,28 @@ namespace ConsidKompetens_Services.DataServices
       _dbContext = dbContext;
     }
 
-    public async Task<IEnumerable<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds)
+    public async Task<List<OfficeModel>> GetOfficesAsync()
+    {
+      try
+      {
+        return await _dbContext.OfficeModels.ToListAsync();
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<List<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds)
     {
       var result = new List<OfficeModel>();
       try
       {
         foreach (var officeId in officeIds)
         {
-          result.Add(await _dbContext.OfficeModels.FindAsync(officeId));
+          var office = await _dbContext.OfficeModels.FindAsync(officeId);
+          office.Employees = await _dbContext.ProfileModels.Where(x => x.OfficeId == officeId).ToListAsync();
+          result.Add(office);
         }
         return result;
       }
@@ -63,5 +79,6 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
+
   }
 }

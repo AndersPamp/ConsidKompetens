@@ -40,16 +40,16 @@ namespace ConsidKompetens_Web.Controllers
         {
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
-          return Ok(token);
+          return Ok(new SpaPageModel{PageTitle = "Login", Ok = true, BearerToken = token});
         }
         
         //3. If user unauth. return UnAuthorized
-        return Unauthorized();
+        return Unauthorized(new SpaPageModel{PageTitle = "Login", Ok = false, Message = _logger.ToString()});
 
         //var returnUrl = "";
         //returnUrl = returnUrl ?? Url.Content("~/");
       }
-      return Unauthorized();
+      return Unauthorized(new SpaPageModel{PageTitle = "Login", Ok = false, Message = _logger.ToString()});
     }
   }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -29,44 +26,45 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<OfficeModel>>> Get([FromBody]List<int> officeIds)
+    public async Task<ActionResult<SpaPageModel>> Get([FromBody]List<int> officeIds)
     {
       try
       {
-        var spa=new SpaPageModel
+        var spa = new SpaPageModel
         {
           Ok = true,
           PageTitle = "Offices",
-          Consultants = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds)
+          Consultants = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds),
+          Framework = { Offices = await _officeDataService.GetOfficesByIdsAsync(officeIds) }
         };
-        return Ok(await _officeDataService.GetOfficesByIdsAsync(officeIds));
+        return Ok(spa);
       }
       catch (Exception e)
       {
-        return BadRequest(_logger+ e.Message);
+        return BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = e.Message});
       }
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody]OfficeModel officeModel)
+    public async Task<ActionResult<SpaPageModel>> Post([FromBody]OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
         try
         {
           await _officeDataService.CreateNewOfficeAsync(officeModel);
-          return Created("", officeModel);
+          return Created("", new SpaPageModel{PageTitle = "Offices", Ok = true, Framework = {Offices = await _officeDataService.GetOfficesAsync()}});
         }
         catch (Exception e)
         {
-          BadRequest(_logger + e.Message);
+          BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = e.Message});
         }
       }
-      return BadRequest(_logger);
+      return BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = _logger.ToString()});
     }
 
     [HttpPut]
-    public async Task<ActionResult<OfficeModel>> Put([FromBody] OfficeModel officeModel)
+    public async Task<ActionResult<SpaPageModel>> Put([FromBody] OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
@@ -77,11 +75,11 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          BadRequest(_logger + e.Message);
+          BadRequest(new SpaPageModel { PageTitle = "Offices", Ok = false, Message = e.Message });
         }
       }
 
-      return BadRequest(_logger);
+      return BadRequest(new SpaPageModel { PageTitle = "Offices", Ok = false, Message = _logger.ToString() });
     }
   }
 }

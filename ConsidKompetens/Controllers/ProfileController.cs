@@ -25,24 +25,24 @@ namespace ConsidKompetens_Web.Controllers
       _searchService = searchService;
     }
 
-    // GET: api/Employee
+    // GET: api/Profile
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProfileModel>>> Get()
+    public async Task<ActionResult<SpaPageModel>> Get()
     {
       try
       {
-        var users = await _profileDataService.GetAllProfilesAsync();
-        return Ok(new SpaPageModel() { PageTitle = "AllProfiles", Ok = true, Consultants = users });
+        var profiles = await _profileDataService.GetAllProfilesAsync();
+        return Ok(new SpaPageModel() { PageTitle = "AllProfiles", Ok = true, Consultants = profiles });
       }
       catch (Exception e)
       {
-        return BadRequest(new JsonResponse { Ok = false, Message = e.Message });
+        return BadRequest(new SpaPageModel{ PageTitle = "Profiles", Ok = false, Message = e.Message });
       }
     }
 
-    // GET: api/Employee/5
+    // GET: api/Profile/5
     [HttpGet("{id}", Name = "Get")]
-    public async Task<ActionResult<ProfileModel>> Get(int id)
+    public async Task<ActionResult<SpaPageModel>> Get(int id)
     {
       try
       {
@@ -51,14 +51,12 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new JsonResponse { Ok = false, Message = e.Message });
+        return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = e.Message });
       }
-
-      ;
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<bool>> Put([FromBody] ProfileModel value)
+    public async Task<ActionResult<SpaPageModel>> Put([FromBody] ProfileModel value)
     {
       if (ModelState.IsValid)
       {
@@ -73,16 +71,17 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          return BadRequest(new JsonResponse { Ok = false, Message = e.Message });
+          return BadRequest(new SpaPageModel{ PageTitle = "Profiles", Ok = false, Message = e.Message });
         }
       }
-      return BadRequest(new JsonResponse { Ok = false, Message = "Model input not correct" });
+      return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = "Model input not correct" });
     }
 
     // DELETE: api/ApiWithActions/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public Task<ActionResult<SpaPageModel>> Delete(int id)
     {
+      return null;
     }
   }
 }

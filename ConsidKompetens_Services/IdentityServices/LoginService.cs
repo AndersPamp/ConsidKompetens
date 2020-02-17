@@ -47,10 +47,8 @@ namespace ConsidKompetens_Services.IdentityServices
       SignInResult signInResult = await _signInManager.PasswordSignInAsync(user.UserName, passWord, false, false);
       if (signInResult.Succeeded)
       {
-        
         return user;
       }
-
       return null;
     }
   }

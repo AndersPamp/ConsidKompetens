@@ -25,8 +25,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.Projects).ToListAsync();
+        return await _dataDbContext.ProfileModels.Include(x => x.Competences).ToListAsync();
       }
       catch (Exception e)
       {
@@ -40,7 +39,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         return await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.Projects).FirstOrDefaultAsync(x => x.Id == id);
+          .FirstOrDefaultAsync(x => x.Id == id);
       }
       catch (Exception e)
       {
@@ -72,7 +71,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          var delta1 = (await _dataDbContext.ProfileModels.Include(x => x.Competences).Include(x => x.Projects)
+          var delta1 = (await _dataDbContext.ProfileModels.Include(x => x.Competences)
             .Include(x => x.ProfileImage).Where(x => x.OfficeId == officeId).ToListAsync());
           foreach (var delta in delta1)
           {
@@ -92,7 +91,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.Projects).Include(x=>x.Links).FirstOrDefaultAsync(x => x.Id == id);
+          .Include(x => x.Links).FirstOrDefaultAsync(x => x.Id == id);
 
         profile.Competences = profileModel.Competences;
         profile.Experience = profileModel.Experience;
@@ -101,7 +100,6 @@ namespace ConsidKompetens_Services.DataServices
         profile.LastName = profileModel.LastName;
         profile.OfficeId = profileModel.OfficeId;
         profile.ProfileImage = profileModel.ProfileImage;
-        profile.Projects = profileModel.Projects;
         profile.Links = profileModel.Links;
         profile.Role = profileModel.Role;
         profile.Title = profile.Title;
@@ -124,7 +122,8 @@ namespace ConsidKompetens_Services.DataServices
         var newUserModel = new ProfileModel
         {
           OwnerID = id,
-          Created = DateTime.UtcNow
+          Created = DateTime.UtcNow,
+          ProfileImage = new ImageModel { Created = DateTime.UtcNow },
         };
         await _dataDbContext.ProfileModels.AddAsync(newUserModel);
         await _dataDbContext.SaveChangesAsync();

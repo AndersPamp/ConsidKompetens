@@ -7,8 +7,10 @@ namespace ConsidKompetens_Services.Interfaces
 {
   public interface IProjectDataService
   {
-    Task<IEnumerable<ProjectModel>> GetAllProjectsAsync();
-    Task<IEnumerable<ProjectModel>> GetProjectsByNameAsync(string input);
+    Task<List<ProjectModel>> GetAllProjectsAsync();
+    Task<List<ProjectModel>> GetProjectsByNameAsync(string input);
     Task<ProjectModel> GetProjectByIdAsync(int id);
+    Task<ProjectModel> EditProjectAsync(ProjectModel projectModel);
+    Task<ProjectModel> CreateNewProjectAsync(ProjectModel projectModel);
   }
 }

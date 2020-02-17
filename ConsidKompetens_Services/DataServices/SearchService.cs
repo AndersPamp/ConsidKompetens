@@ -25,7 +25,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         return await _dbContext.ProfileModels.Include(x=>x.Competences)
-          .Include(x=>x.Projects).Include(x=>x.ProfileImage).ToListAsync();
+          .Include(x=>x.ProfileImage).ToListAsync();
       }
       catch (Exception e)
       {
