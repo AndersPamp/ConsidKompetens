@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/Home/HomePage';
@@ -13,7 +13,7 @@ import { Footer } from '../src/components';
 
 function App() {
 
-  const [ loggedIn, setLoggedIn ] = useState(false);
+  //const [ loggedIn, setLoggedIn ] = useState(false);
   
   //  getUser = () => {
   //       const jwt = getJwt();
