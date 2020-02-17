@@ -25,24 +25,36 @@ const theme = createMuiTheme({
   },
 });
 
-const jwt = getJwt();
+
 
 const LoginPage = () => {
     const classes = useStyles();
+    const token = getJwt();
 
     const [userLogin, setUserLogin] = useState({UserName: '', PassWord: ''});
     const [loggedIn, setLoggedIn] = useState(false);
 
-    function submithandler(e) {
-      let succeeded = this.props.succeeded;
-      let failed = this.props.failed;
+    function loginHandle(token) {
+      localStorage.setItem('secret', token);
+      setLoggedIn({ loggedIn: true});
+    };
 
-      axios.post('https://localhost:44323/api/register', userLogin, { headers: { 'Authorization': `Bearer ${jwt}` } })
-      .then((response) => {
-        let token = response.data.value;
+    function loginFailed(){
+        console.log('You could not login');
+        setLoggedIn({ loggedIn: false });
+    };
+
+
+    function submithandler(e) {
+      e.preventDefault();
+      axios.post('https://localhost:44323/api/login', userLogin )
+          .then((response) => {
+
+        let succeeded = loginHandle();
+        let failed = loginFailed();
 
         if(response.status === 200) {
-          succeeded(token);
+          succeeded();
         }else if (response.status === 204) {
           failed('Username/Password is incorrect')
         }else {
@@ -59,7 +71,7 @@ const LoginPage = () => {
 
     return(
         <div> 
-          {/* {this.props.loggedIn ? <Redirect to="/" /> : null} */}
+            {loggedIn ? <Redirect to="/" /> : null} 
             <ThemeProvider theme={theme}>
                 <Grid container spacing={0}>
                     <Grid item xs={5}>
@@ -75,6 +87,8 @@ const LoginPage = () => {
                                         style={{display: 'block'}} 
                                         id='mui-theme-provider-standard-input' 
                                         label='E-post:'
+                                        name= 'UserName'
+                                        value={userLogin.UserName}
                                         onChange={handleChange}  
                                         />
                                 <TextField 
@@ -82,6 +96,8 @@ const LoginPage = () => {
                                         style={{display: 'block'}} 
                                         id='mui-theme-provider-standard-input' 
                                         label='Lösenord:'
+                                        name= 'PassWord'
+                                        value={userLogin.PassWord}
                                         onChange={handleChange}
                                         />
                                 <button className='login-button'>Logga in</button>

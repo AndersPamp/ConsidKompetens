@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/Home/HomePage';
@@ -13,7 +13,7 @@ import { Footer } from '../src/components';
 
 function App() {
 
-  //const [ loggedIn, setLoggedIn ] = useState(false);
+  const [ loggedIn, setLoggedIn ] = useState(false);
   
   //  getUser = () => {
   //       const jwt = getJwt();
@@ -30,21 +30,14 @@ function App() {
     //   alert('Successfully logged out');
     // };
 
-    // loginHandle = (token) => {
-    //   localStorage.setItem('secret', token);
-    //   setLoggedIn({ loggedIn: true});
-    // };
-
-    // loginFailed = () => {
-    //   console.log('You could not login');
-    // };
+ 
 
   return (
     <div>
       <NavMenu/>
       <Switch>
-        <Route exact path="/" component={() => <HomePage />}/>
-        <Route path="/login" component={() => <LoginPage/>}/>
+        <Route exact path="/" component={() => <HomePage/>}/>
+        <Route path="/login" component={() => <LoginPage />}/>
         <Route path="/register" component={RegisterPage}/>
         <Route path="/user" component={() => <UserPage />}/>
         <Route path="/details" component={DetailsPage}/>
