@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
   [Authorize]
   [Route("api/[controller]")]
   [ApiController]
-  public class ProjectsController : ControllerBase
+  public class ProjectController : ControllerBase
   {
     private readonly IProjectDataService _projectService;
+    private readonly ILogger<ProjectController> _logger;
 
-    public ProjectsController(IProjectDataService projectService)
+    public ProjectController(IProjectDataService projectService, ILogger<ProjectController> logger)
     {
       _projectService = projectService;
+      _logger = logger;
     }
 
     [HttpGet]
@@ -35,8 +36,7 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
-    [HttpGet]
-    [HttpGet("{id}", Name = "Get")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<SpaPageModel>> Get(int id)
     {
       try
@@ -44,7 +44,7 @@ namespace ConsidKompetens_Web.Controllers
         var deltaList = new List<ProjectModel> { await _projectService.GetProjectByIdAsync(id) };
         return Ok(new SpaPageModel
         {
-          PageTitle = "Projects",
+          PageTitle = "Project",
           Ok = true,
           Projects = deltaList
         });
@@ -64,20 +64,26 @@ namespace ConsidKompetens_Web.Controllers
         return Ok(new SpaPageModel { PageTitle = "Projects", Ok = true, Projects = await _projectService.GetAllProjectsAsync() });
       }
 
-      return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false });
+      return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = _logger.ToString()});
     }
 
     [HttpPut]
     public async Task<ActionResult<SpaPageModel>> Put(ProjectModel projectModel)
     {
-      try
+      if (ModelState.IsValid)
       {
-        return null;
+        try
+        {
+          var deltaProjects = new List<ProjectModel>{ await _projectService.EditProjectAsync(projectModel) };
+
+          return new SpaPageModel{PageTitle = "Projects", Ok = true, Projects = deltaProjects};
+        }
+        catch (Exception e)
+        {
+          return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = e.Message });
+        }
       }
-      catch (Exception e)
-      {
-        return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = e.Message });
-      }
+      return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = _logger.ToString() });
     }
   }
 }

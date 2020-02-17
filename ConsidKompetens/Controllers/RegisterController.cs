@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
-using ConsidKompetens_Web.Communication;
 using ConsidKompetens_Web.Helpers;
 using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/[controller]/[action]")]
   [ApiController]
   [AllowAnonymous]
   public class RegisterController : ControllerBase
@@ -25,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // POST: api/Register
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] RegisterModelReq registerModel)
+    public async Task<IActionResult> Login([FromBody] RegisterModelReq registerModel)
     {
       if (ModelState.IsValid)
       {

@@ -6,22 +6,25 @@ using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
   public class ProjectDataService : IProjectDataService
   {
     private readonly DataDbContext _dbContext;
+    private readonly ILogger<ProjectDataService> _logger;
 
-    public ProjectDataService(DataDbContext dbContext)
+    public ProjectDataService(DataDbContext dbContext, ILogger<ProjectDataService> logger)
     {
       _dbContext = dbContext;
+      _logger = logger;
     }
     public async Task<List<ProjectModel>> GetAllProjectsAsync()
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x=>x.ProfileModels).ToListAsync();
+        return await _dbContext.ProjectModels.Include(x => x.ProfileModels).ToListAsync();
       }
       catch (Exception e)
       {
@@ -33,7 +36,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x=>x.ProfileModels).ToListAsync();
+        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x => x.ProfileModels).ToListAsync();
       }
       catch (Exception e)
       {
@@ -45,7 +48,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x=>x.ProfileModels).FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.ProjectModels.Include(x => x.ProfileModels).FirstOrDefaultAsync(x => x.Id == id);
       }
       catch (Exception e)
       {
@@ -64,6 +67,7 @@ namespace ConsidKompetens_Services.DataServices
         project.Techniques = projectModel.Techniques;
         project.TimePeriod = projectModel.TimePeriod;
         project.ProfileModels = projectModel.ProfileModels;
+        project.Modified = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
         return projectModel;
       }
@@ -77,6 +81,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
+        projectModel.Created = DateTime.UtcNow;
         await _dbContext.ProjectModels.AddAsync(projectModel);
         await _dbContext.SaveChangesAsync();
         return projectModel;

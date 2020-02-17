@@ -11,9 +11,16 @@ namespace ConsidKompetens_Data.Data
     public DbSet<OfficeModel> OfficeModels { get; set; }
     public DbSet<ProfileModel> ProfileModels { get; set; }
     public DbSet<ProjectModel> ProjectModels { get; set; }
+    public DbSet<ProjectProfileRole> ProjectProfileRoles { get; set; }
+
     public DataDbContext(DbContextOptions<DataDbContext>options):base(options)
     {
       
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<ProjectProfileRole>().HasKey(x => new {x.ProjectId, x.ProfileId});
     }
   }
 }

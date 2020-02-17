@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
-using ConsidKompetens_Web.Communication;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -17,12 +16,12 @@ namespace ConsidKompetens_Web.Controllers
   public class ProfileController : ControllerBase
   {
     private readonly IProfileDataService _profileDataService;
-    private readonly ISearchDataService _searchService;
+    private readonly ILogger<ProfileController> _logger;
 
-    public ProfileController(IProfileDataService profileDataService, ISearchDataService searchService)
+    public ProfileController(IProfileDataService profileDataService, ILogger<ProfileController> logger)
     {
       _profileDataService = profileDataService;
-      _searchService = searchService;
+      _logger = logger;
     }
 
     // GET: api/Profile
@@ -41,7 +40,7 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     // GET: api/Profile/5
-    [HttpGet("{id}", Name = "Get")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<SpaPageModel>> Get(int id)
     {
       try
@@ -74,14 +73,14 @@ namespace ConsidKompetens_Web.Controllers
           return BadRequest(new SpaPageModel{ PageTitle = "Profiles", Ok = false, Message = e.Message });
         }
       }
-      return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = "Model input not correct" });
+      return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = _logger.ToString()});
     }
 
     // DELETE: api/ApiWithActions/5
-    [HttpDelete("{id}")]
-    public Task<ActionResult<SpaPageModel>> Delete(int id)
-    {
-      return null;
-    }
+    //[HttpDelete("{id}")]
+    //public Task<ActionResult<SpaPageModel>> Delete(int id)
+    //{
+    //  return null;
+    //}
   }
 }

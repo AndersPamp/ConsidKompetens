@@ -43,7 +43,7 @@ namespace ConsidKompetens_Services.IdentityServices
 
         await _userManager.AddPasswordAsync(newUser, newModel.PassWord);
         var owner = await _userManager.FindByNameAsync(newUser.UserName);
-        await _profileDataService.CreateNewProfileAsync(owner.Id, new ProfileModel());
+        await _profileDataService.CreateNewProfileAsync(owner.Id);
 
         return true;
       }

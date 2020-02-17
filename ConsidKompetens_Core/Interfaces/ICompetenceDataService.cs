@@ -10,5 +10,6 @@ namespace ConsidKompetens_Core.Interfaces
     Task<IEnumerable<CompetenceModel>> GetAllCompetencesAsync();
     Task<CompetenceModel> GetCompetenceByNameAsync(string input);
     Task<CompetenceModel> GetCompetenceByIdAsync(int id);
+    Task<CompetenceModel> RegisterNewCompetenceAsync(CompetenceModel competenceModel);
   }
 }

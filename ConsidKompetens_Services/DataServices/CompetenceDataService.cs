@@ -5,11 +5,10 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
-  public class CompetenceDataService:ICompetenceDataService
+  public class CompetenceDataService : ICompetenceDataService
   {
     private readonly DataDbContext _dbContext;
 
@@ -47,6 +46,28 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         return await _dbContext.CompetenceModels.FindAsync(id);
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<CompetenceModel> RegisterNewCompetenceAsync(CompetenceModel competenceModel)
+    {
+      try
+      {
+        var newCompetence = new CompetenceModel
+        {
+          Created = DateTime.UtcNow,
+          Name = competenceModel.Name,
+          Description = competenceModel.Description,
+          Experience = competenceModel.Experience,
+          Icon = competenceModel.Icon
+        };
+        await _dbContext.CompetenceModels.AddAsync(newCompetence);
+        await _dbContext.SaveChangesAsync();
+        return newCompetence;
       }
       catch (Exception e)
       {

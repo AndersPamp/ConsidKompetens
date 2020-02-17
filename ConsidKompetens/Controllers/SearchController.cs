@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
-using ConsidKompetens_Web.Communication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Web.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
-    public class SearchController : ControllerBase
+  [Route("api/[controller]/[action]")]
+  [ApiController]
+  [Authorize]
+  public class SearchController : ControllerBase
+  {
+    private readonly ISearchDataService _searchService;
+
+    public SearchController(ISearchDataService searchService)
     {
-      private readonly ISearchDataService _searchService;
+      _searchService = searchService;
+    }
 
-      public SearchController(ISearchDataService searchService)
+    [HttpGet]
+    [OutputCache(Duration = 30)]
+    public ActionResult<List<ProfileModel>> Search(string input)
+    {
+      try
       {
-        _searchService = searchService;
+        return null;
       }
-
-      [HttpGet]
-      public ActionResult<List<ProfileModel>> Get(string input)
+      catch (Exception e)
       {
-        try
-        {
-          return null;
-        }
-        catch (Exception e)
-        {
-          return BadRequest(new JsonResponse {Ok = false, Message = e.Message});
-        }
+        return BadRequest(new SpaPageModel { Ok = false, Message = e.Message });
       }
     }
+  }
 }

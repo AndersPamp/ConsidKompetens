@@ -7,7 +7,7 @@ namespace ConsidKompetens_Services.Interfaces
   public interface ILoginService
   {
     string GenerateToken(IdentityUser user);
-    Task<IdentityUser> ValidateUser(string userName, string passWord);
-    
+    Task<IdentityUser> ValidateUserAsync(string userName, string passWord);
+    Task<bool> LogOutUserAsync();
   }
 }

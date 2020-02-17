@@ -11,6 +11,6 @@ namespace ConsidKompetens_Core.Interfaces
     Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId);
     Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
     Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel userModel);
-    Task<ProfileModel> CreateNewProfileAsync(string ownerId, ProfileModel profileModel);
+    Task<ProfileModel> CreateNewProfileAsync(string ownerId);
   }
 }

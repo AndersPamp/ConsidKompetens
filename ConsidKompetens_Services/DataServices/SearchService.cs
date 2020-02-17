@@ -77,15 +77,25 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    public async Task<List<ProfileModel>> GetProfilesByNameAsync(string input)
+    public async Task<List<ProfileModel>> FreeWordSearcAsync(string input)
     {
+      var result = new List<ProfileModel>();
       try
       {
         var users = await GetAllProfiles();
-
+        foreach (var user in users)
+        {
+          foreach (var competence in user.Competences)
+          {
+            if (competence.Name.ToUpper().Contains(input.ToUpper()))
+            {
+              result.Add(user);
+            }
+          }
+        }
         var resultFirst = users.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
         var resultLast = users.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
-        var result = new List<ProfileModel>();
+        
         foreach (var first in resultFirst)
         {
           result.Add(first);

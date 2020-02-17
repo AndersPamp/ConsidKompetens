@@ -107,6 +107,8 @@ namespace ConsidKompetens_Web
       {
         configuration.RootPath = "ClientApp/build";
       });
+
+      services.AddOutputCaching();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -155,6 +157,7 @@ namespace ConsidKompetens_Web
           spa.UseReactDevelopmentServer(npmScript: "start");
         }
       });
+      app.UseOutputCaching();
     }
   }
 }

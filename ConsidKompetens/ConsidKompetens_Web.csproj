@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Communication\JsonResponse.cs" />
     <Compile Remove="Controllers\HomeController.cs" />
     <Compile Remove="Controllers\OidcConfigurationController.cs" />
   </ItemGroup>
@@ -53,6 +54,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="WebEssentials.AspNetCore.OutputCaching" Version="1.0.28" />
   </ItemGroup>
 
 

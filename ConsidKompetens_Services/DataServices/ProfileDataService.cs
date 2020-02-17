@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
@@ -25,11 +22,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.Competences).ToListAsync();
+        return await _dataDbContext.ProfileModels.Include(x => x.ProfileImage)
+          .Include(x => x.Competences).ToListAsync();
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -45,7 +42,6 @@ namespace ConsidKompetens_Services.DataServices
       {
         throw new Exception(e.Message);
       }
-
     }
 
     public async Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId)
@@ -72,7 +68,9 @@ namespace ConsidKompetens_Services.DataServices
         foreach (var officeId in officeIds)
         {
           var delta1 = (await _dataDbContext.ProfileModels.Include(x => x.Competences)
-            .Include(x => x.ProfileImage).Where(x => x.OfficeId == officeId).ToListAsync());
+            .Include(x => x.ProfileImage).Include(x => x.Links)
+            .Where(x => x.OfficeId == officeId).ToListAsync());
+
           foreach (var delta in delta1)
           {
             result.Add(delta);
@@ -91,7 +89,8 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.Links).FirstOrDefaultAsync(x => x.Id == id);
+          .Include(x => x.ProfileImage).Include(x => x.Links)
+          .FirstOrDefaultAsync(x => x.Id == id);
 
         profile.Competences = profileModel.Competences;
         profile.Experience = profileModel.Experience;
@@ -115,20 +114,20 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> CreateNewProfileAsync(string id, ProfileModel profileModel)
+    public async Task<ProfileModel> CreateNewProfileAsync(string ownerId)
     {
       try
       {
         var newUserModel = new ProfileModel
         {
-          OwnerID = id,
+          OwnerID = ownerId,
           Created = DateTime.UtcNow,
-          ProfileImage = new ImageModel { Created = DateTime.UtcNow },
+          ProfileImage = new ImageModel { Created = DateTime.UtcNow},
         };
         await _dataDbContext.ProfileModels.AddAsync(newUserModel);
         await _dataDbContext.SaveChangesAsync();
 
-        return profileModel;
+        return newUserModel;
       }
       catch (Exception e)
       {
