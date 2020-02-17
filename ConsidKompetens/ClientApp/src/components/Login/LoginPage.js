@@ -25,43 +25,39 @@ const theme = createMuiTheme({
   },
 });
 
-
-
 const LoginPage = () => {
     const classes = useStyles();
-    const token = getJwt();
 
     const [userLogin, setUserLogin] = useState({UserName: '', PassWord: ''});
     const [loggedIn, setLoggedIn] = useState(false);
-
-    function loginHandle(token) {
-      localStorage.setItem('secret', token);
-      setLoggedIn({ loggedIn: true});
-    };
 
     function loginFailed(){
         console.log('You could not login');
         setLoggedIn({ loggedIn: false });
     };
 
-
     function submithandler(e) {
       e.preventDefault();
       axios.post('https://localhost:44323/api/login', userLogin )
           .then((response) => {
 
-        let succeeded = loginHandle();
-        let failed = loginFailed();
-
-        if(response.status === 200) {
-          succeeded();
-        }else if (response.status === 204) {
-          failed('Username/Password is incorrect')
-        }else {
-          failed('Can´t connect to login-server');
-        }
-      }).catch((error) => {
-        console.log(error);
+          let failed = loginFailed();
+          let token = response.data.bearerToken;
+              
+          if (response.status === 200) 
+          {
+            localStorage.setItem('secret', token);
+            alert('You are logged in');
+            setLoggedIn({loggedIn: true});
+          }else if (response.status === 204) 
+          {
+            failed('Username/Password is incorrect')
+          }else 
+          {
+            failed('Can´t connect to login-server');
+          }
+        }).catch((error) => {
+          console.log(error);
       })
     };
 

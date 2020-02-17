@@ -35,8 +35,8 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
-    [HttpGet]
-    [HttpGet("{id}", Name = "Get")]
+   
+    [HttpGet("{id}")]
     public async Task<ActionResult<SpaPageModel>> Get(int id)
     {
       try
