@@ -42,11 +42,10 @@
     margin-top: 5%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 40%;
+    width: 220px;
     background-color: white;
-    border: 1px solid #DD0332;;
+    border: 2px solid #DD0332;;
     color: #DD0332;
-    font-weight: bold;
 }
 
 .login-button:hover{

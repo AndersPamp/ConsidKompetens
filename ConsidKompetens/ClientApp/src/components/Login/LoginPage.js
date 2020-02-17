@@ -7,7 +7,6 @@ import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
 import axios from 'axios/index';
 import {Redirect} from "react-router-dom";
-import {getJwt} from '../../Helper/jwt';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -98,7 +97,7 @@ const LoginPage = () => {
                                         />
                                 <button className='login-button'>Logga in</button>
                                 <button className='login-password-button'>
-                                    <a className='login-forgot-password' href="#">Glömt ditt lösenord?</a>
+                                    <a className='login-forgot-password' href="/">Glömt ditt lösenord?</a>
                                 </button> 
                             </div>              
                         </div>
