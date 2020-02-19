@@ -41,7 +41,6 @@ namespace ConsidKompetens_Services.DataServices
       }
       try
       {
-
         foreach (var officeId in selectedOfficeIds)
         {
           var officeDelta = await _dbContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
@@ -69,7 +68,6 @@ namespace ConsidKompetens_Services.DataServices
             result.Add(user);
           }
         }
-
         return result;
       }
       catch (Exception e)
