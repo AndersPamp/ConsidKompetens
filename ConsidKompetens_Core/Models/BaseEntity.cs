@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace ConsidKompetens_Core.Models
 {
-  public class BaseEntity
+  public abstract class BaseEntity
   {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]

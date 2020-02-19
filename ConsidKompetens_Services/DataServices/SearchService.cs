@@ -20,12 +20,12 @@ namespace ConsidKompetens_Services.DataServices
       _dbContext = dbContext;
     }
 
-    public async Task<List<ProfileModel>> GetAllProfiles()
+    public async Task<List<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
-        return await _dbContext.ProfileModels.Include(x=>x.Competences)
-          .Include(x=>x.ProfileImage).ToListAsync();
+        return await _dbContext.ProfileModels.Include(x => x.Competences)
+          .Include(x => x.ProfileImage).ToListAsync();
       }
       catch (Exception e)
       {
@@ -41,7 +41,7 @@ namespace ConsidKompetens_Services.DataServices
       }
       try
       {
-        
+
         foreach (var officeId in selectedOfficeIds)
         {
           var officeDelta = await _dbContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
@@ -59,7 +59,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         var competence = await _dbContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
-        var users = await GetAllProfiles();
+        var users = await GetAllProfilesAsync();
         var result = new List<ProfileModel>();
 
         foreach (var user in users)
@@ -77,36 +77,49 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    public async Task<List<ProfileModel>> FreeWordSearcAsync(string input)
+    //search first name, last name & competences
+    public async Task<SpaPageModel> FreeWordSearcAsync(string input)
     {
-      var result = new List<ProfileModel>();
+      var spa = new SpaPageModel();
+      var allProfiles = await GetAllProfilesAsync();
+      var profiles = new List<ProfileModel>();
+      var allOffices = await _dbContext.OfficeModels.ToListAsync();
+      var offices = new List<OfficeModel>();
       try
       {
-        var users = await GetAllProfiles();
-        foreach (var user in users)
+        foreach (var profile in allProfiles)
         {
-          foreach (var competence in user.Competences)
+          foreach (var competence in profile.Competences)
           {
             if (competence.Name.ToUpper().Contains(input.ToUpper()))
             {
-              result.Add(user);
+              profiles.Add(profile);
             }
           }
         }
-        var resultFirst = users.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
-        var resultLast = users.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
-        
+
+        var resultFirst = allProfiles.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
+        var resultLast = allProfiles.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
+
         foreach (var first in resultFirst)
         {
-          result.Add(first);
+          profiles.Add(first);
         }
-
         foreach (var last in resultLast)
         {
-          result.Add(last);
+          profiles.Add(last);
+        }
+        foreach (var office in allOffices)
+        {
+          if (office.City.ToUpper().Contains(input.ToUpper()))
+          {
+            offices.Add(office);
+          }
         }
 
-        return result;
+        spa.Consultants = profiles;
+        spa.Framework.Offices = offices;
+        return spa;
       }
       catch (Exception e)
       {
