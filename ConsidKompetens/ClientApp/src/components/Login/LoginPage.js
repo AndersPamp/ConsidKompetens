@@ -30,30 +30,18 @@ const LoginPage = () => {
     const [userLogin, setUserLogin] = useState({UserName: '', PassWord: ''});
     const [loggedIn, setLoggedIn] = useState(false);
 
-    function loginFailed(){
-        console.log('You could not login');
-        setLoggedIn({ loggedIn: false });
-    };
-
     function submithandler(e) {
       e.preventDefault();
       axios.post('https://localhost:44323/api/login', userLogin )
           .then((response) => {
 
-          let failed = loginFailed();
-          let token = response.data.bearerToken;
+              let token = response.data.bearerToken;
               
           if (response.status === 200) 
           {
             localStorage.setItem('secret', token);
             alert('You are logged in');
             setLoggedIn({loggedIn: true});
-          }else if (response.status === 204) 
-          {
-            failed('Username/Password is incorrect')
-          }else 
-          {
-            failed('Can´t connect to login-server');
           }
         }).catch((error) => {
           console.log(error);
@@ -92,6 +80,7 @@ const LoginPage = () => {
                                         id='mui-theme-provider-standard-input' 
                                         label='Lösenord:'
                                         name= 'PassWord'
+                                        type='password'
                                         value={userLogin.PassWord}
                                         onChange={handleChange}
                                         />
