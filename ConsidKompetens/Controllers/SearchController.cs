@@ -21,7 +21,7 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpGet]
     [OutputCache(Duration = 30)]
-    public async Task<ActionResult<SpaPageModel>> Search(string input)
+    public async Task<ActionResult<ResponseModel>> Search(string input)
     {
       //In js Debounce with input delay
       try
@@ -30,7 +30,7 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel { Ok = false, Message = e.Message });
+        return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
       }
     }
   }

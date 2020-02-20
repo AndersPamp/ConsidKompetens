@@ -24,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<SpaPageModel>>> Get()
+    public async Task<ActionResult<List<ResponseModel>>> Get()
     {
       try
       {
@@ -32,58 +32,57 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = e.Message });
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<SpaPageModel>> Get(int id)
+    public async Task<ActionResult<ResponseModel>> Get(int id)
     {
       try
       {
         var deltaList = new List<ProjectModel> { await _projectService.GetProjectByIdAsync(id) };
-        return Ok(new SpaPageModel
+        return Ok(new ResponseModel
         {
-          PageTitle = "Project",
-          Ok = true,
-          Projects = deltaList
+          Success = true,
+          Data = new ResponseData { ProjectModels = deltaList }
         });
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = e.Message });
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpPost]
-    public async Task<ActionResult<SpaPageModel>> Post(ProjectModel projectModel)
+    public async Task<ActionResult<ResponseModel>> Post(ProjectModel projectModel)
     {
       if (ModelState.IsValid)
       {
         await _projectService.CreateNewProjectAsync(projectModel);
-        return Ok(new SpaPageModel { PageTitle = "Projects", Ok = true, Projects = await _projectService.GetAllProjectsAsync() });
+        return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProjectModels = await _projectService.GetAllProjectsAsync()}});
       }
 
-      return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = _logger.ToString()});
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
 
     [HttpPut]
-    public async Task<ActionResult<SpaPageModel>> Put(ProjectModel projectModel)
+    public async Task<ActionResult<ResponseModel>> Put(ProjectModel projectModel)
     {
       if (ModelState.IsValid)
       {
         try
         {
-          var deltaProjects = new List<ProjectModel>{ await _projectService.EditProjectAsync(projectModel) };
+          var deltaProjects = new List<ProjectModel> { await _projectService.EditProjectAsync(projectModel) };
 
-          return new SpaPageModel{PageTitle = "Projects", Ok = true, Projects = deltaProjects};
+          return new ResponseModel { Success= true, Data = new ResponseData{ProjectModels = deltaProjects}};
         }
         catch (Exception e)
         {
-          return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = e.Message });
+          return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
         }
       }
-      return BadRequest(new SpaPageModel { PageTitle = "Projects", Ok = false, Message = _logger.ToString() });
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
   }
 }

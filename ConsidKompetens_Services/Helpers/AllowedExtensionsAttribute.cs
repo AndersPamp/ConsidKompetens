@@ -20,9 +20,10 @@ namespace ConsidKompetens_Services.Helpers
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
       var file = value as IFormFile;
-      var extension = Path.GetExtension(file.FileName);
+      
       if (file!=null)
       {
+        var extension = Path.GetExtension(file.FileName);
         if (!_extensions.Contains(extension.ToLower()))
         {
           return new ValidationResult(_logger.ToString());

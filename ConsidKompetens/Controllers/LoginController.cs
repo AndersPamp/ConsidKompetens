@@ -34,7 +34,7 @@ namespace ConsidKompetens_Web.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return Ok(new SpaPageModel{PageTitle = "LoginPage", Ok = true});
+      return Ok(new ResponseModel{Success= true});
     }
     // POST: api/Login
     [HttpPost]
@@ -49,16 +49,16 @@ namespace ConsidKompetens_Web.Controllers
         {
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
-          return Ok(new SpaPageModel{PageTitle = "Login", Ok = true, BearerToken = token});
+          return Ok(new ResponseModel{Success = true, BearerToken = token});
         }
         
         //3. If user unauth. return UnAuthorized
-        return Unauthorized(new SpaPageModel{PageTitle = "Login", Ok = false, Message = _logger.ToString()});
+        return Unauthorized(new ResponseModel{Success= false, ErrorMessage= _logger.ToString()});
 
         //var returnUrl = "";
         //returnUrl = returnUrl ?? Url.Content("~/");
       }
-      return Unauthorized(new SpaPageModel{PageTitle = "Login", Ok = false, Message = _logger.ToString()});
+      return Unauthorized(new ResponseModel{Success= false, ErrorMessage= _logger.ToString()});
     }
 
     [HttpPost]
@@ -68,10 +68,10 @@ namespace ConsidKompetens_Web.Controllers
       if (logOut)
       {
         await _loginService.LogOutUserAsync();
-        return Ok(new SpaPageModel {PageTitle = "LogOut", Ok = true, Message = "You are logged out"});
+        return Ok(new ResponseModel {Success= true});
       }
 
-      return BadRequest(new SpaPageModel {PageTitle = "LogOut", Ok = false, Message = _logger.ToString()});
+      return BadRequest(new ResponseModel {Success= false, ErrorMessage= _logger.ToString()});
     }
   }
 }

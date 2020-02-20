@@ -76,9 +76,9 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
     //search first name, last name & competences
-    public async Task<SpaPageModel> FreeWordSearcAsync(string input)
+    public async Task<ResponseModel> FreeWordSearcAsync(string input)
     {
-      var spa = new SpaPageModel();
+      var response = new ResponseModel();
       var allProfiles = await GetAllProfilesAsync();
       var profiles = new List<ProfileModel>();
       var allOffices = await _dbContext.OfficeModels.ToListAsync();
@@ -115,9 +115,9 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        spa.Consultants = profiles;
-        spa.Framework.Offices = offices;
-        return spa;
+        response.Data.ProfileModels = profiles;
+        response.Data.OfficeModels = offices;
+        return response;
       }
       catch (Exception e)
       {

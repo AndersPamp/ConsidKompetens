@@ -32,17 +32,17 @@ namespace ConsidKompetens_Web.Controllers
         if (!await _registerService.CheckIfUserExistsAsync(registerModel.UserName))
         {
           //2. Check if password is strong enough
-          if (PasswordStrength.CheckPasswordComplexity(registerModel.PassWord)&&registerModel.UserName.EndsWith("@consid.se"))
+          if (PasswordStrength.CheckPasswordComplexity(registerModel.PassWord) && registerModel.UserName.EndsWith("@consid.se"))
           {
             //3. Create new identity user
             await _registerService.RegisterNewUserAsync(registerModel);
-            return Created("",new SpaPageModel { PageTitle = "Register", Ok = true, Message = "User and new profile created successfully" });
+            return Created("", new ResponseModel { Success = true });
           }
-          return BadRequest(new SpaPageModel { PageTitle = "Register", Ok = false, Message = _logger.ToString() });
+          return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
         }
-        return BadRequest(new SpaPageModel { PageTitle = "Register", Ok = false, Message = _logger.ToString() });
+        return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
       }
-      return BadRequest(new SpaPageModel { PageTitle = "Register", Ok = false, Message = _logger.ToString() });
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
   }
 }

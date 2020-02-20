@@ -26,36 +26,36 @@ namespace ConsidKompetens_Web.Controllers
 
     // GET: api/Profile
     [HttpGet]
-    public async Task<ActionResult<SpaPageModel>> Get()
+    public async Task<ActionResult<ResponseModel>> Get()
     {
       try
       {
         var profiles = await _profileDataService.GetAllProfilesAsync();
-        return Ok(new SpaPageModel() { PageTitle = "AllProfiles", Ok = true, Consultants = profiles });
+        return Ok(new ResponseModel() { Success = true, Data = new ResponseData { ProfileModels = profiles } });
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel{ PageTitle = "Profiles", Ok = false, Message = e.Message });
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
     // GET: api/Profile/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<SpaPageModel>> Get(int id)
+    public async Task<ActionResult<ResponseModel>> Get(int id)
     {
       try
       {
         var user = await _profileDataService.GetProfileByIdAsync(id);
-        return Ok(new SpaPageModel { PageTitle = user.FirstName + user.LastName, Ok = true, Consultants = new List<ProfileModel> { user } });
+        return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel> { user } } });
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = e.Message });
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<SpaPageModel>> Put([FromBody] ProfileModel value)
+    public async Task<ActionResult<ResponseModel>> Put([FromBody] ProfileModel value)
     {
       if (ModelState.IsValid)
       {
@@ -66,19 +66,19 @@ namespace ConsidKompetens_Web.Controllers
           var profile = await _profileDataService.GetProfileByOwnerIdAsync(userId);
           var result = await _profileDataService.EditProfileByIdAsync(profile.Id, value);
 
-          return Ok(new SpaPageModel { PageTitle = result.FirstName + result.LastName, Ok = true, Consultants = new List<ProfileModel> { result } });
+          return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel> { result } } });
         }
         catch (Exception e)
         {
-          return BadRequest(new SpaPageModel{ PageTitle = "Profiles", Ok = false, Message = e.Message });
+          return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
         }
       }
-      return BadRequest(new SpaPageModel{PageTitle = "Profiles", Ok = false, Message = _logger.ToString()});
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
 
     // DELETE: api/ApiWithActions/5
     //[HttpDelete("{id}")]
-    //public Task<ActionResult<SpaPageModel>> Delete(int id)
+    //public Task<ActionResult<ResponseModel>> Delete(int id)
     //{
     //  return null;
     //}

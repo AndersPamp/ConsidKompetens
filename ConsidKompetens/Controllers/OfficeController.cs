@@ -26,45 +26,47 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<SpaPageModel>> Get([FromBody]List<int> officeIds)
+    public async Task<ActionResult<ResponseModel>> Get([FromBody]List<int> officeIds)
     {
       try
       {
-        var spa = new SpaPageModel
+        var response = new ResponseModel
         {
-          Ok = true,
-          PageTitle = "Offices",
-          Consultants = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds),
-          Framework = { Offices = await _officeDataService.GetOfficesByIdsAsync(officeIds) }
+          Success = true,
+          Data = new ResponseData
+          {
+            ProfileModels = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds),
+            OfficeModels = await _officeDataService.GetOfficesByIdsAsync(officeIds)
+          }
         };
-        return Ok(spa);
+        return Ok(response);
       }
       catch (Exception e)
       {
-        return BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = e.Message});
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpPost]
-    public async Task<ActionResult<SpaPageModel>> Post([FromBody]OfficeModel officeModel)
+    public async Task<ActionResult<ResponseModel>> Post([FromBody]OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
         try
         {
           await _officeDataService.CreateNewOfficeAsync(officeModel);
-          return Created("", new SpaPageModel{PageTitle = "Offices", Ok = true, Framework = {Offices = await _officeDataService.GetOfficesAsync()}});
+          return Created("", new ResponseModel { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
         }
         catch (Exception e)
         {
-          BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = e.Message});
+          BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
         }
       }
-      return BadRequest(new SpaPageModel{PageTitle = "Offices", Ok = false, Message = _logger.ToString()});
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
 
     [HttpPut]
-    public async Task<ActionResult<SpaPageModel>> Put([FromBody] OfficeModel officeModel)
+    public async Task<ActionResult<ResponseModel>> Put([FromBody] OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
@@ -75,11 +77,11 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          BadRequest(new SpaPageModel { PageTitle = "Offices", Ok = false, Message = e.Message });
+          BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
         }
       }
 
-      return BadRequest(new SpaPageModel { PageTitle = "Offices", Ok = false, Message = _logger.ToString() });
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
   }
 }
