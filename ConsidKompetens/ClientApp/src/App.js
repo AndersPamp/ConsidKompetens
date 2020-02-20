@@ -22,15 +22,14 @@ function App() {
         <Switch> 
           <Route path="/login" component={() => <LoginPage />}/>
           <Route path="/register" component={RegisterPage}/>
-          <Authenticated>
+          {/* <Authenticated> */}
             <Route exact path="/" component={() => <HomePage/>}/>
             <Route path="/details" component={DetailsPage}/>
             <Route path="/user" component={() => <UserPage/>}/>
-           </Authenticated>
+           {/* </Authenticated> */}
         </Switch>
       <Footer/>
     </div>
-    
   );
 }
 

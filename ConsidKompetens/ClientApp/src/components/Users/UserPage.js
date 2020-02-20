@@ -10,7 +10,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { Container } from 'reactstrap';
 import offices from '../../Helper/Offices.json';
 import {Redirect} from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import '../../css/User.css';
 
 
@@ -42,20 +41,6 @@ const UserPage = () => {
 
   const [loggedOut, setLoggedOut] = useState(false);
 
-  function getJwt() {
-    let token = localStorage.getItem('secret');
-    return token;
-  }
-
-  function getUser(){
-     const jwt = getJwt();
-    if(jwt !== null){
-      let user = jwt_decode(jwt);
-      return user;
-    }
-    return undefined;
-  }
- 
    function handleLogoOut() {
         localStorage.removeItem('secret');
         alert('logged out');

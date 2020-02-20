@@ -10,7 +10,8 @@ class NavMenu extends Component {
 
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true
+            collapsed: true,
+            loggedOut: false
         };
     }
 
@@ -20,7 +21,16 @@ class NavMenu extends Component {
         });
     }
 
+    handleLogoOut() {
+        localStorage.removeItem('secret');
+        alert('logged out');
+        this.setState({loggedOut: true});
+    }
+
     render(props) {
+
+        const user = localStorage.getItem('secret');
+
         return (
             <header>
                 <Navbar className='navbar-expand-sm navbar-toggle-sm ng-white border-bottom box-shadow' light>
@@ -29,12 +39,26 @@ class NavMenu extends Component {
                         <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className='navbar-nav flex-grow'>
-                                <NavItem>
-                                    <NavLink tag={Link} className='text-dark links' to='/register'>Registrera</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className='text-dark links' to='/login'>Inloggning</NavLink>
-                                </NavItem>
+                             { user !== null ?
+                                <>
+                                    <NavItem>
+                                        <NavLink tag={Link} className='text-dark links' to='/user'>Min sida</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className='text-dark links' to='/login'>Logout</NavLink>
+                                    </NavItem>
+                                </>
+                            : undefined}
+                            { user === null ?
+                                <>
+                                    <NavItem>
+                                        <NavLink tag={Link} className='text-dark links' to='/register'>Registrera</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className='text-dark links' to='/login' onClick={this.handleLogoOut}>Inloggning</NavLink>
+                                    </NavItem>
+                                </>
+                             : undefined}
                             </ul>
                         </Collapse>
                     </Container>
