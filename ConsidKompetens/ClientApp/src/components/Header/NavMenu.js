@@ -20,7 +20,7 @@ class NavMenu extends Component {
         });
     }
 
-    render() {
+    render(props) {
         return (
             <header>
                 <Navbar className='navbar-expand-sm navbar-toggle-sm ng-white border-bottom box-shadow' light>

@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //import { configureFakeBackend } from './_helpers';
 //configureFakeBackend();
+
+
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(

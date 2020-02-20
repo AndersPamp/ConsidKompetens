@@ -1,3 +1,7 @@
+.user-container{
+    padding-bottom: 150px;
+}
+
 .user-img{
     border-radius: 50%;
     display: block;
@@ -23,4 +27,57 @@
 
 .textfield-container{
     padding-top: 5%;
+}
+
+.grid-one{
+    padding-top: 5%;
+}
+
+.grid-two{
+    padding-top: 5%;
+    padding-left: 30%;
+}
+
+.load-cv{
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    margin-left: 10px;
+    color: rgb(102, 101, 101);
+}
+
+.login-text{
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 8%;
+    display: block;
+    margin-left: 10px;
+    color: rgb(102, 101, 101);
+    font-size: 20px;
+}
+
+.login-email{
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(102, 101, 101);
+    display: block;
+}
+
+.button{
+    margin-top: 5%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 160px;
+    background-color: white;
+    border: 1px solid #DD0332;;
+    color: #DD0332;
+    margin-left: 10px;
+}
+
+.button:focus{
+    outline: none;
+}
+
+.button:hover{
+    background-color: #DD0332;;
+    color: white;
 }
