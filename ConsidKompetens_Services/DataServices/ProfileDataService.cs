@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
+using ConsidKompetens_Services.Helpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace ConsidKompetens_Services.DataServices
 {
   public class ProfileDataService : IProfileDataService
   {
     private readonly DataDbContext _dataDbContext;
+    private readonly IOptions<AppSettings> _options;
 
-    public ProfileDataService(DataDbContext DataDbContext)
+    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext)
     {
+      _options = options;
       _dataDbContext = DataDbContext;
     }
 
@@ -122,7 +128,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           OwnerID = ownerId,
           Created = DateTime.UtcNow,
-          ProfileImage = new ImageModel { Created = DateTime.UtcNow},
+          ProfileImage = new ImageModel { Created = DateTime.UtcNow },
         };
         await _dataDbContext.ProfileModels.AddAsync(newUserModel);
         await _dataDbContext.SaveChangesAsync();
@@ -133,6 +139,23 @@ namespace ConsidKompetens_Services.DataServices
       {
         throw new Exception(e.Message);
       }
+    }
+    
+    public async Task<bool> ImageUploadAsync(IFormFile file)
+    {
+      {
+        if (file.Length > 0)
+        {
+          var filePath = Path.Combine(_options.Value.ImageFilePath,
+            Path.GetRandomFileName());
+
+          using (var stream = System.IO.File.Create(filePath))
+          {
+            await file.CopyToAsync(stream);
+          }
+        }
+      }
+      return true;
     }
   }
 }

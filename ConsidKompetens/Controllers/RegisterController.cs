@@ -36,7 +36,7 @@ namespace ConsidKompetens_Web.Controllers
           {
             //3. Create new identity user
             await _registerService.RegisterNewUserAsync(registerModel);
-            return Ok(new SpaPageModel { PageTitle = "Register", Ok = true, Message = "User and new profile created successfully" });
+            return Created("",new SpaPageModel { PageTitle = "Register", Ok = true, Message = "User and new profile created successfully" });
           }
           return BadRequest(new SpaPageModel { PageTitle = "Register", Ok = false, Message = _logger.ToString() });
         }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Core.Interfaces
 {
@@ -12,5 +14,6 @@ namespace ConsidKompetens_Core.Interfaces
     Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
     Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel userModel);
     Task<ProfileModel> CreateNewProfileAsync(string ownerId);
+    Task<bool> ImageUploadAsync(IFormFile files);
   }
 }
