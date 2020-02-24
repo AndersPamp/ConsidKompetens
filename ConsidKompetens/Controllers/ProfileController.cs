@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
   [Authorize]
-  [Route("api/[controller]")]
+  [Route("api/[controller]/[action]")]
   [ApiController]
   public class ProfileController : ControllerBase
   {
@@ -55,7 +56,7 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ResponseModel>> Put([FromBody] ProfileModel value)
+    public async Task<ActionResult<ResponseModel>> EditProfile([FromBody] ProfileModel value)
     {
       if (ModelState.IsValid)
       {
@@ -75,6 +76,18 @@ namespace ConsidKompetens_Web.Controllers
       }
       return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
+
+    [HttpPut(template: "{id}")]
+    public async Task<ActionResult<IFormFile>> EditImage(IFormFile file)
+    {
+      if (ModelState.IsValid)
+      {
+        await _profileDataService.ImageUploadAsync(file);
+      }
+
+      return BadRequest(_logger.ToString());
+    }
+
 
     //DELETE: api/ApiWithActions/5
     [HttpDelete("{id}")]

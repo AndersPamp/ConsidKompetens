@@ -162,12 +162,13 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return false;
-      }
-      catch (Exception)
-      {
-
+        var profile = await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == id);
+        _dataDbContext.ProfileModels.Remove(profile);
         return true;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
       }
     }
   }
