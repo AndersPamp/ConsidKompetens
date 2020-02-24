@@ -64,13 +64,14 @@
 
 .button{
     margin-top: 5%;
+    margin-bottom: 5%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 160px;
+    width: 100%;
     background-color: white;
-    border: 1px solid #DD0332;;
+    box-shadow: 1px 1px 3px 1px #DD0332;
     color: #DD0332;
-    margin-left: 10px;
+    border: none;
 }
 
 .button:focus{
