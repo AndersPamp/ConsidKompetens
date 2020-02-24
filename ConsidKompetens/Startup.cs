@@ -72,19 +72,20 @@ namespace ConsidKompetens_Web
         config.Filters.Add(new AuthorizeFilter(policy));
       });
 
-      // Appsetting -> ImageSection.cs
-      // IOption<ImageSection>
-      var securitySettingsSections = Configuration.GetSection("AllowedFileExtensions");
+        // Appsetting -> ImageSection.cs
+        // IOption<ImageSection>
+        var securitySettingsSections = Configuration.GetSection("AppSettings");
+        services.Configure<AppSettings>(securitySettingsSections);
 
-      services.Configure<AppSettings>(securitySettingsSections);
-      services.Configure<AppSettings>(Configuration.GetSection("MaxFileSize"));
-      services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-      services.Configure<AppSettings>(Configuration.GetSection("ImageFilePath"));
+        services.Configure<AppSettings>(Configuration.GetSection("AllowedFileExtensions"));
+        services.Configure<AppSettings>(Configuration.GetSection("MaxFileSize"));
+        services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+        services.Configure<AppSettings>(Configuration.GetSection("ImageFilePath"));
 
-      var appSettings = securitySettingsSections.Get<AppSettings>();
-      var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+        var appSettings = securitySettingsSections.Get<AppSettings>();
+        var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
-      services.AddAuthentication(x =>
+            services.AddAuthentication(x =>
       {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
