@@ -10,8 +10,7 @@ class NavMenu extends Component {
 
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true,
-            loggedIn: false
+            collapsed: true
         };
     }
 
@@ -19,13 +18,6 @@ class NavMenu extends Component {
         this.setState({
             collapsed: !this.state.collapsed
         });
-    }
-
-    handleLogOut() {
-        localStorage.removeItem('secret');
-        this.setState({loggedIn: false });
-         alert('logged out');
-        this.props.history.push('/login');
     }
 
     render(props) {
@@ -37,7 +29,7 @@ class NavMenu extends Component {
                 <Navbar className='navbar-expand-sm navbar-toggle-sm ng-white border-bottom box-shadow' light>
                     <Container>
                         <NavbarBrand className='NavbarLogo' tag={Link} to='/'><img className='ConsidLogoBig' src={ConsidLogo} alt="Consid logo"/></NavbarBrand>
-                        <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
+                        {/* <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className='navbar-nav flex-grow'>
                                     <NavItem>
@@ -47,7 +39,7 @@ class NavMenu extends Component {
                                         <NavLink tag={Link} className='text-dark links' to='/login'>Logout</NavLink>
                                     </NavItem>
                             </ul>
-                        </Collapse>
+                        </Collapse> */}
                     </Container>
                 </Navbar>
             </header>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/Home/HomePage';
@@ -14,6 +14,13 @@ import { Footer } from '../src/components';
 
 function App() {
 
+//  const [loggedOut, setLoggedOut] = useState(false);
+
+//    function handleLogoOut() {
+//         localStorage.removeItem('secret');
+//         alert('logged out');
+//         setLoggedOut({loggedOut: true});
+//     }
 
   return (
     <div className='App-div'>

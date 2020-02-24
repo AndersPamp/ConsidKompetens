@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
+import {Alert} from 'reactstrap';
 //import Grid from '@material-ui/core/Grid';
 import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
@@ -34,12 +35,14 @@ const RegisterPage = () => {
     const classes = useStyles();
 
     const [userRegister, setUserRegister] = useState({UserName: '', PassWord: ''});
+    const [registerad, setRegisterad] = useState(false);
 
     function submitHendler(e) {
         e.preventDefault();
         axios.post('https://localhost:44323/api/register', userRegister)
             .then(response => {
                 alert('User has been registered');
+                setRegisterad({registerad: true});
             })
             .catch(error => {
                 console.log(error);
@@ -51,8 +54,8 @@ const RegisterPage = () => {
     }
 
     return(
-        <div> 
-          <div>
+          <div className='container-login'>
+          {registerad ? <Alert color="primary">Alert!!</Alert> : null}
             <ThemeProvider theme={theme}>
                 <img className='image' src={LoginImage} alt="Consid woman"/>
                 <form onSubmit={submitHendler}>
@@ -84,7 +87,6 @@ const RegisterPage = () => {
                         </form>
             </ThemeProvider>   
           </div> 
-        </div>
     )
 }
 
