@@ -61,8 +61,8 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
-      services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
-      services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
+      //services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
+      //services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
 
       services.AddControllers(config =>
       {
@@ -74,14 +74,11 @@ namespace ConsidKompetens_Web
 
       // Appsetting -> ImageSection.cs
       // IOption<ImageSection>
-      var securitySettingsSections = Configuration.GetSection("AllowedFileExtensions");
-
-      services.Configure<AppSettings>(securitySettingsSections);
-      services.Configure<AppSettings>(Configuration.GetSection("MaxFileSize"));
-      services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-      services.Configure<AppSettings>(Configuration.GetSection("ImageFilePath"));
-
-      var appSettings = securitySettingsSections.Get<AppSettings>();
+      
+      var appSettingsSection = Configuration.GetSection("AppSettings");
+      services.Configure<AppSettings>(appSettingsSection);
+      var appSettings = appSettingsSection.Get<AppSettings>();
+      
       var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
       services.AddAuthentication(x =>
