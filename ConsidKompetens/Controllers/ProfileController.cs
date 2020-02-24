@@ -76,11 +76,11 @@ namespace ConsidKompetens_Web.Controllers
       return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
 
-    // DELETE: api/ApiWithActions/5
-    //[HttpDelete("{id}")]
-    //public Task<ActionResult<ResponseModel>> Delete(int id)
-    //{
-    //  return null;
-    //}
+    //DELETE: api/ApiWithActions/5
+    [HttpDelete("{id}")]
+    public Task<ActionResult<ResponseModel>> Delete(int id)
+    {
+      return null;
+    }
   }
 }

@@ -157,5 +157,18 @@ namespace ConsidKompetens_Services.DataServices
       }
       return true;
     }
+
+    public async Task<bool> DeleteProfileAsync(int id)
+    {
+      try
+      {
+        return false;
+      }
+      catch (Exception)
+      {
+
+        return true;
+      }
+    }
   }
 }

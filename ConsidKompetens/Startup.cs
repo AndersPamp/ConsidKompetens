@@ -61,8 +61,8 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
-      services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
-      services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
+      //services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
+      //services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
 
       services.AddControllers(config =>
       {
@@ -72,20 +72,16 @@ namespace ConsidKompetens_Web
         config.Filters.Add(new AuthorizeFilter(policy));
       });
 
-        // Appsetting -> ImageSection.cs
-        // IOption<ImageSection>
-        var securitySettingsSections = Configuration.GetSection("AppSettings");
-        services.Configure<AppSettings>(securitySettingsSections);
+      // Appsetting -> ImageSection.cs
+      // IOption<ImageSection>
+      
+      var appSettingsSection = Configuration.GetSection("AppSettings");
+      services.Configure<AppSettings>(appSettingsSection);
+      var appSettings = appSettingsSection.Get<AppSettings>();
+      
+      var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
-        services.Configure<AppSettings>(Configuration.GetSection("AllowedFileExtensions"));
-        services.Configure<AppSettings>(Configuration.GetSection("MaxFileSize"));
-        services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-        services.Configure<AppSettings>(Configuration.GetSection("ImageFilePath"));
-
-        var appSettings = securitySettingsSections.Get<AppSettings>();
-        var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-            services.AddAuthentication(x =>
+      services.AddAuthentication(x =>
       {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
