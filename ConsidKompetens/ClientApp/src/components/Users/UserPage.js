@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { Container } from 'reactstrap';
 import offices from '../../Helper/Offices.json';
 import {Redirect} from "react-router-dom";
+import NavMenu from '../Header/NavMenu';
 import '../../css/User.css';
 
 
@@ -32,7 +33,10 @@ const theme = createMuiTheme({
     primary: red,
   },
   typography: {
-    htmlFontSize: 12
+    htmlFontSize: 12,
+    fontFamily: [
+      'Montserrat', 'sans-serif'
+    ]
   }
 });
 
@@ -48,6 +52,8 @@ const UserPage = () => {
     }
 
   return (
+    <>
+    <NavMenu/>
     <div className='user-container'>
     {loggedOut ? <Redirect to="/" /> : null} 
       <Container>
@@ -123,6 +129,7 @@ const UserPage = () => {
           </ThemeProvider>
       </Container>
     </div>
+    </>
   );
 }
 

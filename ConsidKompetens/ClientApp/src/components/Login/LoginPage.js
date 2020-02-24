@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
+//import Grid from '@material-ui/core/Grid';
 import { ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import '../../css/Login.css';
@@ -22,6 +22,12 @@ const theme = createMuiTheme({
   palette: {
     primary: red,
   },
+  typography: {
+    htmlFontSize: 12,
+    fontFamily: [
+      'Montserrat', 'sans-serif'
+    ]
+  }
 });
 
 const LoginPage = () => {
@@ -45,7 +51,7 @@ const LoginPage = () => {
           }
         }).catch((error) => {
           console.log(error);
-      })
+      });
     };
 
     const handleChange = (event) => {
@@ -55,7 +61,52 @@ const LoginPage = () => {
     return(
         <div> 
             {loggedIn ? <Redirect to="/" /> : null} 
-            <ThemeProvider theme={theme}>
+            <div className='container-login'>
+              <ThemeProvider theme={theme}>  
+                <img className='image' src={LoginImage} alt="Consid woman"/>
+                <form onSubmit={submithandler}>
+                        <div className='box'>
+                            <div className='inner-box'>
+                                <label className='login-label'>Inloggning</label>
+                                <TextField 
+                                        className={classes.margin} 
+                                        style={{display: 'block'}} 
+                                        id='mui-theme-provider-standard-input' 
+                                        label='E-post:'
+                                        name= 'UserName'
+                                        value={userLogin.UserName}
+                                        onChange={handleChange}  
+                                        />
+                                <TextField 
+                                        className={classes.margin} 
+                                        style={{display: 'block'}} 
+                                        id='mui-theme-provider-standard-input' 
+                                        label='Lösenord:'
+                                        name= 'PassWord'
+                                        type='password'
+                                        value={userLogin.PassWord}
+                                        onChange={handleChange}
+                                        />
+                                <button className='login-button'>Logga in</button>
+                                <button className='login-password-button'>
+                                    <a className='login-forgot-password' href="#">Glömt ditt lösenord?</a>
+                                </button> 
+                                <button className='login-password-button2'>
+                                    <a className='login-forgot-password2' href="/register">Skapa profil</a>
+                                </button> 
+                            </div>              
+                        </div>
+                      </form> 
+                  </ThemeProvider>    
+            </div>
+        </div>
+    )
+}
+
+export default LoginPage;
+
+   {/* <img className='login-logo' src={ConsidLogo} alt="Consid-logo"/>
+            
                 <Grid container spacing={0}>
                     <Grid item xs={5}>
                         <img className='login-img' src={LoginImage} alt="Consid woman"/>
@@ -93,9 +144,4 @@ const LoginPage = () => {
                       </form> 
                     </Grid>
                 </Grid>
-            </ThemeProvider>
-        </div>
-    )
-}
-
-export default LoginPage;
+             */}

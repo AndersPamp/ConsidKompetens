@@ -5,9 +5,11 @@ import TwitterIcon from '../../images/twitter.png';
 import LinkedInIcon from '../../images/in.png';
 import InstagramIcon from '../../images/instagram.png';
 import FooterIcon from '../../images/footer.png';
+import {Container} from 'reactstrap';
 
 export const Footer = () => {
     return(
+        <Container>
         <div className='footer-container'>
             <div>
                 <a href="https://www.facebook.com/consid.se"><img className='footer-img' src={FacebookIcon} alt="Facebook"/></a>
@@ -17,5 +19,6 @@ export const Footer = () => {
             </div>
             <a href="https://consid.se/"><img className='botton' src={FooterIcon} alt="footer"/></a>
         </div>
+        </Container>
     );
 };

@@ -11,7 +11,7 @@ class NavMenu extends Component {
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
             collapsed: true,
-            loggedOut: false
+            loggedIn: false
         };
     }
 
@@ -21,10 +21,11 @@ class NavMenu extends Component {
         });
     }
 
-    handleLogoOut() {
+    handleLogOut() {
         localStorage.removeItem('secret');
-        alert('logged out');
-        this.setState({loggedOut: true});
+        this.setState({loggedIn: false });
+         alert('logged out');
+        this.props.history.push('/login');
     }
 
     render(props) {
@@ -39,26 +40,12 @@ class NavMenu extends Component {
                         <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className='navbar-nav flex-grow'>
-                             { user !== null ?
-                                <>
                                     <NavItem>
                                         <NavLink tag={Link} className='text-dark links' to='/user'>Min sida</NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink tag={Link} className='text-dark links' to='/login'>Logout</NavLink>
                                     </NavItem>
-                                </>
-                            : undefined}
-                            { user === null ?
-                                <>
-                                    <NavItem>
-                                        <NavLink tag={Link} className='text-dark links' to='/register'>Registrera</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink tag={Link} className='text-dark links' to='/login' onClick={this.handleLogoOut}>Inloggning</NavLink>
-                                    </NavItem>
-                                </>
-                             : undefined}
                             </ul>
                         </Collapse>
                     </Container>

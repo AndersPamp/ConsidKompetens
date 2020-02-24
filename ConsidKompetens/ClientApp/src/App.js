@@ -14,20 +14,19 @@ import { Footer } from '../src/components';
 
 function App() {
 
-  //const [ loggedIn, setLoggedIn ] = useState(false);
 
   return (
     <div className='App-div'>
-      <NavMenu/>
-        <Switch> 
-          <Route path="/login" component={() => <LoginPage />}/>
-          <Route path="/register" component={RegisterPage}/>
-          {/* <Authenticated> */}
-            <Route exact path="/" component={() => <HomePage/>}/>
+        
+        <Route path="/login" component={() => <LoginPage />}/>
+        <Route path="/register" component={RegisterPage}/>
+        
+           {/* <Authenticated> */}
+              {/* <NavMenu/> */}
+            <Route exact path="/" component={HomePage}/>
             <Route path="/details" component={DetailsPage}/>
             <Route path="/user" component={() => <UserPage/>}/>
-           {/* </Authenticated> */}
-        </Switch>
+           {/* </Authenticated> */}   
       <Footer/>
     </div>
   );

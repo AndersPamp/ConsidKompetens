@@ -4,12 +4,15 @@ import { Container } from 'reactstrap';
 import HomeImage from '../../images/hero-img5.jpg';
 import SearchIcon from '../../images/search-icon.png';
 import offices from '../../Helper/Offices.json';
+import NavMenu from '../Header/NavMenu';
 import '../../css/Home.css';
 
 
 const HomePage = () => {
     
     return(
+        <>
+        <NavMenu/>
         <div className="homeContainer">
             <input className="homeInput" type="text" placeholder="Sök.."/>
             <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
@@ -59,6 +62,7 @@ const HomePage = () => {
                         </Grid>
             </Container> */}
         </div>
+        </>
     )
 }
 
