@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
-  [Route("api/[controller]/[action]")]
+  [Route("api/[controller]")]
   [ApiController]
   [AllowAnonymous]
   public class RegisterController : ControllerBase
@@ -24,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // POST: api/Register
     [HttpPost]
-    public async Task<IActionResult> Login([FromBody] RegisterModelReq registerModel)
+    public async Task<IActionResult> Register([FromBody] RegisterModelReq registerModel)
     {
       if (ModelState.IsValid)
       {
