@@ -4,7 +4,47 @@
     position: relative;
     padding-bottom: 150px;
   }
+
+  .logga-ut-button{
+    position: absolute;
+    top: 1%;
+    left: 86%;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 160%;
+  }
+
+  .min-sida-button{
+    position: absolute;
+    top: 1%;
+    left: 77%;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 160%;
+  }
+
+  .min-sida-button:hover, .logga-ut-button:hover{
+    border-bottom: 1px solid white;
+  }
   
+  .min-sida-button:focus, .logga-ut-button:focus{
+    outline: none;
+    border-bottom: 1px solid white;
+  }
+
+  .min-sida-button a, .logga-ut-button a{
+    color: white;
+  }
+
+  .min-sida-button a:hover, .logga-ut-button a:hover{
+    text-decoration: none;
+    color: white;
+  }
+
   .homeImg{
     height: 500px;
     width: 100%;
@@ -116,6 +156,7 @@
     margin: 10px;
     width: 30%;
     margin-left: 2%;
+    margin-top: 5%;
     box-shadow: 1px 1px 5px 2px rgb(226, 226, 226);
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -126,6 +167,6 @@
   }
 
   .office-list:hover{
-    background-color: rgb(21, 32, 58);
-    color: white;
+    box-shadow: 1px 1px 5px 2px rgb(135, 135, 136);
+    color: rgb(21, 32, 58);
   }
