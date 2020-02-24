@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace ConsidKompetens_Web.Controllers
 {
   [AllowAnonymous]
-  [Route("api/[controller]/[action]")]
+  [Route("api/[controller]")]
   [ApiController]
   public class LoginController : ControllerBase
   {
@@ -59,18 +59,6 @@ namespace ConsidKompetens_Web.Controllers
         //returnUrl = returnUrl ?? Url.Content("~/");
       }
       return Unauthorized(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<bool>> Logout(bool logOut)
-    {
-      if (logOut)
-      {
-        await _loginService.LogOutUserAsync();
-        return Ok(new ResponseModel { Success = true });
-      }
-
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
   }
 }
