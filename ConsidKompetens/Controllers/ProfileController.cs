@@ -70,10 +70,10 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
+          return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
 
     //DELETE: api/ApiWithActions/5

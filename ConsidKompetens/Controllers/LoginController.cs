@@ -34,44 +34,43 @@ namespace ConsidKompetens_Web.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return Ok(new ResponseModel{Success= true});
+      return Ok(new ResponseModel { Success = true });
     }
     // POST: api/Login
     [HttpPost]
-    [Route("api/[controller]/login")]
-    public async Task<IActionResult> Post([FromBody] LoginModelReq loginModel)
+    //[Route("api/[controller]")]
+    public async Task<IActionResult> Login([FromBody] LoginModelReq loginModel)
     {
       if (ModelState.IsValid)
       {
         //1. Validate user in db
         var user = await _loginService.ValidateUserAsync(loginModel.UserName, loginModel.PassWord);
-        if (user!=null)
+        if (user != null)
         {
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
-          return Ok(new ResponseModel{Success = true, BearerToken = token});
+          return Ok(new ResponseModel { Success = true, BearerToken = token });
         }
-        
+
         //3. If user unauth. return UnAuthorized
-        return Unauthorized(new ResponseModel{Success= false, ErrorMessage= _logger.ToString()});
+        return Unauthorized(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
 
         //var returnUrl = "";
         //returnUrl = returnUrl ?? Url.Content("~/");
       }
-      return Unauthorized(new ResponseModel{Success= false, ErrorMessage= _logger.ToString()});
+      return Unauthorized(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
 
     [HttpPost]
-    [Route("api/[controller]/logout")]
-    public async Task<ActionResult<bool>> Post(bool logOut)
+    public async Task<ActionResult<bool>> Logout(bool logOut)
     {
       if (logOut)
       {
         await _loginService.LogOutUserAsync();
-        return Ok(new ResponseModel {Success= true});
+        return Ok(new ResponseModel { Success = true });
       }
 
-      return BadRequest(new ResponseModel {Success= false, ErrorMessage= _logger.ToString()});
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
   }
 }

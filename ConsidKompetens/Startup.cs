@@ -102,7 +102,6 @@ namespace ConsidKompetens_Web
       {
         configuration.RootPath = "ClientApp/build";
       });
-
       services.AddOutputCaching();
     }
 
