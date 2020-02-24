@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -43,19 +43,19 @@ const theme = createMuiTheme({
 const UserPage = () => {
   const classes = useStyles();
 
-  const [loggedOut, setLoggedOut] = useState(false);
+  // const [loggedOut, setLoggedOut] = useState(false);
 
-   function handleLogoOut() {
-        localStorage.removeItem('secret');
-        alert('logged out');
-        setLoggedOut({loggedOut: true});
-    }
+  //  function handleLogoOut() {
+  //       localStorage.removeItem('secret');
+  //       alert('logged out');
+  //       setLoggedOut({loggedOut: true});
+  //   }
 
   return (
     <>
     <NavMenu/>
     <div className='user-container'>
-    {loggedOut ? <Redirect to="/" /> : null} 
+    {/* {loggedOut ? <Redirect to="/" /> : null}  */}
       <Container>
           <ThemeProvider theme={theme}>        
               <Grid container spacing={0}>
@@ -122,7 +122,7 @@ const UserPage = () => {
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button'>Uppdatera</button>
-                      <button className='button' onClick={handleLogoOut}>Logga ut</button>
+                      {/* <button className='button' onClick={handleLogoOut}>Logga ut</button> */}
                     </div>    
                   </Grid>
               </Grid>

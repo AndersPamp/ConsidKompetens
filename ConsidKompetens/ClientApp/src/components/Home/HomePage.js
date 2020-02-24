@@ -1,7 +1,7 @@
 import React from 'react';
 //import Grid from '@material-ui/core/Grid';
 import { Container } from 'reactstrap';
-import HomeImage from '../../images/hero-img5.jpg';
+import HomeImage from '../../images/hero-img6.jpg';
 import SearchIcon from '../../images/search-icon.png';
 import offices from '../../Helper/Offices.json';
 import NavMenu from '../Header/NavMenu';
@@ -12,15 +12,13 @@ const HomePage = () => {
     
     return(
         <>
-        <NavMenu/>
         <div className="homeContainer">
+            <button className='min-sida-button'><a href="/user">Min sida</a></button>   
+            <button className='logga-ut-button'><a href="/">Logga ut</a></button>
             <input className="homeInput" type="text" placeholder="Sök.."/>
             <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
             <label className='home-welcome-label'>Vad letar du efter?</label>
             <img className="homeImg" src={HomeImage} alt="ConsidCoffee"/>
-            <div>
-                <label className='home-label'>Välj kontor</label>
-            </div>
              <Container>
                {offices.map(list => {
                    return(
