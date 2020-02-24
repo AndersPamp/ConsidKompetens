@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,12 +17,15 @@ namespace ConsidKompetens_Services.IdentityServices
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly AppSettings _appSettings;
+    private readonly ILogger<LoginService> _logger;
 
-    public LoginService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+    public LoginService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, ILogger<LoginService> logger)
     {
       _signInManager = signInManager;
       _userManager = userManager;
+      _logger = logger;
       _appSettings = appSettings.Value;
+
     }
     public string GenerateToken(IdentityUser user)
     {
@@ -33,7 +37,7 @@ namespace ConsidKompetens_Services.IdentityServices
         {
           new Claim(ClaimTypes.Name, user.Id),
         }),
-        Expires = DateTime.UtcNow.AddHours(12),
+        Expires = DateTime.UtcNow.AddHours(1),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
       var jwtToken = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);
@@ -41,15 +45,35 @@ namespace ConsidKompetens_Services.IdentityServices
       return token;
     }
 
-    public async Task<IdentityUser> ValidateUser(string userName, string passWord)
+    public async Task<IdentityUser> ValidateUserAsync(string userName, string passWord)
     {
-      var user = await _userManager.FindByNameAsync(userName);
-      SignInResult signInResult = await _signInManager.PasswordSignInAsync(user.UserName, passWord, false, false);
-      if (signInResult.Succeeded)
+      try
       {
-        return user;
+        var user = await _userManager.FindByNameAsync(userName);
+        SignInResult signInResult = await _signInManager.PasswordSignInAsync(user.UserName, passWord, false, false);
+        if (signInResult.Succeeded)
+        {
+          return user;
+        }
+        throw new Exception(_logger.ToString());
       }
-      return null;
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<bool> LogOutUserAsync()
+    {
+      try
+      {
+        await _signInManager.SignOutAsync();
+        return true;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
     }
   }
 }

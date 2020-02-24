@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
-using ConsidKompetens_Web.Communication;
 using ConsidKompetens_Web.Helpers;
 using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/[controller]/[action]")]
   [ApiController]
   [AllowAnonymous]
   public class RegisterController : ControllerBase
@@ -25,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // POST: api/Register
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] RegisterModelReq registerModel)
+    public async Task<IActionResult> Login([FromBody] RegisterModelReq registerModel)
     {
       if (ModelState.IsValid)
       {
@@ -33,17 +32,17 @@ namespace ConsidKompetens_Web.Controllers
         if (!await _registerService.CheckIfUserExistsAsync(registerModel.UserName))
         {
           //2. Check if password is strong enough
-          if (PasswordStrength.CheckPasswordComplexity(registerModel.PassWord))
+          if (PasswordStrength.CheckPasswordComplexity(registerModel.PassWord) && registerModel.UserName.EndsWith("@consid.se"))
           {
             //3. Create new identity user
             await _registerService.RegisterNewUserAsync(registerModel);
-            return Ok(new SpaPageModel{PageTitle = "Register", Ok = true,Message = "User and new profile created successfully" });
+            return Created("", new ResponseModel { Success = true });
           }
-          return BadRequest(new SpaPageModel{ PageTitle = "Register", Ok = false, Message = "Password doesn't meet criteria"});
+          return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
         }
-        return BadRequest(new SpaPageModel{PageTitle = "Register", Ok = false, Message = "An account with the specified e-mail address already exists" });
+        return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
       }
-      return BadRequest(new SpaPageModel{PageTitle = "Register", Ok = false, Message = _logger.ToString()});
+      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
     }
   }
 }

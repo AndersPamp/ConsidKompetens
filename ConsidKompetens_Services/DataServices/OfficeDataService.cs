@@ -53,6 +53,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
+        officeModel.Created = DateTime.UtcNow;
         await _dbContext.OfficeModels.AddAsync(officeModel);
         return true;
       }
@@ -79,6 +80,5 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-
   }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
@@ -16,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ConsidKompetens_Web
@@ -50,7 +52,8 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = false;
       });
-
+      
+      services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
       services.AddScoped<IProfileDataService, ProfileDataService>();
@@ -58,6 +61,8 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
+      services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
+      services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
 
       services.AddControllers(config =>
       {
@@ -67,23 +72,16 @@ namespace ConsidKompetens_Web
         config.Filters.Add(new AuthorizeFilter(policy));
       });
 
-      //services.AddIdentity<IdentityUser, IdentityRole>(options =>
-      // {
-      //   options.Password.RequiredLength = 8;
-      //   options.Password.RequireNonAlphanumeric = false;
-      //   options.Password.RequireUppercase = true;
-      //   options.Password.RequireLowercase = true;
-      //   //Set to true when email service is in place
-      //   options.SignIn.RequireConfirmedEmail = false;
-      // });
+      // Appsetting -> ImageSection.cs
+      // IOption<ImageSection>
+      var securitySettingsSections = Configuration.GetSection("AllowedFileExtensions");
 
+      services.Configure<AppSettings>(securitySettingsSections);
+      services.Configure<AppSettings>(Configuration.GetSection("MaxFileSize"));
+      services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+      services.Configure<AppSettings>(Configuration.GetSection("ImageFilePath"));
 
-
-      var appSettingsSection = Configuration.GetSection("AppSettings");
-
-      services.Configure<AppSettings>(appSettingsSection);
-
-      var appSettings = appSettingsSection.Get<AppSettings>();
+      var appSettings = securitySettingsSections.Get<AppSettings>();
       var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
       services.AddAuthentication(x =>
@@ -107,6 +105,8 @@ namespace ConsidKompetens_Web
       {
         configuration.RootPath = "ClientApp/build";
       });
+
+      services.AddOutputCaching();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,7 +128,6 @@ namespace ConsidKompetens_Web
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
       app.UseRouting();
-
       app.UseAuthentication();
       app.UseAuthorization();
 
@@ -142,9 +141,6 @@ namespace ConsidKompetens_Web
                   pattern: "{controller=Register}/{action=Post}/{id?}");
       });
 
-      //app.UseMvc(routes =>
-      //  routes.MapRoute("default", "{controller=Login}/{action=Get}/{id?}"));
-
       app.UseSpa(spa =>
       {
         spa.Options.SourcePath = "ClientApp";
@@ -155,6 +151,7 @@ namespace ConsidKompetens_Web
           spa.UseReactDevelopmentServer(npmScript: "start");
         }
       });
+      app.UseOutputCaching();
     }
   }
 }

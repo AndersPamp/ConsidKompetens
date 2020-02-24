@@ -18,3 +18,10 @@
 	"Projects":[{"Id":int, "Created":DateTime, "Modified":DateTime, "Name":"", 
 	"Description":"", "Role":enum, "Techniques":[enum], "TimePeriod":""}]
 }
+
+
+ResponseModel
+
+Success: bool
+ErrorMessage: string
+Data:{}

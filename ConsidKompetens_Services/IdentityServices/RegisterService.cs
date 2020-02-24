@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
@@ -43,7 +44,7 @@ namespace ConsidKompetens_Services.IdentityServices
 
         await _userManager.AddPasswordAsync(newUser, newModel.PassWord);
         var owner = await _userManager.FindByNameAsync(newUser.UserName);
-        await _profileDataService.CreateNewProfileAsync(owner.Id, new ProfileModel());
+        await _profileDataService.CreateNewProfileAsync(owner.Id);
 
         return true;
       }
@@ -51,6 +52,12 @@ namespace ConsidKompetens_Services.IdentityServices
       {
         throw new Exception(e.Message);
       }
+    }
+
+    public async Task EmailConfirmationAsync(IdentityUser user)
+    {
+      var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+      
     }
   }
 }

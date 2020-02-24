@@ -1,36 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
-using ConsidKompetens_Web.Communication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Web.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
-    public class SearchController : ControllerBase
+  [Route("api/[controller]/[action]")]
+  [ApiController]
+  [Authorize]
+  public class SearchController : ControllerBase
+  {
+    private readonly ISearchDataService _searchService;
+
+    public SearchController(ISearchDataService searchService)
     {
-      private readonly ISearchDataService _searchService;
+      _searchService = searchService;
+    }
 
-      public SearchController(ISearchDataService searchService)
+    [HttpGet]
+    [OutputCache(Duration = 30)]
+    public async Task<ActionResult<ResponseModel>> Search(string input)
+    {
+      //In js Debounce with input delay
+      try
       {
-        _searchService = searchService;
+        return await _searchService.FreeWordSearcAsync(input);
       }
-
-      [HttpGet]
-      public ActionResult<List<ProfileModel>> Get(string input)
+      catch (Exception e)
       {
-        try
-        {
-          return null;
-        }
-        catch (Exception e)
-        {
-          return BadRequest(new JsonResponse {Ok = false, Message = e.Message});
-        }
+        return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
       }
     }
+  }
 }

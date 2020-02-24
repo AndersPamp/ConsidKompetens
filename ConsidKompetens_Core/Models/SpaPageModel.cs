@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ConsidKompetens_Core.Models
 {
-  public class SpaPageModel
+  public class ResponseModel
   {
     public string PageTitle { get; set; }
     public bool Ok { get; set; }
