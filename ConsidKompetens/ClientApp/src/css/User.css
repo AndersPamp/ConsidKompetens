@@ -82,3 +82,37 @@
     background-color: #DD0332;;
     color: white;
 }
+
+.plus-icon{
+    margin-top: 14%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 50%;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #DD0332;
+    color: #DD0332;
+    border: none;
+}
+
+.plus-icon:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.plus-icon:focus{
+    outline: none;
+}
+
+.competens{
+    display: inline;
+}
+
+.competense-output{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 5%;
+    margin-left: 2%;
+    font-size: 110%;
+    padding: 3px 15px;
+    border: 1px solid black;
+    border-radius: 15px;
+}

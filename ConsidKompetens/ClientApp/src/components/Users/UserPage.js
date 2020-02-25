@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -9,10 +9,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Container } from 'reactstrap';
 import offices from '../../Helper/Offices.json';
-import {Redirect} from "react-router-dom";
+import role from '../../Helper/Roles.json';
 import NavMenu from '../Header/NavMenu';
 import '../../css/User.css';
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,19 +42,22 @@ const theme = createMuiTheme({
 const UserPage = () => {
   const classes = useStyles();
 
-  // const [loggedOut, setLoggedOut] = useState(false);
+  const [profile, setProfile] = useState({FirstName: '', LastName: '', AboutMe: '', Office: '', Title: '', Competense: ''});
+  //const [filled, setFilled] = useState(false);
 
-  //  function handleLogoOut() {
-  //       localStorage.removeItem('secret');
-  //       alert('logged out');
-  //       setLoggedOut({loggedOut: true});
-  //   }
+  const handleChange = (event) => {
+    setProfile({...profile, [event.target.name]: event.target.value});
+  }
+
+  const submitCopetense = () => {
+    document.getElementById('display').innerHTML = profile.Competense;
+    console.log(profile.Competense);
+  }
 
   return (
     <>
     <NavMenu/>
     <div className='user-container'>
-    {/* {loggedOut ? <Redirect to="/" /> : null}  */}
       <Container>
           <ThemeProvider theme={theme}>        
               <Grid container spacing={0}>
@@ -99,11 +101,31 @@ const UserPage = () => {
                               })}
                             </Select>
                       </FormControl>
+                      <FormControl className={classes.formControl}>
+                          <InputLabel id="demo-simple-select-label">Min titel</InputLabel>
+                            <Select labelId="demo-simple-select-label" id="demo-simple-select">
+                              {role.map(list => {
+                                return <MenuItem value={list.role} key={list.id}>{list.role}</MenuItem>
+                              })}
+                            </Select>
+                      </FormControl>
+                      <Grid container spacing={0}>
+                        <Grid item xs={6}>
                           <TextField
                             className={classes.margin}
                             style={{display: 'block'}}
                             label="Kompetens"
-                            id="mui-theme-provider-standard-input"/>
+                            id="mui-theme-provider-standard-input"
+                            name='Competense'
+                            value={profile.Competense}
+                            onChange={handleChange}
+                             />
+                        </Grid>
+                        <Grid item xs={6}>
+                          <button className='plus-icon' onClick={submitCopetense}>Tillägga</button> 
+                        </Grid>
+                      </Grid> 
+                      <label className='competense-output' id='display'></label>
                     </div>      
                   </Grid>
                   <Grid item xs={6}>
@@ -122,7 +144,6 @@ const UserPage = () => {
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button'>Uppdatera</button>
-                      {/* <button className='button' onClick={handleLogoOut}>Logga ut</button> */}
                     </div>    
                   </Grid>
               </Grid>
