@@ -12,19 +12,19 @@ import '../../css/Home.css';
 
 const HomePage = () => {
 
-     const [loggedOut, setLoggedOut] = useState(false);
+    const [loggedOut, setLoggedOut] = useState(false);
+    // const user = localStorage.getItem('secret');
 
     // function handleLogoOut(e) {
     //     e.preventDefault();
-    //     axios.post('https://localhost:44323/api/logout')
+    //     axios.post('https://localhost:44323/api/logout', user)
     //     .then((response) => {
+
     //         if(response.data.success === true){
     //             localStorage.removeItem('secret');
     //             setLoggedOut({loggedOut: true});
     //         }
-    //     }).catch((error) => {
-    //         console.log(error);
-    //     })
+    //     }) 
     // }
 
     // function handleLogoOut(e) {
