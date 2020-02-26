@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
@@ -32,7 +33,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ImageModels.FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.ImageModels.FindAsync(id);
       }
       catch (Exception e)
       {
@@ -56,11 +57,11 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageModel> EditImageModelAsync(ImageModel imageModel)
+    public async Task<ImageModel> EditImageModelAsync(int imageId, ImageModel imageModel)
     {
       try
       {
-        var delta = await GetImageModelByIdAsync(imageModel.Id);
+        var delta = await GetImageModelByIdAsync(imageId);
         delta.Url = imageModel.Url;
         delta.Alt = imageModel.Alt;
         delta.Modified = DateTime.UtcNow;

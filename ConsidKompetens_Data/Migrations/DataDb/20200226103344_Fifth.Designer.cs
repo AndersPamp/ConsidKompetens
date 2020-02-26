@@ -4,14 +4,16 @@ using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200226103344_Fifth")]
+    partial class Fifth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,6 +182,9 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<int?>("ProjectModelId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -192,6 +197,8 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasIndex("ProfileImageId");
 
                     b.HasIndex("ProjectModelId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("ProfileModels");
                 });
@@ -233,10 +240,10 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProjectId", "ProfileId", "RoleId");
+                    b.HasKey("ProjectId", "ProfileId");
 
                     b.HasIndex("ProfileId");
 
@@ -349,6 +356,10 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasOne("ConsidKompetens_Core.Models.ProjectModel", null)
                         .WithMany("ProfileModels")
                         .HasForeignKey("ProjectModelId");
+
+                    b.HasOne("ConsidKompetens_Core.Models.RoleModel", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectModel", b =>
@@ -374,9 +385,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
 
                     b.HasOne("ConsidKompetens_Core.Models.RoleModel", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.RoleModel", b =>

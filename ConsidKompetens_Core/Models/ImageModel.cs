@@ -1,8 +1,11 @@
-﻿namespace ConsidKompetens_Core.Models
+﻿using System;
+using Microsoft.AspNetCore.Http;
+
+namespace ConsidKompetens_Core.Models
 {
   public class ImageModel : BaseEntity
   {
     public string Url { get; set; }
     public string Alt { get; set; }
-  }
+    }
 }

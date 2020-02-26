@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using ConsidKompetens_Services.Helpers;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Services.Interfaces
 {

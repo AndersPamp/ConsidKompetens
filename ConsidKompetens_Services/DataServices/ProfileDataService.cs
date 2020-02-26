@@ -7,8 +7,10 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Helpers;
+using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace ConsidKompetens_Services.DataServices
@@ -17,11 +19,15 @@ namespace ConsidKompetens_Services.DataServices
   {
     private readonly DataDbContext _dataDbContext;
     private readonly IOptions<AppSettings> _options;
+    private readonly IImageDataService _imageDataService;
+    private readonly ILogger<ProfileDataService> _logger;
 
-    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext)
+    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService, ILogger<ProfileDataService> logger)
     {
       _options = options;
       _dataDbContext = DataDbContext;
+      _imageDataService = imageDataService;
+      _logger = logger;
     }
 
     public async Task<List<ProfileModel>> GetAllProfilesAsync()
@@ -37,12 +43,14 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> GetProfileByIdAsync(int id)
+    public async Task<ProfileModel> GetProfileByIdAsync(int profileId)
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .FirstOrDefaultAsync(x => x.Id == id);
+        return await _dataDbContext.ProfileModels.Include(x => x.Competences).
+          Include(x=>x.ProfileImage).
+          Include(x=>x.Links)
+          .FirstOrDefaultAsync(x => x.Id == profileId);
       }
       catch (Exception e)
       {
@@ -50,13 +58,15 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> GetProfileByOwnerIdAsync(string ownerId)
+    public async Task<ProfileModel> GetProfileByOwnerIdAsync(string profileOwnerId)
     {
-      if (ownerId != null)
+      if (profileOwnerId != null)
       {
         try
         {
-          return await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.OwnerID == ownerId);
+          var profiles = await _dataDbContext.ProfileModels.Include(x=>x.ProfileImage).ToListAsync();
+          var profile = profiles.FirstOrDefault(x => x.OwnerID == profileOwnerId);
+          return profile;
         }
         catch (Exception e)
         {
@@ -90,13 +100,13 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> EditProfileByIdAsync(int id, ProfileModel profileModel)
+    public async Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModel profileModel)
     {
       try
       {
         var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ProfileImage).Include(x => x.Links)
-          .FirstOrDefaultAsync(x => x.Id == id);
+          .FirstOrDefaultAsync(x => x.Id == profileId);
 
         profile.Competences = profileModel.Competences;
         profile.Experience = profileModel.Experience;
@@ -104,9 +114,7 @@ namespace ConsidKompetens_Services.DataServices
         profile.FirstName = profileModel.FirstName;
         profile.LastName = profileModel.LastName;
         profile.OfficeId = profileModel.OfficeId;
-        profile.ProfileImage = profileModel.ProfileImage;
         profile.Links = profileModel.Links;
-        profile.Role = profileModel.Role;
         profile.Title = profile.Title;
         profile.Modified = DateTime.UtcNow;
 
@@ -120,13 +128,13 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> CreateNewProfileAsync(string ownerId)
+    public async Task<ProfileModel> CreateNewProfileAsync(string profileOwnerId)
     {
       try
       {
         var newUserModel = new ProfileModel
         {
-          OwnerID = ownerId,
+          OwnerID = profileOwnerId,
           Created = DateTime.UtcNow,
           ProfileImage = new ImageModel { Created = DateTime.UtcNow },
         };
@@ -140,30 +148,61 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    
-    public async Task<bool> ImageUploadAsync(IFormFile file)
-    {
-      {
-        if (file.Length > 0)
-        {
-          var filePath = Path.Combine(_options.Value.ImageFilePath,
-            Path.GetRandomFileName());
 
-          using (var stream = System.IO.File.Create(filePath))
+    public async Task<bool> ImageUploadAsync(string profileOwnerId, IFormFile file)
+    {
+      var profile = await GetProfileByOwnerIdAsync(profileOwnerId);
+
+      if (file.Length <= int.Parse(_options.Value.MaxFileSize))
+      {
+        if (_options.Value.AllowedFileExtensions.Contains(file.ContentType))
+        {
+          var filePath = Path.Combine(_options.Value.ImageFilePath, file.FileName);
+          if (profile.ProfileImage == null)
+          {
+            var imageModel = new ImageModel { Created = DateTime.UtcNow, Url = filePath, Alt = "Profile image" };
+            await _imageDataService.RegisterNewImageModelAsync(imageModel);
+            profile.ProfileImage = imageModel;
+            await _dataDbContext.SaveChangesAsync();
+          }
+          else
+          {
+            var filePathForDeletion = (await _imageDataService.GetImageModelByIdAsync(profile.ProfileImage.Id)).Url;
+            await using (var deleteStream = File.Open(filePathForDeletion, FileMode.Open, FileAccess.ReadWrite))
+            {
+              await deleteStream.DisposeAsync();
+            }
+            await _imageDataService.EditImageModelAsync(profile.ProfileImage.Id, new ImageModel { Modified = DateTime.UtcNow, Url = filePath, Alt = "Profile image" });
+          }
+
+          await using (var stream = System.IO.File.Create(filePath))
           {
             await file.CopyToAsync(stream);
           }
+          return true;
         }
       }
-      return true;
+      throw new Exception(_logger.GetType().GetField("log").ToString());
     }
 
-    public async Task<bool> DeleteProfileAsync(int id)
+    public async Task<IFormFile> GetImageAsync(int profileId)
+    {
+      var filePath = (await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId)).ProfileImage.Url;
+      await using (var stream = System.IO.File.Open(filePath, FileMode.Open, FileAccess.Read))
+      {
+        //await stream.ReadAsync()
+      }
+
+      return null;
+    }
+
+    public async Task<bool> DeleteProfileAsync(int profileId)
     {
       try
       {
-        var profile = await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == id);
+        var profile = await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId);
         _dataDbContext.ProfileModels.Remove(profile);
+        await _dataDbContext.SaveChangesAsync();
         return true;
       }
       catch (Exception e)

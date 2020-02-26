@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
@@ -43,7 +42,7 @@ namespace ConsidKompetens_Web
           Configuration.GetConnectionString("DataConnection")));
 
       services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
-      //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+      //services.AddIdentity<IdentityUser, IdentityRole>(options => { options.ClaimsIdentity.UserIdClaimType = "UserID";}).AddEntityFrameworkStores<IdentityDbContext>();
       services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequiredLength = 8;
@@ -61,9 +60,8 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
-      //services.AddScoped<ValidationAttribute, AllowedExtensionsAttribute>();
-      //services.AddScoped<ValidationAttribute, MaxFileSizeAttribute>();
-
+      services.AddScoped<IImageDataService, ImageDataService>();
+      
       services.AddControllers(config =>
       {
         var policy = new AuthorizationPolicyBuilder()
@@ -71,12 +69,10 @@ namespace ConsidKompetens_Web
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
       });
-
-      // Appsetting -> ImageSection.cs
-      // IOption<ImageSection>
       
       var appSettingsSection = Configuration.GetSection("AppSettings");
       services.Configure<AppSettings>(appSettingsSection);
+      
       var appSettings = appSettingsSection.Get<AppSettings>();
       
       var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -106,7 +102,7 @@ namespace ConsidKompetens_Web
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
     {
       if (env.IsDevelopment())
       {
@@ -119,23 +115,25 @@ namespace ConsidKompetens_Web
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
-
       app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
       app.UseRouting();
       app.UseAuthentication();
       app.UseAuthorization();
-
-      app.UseEndpoints(endpoints =>
-      {
-        endpoints.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Login}/{action=Post}/{id?}");
-        endpoints.MapControllerRoute(
-                  name: "register",
-                  pattern: "{controller=Register}/{action=Post}/{id?}");
-      });
+      app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+      //app.UseEndpoints(endpoints =>
+      //{
+      //  endpoints.MapControllerRoute(
+      //            name: "default",
+      //            pattern: "{controller=Login}/{action=Login}/{id?}");
+      //  endpoints.MapControllerRoute(
+      //            name: "register",
+      //            pattern: "{controller=Register}/{action=Register}/{id?}");
+      //  endpoints.MapControllerRoute(
+      //    name: "profile",
+      //    pattern: "{controller=Profile}/");
+      //});
 
       app.UseSpa(spa =>
       {
