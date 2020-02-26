@@ -16,6 +16,8 @@ namespace ConsidKompetens_Web
           {
             logging.ClearProviders();
             logging.AddConsole();
+            logging.AddDebug();
+            logging.AddEventSourceLogger();
           })
           .ConfigureWebHostDefaults(webBuilder =>
           {

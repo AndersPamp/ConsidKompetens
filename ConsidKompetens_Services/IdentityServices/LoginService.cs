@@ -37,7 +37,7 @@ namespace ConsidKompetens_Services.IdentityServices
         {
           new Claim(ClaimTypes.Name, user.Id),
         }),
-        Expires = DateTime.UtcNow.AddHours(1),
+        Expires = DateTime.UtcNow.AddHours(24),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
       var jwtToken = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);

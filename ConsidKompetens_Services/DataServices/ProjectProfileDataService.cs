@@ -26,7 +26,6 @@ namespace ConsidKompetens_Services.DataServices
       {
         var newRole = new ProjectProfileRole
         {
-          Created = DateTime.UtcNow,
           ProjectId = projectId,
           ProfileId = profileId,
           Role = role
@@ -51,7 +50,6 @@ namespace ConsidKompetens_Services.DataServices
         deltaRole.ProjectId = projectId;
         deltaRole.ProfileId = profileId;
         deltaRole.Role = role;
-        deltaRole.Modified=DateTime.UtcNow;
 
         await _dbContext.SaveChangesAsync();
         return deltaRole;

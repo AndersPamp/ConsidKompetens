@@ -7,6 +7,6 @@ namespace ConsidKompetens_Services.Helpers
     public string Secret { get; set; }
     public string ImageFilePath { get; set; }
     public string MaxFileSize { get; set; }
-    //public List<string> FileExtensions { get; set; }
+    public List<string> AllowedFileExtensions { get; set; }
   }
 }

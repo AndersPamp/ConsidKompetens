@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -28,6 +28,7 @@ namespace ConsidKompetens_Web.Controllers
     [HttpGet]
     public async Task<ActionResult<ResponseModel>> Get()
     {
+      var userId = this.User.Identity.Name;
       try
       {
         var profiles = await _profileDataService.GetAllProfilesAsync();
@@ -55,32 +56,57 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ResponseModel>> Put([FromBody] ProfileModel value)
+    [Route("editprofile")]
+    
+    public async Task<ActionResult<ResponseModel>> EditProfile([FromBody] ProfileModel value)
     {
       if (ModelState.IsValid)
       {
         try
         {
-          var userId = User.Claims.FirstOrDefault(x => x.Type == "sub").Value;
-
-          var profile = await _profileDataService.GetProfileByOwnerIdAsync(userId);
+          var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
           var result = await _profileDataService.EditProfileByIdAsync(profile.Id, value);
 
           return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel> { result } } });
         }
         catch (Exception e)
         {
-          return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+          return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message});
         }
       }
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString()});
+    }
+
+    [HttpPut]
+    [Route("uploadimage")]
+    public async Task<ActionResult<IFormFile>> UploadImage([FromForm]IFormFile file)
+    {
+      try
+      {
+        var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
+        if (await _profileDataService.ImageUploadAsync(profile.OwnerID, file))
+        {
+          return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel>{await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID)}} });
+        }
+
+        return BadRequest(new ResponseModel {Success = false, ErrorMessage = _logger.ToString()});
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new ResponseModel {Success = false, ErrorMessage = e.Message});
+      }
     }
 
     //DELETE: api/ApiWithActions/5
     [HttpDelete("{id}")]
-    public Task<ActionResult<ResponseModel>> Delete(int id)
+    public async Task<ActionResult<ResponseModel>> Delete(int id)
     {
-      return null;
+      if (await _profileDataService.DeleteProfileAsync(id))
+      {
+        return Ok(new ResponseModel {Success = true});
+      }
+
+      return BadRequest(_logger.ToString());
     }
   }
 }

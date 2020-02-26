@@ -9,6 +9,6 @@ namespace ConsidKompetens_Core.Interfaces
     Task<List<ImageModel>> GetImageModelsAsync();
     Task<ImageModel> GetImageModelByIdAsync(int id);
     Task<ImageModel> RegisterNewImageModelAsync(ImageModel imageModel);
-    Task<ImageModel> EditImageModelAsync(ImageModel imageModel);
+    Task<ImageModel> EditImageModelAsync(int imageId, ImageModel imageModel);
   }
 }
