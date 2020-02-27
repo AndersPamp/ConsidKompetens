@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
+//import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
+import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ConsidLogo from '../../images/consid_logo_big.png';
 import '../../css/NavMenu.css';
@@ -22,7 +23,7 @@ class NavMenu extends Component {
 
     render(props) {
 
-        const user = localStorage.getItem('secret');
+        //const user = localStorage.getItem('secret');
 
         return (
             <header>

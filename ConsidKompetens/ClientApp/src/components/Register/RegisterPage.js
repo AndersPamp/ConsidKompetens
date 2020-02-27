@@ -91,38 +91,3 @@ const RegisterPage = () => {
 }
 
 export default RegisterPage;
-
-{/* <Grid container spacing={0}>
-                    <Grid item xs={5}>
-                        <img className='login-img' src={LoginImage} alt="Consid woman"/>
-                    </Grid>
-                    <Grid item xs={7}>
-                      <form onSubmit={submitHendler}>
-                        <div className='login-box'>
-                            <div className='login-inner-box'>
-                                <label className='login-label'>Registrera</label>
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        id='mui-theme-provider-standard-input 1' 
-                                        label='E-post:'
-                                        name= 'UserName'
-                                        value={userRegister.userName}
-                                        onChange={handleChange}>
-                                </TextField>
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        type='password' 
-                                        id='mui-theme-provider-standard-input 2' 
-                                        label='Lösenord:'
-                                        name= 'PassWord'
-                                        value={userRegister.passWord}
-                                        onChange={handleChange}>
-                                </TextField> 
-                                <button type='submit' className='login-button'>Registrera</button>
-                            </div>              
-                          </div>
-                        </form>
-                    </Grid>
-                </Grid> */}

@@ -89,7 +89,7 @@ const LoginPage = () => {
                                         />
                                 <button className='login-button'>Logga in</button>
                                 <button className='login-password-button'>
-                                    <a className='login-forgot-password' href="#">Glömt ditt lösenord?</a>
+                                    <a className='login-forgot-password' href="/">Glömt ditt lösenord?</a>
                                 </button> 
                                 <button className='login-password-button2'>
                                     <a className='login-forgot-password2' href="/register">Skapa profil</a>
@@ -104,44 +104,3 @@ const LoginPage = () => {
 }
 
 export default LoginPage;
-
-   {/* <img className='login-logo' src={ConsidLogo} alt="Consid-logo"/>
-            
-                <Grid container spacing={0}>
-                    <Grid item xs={5}>
-                        <img className='login-img' src={LoginImage} alt="Consid woman"/>
-                    </Grid>
-                    <Grid item xs={7}>
-                      <form onSubmit={submithandler}>
-                        <div className='login-box'>
-                            <div className='login-inner-box'>
-                                <label className='login-label'>Inloggning</label>
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        id='mui-theme-provider-standard-input' 
-                                        label='E-post:'
-                                        name= 'UserName'
-                                        value={userLogin.UserName}
-                                        onChange={handleChange}  
-                                        />
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        id='mui-theme-provider-standard-input' 
-                                        label='Lösenord:'
-                                        name= 'PassWord'
-                                        type='password'
-                                        value={userLogin.PassWord}
-                                        onChange={handleChange}
-                                        />
-                                <button className='login-button'>Logga in</button>
-                                <button className='login-password-button'>
-                                    <a className='login-forgot-password' href="/">Glömt ditt lösenord?</a>
-                                </button> 
-                            </div>              
-                        </div>
-                      </form> 
-                    </Grid>
-                </Grid>
-             */}

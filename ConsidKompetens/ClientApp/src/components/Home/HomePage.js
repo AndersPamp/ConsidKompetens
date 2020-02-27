@@ -4,9 +4,9 @@ import { Container } from 'reactstrap';
 import HomeImage from '../../images/hero-img6.jpg';
 import SearchIcon from '../../images/search-icon.png';
 import offices from '../../Helper/Offices.json';
-import NavMenu from '../Header/NavMenu';
+//import NavMenu from '../Header/NavMenu';
 import {Redirect} from "react-router-dom";
-import axios from 'axios/index';
+//import axios from 'axios/index';
 import '../../css/Home.css';
 
 
