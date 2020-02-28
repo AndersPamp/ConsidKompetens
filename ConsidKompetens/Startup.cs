@@ -123,10 +123,20 @@ namespace ConsidKompetens_Web
         FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/ProfileImages")),
         RequestPath = "/ProfileImages"
       });
+      app.UseStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Icons")),
+        RequestPath = "/Icons"
+      });
       app.UseSpaStaticFiles(new StaticFileOptions
       {
         FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/ProfileImages")),
         RequestPath = "/ProfileImages"
+      });
+      app.UseSpaStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Icons")),
+        RequestPath = "/Icons"
       });
       app.UseRouting();
       app.UseAuthentication();
