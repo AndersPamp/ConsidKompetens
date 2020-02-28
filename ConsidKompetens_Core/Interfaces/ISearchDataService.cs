@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Models;
 
 namespace ConsidKompetens_Core.Interfaces

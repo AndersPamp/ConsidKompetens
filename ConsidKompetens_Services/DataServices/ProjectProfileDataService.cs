@@ -12,15 +12,13 @@ namespace ConsidKompetens_Services.DataServices
   public class ProjectProfileDataService : IProjectProfileDataService
   {
     private readonly DataDbContext _dbContext;
-    private readonly ILogger<ProjectProfileDataService> _logger;
 
-    public ProjectProfileDataService(ILogger<ProjectProfileDataService> logger, DataDbContext dbContext)
+    public ProjectProfileDataService(DataDbContext dbContext)
     {
-      _logger = logger;
       _dbContext = dbContext;
     }
 
-    public async Task<ProjectProfileRole> CreateProfileRoleAsync(int projectId, int profileId, RoleModel role)
+    public async Task<ProjectProfileRole> CreateProfileRoleAsync(int projectId, int profileId, int roleId)
     {
       try
       {
@@ -28,7 +26,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           ProjectId = projectId,
           ProfileId = profileId,
-          Role = role
+          RoleId = roleId
         };
 
         await _dbContext.ProjectProfileRoles.AddAsync(newRole);
@@ -41,15 +39,15 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectProfileRole> EditProfileRoleAsync(int projectId, int profileId, RoleModel role)
+    public async Task<ProjectProfileRole> EditProfileRoleAsync(int projectId, int profileId, int roleId)
     {
       try
       {
-        var deltaRole = await _dbContext.ProjectProfileRoles.Where(x => x.ProjectId == projectId && x.ProfileId == profileId)
+        var deltaRole = await _dbContext.ProjectProfileRoles.Where(x => x.ProjectId == projectId && x.ProfileId == profileId && x.RoleId == roleId)
           .FirstOrDefaultAsync();
         deltaRole.ProjectId = projectId;
         deltaRole.ProfileId = profileId;
-        deltaRole.Role = role;
+        deltaRole.RoleId = roleId;
 
         await _dbContext.SaveChangesAsync();
         return deltaRole;

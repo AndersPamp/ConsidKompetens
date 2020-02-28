@@ -8,7 +8,7 @@ namespace ConsidKompetens_Core.Interfaces
 {
   public interface IProjectProfileDataService
   {
-    Task<ProjectProfileRole> CreateProfileRoleAsync(int projectId, int profileId, RoleModel role);
-    Task<ProjectProfileRole> EditProfileRoleAsync(int projectId, int profileId, RoleModel role);
+    Task<ProjectProfileRole> CreateProfileRoleAsync(int projectId, int profileId, int roleId);
+    Task<ProjectProfileRole> EditProfileRoleAsync(int projectId, int profileId, int roleId);
   }
 }

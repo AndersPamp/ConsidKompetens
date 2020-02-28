@@ -8,5 +8,9 @@ namespace ConsidKompetens_Services.Helpers
     public string ImageFilePath { get; set; }
     public string MaxFileSize { get; set; }
     public List<string> AllowedFileExtensions { get; set; }
+    public string EmailAPIKey { get; set; }
+    public string EmailFromAddress { get; set; }
+    public string EmailConfirmSubject { get; set; }
+    public string IconFilePath { get; set; }
   }
 }

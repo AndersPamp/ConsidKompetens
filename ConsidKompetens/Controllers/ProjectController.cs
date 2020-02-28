@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
+using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +18,13 @@ namespace ConsidKompetens_Web.Controllers
   {
     private readonly IProjectDataService _projectService;
     private readonly ILogger<ProjectController> _logger;
+    private readonly IProjectProfileDataService _projectProfileDataService;
 
-    public ProjectController(IProjectDataService projectService, ILogger<ProjectController> logger)
+    public ProjectController(IProjectDataService projectService, ILogger<ProjectController> logger, IProjectProfileDataService projectProfileDataService)
     {
       _projectService = projectService;
       _logger = logger;
+      _projectProfileDataService = projectProfileDataService;
     }
 
     [HttpGet]

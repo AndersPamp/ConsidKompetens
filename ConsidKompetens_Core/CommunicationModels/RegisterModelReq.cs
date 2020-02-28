@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConsidKompetens_Web.Models
+namespace ConsidKompetens_Core.CommunicationModels
 {
   public class RegisterModelReq
   {

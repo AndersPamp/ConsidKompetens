@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Authorization;
