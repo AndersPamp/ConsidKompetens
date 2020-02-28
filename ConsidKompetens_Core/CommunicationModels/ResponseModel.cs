@@ -1,4 +1,4 @@
-﻿namespace ConsidKompetens_Core.Models
+﻿namespace ConsidKompetens_Core.CommunicationModels
 {
   public class ResponseModel
   {

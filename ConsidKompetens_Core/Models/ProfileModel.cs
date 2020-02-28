@@ -16,6 +16,6 @@ namespace ConsidKompetens_Core.Models
     public List<CompetenceModel> Competences { get; set; }
     public ushort Experience { get; set; }
     public LinkModel Links { get; set; }
-    public List<ProjectProfileRole> Projects { get; set; }
+    public List<ProjectProfileRole> ProjectProfileRoles { get; set; }
   }
 }

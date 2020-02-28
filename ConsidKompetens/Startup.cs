@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -116,8 +118,26 @@ namespace ConsidKompetens_Web
         app.UseHsts();
       }
       app.UseHttpsRedirection();
-      app.UseStaticFiles();
-      app.UseSpaStaticFiles();
+      app.UseStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/ProfileImages")),
+        RequestPath = "/ProfileImages"
+      });
+      app.UseStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Icons")),
+        RequestPath = "/Icons"
+      });
+      app.UseSpaStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/ProfileImages")),
+        RequestPath = "/ProfileImages"
+      });
+      app.UseSpaStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Icons")),
+        RequestPath = "/Icons"
+      });
       app.UseRouting();
       app.UseAuthentication();
       app.UseAuthorization();

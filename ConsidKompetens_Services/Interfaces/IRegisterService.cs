@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ConsidKompetens_Web.Models;
+using ConsidKompetens_Core.CommunicationModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace ConsidKompetens_Services.Interfaces

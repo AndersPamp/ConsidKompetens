@@ -7,10 +7,8 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Helpers;
-using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace ConsidKompetens_Services.DataServices
@@ -20,14 +18,12 @@ namespace ConsidKompetens_Services.DataServices
     private readonly DataDbContext _dataDbContext;
     private readonly IOptions<AppSettings> _options;
     private readonly IImageDataService _imageDataService;
-    private readonly ILogger<ProfileDataService> _logger;
 
-    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService, ILogger<ProfileDataService> logger)
+    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService)
     {
       _options = options;
       _dataDbContext = DataDbContext;
       _imageDataService = imageDataService;
-      _logger = logger;
     }
 
     public async Task<List<ProfileModel>> GetAllProfilesAsync()
@@ -47,9 +43,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.Competences).
-          Include(x=>x.ProfileImage).
-          Include(x=>x.Links)
+        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
+          .Include(x => x.ProfileImage)
+          .Include(x => x.Links)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
       }
       catch (Exception e)
@@ -64,9 +62,12 @@ namespace ConsidKompetens_Services.DataServices
       {
         try
         {
-          var profiles = await _dataDbContext.ProfileModels.Include(x=>x.ProfileImage).ToListAsync();
-          var profile = profiles.FirstOrDefault(x => x.OwnerID == profileOwnerId);
-          return profile;
+          return await _dataDbContext.ProfileModels.Include(x => x.Competences)
+            .Include(x => x.ProfileImage)
+            .Include(x => x.Links)
+            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+            .FirstOrDefaultAsync(x => x.OwnerID == profileOwnerId);
         }
         catch (Exception e)
         {
@@ -105,7 +106,10 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.ProfileImage).Include(x => x.Links)
+          .Include(x => x.ProfileImage)
+          .Include(x => x.Links)
+          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
 
         profile.Competences = profileModel.Competences;
@@ -117,7 +121,8 @@ namespace ConsidKompetens_Services.DataServices
         profile.Links = profileModel.Links;
         profile.Title = profile.Title;
         profile.Modified = DateTime.UtcNow;
-
+        
+          
         _dataDbContext.ProfileModels.Update(profile);
         await _dataDbContext.SaveChangesAsync();
         return profileModel;
@@ -155,9 +160,9 @@ namespace ConsidKompetens_Services.DataServices
 
       if (file.Length <= int.Parse(_options.Value.MaxFileSize))
       {
-        if (_options.Value.AllowedFileExtensions.Contains(file.ContentType))
+        if (_options.Value.AllowedFileExtensions.Contains(file.ContentType.Split('/')[1]))
         {
-          var filePath = Path.Combine(_options.Value.ImageFilePath, file.FileName);
+          var filePath = Path.Combine(_options.Value.ImageFilePath, $"{profileOwnerId}.{file.ContentType.Split('/')[1]}");
           if (profile.ProfileImage == null)
           {
             var imageModel = new ImageModel { Created = DateTime.UtcNow, Url = filePath, Alt = "Profile image" };
@@ -167,11 +172,6 @@ namespace ConsidKompetens_Services.DataServices
           }
           else
           {
-            var filePathForDeletion = (await _imageDataService.GetImageModelByIdAsync(profile.ProfileImage.Id)).Url;
-            await using (var deleteStream = File.Open(filePathForDeletion, FileMode.Open, FileAccess.ReadWrite))
-            {
-              await deleteStream.DisposeAsync();
-            }
             await _imageDataService.EditImageModelAsync(profile.ProfileImage.Id, new ImageModel { Modified = DateTime.UtcNow, Url = filePath, Alt = "Profile image" });
           }
 
@@ -182,19 +182,19 @@ namespace ConsidKompetens_Services.DataServices
           return true;
         }
       }
-      throw new Exception(_logger.GetType().GetField("log").ToString());
+      throw new Exception(ImageUploadAsync(profileOwnerId, file).Result.ToString());
     }
 
-    public async Task<IFormFile> GetImageAsync(int profileId)
-    {
-      var filePath = (await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId)).ProfileImage.Url;
-      await using (var stream = System.IO.File.Open(filePath, FileMode.Open, FileAccess.Read))
-      {
-        //await stream.ReadAsync()
-      }
-
-      return null;
-    }
+    // public async Task<IFormFile> GetImageAsync(int profileId)
+    // {
+    //   var filePath = (await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId)).ProfileImage.Url;
+    //   await using (var stream = System.IO.File.Open(filePath, FileMode.Open, FileAccess.Read))
+    //   {
+    //     //await stream.ReadAsync()
+    //   }
+    //
+    //   return null;
+    // }
 
     public async Task<bool> DeleteProfileAsync(int profileId)
     {

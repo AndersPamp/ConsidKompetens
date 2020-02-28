@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 
 namespace ConsidKompetens_Core.Interfaces
 {
@@ -15,7 +14,7 @@ namespace ConsidKompetens_Core.Interfaces
     Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModel userModel);
     Task<ProfileModel> CreateNewProfileAsync(string profileOwnerId);
     Task<bool> ImageUploadAsync(string profileOwnerId, IFormFile file);
-    Task<IFormFile> GetImageAsync(int profileId);
+    // Task<IFormFile> GetImageAsync(int profileId);
     Task<bool> DeleteProfileAsync(int profileId);
   }
 }

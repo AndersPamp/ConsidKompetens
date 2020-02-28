@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Helpers;
-using ConsidKompetens_Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
