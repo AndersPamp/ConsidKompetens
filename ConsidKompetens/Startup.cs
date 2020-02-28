@@ -43,7 +43,9 @@ namespace ConsidKompetens_Web
         options.UseSqlServer(
           Configuration.GetConnectionString("DataConnection")));
 
-      services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+      services.AddDefaultIdentity<IdentityUser>()
+        .AddEntityFrameworkStores<IdentityDbContext>()
+        .AddDefaultTokenProviders();
       //services.AddIdentity<IdentityUser, IdentityRole>(options => { options.ClaimsIdentity.UserIdClaimType = "UserID";}).AddEntityFrameworkStores<IdentityDbContext>();
       services.Configure<IdentityOptions>(options =>
       {
@@ -138,10 +140,19 @@ namespace ConsidKompetens_Web
         FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Icons")),
         RequestPath = "/Icons"
       });
+      if (env.IsDevelopment())
+      {
+        app.UseSpaStaticFiles(
+          new StaticFileOptions
+          {
+            FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "../ConsidKompetens_Data/Email"))
+          });
+      }
       app.UseRouting();
       app.UseAuthentication();
       app.UseAuthorization();
       app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+      #region UseEndpoints
       //app.UseEndpoints(endpoints =>
       //{
       //  endpoints.MapControllerRoute(
@@ -153,7 +164,8 @@ namespace ConsidKompetens_Web
       //  endpoints.MapControllerRoute(
       //    name: "profile",
       //    pattern: "{controller=Profile}/");
-      //});
+      //}); 
+      #endregion
 
       app.UseSpa(spa =>
       {
