@@ -7,6 +7,7 @@ namespace ConsidKompetens_Services.Interfaces
   public interface IRegisterService
   {
     Task<bool> CheckIfUserExistsAsync(string userName);
-    Task<bool> RegisterNewUserAsync(RegisterModelReq newModel);
+    Task<IdentityUser> RegisterNewUserAsync(RegisterModelReq newModel);
+    Task SendEmailConfirmationAsync(IdentityUser user, string link);
   }
 }

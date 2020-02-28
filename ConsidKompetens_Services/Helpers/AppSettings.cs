@@ -11,6 +11,7 @@ namespace ConsidKompetens_Services.Helpers
     public string EmailAPIKey { get; set; }
     public string EmailFromAddress { get; set; }
     public string EmailConfirmSubject { get; set; }
+    public string EmailConfirmFilePath { get; set; }
     public string IconFilePath { get; set; }
   }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ConsidKompetens_Core.CommunicationModels;
-using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -14,13 +11,11 @@ namespace ConsidKompetens_Web.Controllers
   [ApiController]
   public class LoginController : ControllerBase
   {
-    private readonly ILogger<LoginModelReq> _logger;
     private readonly ILoginService _loginService;
     //public static int count { get; set; }
 
-    public LoginController(ILogger<LoginModelReq> logger, ILoginService loginService)
+    public LoginController(ILoginService loginService)
     {
-      _logger = logger;
       _loginService = loginService;
     }
 
@@ -53,12 +48,12 @@ namespace ConsidKompetens_Web.Controllers
         }
 
         //3. If user unauth. return UnAuthorized
-        return Unauthorized(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+        return Unauthorized(new ResponseModel { Success = false, ErrorMessage = "Email-address and/or password - incorrect"});
 
         //var returnUrl = "";
         //returnUrl = returnUrl ?? Url.Content("~/");
       }
-      return Unauthorized(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+      return Unauthorized(new ResponseModel { Success = false, ErrorMessage = "Both email-address and password must be submitted"});
     }
   }
 }

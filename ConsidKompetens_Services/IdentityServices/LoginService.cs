@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -17,13 +16,11 @@ namespace ConsidKompetens_Services.IdentityServices
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly AppSettings _appSettings;
-    private readonly ILogger<LoginService> _logger;
 
-    public LoginService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, ILogger<LoginService> logger)
+    public LoginService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
     {
       _signInManager = signInManager;
       _userManager = userManager;
-      _logger = logger;
       _appSettings = appSettings.Value;
 
     }
@@ -55,7 +52,7 @@ namespace ConsidKompetens_Services.IdentityServices
         {
           return user;
         }
-        throw new Exception(_logger.ToString());
+        throw new Exception(ValidateUserAsync(userName, passWord).Result.ToString());
       }
       catch (Exception e)
       {
