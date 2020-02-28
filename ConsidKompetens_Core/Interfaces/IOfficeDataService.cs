@@ -7,6 +7,7 @@ namespace ConsidKompetens_Core.Interfaces
   public interface IOfficeDataService
   {
     Task<List<OfficeModel>> GetOfficesAsync();
+    Task<OfficeModel> GetOfficeByIdAsync(int officeId);
     Task<List<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds);
     Task<bool> CreateNewOfficeAsync(OfficeModel officeModel);
     Task<OfficeModel> EditOfficeAsync(OfficeModel officeModel);

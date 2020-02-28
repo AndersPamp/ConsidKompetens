@@ -6,25 +6,25 @@ using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
   public class ProjectDataService : IProjectDataService
   {
     private readonly DataDbContext _dbContext;
-    private readonly ILogger<ProjectDataService> _logger;
 
-    public ProjectDataService(DataDbContext dbContext, ILogger<ProjectDataService> logger)
+    public ProjectDataService(DataDbContext dbContext)
     {
       _dbContext = dbContext;
-      _logger = logger;
     }
     public async Task<List<ProjectModel>> GetAllProjectsAsync()
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x => x.ProfileModels).ToListAsync();
+        return await _dbContext.ProjectModels
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
+          .ToListAsync();
       }
       catch (Exception e)
       {
@@ -36,7 +36,9 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x => x.ProfileModels).ToListAsync();
+        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
+          .ToListAsync();
       }
       catch (Exception e)
       {
@@ -48,7 +50,9 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x => x.ProfileModels).FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
+          .FirstOrDefaultAsync(x => x.Id == id);
       }
       catch (Exception e)
       {
@@ -60,14 +64,16 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var project = await _dbContext.ProjectModels.FindAsync(projectModel.Id);
+        var project = await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProfileModel)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.RoleModel).FirstOrDefaultAsync(x => x.Id == projectModel.Id);
+
         project.Description = projectModel.Description;
         project.Name = projectModel.Name;
-        project.Roles = projectModel.Roles;
         project.Techniques = projectModel.Techniques;
         project.TimePeriod = projectModel.TimePeriod;
-        project.ProfileModels = projectModel.ProfileModels;
         project.Modified = DateTime.UtcNow;
+        project.ProjectProfileRoles = projectModel.ProjectProfileRoles;
+
         await _dbContext.SaveChangesAsync();
         return projectModel;
       }

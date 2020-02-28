@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Services.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -16,12 +20,14 @@ namespace ConsidKompetens_Web.Controllers
   public class ProfileController : ControllerBase
   {
     private readonly IProfileDataService _profileDataService;
-    private readonly ILogger<ProfileController> _logger;
+    private readonly IOfficeDataService _officeDataService;
+    private readonly IOptions<AppSettings> _options;
 
-    public ProfileController(IProfileDataService profileDataService, ILogger<ProfileController> logger)
+    public ProfileController(IProfileDataService profileDataService, IOfficeDataService officeDataService, IOptions<AppSettings> options)
     {
       _profileDataService = profileDataService;
-      _logger = logger;
+      _officeDataService = officeDataService;
+      _options = options;
     }
 
     // GET: api/Profile
@@ -32,7 +38,20 @@ namespace ConsidKompetens_Web.Controllers
       try
       {
         var profiles = await _profileDataService.GetAllProfilesAsync();
-        return Ok(new ResponseModel() { Success = true, Data = new ResponseData { ProfileModels = profiles } });
+        var images = new List<string>();
+        foreach (var profile in profiles)
+        {
+          images.Add(Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url));
+        }
+        return Ok(new ResponseModel()
+        {
+          Success = true,
+          Data = new ResponseData
+          {
+            ProfileModels = profiles,
+            Images = images
+          }
+        });
       }
       catch (Exception e)
       {
@@ -46,8 +65,16 @@ namespace ConsidKompetens_Web.Controllers
     {
       try
       {
-        var user = await _profileDataService.GetProfileByIdAsync(id);
-        return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel> { user } } });
+        var profile = await _profileDataService.GetProfileByIdAsync(id);
+        return Ok(new ResponseModel
+        {
+          Success = true,
+          Data = new ResponseData
+          {
+            ProfileModels = new List<ProfileModel> { profile },
+            Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url) }
+          }
+        });
       }
       catch (Exception e)
       {
@@ -57,24 +84,32 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpPut("{id}")]
     [Route("editprofile")]
-    
-    public async Task<ActionResult<ResponseModel>> EditProfile([FromBody] ProfileModel value)
+    public async Task<ActionResult<ResponseModel>> EditProfile([FromForm] ProfileModel input)
     {
       if (ModelState.IsValid)
       {
         try
         {
           var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
-          var result = await _profileDataService.EditProfileByIdAsync(profile.Id, value);
+          var result = await _profileDataService.EditProfileByIdAsync(profile.Id, input);
 
-          return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel> { result } } });
+          return Ok(new ResponseModel
+          {
+            Success = true,
+            Data = new ResponseData
+            {
+              ProfileModels = new List<ProfileModel> { result },
+              CompetenceModels = result.Competences,
+              OfficeModels = new List<OfficeModel> { await _officeDataService.GetOfficeByIdAsync(profile.OfficeId) }
+            }
+          });
         }
         catch (Exception e)
         {
-          return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message});
+          return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString()});
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = EditProfile(input).Result.ToString() });
     }
 
     [HttpPut]
@@ -86,14 +121,21 @@ namespace ConsidKompetens_Web.Controllers
         var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
         if (await _profileDataService.ImageUploadAsync(profile.OwnerID, file))
         {
-          return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProfileModels = new List<ProfileModel>{await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID)}} });
+          return Ok(new ResponseModel
+          {
+            Success = true,
+            Data = new ResponseData
+            {
+              ProfileModels = new List<ProfileModel> { await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID) },
+              Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url) }
+            }
+          });
         }
-
-        return BadRequest(new ResponseModel {Success = false, ErrorMessage = _logger.ToString()});
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = UploadImage(file).Result.ToString()});
       }
       catch (Exception e)
       {
-        return BadRequest(new ResponseModel {Success = false, ErrorMessage = e.Message});
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
       }
     }
 
@@ -101,12 +143,12 @@ namespace ConsidKompetens_Web.Controllers
     [HttpDelete("{id}")]
     public async Task<ActionResult<ResponseModel>> Delete(int id)
     {
+
       if (await _profileDataService.DeleteProfileAsync(id))
       {
-        return Ok(new ResponseModel {Success = true});
+        return Ok(new ResponseModel { Success = true });
       }
-
-      return BadRequest(_logger.ToString());
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _profileDataService.DeleteProfileAsync(id).ToString() });
     }
   }
 }

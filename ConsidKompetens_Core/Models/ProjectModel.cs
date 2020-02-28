@@ -6,9 +6,8 @@ namespace ConsidKompetens_Core.Models
   {
     public string Name { get; set; }
     public string Description { get; set; }
-    public List<RoleModel> Roles { get; set; }
     public List<TechniqueModel> Techniques { get; set; }
     public TimePeriod TimePeriod { get; set; }
-    public List<ProfileModel> ProfileModels { get; set; }
+    public List<ProjectProfileRole> ProjectProfileRoles { get; set; }
   }
 }

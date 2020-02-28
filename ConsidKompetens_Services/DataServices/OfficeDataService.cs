@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
@@ -22,7 +21,26 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.OfficeModels.ToListAsync();
+        return await _dbContext.OfficeModels.Include(x=>x.Employees).ThenInclude(x=>x.Competences)
+          .Include(x=>x.Employees).ThenInclude(x=>x.Links)
+          .Include(x=>x.Employees).ThenInclude(x=>x.Competences).ThenInclude(x=>x.Icon)
+          .Include(x=>x.Employees).ThenInclude(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques).ToListAsync();
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<OfficeModel> GetOfficeByIdAsync(int officeId)
+    {
+      try
+      {
+        return await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
+          .Include(x => x.Employees).ThenInclude(x => x.Links)
+          .Include(x => x.Employees).ThenInclude(x => x.Competences).ThenInclude(x => x.Icon)
+          .Include(x => x.Employees).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
+          .FirstOrDefaultAsync(x=>x.Id==officeId);
       }
       catch (Exception e)
       {
@@ -37,8 +55,12 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          var office = await _dbContext.OfficeModels.FindAsync(officeId);
-          office.Employees = await _dbContext.ProfileModels.Where(x => x.OfficeId == officeId).ToListAsync();
+          var office = await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
+            .Include(x => x.Employees).ThenInclude(x => x.Links)
+            .Include(x => x.Employees).ThenInclude(x => x.Competences).ThenInclude(x => x.Icon)
+            .Include(x => x.Employees).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
+            .FirstOrDefaultAsync(x => x.Id == officeId);
+
           result.Add(office);
         }
         return result;

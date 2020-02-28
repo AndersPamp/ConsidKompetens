@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
 
-namespace ConsidKompetens_Web.Models
+namespace ConsidKompetens_Core.CommunicationModels
 {
   public class LoginModelReq
   {
