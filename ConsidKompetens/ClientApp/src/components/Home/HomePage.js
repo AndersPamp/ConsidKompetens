@@ -45,7 +45,7 @@ const HomePage = () => {
         <>
         <div className="homeContainer">
         {loggedOut ? <Redirect to="/login" /> : null} 
-            <button className='min-sida-button'><a href="/user">Min sida</a></button>   
+            <button className='min-sida-button'><a href="/profile">Min sida</a></button>   
             <button className='logga-ut-button' onClick={handleLogoOut}>Logga ut</button>
             <input className="homeInput" type="text" placeholder="Sök.."/>
             <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>

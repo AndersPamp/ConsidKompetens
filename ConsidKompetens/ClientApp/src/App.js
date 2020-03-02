@@ -4,24 +4,14 @@ import './App.css';
 import HomePage from './components/Home/HomePage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
-import UserPage from './components/Users/UserPage';
+import Profile from './components/Pofile/Profile';
 import DetailsPage from './components/Details/DetailsPage';
+import ProfileContextProvider from './Context/PofileContext';
 //import NavMenu from './components/Header/NavMenu';
 //import Authenticated from './components/Authenticated/Authenticated';
-// import {getJwt} from '../src/Helper/jwt';
-// import jwt_decode from 'jwt-decode';
 import { Footer } from '../src/components';
 
 function App() {
-
-//  const [loggedOut, setLoggedOut] = useState(false);
-
-//    function handleLogoOut() {
-//         localStorage.removeItem('secret');
-//         alert('logged out');
-//         setLoggedOut({loggedOut: true});
-//     }
-
   return (
     <div className='App-div'>
         
@@ -30,9 +20,11 @@ function App() {
         
            {/* <Authenticated> */}
               {/* <NavMenu/> */}
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/details" component={DetailsPage}/>
-            <Route path="/user" component={() => <UserPage/>}/>
+            <ProfileContextProvider>
+              <Route exact path="/" component={HomePage}/>
+              <Route path="/details" component={DetailsPage}/>
+              <Route path="/profile" component={() => <Profile/>}/>
+            </ProfileContextProvider>
            {/* </Authenticated> */}   
       <Footer/>
     </div>
