@@ -9,7 +9,6 @@ using ConsidKompetens_Services.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace ConsidKompetens_Web.Controllers
@@ -109,11 +108,11 @@ namespace ConsidKompetens_Web.Controllers
           return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = EditProfile(input).Result.ToString() });
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = ModelState.Values.ToString() });
     }
 
     [HttpPut]
-    [Route("uploadimage")]
+    [Route("UploadImage")]
     public async Task<ActionResult<IFormFile>> UploadImage([FromForm]IFormFile file)
     {
       try
