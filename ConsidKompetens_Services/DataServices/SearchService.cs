@@ -57,6 +57,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
+        
         var users = await GetAllProfilesAsync();
         var result = new List<ProfileModel>();
 
@@ -64,7 +65,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           foreach (var competence in user.Competences)
           {
-            if (competence.ToUpper().Contains(competenceInput.ToUpper()))
+            if (competence.Name.ToUpper().Contains(competenceInput.ToUpper()))
             {
               result.Add(user);
             }
@@ -91,7 +92,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           foreach (var competence in profile.Competences)
           {
-            if (competence.ToUpper().Contains(input.ToUpper()))
+            if (competence.Name.ToUpper().Contains(input.ToUpper()))
             {
               profiles.Add(profile);
             }
