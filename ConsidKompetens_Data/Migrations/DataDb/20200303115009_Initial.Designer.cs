@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20200217095652_Secundo")]
-    partial class Secundo
+    [Migration("20200303115009_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -131,8 +131,8 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("TelephoneNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("TelephoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -179,12 +179,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<int?>("ProfileImageId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -195,10 +189,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasIndex("OfficeModelId");
 
                     b.HasIndex("ProfileImageId");
-
-                    b.HasIndex("ProjectModelId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("ProfileModels");
                 });
@@ -222,12 +212,34 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TimePeriod")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TimePeriodId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TimePeriodId");
+
                     b.ToTable("ProjectModels");
+                });
+
+            modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectProfileRole", b =>
+                {
+                    b.Property<int>("ProjectModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfileModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectModelId", "ProfileModelId", "RoleModelId");
+
+                    b.HasIndex("ProfileModelId");
+
+                    b.HasIndex("RoleModelId");
+
+                    b.ToTable("ProjectProfileRoles");
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.RoleModel", b =>
@@ -246,12 +258,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProjectModelId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectModelId");
 
                     b.ToTable("RoleModel");
                 });
@@ -282,6 +289,30 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.ToTable("TechniqueModel");
                 });
 
+            modelBuilder.Entity("ConsidKompetens_Core.Models.TimePeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Stop")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimePeriod");
+                });
+
             modelBuilder.Entity("ConsidKompetens_Core.Models.CompetenceModel", b =>
                 {
                     b.HasOne("ConsidKompetens_Core.Models.ImageModel", "Icon")
@@ -306,21 +337,34 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasOne("ConsidKompetens_Core.Models.ImageModel", "ProfileImage")
                         .WithMany()
                         .HasForeignKey("ProfileImageId");
-
-                    b.HasOne("ConsidKompetens_Core.Models.ProjectModel", null)
-                        .WithMany("ProfileModels")
-                        .HasForeignKey("ProjectModelId");
-
-                    b.HasOne("ConsidKompetens_Core.Models.RoleModel", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
                 });
 
-            modelBuilder.Entity("ConsidKompetens_Core.Models.RoleModel", b =>
+            modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectModel", b =>
                 {
-                    b.HasOne("ConsidKompetens_Core.Models.ProjectModel", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("ProjectModelId");
+                    b.HasOne("ConsidKompetens_Core.Models.TimePeriod", "TimePeriod")
+                        .WithMany()
+                        .HasForeignKey("TimePeriodId");
+                });
+
+            modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectProfileRole", b =>
+                {
+                    b.HasOne("ConsidKompetens_Core.Models.ProfileModel", "ProfileModel")
+                        .WithMany("ProjectProfileRoles")
+                        .HasForeignKey("ProfileModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConsidKompetens_Core.Models.ProjectModel", "ProjectModel")
+                        .WithMany("ProjectProfileRoles")
+                        .HasForeignKey("ProjectModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConsidKompetens_Core.Models.RoleModel", "RoleModel")
+                        .WithMany("ProjectProfileRoles")
+                        .HasForeignKey("RoleModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.TechniqueModel", b =>

@@ -50,11 +50,42 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     City = table.Column<string>(nullable: true),
-                    TelephoneNumber = table.Column<long>(nullable: false)
+                    TelephoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OfficeModels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleModel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TimePeriod",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    Start = table.Column<DateTime>(nullable: false),
+                    Stop = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimePeriod", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,7 +100,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     AboutMe = table.Column<string>(nullable: true),
-                    Role = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     OfficeId = table.Column<int>(nullable: false),
                     ProfileImageId = table.Column<int>(nullable: true),
@@ -96,6 +126,29 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         name: "FK_ProfileModels_ImageModels_ProfileImageId",
                         column: x => x.ProfileImageId,
                         principalTable: "ImageModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    TimePeriodId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectModels_TimePeriod_TimePeriodId",
+                        column: x => x.TimePeriodId,
+                        principalTable: "TimePeriod",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -133,7 +186,38 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectModels",
+                name: "ProjectProfileRoles",
+                columns: table => new
+                {
+                    ProjectModelId = table.Column<int>(nullable: false),
+                    ProfileModelId = table.Column<int>(nullable: false),
+                    RoleModelId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectProfileRoles", x => new { x.ProjectModelId, x.ProfileModelId, x.RoleModelId });
+                    table.ForeignKey(
+                        name: "FK_ProjectProfileRoles_ProfileModels_ProfileModelId",
+                        column: x => x.ProfileModelId,
+                        principalTable: "ProfileModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectProfileRoles_ProjectModels_ProjectModelId",
+                        column: x => x.ProjectModelId,
+                        principalTable: "ProjectModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectProfileRoles_RoleModel_RoleModelId",
+                        column: x => x.RoleModelId,
+                        principalTable: "RoleModel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TechniqueModel",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -141,19 +225,15 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Role = table.Column<int>(nullable: false),
-                    Techniques = table.Column<int>(nullable: false),
-                    TimePeriod = table.Column<string>(nullable: true),
-                    ProfileModelId = table.Column<int>(nullable: true)
+                    ProjectModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectModels", x => x.Id);
+                    table.PrimaryKey("PK_TechniqueModel", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectModels_ProfileModels_ProfileModelId",
-                        column: x => x.ProfileModelId,
-                        principalTable: "ProfileModels",
+                        name: "FK_TechniqueModel_ProjectModels_ProjectModelId",
+                        column: x => x.ProjectModelId,
+                        principalTable: "ProjectModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -184,9 +264,24 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                 column: "ProfileImageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectModels_ProfileModelId",
+                name: "IX_ProjectModels_TimePeriodId",
                 table: "ProjectModels",
+                column: "TimePeriodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectProfileRoles_ProfileModelId",
+                table: "ProjectProfileRoles",
                 column: "ProfileModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectProfileRoles_RoleModelId",
+                table: "ProjectProfileRoles",
+                column: "RoleModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TechniqueModel_ProjectModelId",
+                table: "TechniqueModel",
+                column: "ProjectModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -195,10 +290,19 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                 name: "CompetenceModels");
 
             migrationBuilder.DropTable(
-                name: "ProjectModels");
+                name: "ProjectProfileRoles");
+
+            migrationBuilder.DropTable(
+                name: "TechniqueModel");
 
             migrationBuilder.DropTable(
                 name: "ProfileModels");
+
+            migrationBuilder.DropTable(
+                name: "RoleModel");
+
+            migrationBuilder.DropTable(
+                name: "ProjectModels");
 
             migrationBuilder.DropTable(
                 name: "LinkModels");
@@ -208,6 +312,9 @@ namespace ConsidKompetens_Data.Migrations.DataDb
 
             migrationBuilder.DropTable(
                 name: "ImageModels");
+
+            migrationBuilder.DropTable(
+                name: "TimePeriod");
         }
     }
 }

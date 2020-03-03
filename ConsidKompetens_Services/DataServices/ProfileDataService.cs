@@ -105,11 +105,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
+        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences).ThenInclude(x=>x.Icon)
           .Include(x => x.ProfileImage)
           .Include(x => x.Links)
-          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
 
         profile.Competences = profileModel.Competences;
@@ -127,7 +127,7 @@ namespace ConsidKompetens_Services.DataServices
         return await _dataDbContext.ProfileModels
           .Include(x=>x.Competences)
           .Include(x=>x.Links)
-          //.Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel)
           .FirstOrDefaultAsync(x=>x.Id==profileId);
       }
       catch (Exception e)
