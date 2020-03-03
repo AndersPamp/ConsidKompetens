@@ -108,8 +108,8 @@ namespace ConsidKompetens_Services.DataServices
         var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ProfileImage)
           .Include(x => x.Links)
-          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-          // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
 
         profile.Competences = profileModel.Competences;
