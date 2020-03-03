@@ -8,7 +8,7 @@ namespace ConsidKompetens_Core.Interfaces
   public interface ISearchDataService
   {
     Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOffices);
-    Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId);
+    Task<List<ProfileModel>> GetProfilesByCompetenceAsync(string competenceInput);
     Task<ResponseModel> FreeWordSearcAsync(string input);
 
   }
