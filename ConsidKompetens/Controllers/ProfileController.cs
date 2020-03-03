@@ -83,7 +83,7 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpPut("{id}")]
     [Route("editprofile")]
-    public async Task<ActionResult<ResponseModel>> EditProfile([FromForm] ProfileModel input)
+    public async Task<ActionResult<ResponseModel>> EditProfile(ProfileModel input)
     {
       if (ModelState.IsValid)
       {
