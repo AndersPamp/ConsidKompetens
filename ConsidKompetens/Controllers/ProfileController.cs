@@ -112,7 +112,6 @@ namespace ConsidKompetens_Web.Controllers
             Data = new ResponseData
             {
               ProfileModels = new List<ProfileModel> { result },
-              CompetenceModels = result.Competences,
               OfficeModels = new List<OfficeModel> { await _officeDataService.GetOfficeByIdAsync(profile.OfficeId) }
             }
           });
@@ -144,7 +143,7 @@ namespace ConsidKompetens_Web.Controllers
             }
           });
         }
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = UploadImage(file).Result.ToString() });
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to upload your picture, please try again."});
       }
       catch (Exception e)
       {
