@@ -81,6 +81,20 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
+    [HttpGet]
+    [Route("ownerid")]
+    public async Task<ActionResult<ProfileModel>> GetProfileByOwnerId()
+    {
+      try
+      {
+        return await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e });
+      }
+    }
+
     [HttpPut("{id}")]
     [Route("editprofile")]
     public async Task<ActionResult<ResponseModel>> EditProfile(ProfileModel input)
@@ -130,7 +144,7 @@ namespace ConsidKompetens_Web.Controllers
             }
           });
         }
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = UploadImage(file).Result.ToString()});
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = UploadImage(file).Result.ToString() });
       }
       catch (Exception e)
       {

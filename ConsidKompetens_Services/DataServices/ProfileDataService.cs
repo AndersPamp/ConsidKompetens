@@ -65,8 +65,8 @@ namespace ConsidKompetens_Services.DataServices
           return await _dataDbContext.ProfileModels.Include(x => x.Competences)
             .Include(x => x.ProfileImage)
             .Include(x => x.Links)
-            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+            .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
+            .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
             .FirstOrDefaultAsync(x => x.OwnerID == profileOwnerId);
         }
         catch (Exception e)
@@ -74,7 +74,7 @@ namespace ConsidKompetens_Services.DataServices
           throw new Exception(e.Message);
         }
       }
-      throw new Exception("");
+      throw new Exception("Invalid input");
     }
 
     public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)

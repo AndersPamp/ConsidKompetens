@@ -46,6 +46,7 @@ namespace ConsidKompetens_Web.Controllers
         {
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
+          
           return Ok(new ResponseModel { Success = true, BearerToken = token });
         }
         //3. If user unauth. return UnAuthorized
