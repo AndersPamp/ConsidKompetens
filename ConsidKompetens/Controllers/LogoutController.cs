@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ConsidKompetens_Core.CommunicationModels;
-using ConsidKompetens_Core.Models;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -14,23 +14,31 @@ namespace ConsidKompetens_Web.Controllers
   public class LogoutController : ControllerBase
   {
     private readonly ILoginService _loginService;
-    private readonly ILogger<LogoutController> _logger;
+    private readonly SignInManager<IdentityUser> _signInManager;
 
-    public LogoutController(ILoginService loginService, ILogger<LogoutController> logger)
+    public LogoutController(ILoginService loginService, SignInManager<IdentityUser> signInManager)
     {
       _loginService = loginService;
-      _logger = logger;
+      _signInManager = signInManager;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<bool>> Logout(bool logOut)
+
+    //Obsolete NOT WORKING 
+    [HttpGet]
+    public async Task<IActionResult> Logout()
     {
-      if (logOut)
+      foreach (var userClaim in this.User.Claims)
       {
-        await _loginService.LogOutUserAsync();
-        return Ok(new ResponseModel { Success = true });
+        Console.Out.WriteLine(userClaim.Properties.Values);
+        
       }
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+      await _signInManager.SignOutAsync();
+      if (await _loginService.LogOutUserAsync())
+      {
+        return Ok(new ResponseModel { Success = true });
+      } 
+        
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to log out, please try again."});
     }
   }
 }

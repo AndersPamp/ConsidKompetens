@@ -53,7 +53,7 @@ namespace ConsidKompetens_Web
         options.Password.RequireNonAlphanumeric = true;
         options.Password.RequireUppercase = true;
         options.Password.RequireLowercase = true;
-        options.SignIn.RequireConfirmedEmail = false;
+        options.SignIn.RequireConfirmedEmail = true;
       });
       
       services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
@@ -95,6 +95,7 @@ namespace ConsidKompetens_Web
           IssuerSigningKey = new SymmetricSecurityKey(key),
           ValidateIssuer = false,
           ValidateAudience = false
+
         };
       });
 
