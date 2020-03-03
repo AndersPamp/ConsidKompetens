@@ -4,14 +4,14 @@ export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({children}) => {
     const [ profile, setProfile ] = useState({
-            FirstName: '', 
-            LastName: '', 
-            AboutMe: '',
-            LinkedIn: '',
-            Title: '',
-            Office: '',
-            Cv: '',
-            Competense: []
+            firstName: '', 
+            lastName: '', 
+            aboutMe: '',
+            linkedIn: '',
+            title: '',
+            office: '',
+            cv: '',
+            competense: []
         })
      
     const handleChange = (event) => {

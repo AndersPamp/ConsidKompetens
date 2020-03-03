@@ -43,7 +43,7 @@ const Profile = () => {
   const classes = useStyles();
   const jwt = localStorage.getItem('secret');
 
-  const profile = useContext(ProfileContext);
+  const input = useContext(ProfileContext);
   const {handleChange} = useContext(ProfileContext);
 
   
@@ -60,7 +60,7 @@ const Profile = () => {
 
   function submit(e){
       e.preventDefault();
-      axios.put('https://localhost:44323/api/profile/editprofile',profile , { headers: { 'Authorization': `Bearer ${jwt}` } })
+      axios.put('https://localhost:44323/api/profile/editprofile',input , { headers: { 'Authorization': `Bearer ${jwt}` } })
       .then((response) => {
       
         const result = response.config.data;
@@ -71,6 +71,7 @@ const Profile = () => {
           alert('You have update your profile');
           setUpdate({update: true});
           console.log(result);
+          console.log(response);
         }
     }).catch((error) => {
       console.log(error);
@@ -131,8 +132,8 @@ const Profile = () => {
                             style={{display: 'block'}}
                             label="LinkedIn link"
                             id="mui-theme-provider-standard-input three"
-                            name='LinkedIn'
-                            value={profile.LinkedIn}
+                            name='linkedIn'
+                            value={input.linkedIn}
                             onChange={handleChange}   
                             />
                       <UploadCV/>

@@ -31,7 +31,7 @@ const SelectForm = () => {
         <>
          <FormControl className={classes.formControl}>
                           <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
-                            <Select name='Office' value={user.Office} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                            <Select name='Office' value={user.office} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
                               {officeList.map(list => {
                                 return <MenuItem  value={list.office} key={list.id}>{list.office}</MenuItem>
                               })}
@@ -39,7 +39,7 @@ const SelectForm = () => {
                       </FormControl>
                       <FormControl className={classes.formControl}>
                           <InputLabel id="demo-simple-select-label">Min titel</InputLabel>
-                            <Select name='Title' value={user.Title} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                            <Select name='Title' value={user.title} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
                               {role.map(list => {
                                 return <MenuItem value={list.role} key={list.id}>{list.role}</MenuItem>
                               })}
