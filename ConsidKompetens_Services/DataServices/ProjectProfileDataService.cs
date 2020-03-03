@@ -5,7 +5,6 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {
@@ -24,9 +23,9 @@ namespace ConsidKompetens_Services.DataServices
       {
         var newRole = new ProjectProfileRole
         {
-          ProjectId = projectId,
-          ProfileId = profileId,
-          RoleId = roleId
+          ProjectModelId = projectId,
+          ProfileModelId = profileId,
+          RoleModelId = roleId
         };
 
         await _dbContext.ProjectProfileRoles.AddAsync(newRole);
@@ -43,11 +42,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var deltaRole = await _dbContext.ProjectProfileRoles.Where(x => x.ProjectId == projectId && x.ProfileId == profileId && x.RoleId == roleId)
+        var deltaRole = await _dbContext.ProjectProfileRoles.Where(x => x.ProjectModelId == projectId && x.ProfileModelId == profileId && x.RoleModelId == roleId)
           .FirstOrDefaultAsync();
-        deltaRole.ProjectId = projectId;
-        deltaRole.ProfileId = profileId;
-        deltaRole.RoleId = roleId;
+        deltaRole.ProjectModelId = projectId;
+        deltaRole.ProfileModelId = profileId;
+        deltaRole.RoleModelId = roleId;
 
         await _dbContext.SaveChangesAsync();
         return deltaRole;
