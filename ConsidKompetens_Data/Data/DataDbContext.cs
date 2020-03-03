@@ -20,7 +20,7 @@ namespace ConsidKompetens_Data.Data
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      modelBuilder.Entity<ProjectProfileRole>().HasKey(x => new { x.ProjectId, x.ProfileId, x.RoleId });
+      modelBuilder.Entity<ProjectProfileRole>().HasKey(x => new { x.ProjectModelId, x.ProfileModelId, x.RoleModelId });
     }
   }
 }

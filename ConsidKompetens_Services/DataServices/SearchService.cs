@@ -8,7 +8,6 @@ using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using IdentityServer4.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Services.DataServices
 {

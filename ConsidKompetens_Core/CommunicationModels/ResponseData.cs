@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using ConsidKompetens_Core.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Core.CommunicationModels
 {
