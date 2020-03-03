@@ -123,9 +123,12 @@ namespace ConsidKompetens_Services.DataServices
         profile.Modified = DateTime.UtcNow;
         
           
-        _dataDbContext.ProfileModels.Update(profile);
         await _dataDbContext.SaveChangesAsync();
-        return profileModel;
+        return await _dataDbContext.ProfileModels
+          .Include(x=>x.Competences)
+          .Include(x=>x.Links)
+          //.Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel)
+          .FirstOrDefaultAsync(x=>x.Id==profileId);
       }
       catch (Exception e)
       {
