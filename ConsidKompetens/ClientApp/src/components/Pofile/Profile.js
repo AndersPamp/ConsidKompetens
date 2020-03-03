@@ -45,9 +45,10 @@ const Profile = () => {
 
   const profile = useContext(ProfileContext);
   const {handleChange} = useContext(ProfileContext);
-  console.log(profile);
+
   
   const [competense, setCompetense] = useState([]);
+  const [update, setUpdate] = useState(false);
   
   const toggleComplete = (i) => {
       setCompetense(
@@ -57,12 +58,37 @@ const Profile = () => {
       )
   };  
 
-  function submit(){
+  function submit(e){
+      e.preventDefault();
       axios.put('https://localhost:44323/api/profile/editprofile',profile , { headers: { 'Authorization': `Bearer ${jwt}` } })
-      .then((res) => {
-      console.log(res);
+      .then((response) => {
+      
+        const result = response.config.data;
+
+        if(response.status === 200)
+        {
+          localStorage.setItem('profile', result);
+          alert('You have update your profile');
+          setUpdate({update: true});
+          console.log(result);
+        }
+    }).catch((error) => {
+      console.log(error);
     })
   }
+
+//   function submit(e){
+//       e.preventDefault();
+//       axios.put('https://localhost:44323/api/profile/editprofile',profile , { headers: { 'Authorization': `Bearer ${jwt}` } })
+//       .then((response) => {
+      
+//       const result = response.config.data;
+//       console.log(response);
+//       console.log(profile);
+//   }
+//       )
+// }
+
 
   return (
     <>
