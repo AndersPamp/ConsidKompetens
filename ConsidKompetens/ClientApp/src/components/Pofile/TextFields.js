@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import {ProfileContext} from '../../Context/PofileContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,11 +20,8 @@ const useStyles = makeStyles(theme => ({
 const TextFields = () => {
     const classes = useStyles();
 
-   const [profile, setProfile] = useState({FirstName: '', LastName: '', AboutMe: ''});
-
-   const handleChange = (event) => {
-    setProfile({...profile, [event.target.name]: event.target.value});
-  }
+  const user = useContext(ProfileContext);
+  const {handleChange} = useContext(ProfileContext);
 
     return(
         <>
@@ -33,7 +31,7 @@ const TextFields = () => {
             label="Förnamn"
             id="mui-theme-provider-standard-input one"
             name='FirstName'
-            value={profile.FirstName}
+            value={user.FirstName}
             onChange={handleChange}  
             />
         <TextField
@@ -42,7 +40,7 @@ const TextFields = () => {
             label="Efternamn"
             id="mui-theme-provider-standard-input two"
             name='LastName'
-            value={profile.LastName}
+            value={user.LastName}
             onChange={handleChange}   
             />
         <TextField
@@ -52,7 +50,7 @@ const TextFields = () => {
             label="Om mig"
             id="standard-multiline-static"
             name='AboutMe'
-            value={profile.AboutMe}
+            value={user.AboutMe}
             onChange={handleChange} 
             />
             </>

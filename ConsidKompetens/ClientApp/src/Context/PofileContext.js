@@ -1,18 +1,29 @@
-import React, { createContext, Component } from 'react';
+import React, { useState, createContext } from 'react';
 
 export const ProfileContext = createContext();
 
-class ProfileContextProvider extends Component {
-    state = { 
-            profile: {FirstName: '', LastName: '', AboutMe: ''}
+const ProfileContextProvider = ({children}) => {
+    const [ profile, setProfile ] = useState({
+            FirstName: '', 
+            LastName: '', 
+            AboutMe: '',
+            LinkedIn: '',
+            Title: '',
+            Office: '',
+            Cv: '',
+            Competense: []
+        })
+     
+    const handleChange = (event) => {
+        event.preventDefault();
+        setProfile({...profile, [event.target.name]: event.target.value});
      }
-    render() { 
-        return ( 
-            <ProfileContext.Provider value={{...this.state}}>
-                {this.props.children}
-            </ProfileContext.Provider>
-         );
-    }
+
+    return(
+        <ProfileContext.Provider value={{...profile, handleChange: handleChange}}>
+                {children}
+        </ProfileContext.Provider>
+    )
 }
  
 export default ProfileContextProvider;
