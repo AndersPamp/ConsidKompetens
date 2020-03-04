@@ -62,7 +62,6 @@ namespace ConsidKompetens_Web
       services.AddScoped<IProfileDataService, ProfileDataService>();
       services.AddScoped<ISearchDataService, SearchService>();
       services.AddScoped<IOfficeDataService, OfficeDataService>();
-      services.AddScoped<ICompetenceDataService, CompetenceDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
       services.AddScoped<IImageDataService, ImageDataService>();
       

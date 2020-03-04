@@ -46,8 +46,8 @@ namespace ConsidKompetens_Services.DataServices
         return await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ProfileImage)
           .Include(x => x.Links)
-          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
       }
       catch (Exception e)
@@ -65,8 +65,8 @@ namespace ConsidKompetens_Services.DataServices
           return await _dataDbContext.ProfileModels.Include(x => x.Competences)
             .Include(x => x.ProfileImage)
             .Include(x => x.Links)
-            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-            // .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+            .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
+            .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
             .FirstOrDefaultAsync(x => x.OwnerID == profileOwnerId);
         }
         catch (Exception e)
@@ -74,7 +74,7 @@ namespace ConsidKompetens_Services.DataServices
           throw new Exception(e.Message);
         }
       }
-      throw new Exception("");
+      throw new Exception("Invalid input");
     }
 
     public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
@@ -105,11 +105,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences).ThenInclude(x=>x.Icon)
+        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ProfileImage)
           .Include(x => x.Links)
-          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.TimePeriod)
-          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
 
         profile.Competences = profileModel.Competences;
@@ -121,14 +121,14 @@ namespace ConsidKompetens_Services.DataServices
         profile.Links = profileModel.Links;
         profile.Title = profile.Title;
         profile.Modified = DateTime.UtcNow;
-        
-          
+
+
         await _dataDbContext.SaveChangesAsync();
         return await _dataDbContext.ProfileModels
-          .Include(x=>x.Competences)
-          .Include(x=>x.Links)
-          .Include(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel)
-          .FirstOrDefaultAsync(x=>x.Id==profileId);
+          .Include(x => x.Competences)
+          .Include(x => x.Links)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel)
+          .FirstOrDefaultAsync(x => x.Id == profileId);
       }
       catch (Exception e)
       {
@@ -187,17 +187,6 @@ namespace ConsidKompetens_Services.DataServices
       }
       throw new Exception(ImageUploadAsync(profileOwnerId, file).Result.ToString());
     }
-
-    // public async Task<IFormFile> GetImageAsync(int profileId)
-    // {
-    //   var filePath = (await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId)).ProfileImage.Url;
-    //   await using (var stream = System.IO.File.Open(filePath, FileMode.Open, FileAccess.Read))
-    //   {
-    //     //await stream.ReadAsync()
-    //   }
-    //
-    //   return null;
-    // }
 
     public async Task<bool> DeleteProfileAsync(int profileId)
     {

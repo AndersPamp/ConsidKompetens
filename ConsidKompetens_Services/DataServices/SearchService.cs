@@ -53,19 +53,22 @@ namespace ConsidKompetens_Services.DataServices
         throw new Exception(e.Message);
       }
     }
-    public async Task<List<ProfileModel>> GetProfilesByCompetenceAsync(int competenceId)
+    public async Task<List<ProfileModel>> GetProfilesByCompetenceAsync(string competenceInput)
     {
       try
       {
-        var competence = await _dbContext.CompetenceModels.FirstOrDefaultAsync(x => x.Id == competenceId);
+        
         var users = await GetAllProfilesAsync();
         var result = new List<ProfileModel>();
 
         foreach (var user in users)
         {
-          if (user.Competences.Contains(competence))
+          foreach (var competence in user.Competences)
           {
-            result.Add(user);
+            if (competence.Name.ToUpper().Contains(competenceInput.ToUpper()))
+            {
+              result.Add(user);
+            }
           }
         }
         return result;

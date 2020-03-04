@@ -23,7 +23,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         return await _dbContext.OfficeModels.Include(x=>x.Employees).ThenInclude(x=>x.Competences)
           .Include(x=>x.Employees).ThenInclude(x=>x.Links)
-          .Include(x=>x.Employees).ThenInclude(x=>x.Competences).ThenInclude(x=>x.Icon)
+          .Include(x=>x.Employees).ThenInclude(x=>x.Competences)
           .Include(x=>x.Employees).ThenInclude(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques).ToListAsync();
       }
       catch (Exception e)
@@ -38,7 +38,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         return await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
           .Include(x => x.Employees).ThenInclude(x => x.Links)
-          .Include(x => x.Employees).ThenInclude(x => x.Competences).ThenInclude(x => x.Icon)
+          .Include(x => x.Employees).ThenInclude(x => x.Competences)
           .FirstOrDefaultAsync(x=>x.Id==officeId);
       }
       catch (Exception e)
@@ -56,7 +56,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           var office = await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
             .Include(x => x.Employees).ThenInclude(x => x.Links)
-            .Include(x => x.Employees).ThenInclude(x => x.Competences).ThenInclude(x => x.Icon)
+            .Include(x => x.Employees).ThenInclude(x => x.Competences)
             .Include(x => x.Employees).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
             .FirstOrDefaultAsync(x => x.Id == officeId);
 
