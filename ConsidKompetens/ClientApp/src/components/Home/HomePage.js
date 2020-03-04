@@ -10,7 +10,6 @@ const HomePage = () => {
     return(
         <>
         <div className="homeContainer">
-        
            <HomeHeader/>
              <Container>
                {offices.map(list => {

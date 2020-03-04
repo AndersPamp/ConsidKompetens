@@ -3,9 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import { ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import {Alert} from 'reactstrap';
-//import Grid from '@material-ui/core/Grid';
 import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
+import {Redirect} from "react-router-dom";
 import axios from 'axios/index';
 
 const useStyles = makeStyles(theme => ({
@@ -55,7 +55,7 @@ const RegisterPage = () => {
 
     return(
           <div className='container-login'>
-          {registerad ? <Alert color="primary">Alert!!</Alert> : null}
+          {registerad ? <Redirect to="/login" /> : null}
             <ThemeProvider theme={theme}>
                 <img className='image' src={LoginImage} alt="Consid woman"/>
                 <form onSubmit={submitHendler}>

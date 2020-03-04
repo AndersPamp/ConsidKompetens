@@ -47,16 +47,16 @@ const Profile = () => {
   const {handleChange} = useContext(ProfileContext);
 
   
-  const [competense, setCompetense] = useState([]);
+ // const [competense, setCompetense] = useState([]);
   const [update, setUpdate] = useState(false);
   
-  const toggleComplete = (i) => {
-      setCompetense(
-        competense.map(
-          (competense, k) => k === i ? {...competense,
-                        completet: !competense.completet} : competense)
-      )
-  };  
+  // const toggleComplete = (i) => {
+  //     setCompetense(
+  //       competense.map(
+  //         (competense, k) => k === i ? {...competense,
+  //                       completet: !competense.completet} : competense)
+  //     )
+  // };  
 
   function submit(e){
       e.preventDefault();
@@ -113,14 +113,15 @@ const Profile = () => {
                      <SelectForm/>
                       <Grid container spacing={0}>
                         <Grid item xs={12}>
-                        <Competense onSubmit={text => setCompetense([{text, completet: false}, ...competense])}/>
+                        <Competense/>
+                        {/* <Competense onSubmit={text => setCompetense([{text, completet: false}, ...competense])}/>
                          <div className='competense-container'>
                           {competense.map(({text, completet}, i) => (
                             <div className='competense-output'
                             key={text} onClick={() => toggleComplete(i)} style={{display: completet ? 'none' : 'inline-block'}}>{text}
                             </div>
                           ))}
-                        </div>
+                        </div> */}
                         </Grid>
                       </Grid>
                     </div>
