@@ -14,7 +14,6 @@ namespace ConsidKompetens_Core.Interfaces
     Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModel userModel);
     Task<ProfileModel> CreateNewProfileAsync(string profileOwnerId);
     Task<bool> ImageUploadAsync(string profileOwnerId, IFormFile file);
-    // Task<IFormFile> GetImageAsync(int profileId);
     Task<bool> DeleteProfileAsync(int profileId);
   }
 }

@@ -21,10 +21,9 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.OfficeModels.Include(x=>x.Employees).ThenInclude(x=>x.Competences)
-          .Include(x=>x.Employees).ThenInclude(x=>x.Links)
-          .Include(x=>x.Employees).ThenInclude(x=>x.Competences)
-          .Include(x=>x.Employees).ThenInclude(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques).ToListAsync();
+        return await _dbContext.OfficeModels.Include(x=>x.ProfileModels).ThenInclude(x=>x.Competences)
+          .Include(x=>x.ProfileModels).ThenInclude(x=>x.Competences)
+          .Include(x=>x.ProfileModels).ThenInclude(x=>x.ProjectProfileRoles).ThenInclude(x=>x.ProjectModel).ThenInclude(x=>x.Techniques).ToListAsync();
       }
       catch (Exception e)
       {
@@ -36,9 +35,8 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
-          .Include(x => x.Employees).ThenInclude(x => x.Links)
-          .Include(x => x.Employees).ThenInclude(x => x.Competences)
+        return await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
+          .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .FirstOrDefaultAsync(x=>x.Id==officeId);
       }
       catch (Exception e)
@@ -54,10 +52,9 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          var office = await _dbContext.OfficeModels.Include(x => x.Employees).ThenInclude(x => x.Competences)
-            .Include(x => x.Employees).ThenInclude(x => x.Links)
-            .Include(x => x.Employees).ThenInclude(x => x.Competences)
-            .Include(x => x.Employees).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
+          var office = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
+            .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
+            .Include(x => x.ProfileModels).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
             .FirstOrDefaultAsync(x => x.Id == officeId);
 
           result.Add(office);
@@ -90,7 +87,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         var model = await _dbContext.OfficeModels.FindAsync(officeModel.Id);
         model.City = officeModel.City;
-        model.Employees = officeModel.Employees;
+        model.ProfileModels = officeModel.ProfileModels;
         model.TelephoneNumber = officeModel.TelephoneNumber;
         model.Modified = DateTime.Now;
         _dbContext.OfficeModels.Update(model);

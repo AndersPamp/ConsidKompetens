@@ -41,7 +41,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProfileModelId")
+                    b.Property<int>("ProfileModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -49,6 +49,368 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasIndex("ProfileModelId");
 
                     b.ToTable("CompetenceModel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "React",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "React",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "React",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "DOTNET",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "DOTNET",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "DOTNET",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Azure Dev Ops",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Azure Dev Ops",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Azure Dev Ops",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Episerver",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Episerver",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Episerver",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Data Analytics",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Data Analytics",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Data Analytics",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "HTML",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "HTML",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "HTML",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Java Script",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Java Script",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Java Script",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Sharepoint",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Sharepoint",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Sharepoint",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Umbraco",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Umbraco",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Umbraco",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Umbraco",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "C#",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "C#",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "C#",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "C#",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Xamarin",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Xamarin",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Xamarin",
+                            ProfileModelId = 0
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
+                            Level = 0,
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Xamarin",
+                            ProfileModelId = 0
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ImageModel", b =>
@@ -67,12 +429,110 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProfileModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProfileModelId")
+                        .IsUnique();
+
                     b.ToTable("ImageModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\6c6c2eec-f58b-4728-8b6a-20492648ad83.jpeg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\b437b09d-615b-49ff-9317-bfab87d38c84.jpeg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\45f21477-00ef-436f-928b-504753249afa.jpeg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\65c97613-cd49-4aa8-ad5d-f53b05f609f9.jpeg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\1eb5b655-755d-4d21-b78c-8d19eeeb19a9.jpeg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\3a779fe9-15b0-4a10-b607-538393af8ed4.jpeg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\d3a961f6-603c-4c53-9e0b-3e49a81c7fc3.jpeg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\062f39f9-5f27-476e-8bce-e7e447f8d874.jpeg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\84efc798-d9dd-48fe-ad64-e186488bfe88.jpeg"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Alt = "Profile image",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProfileModelId = 0,
+                            Url = "../ConsidKompetens_Data/ProfileImages\\e9e8c451-f41c-4cf7-bfd0-07650578856e.jpeg"
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.LinkModel", b =>
@@ -127,6 +587,176 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasKey("Id");
 
                     b.ToTable("OfficeModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Jönköping",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Stockholm",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Göteborg",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            City = "Göteborg - Paradigm",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "+46 31 761 56 10"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            City = "Malmö",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            City = "Uppsala",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            City = "Linköping",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            City = "Norrköping",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            City = "Örebro",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            City = "Helsingborg",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            City = "Gävle",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            City = "Ljungby",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            City = "Sundsvall",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            City = "Värnamo",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            City = "Karlskrona",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            City = "Västerås",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            City = "Borås",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            City = "Växjö",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            City = "Nyköping",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            City = "Karlshamn",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            City = "Kalmar",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            TelephoneNumber = "036-120210"
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProfileModel", b =>
@@ -151,36 +781,155 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LinksId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OfficeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OfficeModelId")
+                    b.Property<int>("OfficeModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("OwnerID")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProfileImageId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LinksId");
-
                     b.HasIndex("OfficeModelId");
 
-                    b.HasIndex("ProfileImageId");
-
                     b.ToTable("ProfileModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AboutMe = "I am oddly aroused by no crazy chicks see, I told you you're going to be trained to my satisfaction. Unworthy of serious consideration when I picked this username I didn't realize I couldn't change it if you have to look it up don't bother on the first date I should have grown up in the 40s, shooting it depends on the night you're going to be trained to my satisfaction I'm kind of a genius it's huge. Cosplay I despise my wife if you like my profile younger women ultramarathons.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 3,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "6c6c2eec-f58b-4728-8b6a-20492648ad83",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AboutMe = "Complete lack of shame is probably a conspiracy documentary filmmaker I attract girls who are very good-looking. I may be somewhat jaded unworthy of serious consideration I am extremely experienced and talented beekeeping I love the smell of, no crazy chicks I will love you forever I attract girls who are very good-looking females I grow a creepy mustache every February. Clubbing bald is sexy you should message me I'm an enormous man-child staying up late I may be somewhat jaded.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 7,
+                            FirstName = "Idi",
+                            LastName = "Amin",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "b437b09d-615b-49ff-9317-bfab87d38c84",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AboutMe = "If you like please post your real pictures I am oddly aroused by it depends on the night. Shooting laughing hysterically laughing hysterically I should have grown up in the 40s performance art, if that paragraph above turned you off nubile snapchat The Game I am a gentleman first and foremost. I did a lot of modeling work in the mid-80s that just proves my point MFA unworthy of serious consideration my beard when I picked this username I didn't realize I couldn't change it.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 12,
+                            FirstName = "Hozni",
+                            LastName = "Mubarak",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "45f21477-00ef-436f-928b-504753249afa",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AboutMe = "Please post your real pictures heyyy my deep, manly voice P90X. If you dress up like a pin-up doll for me The Game shooting Juggalo with morals, complete lack of shame if you like my profile Ayn Rand no crazy chicks I will love you forever. I despise I'm really good at I'm a nice guy my deep, manly voice I am a hoarder, but only of top shelf stuff I won't bite without permission.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 6,
+                            FirstName = "Elisabeth",
+                            LastName = "Höglund",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "65c97613-cd49-4aa8-ad5d-f53b05f609f9",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AboutMe = "If you have an innie belly button you could say I'm old-fashioned MFA on the first date. When I get drunk I don't really keep a budget everything destructive that I do I attract girls who are very good-looking if that paragraph above turned you off, nubile proper grammar I live in constant amazement of nature and the universe please post your real pictures bald is sexy. I love the smell of I'm really good at my other half if you like are you really going to rule me out becausae of it? my last partner told me.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 5,
+                            FirstName = "Djingis",
+                            LastName = "Khan",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "1eb5b655-755d-4d21-b78c-8d19eeeb19a9",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AboutMe = "My lizard tongue blackjack with morals well-built. Heyyy Think about it! making others feel good females my last partner told me, I'm an enormous man-child other shenanigans keep up with me skydiving well-built. On my fetish list I'm an enormous man-child shooting that just proves my point shooting size 2.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 8,
+                            FirstName = "Emperor",
+                            LastName = "Hirohito",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "3a779fe9-15b0-4a10-b607-538393af8ed4",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AboutMe = "A fairly successful career in sports performance art years ago I discovered unworthy of serious consideration. The Game that's what she said proper grammar with lots of self-respect wildly attractive doesn't hurt, when I picked this username I didn't realize I couldn't change it I despise I grow a creepy mustache every February staying up late complete lack of shame. Someone to provide for you is pretty awesome working on my screenplay I don't really read much these days everything destructive that I do or so I've been told.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 2,
+                            FirstName = "Reinhard",
+                            LastName = "Heydrich",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "d3a961f6-603c-4c53-9e0b-3e49a81c7fc3",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AboutMe = "If I make fun of you it's because I like you it's huge pics on request I'm really good at. I am a hoarder, but only of top shelf stuff you could say I'm old-fashioned I will love you forever if you like documentary filmmaker, heyyy I will love you forever Libertarian Ayn Rand unworthy of serious consideration. Making others feel good I don't really read much these days you need a real man I grow a creepy mustache every February playing devil's advocate crying in my bathtub.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 0,
+                            FirstName = "Hatte",
+                            LastName = "Furuhagen",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "062f39f9-5f27-476e-8bce-e7e447f8d874",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AboutMe = "Be my partner in crime is probably a conspiracy very successsful entrepreneur I will love you forever. In my birthday suit organized chaos I grow a creepy mustache every February organized chaos I am a hoarder, but only of top shelf stuff, proper grammar Juggalo ages 18 - 22 well-built for real though. Living on sailboats or so I've been told if you have to look it up don't bother you should message me I starred in my own reality show The Game.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 22,
+                            FirstName = "Biskop",
+                            LastName = "Brask",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "84efc798-d9dd-48fe-ad64-e186488bfe88",
+                            Title = "Developer"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AboutMe = "If you have an innie belly button my other half work hard play hard because I am a paradox. I have an IQ of 140, which means complete lack of shame I am a hoarder, but only of top shelf stuff if you dress up like a pin-up doll for me playing devil's advocate, it's huge looking for a third Libertarian extreme living on sailboats. MFA years ago I discovered Juggalo are you really going to rule me out becausae of it? I did a lot of modeling work in the mid-80s but I only smoke when drinking.",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Experience = 14,
+                            FirstName = "Griselda",
+                            LastName = "Blanco",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            OfficeModelId = 0,
+                            OwnerID = "e9e8c451-f41c-4cf7-bfd0-07650578856e",
+                            Title = "Developer"
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectModel", b =>
@@ -202,14 +951,43 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TimePeriodId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TimePeriodId");
-
                     b.ToTable("ProjectModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "My alter-ego is crossfit giving massages if you like. For real though I live in constant amazement of nature and the universe I don't really read much these days extreme Juggalo, I have an IQ of 140, which means staying up late if you have to look it up don't bother work hard play hard trapped in a sexless marriage. When I get drunk I am extremely experienced and talented you should message me Libertarian my beard my deep, manly voice.",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Öresundskraft"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Is pretty awesome that means I am wonderful crossfit performance art. I hope there are good girls left extreme blackjack see, I told you in my birthday suit, if you have a BMI under 25 keep up with me I starred in my own reality show bald is sexy it's huge. Working on my screenplay dive bars laughing hysterically MFA I'm a nice guy clubbing.",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Peab"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Living on sailboats most cats eventually love me is probably a conspiracy my lizard tongue. Most cats eventually love me I know shirtless pics are a no-no, but P90X P90X full-contact, I will love you forever the fact that you are even considering schooling me I am a gentleman first and foremost I'm the last of a dying breed if you have an innie belly button. I may be somewhat jaded someone to provide for you if I make fun of you it's because I like you you're going to be trained to my satisfaction is pretty awesome I don't really read much these days.",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Vinslövs Bangolf"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Description = "Most cats eventually love me proper grammar most cats eventually love me dive bars. I am a hoarder, but only of top shelf stuff throwing rocks at trains I starred in my own reality show staying up late motorcycle collection, I have an IQ of 140, which means if you dress up like a pin-up doll for me extreme everything destructive that I do full-contact. Really only soft drugs size 2 throwing rocks at trains friendzone one time in middle school I don't really keep a budget.",
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Name = "Kenneths Kennel & Kebab"
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectProfileRole", b =>
@@ -230,6 +1008,80 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasIndex("RoleModelId");
 
                     b.ToTable("ProjectProfileRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectModelId = 1,
+                            ProfileModelId = 1,
+                            RoleModelId = 1
+                        },
+                        new
+                        {
+                            ProjectModelId = 2,
+                            ProfileModelId = 5,
+                            RoleModelId = 2
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 6,
+                            RoleModelId = 2
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 3,
+                            RoleModelId = 3
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 7,
+                            RoleModelId = 3
+                        },
+                        new
+                        {
+                            ProjectModelId = 2,
+                            ProfileModelId = 4,
+                            RoleModelId = 4
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 8,
+                            RoleModelId = 4
+                        },
+                        new
+                        {
+                            ProjectModelId = 3,
+                            ProfileModelId = 10,
+                            RoleModelId = 5
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 5,
+                            RoleModelId = 5
+                        },
+                        new
+                        {
+                            ProjectModelId = 1,
+                            ProfileModelId = 2,
+                            RoleModelId = 6
+                        },
+                        new
+                        {
+                            ProjectModelId = 3,
+                            ProfileModelId = 9,
+                            RoleModelId = 6
+                        },
+                        new
+                        {
+                            ProjectModelId = 4,
+                            ProfileModelId = 1,
+                            RoleModelId = 6
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.RoleModel", b =>
@@ -269,7 +1121,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProjectModelId")
+                    b.Property<int>("ProjectModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -292,6 +1144,9 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProjectModelId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
@@ -300,36 +1155,75 @@ namespace ConsidKompetens_Data.Migrations.DataDb
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProjectModelId")
+                        .IsUnique();
+
                     b.ToTable("TimePeriod");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProjectModelId = 0,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1994),
+                            Stop = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1959)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProjectModelId = 0,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1998),
+                            Stop = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1984)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProjectModelId = 0,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1992),
+                            Stop = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1980)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            ProjectModelId = 0,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1986),
+                            Stop = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1974)
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.CompetenceModel", b =>
                 {
                     b.HasOne("ConsidKompetens_Core.Models.ProfileModel", null)
                         .WithMany("Competences")
-                        .HasForeignKey("ProfileModelId");
+                        .HasForeignKey("ProfileModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ConsidKompetens_Core.Models.ImageModel", b =>
+                {
+                    b.HasOne("ConsidKompetens_Core.Models.ProfileModel", null)
+                        .WithOne("ImageModel")
+                        .HasForeignKey("ConsidKompetens_Core.Models.ImageModel", "ProfileModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProfileModel", b =>
                 {
-                    b.HasOne("ConsidKompetens_Core.Models.LinkModel", "Links")
-                        .WithMany()
-                        .HasForeignKey("LinksId");
-
                     b.HasOne("ConsidKompetens_Core.Models.OfficeModel", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("OfficeModelId");
-
-                    b.HasOne("ConsidKompetens_Core.Models.ImageModel", "ProfileImage")
-                        .WithMany()
-                        .HasForeignKey("ProfileImageId");
-                });
-
-            modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectModel", b =>
-                {
-                    b.HasOne("ConsidKompetens_Core.Models.TimePeriod", "TimePeriod")
-                        .WithMany()
-                        .HasForeignKey("TimePeriodId");
+                        .WithMany("ProfileModels")
+                        .HasForeignKey("OfficeModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.ProjectProfileRole", b =>
@@ -357,7 +1251,18 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                 {
                     b.HasOne("ConsidKompetens_Core.Models.ProjectModel", null)
                         .WithMany("Techniques")
-                        .HasForeignKey("ProjectModelId");
+                        .HasForeignKey("ProjectModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ConsidKompetens_Core.Models.TimePeriod", b =>
+                {
+                    b.HasOne("ConsidKompetens_Core.Models.ProjectModel", null)
+                        .WithOne("TimePeriod")
+                        .HasForeignKey("ConsidKompetens_Core.Models.TimePeriod", "ProjectModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

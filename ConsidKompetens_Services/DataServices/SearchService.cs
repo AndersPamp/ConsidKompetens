@@ -25,7 +25,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         return await _dbContext.ProfileModels.Include(x => x.Competences)
-          .Include(x => x.ProfileImage).ToListAsync();
+          .Include(x => x.ImageModel).ToListAsync();
       }
       catch (Exception e)
       {
@@ -43,7 +43,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in selectedOfficeIds)
         {
-          var officeDelta = await _dbContext.OfficeModels.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == officeId);
+          var officeDelta = await _dbContext.OfficeModels.Include(x => x.ProfileModels).FirstOrDefaultAsync(x => x.Id == officeId);
           result.Add(officeDelta);
         }
         return result;
