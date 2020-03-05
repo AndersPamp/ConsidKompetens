@@ -22,7 +22,7 @@ namespace ConsidKompetens_Services.DataServices
       try
       {
         return await _dbContext.ProjectModels
-          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
       }
@@ -36,8 +36,10 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper())).Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
+        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper()))
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
+          .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel)
+          .Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
       }
       catch (Exception e)
@@ -50,7 +52,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ProfileImage)
+        return await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .FirstOrDefaultAsync(x => x.Id == id);
       }

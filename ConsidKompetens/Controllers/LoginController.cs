@@ -22,18 +22,6 @@ namespace ConsidKompetens_Web.Controllers
       _loginService = loginService;
     }
 
-    //[HttpGet]
-    //[OutputCache(Duration = 10)]
-    //public IActionResult Testing()
-    //{
-    //  count++;
-    //  return Ok(count);
-    //}
-    [HttpGet]
-    public IActionResult Get()
-    {
-      return Ok(new ResponseModel { Success = true });
-    }
     // POST: api/Login
     [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginModelReq loginModel)
@@ -46,8 +34,8 @@ namespace ConsidKompetens_Web.Controllers
         {
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
-          
-          return Ok(new ResponseModel { Success = true, BearerToken = token });
+
+          return Ok(new ResponseModel { Success = true, BearerToken = token, Data = new ResponseData { Email = user.Email } });
         }
         //3. If user unauth. return UnAuthorized
         return Unauthorized(new ResponseModel { Success = false, ErrorMessage = "Email-address and/or password - incorrect" });
@@ -59,10 +47,10 @@ namespace ConsidKompetens_Web.Controllers
     [Route("ResetPassword")]
     public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordModel input)
     {
-      
+
       if (!ModelState.IsValid)
       {
-        return BadRequest(new ResponseModel{Success = false, ErrorMessage = "The details provided are not complete."});
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = "The details provided are not complete." });
       }
       if (input.Password != input.ConfirmPassword)
       {
@@ -78,7 +66,7 @@ namespace ConsidKompetens_Web.Controllers
         return Ok(new ResponseModel { Success = true });
       }
 
-      return StatusCode(500, new ResponseModel {Success = false, ErrorMessage = "Something went wrong while trying to reset your password."});
+      return StatusCode(500, new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to reset your password." });
 
     }
 

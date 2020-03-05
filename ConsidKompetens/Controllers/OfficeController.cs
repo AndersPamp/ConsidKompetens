@@ -27,6 +27,20 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpGet]
+    [Route("Offices")]
+    public async Task<ActionResult<ResponseModel>> GetAllOffices()
+    {
+      try
+      {
+        return Ok(new ResponseModel { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e });
+      }
+    }
+
+    [HttpGet]
     public async Task<ActionResult<ResponseModel>> Get([FromBody]List<int> officeIds)
     {
       try
@@ -60,10 +74,10 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
+          BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
 
     [HttpPut]
@@ -78,11 +92,11 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
+          BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
         }
       }
 
-      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
+      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
     }
   }
 }

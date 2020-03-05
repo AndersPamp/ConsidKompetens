@@ -40,7 +40,7 @@ namespace ConsidKompetens_Web.Controllers
         var images = new List<string>();
         foreach (var profile in profiles)
         {
-          images.Add(Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url));
+          images.Add(Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url));
         }
         return Ok(new ResponseModel()
         {
@@ -71,7 +71,7 @@ namespace ConsidKompetens_Web.Controllers
           Data = new ResponseData
           {
             ProfileModels = new List<ProfileModel> { profile },
-            Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url) }
+            Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) }
           }
         });
       }
@@ -112,7 +112,7 @@ namespace ConsidKompetens_Web.Controllers
             Data = new ResponseData
             {
               ProfileModels = new List<ProfileModel> { result },
-              OfficeModels = new List<OfficeModel> { await _officeDataService.GetOfficeByIdAsync(profile.OfficeId) }
+              OfficeModels = new List<OfficeModel> { await _officeDataService.GetOfficeByIdAsync(profile.OfficeModelId) }
             }
           });
         }
@@ -139,7 +139,7 @@ namespace ConsidKompetens_Web.Controllers
             Data = new ResponseData
             {
               ProfileModels = new List<ProfileModel> { await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID) },
-              Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ProfileImage.Url) }
+              Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) }
             }
           });
         }
