@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
@@ -15,22 +15,24 @@ namespace ConsidKompetens_Services.DataServices
 {
   public class ProfileDataService : IProfileDataService
   {
-    private readonly DataDbContext _dataDbContext;
+    private readonly DataDbContext _dbContext;
     private readonly IOptions<AppSettings> _options;
     private readonly IImageDataService _imageDataService;
+    private readonly IOfficeDataService _officeDataService;
 
-    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService)
+    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService, IOfficeDataService officeDataService)
     {
       _options = options;
-      _dataDbContext = DataDbContext;
+      _dbContext = DataDbContext;
       _imageDataService = imageDataService;
+      _officeDataService = officeDataService;
     }
 
     public async Task<List<ProfileModel>> GetAllProfilesAsync()
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.ImageModel)
+        return await _dbContext.ProfileModels.Include(x => x.ImageModel)
           .Include(x => x.Competences).ToListAsync();
       }
       catch (Exception e)
@@ -43,7 +45,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dataDbContext.ProfileModels.Include(x => x.Competences)
+        return await _dbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
@@ -61,7 +63,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         try
         {
-          return await _dataDbContext.ProfileModels.Include(x => x.Competences)
+          return await _dbContext.ProfileModels.Include(x => x.Competences)
             .Include(x => x.ImageModel)
             .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
             .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
@@ -83,7 +85,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          offices.Add(await _dataDbContext.OfficeModels.Include(x=>x.ProfileModels).FirstOrDefaultAsync(x=>x.Id==officeId));
+          offices.Add(await _dbContext.OfficeModels.Include(x=>x.ProfileModels).FirstOrDefaultAsync(x=>x.Id==officeId));
         }
         foreach (var office in offices)
         {
@@ -100,28 +102,28 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModel profileModel)
+    public async Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModelReq input)
     {
       try
       {
-        var profile = await _dataDbContext.ProfileModels.Include(x => x.Competences)
+        var profile = await _dbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
 
-        profile.Competences = profileModel.Competences;
-        profile.Experience = profileModel.Experience;
-        profile.AboutMe = profileModel.AboutMe;
-        profile.FirstName = profileModel.FirstName;
-        profile.LastName = profileModel.LastName;
-        profile.OfficeModelId = profileModel.OfficeModelId;
-        profile.Title = profile.Title;
+        profile.Competences = input.Competences;
+        profile.Experience = input.Experience;
+        profile.AboutMe = input.AboutMe;
+        profile.FirstName = input.FirstName;
+        profile.LastName = input.LastName;
+        profile.Title = input.Title;
         profile.Modified = DateTime.UtcNow;
+        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
 
+        await _dbContext.SaveChangesAsync();
 
-        await _dataDbContext.SaveChangesAsync();
-        return await _dataDbContext.ProfileModels
+        return await _dbContext.ProfileModels
           .Include(x => x.Competences)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel)
           .FirstOrDefaultAsync(x => x.Id == profileId);
@@ -142,8 +144,8 @@ namespace ConsidKompetens_Services.DataServices
           Created = DateTime.UtcNow,
           ImageModel = new ImageModel { Created = DateTime.UtcNow },
         };
-        await _dataDbContext.ProfileModels.AddAsync(newUserModel);
-        await _dataDbContext.SaveChangesAsync();
+        await _dbContext.ProfileModels.AddAsync(newUserModel);
+        await _dbContext.SaveChangesAsync();
 
         return newUserModel;
       }
@@ -167,7 +169,7 @@ namespace ConsidKompetens_Services.DataServices
             var imageModel = new ImageModel { Created = DateTime.UtcNow, Url = filePath, Alt = "Profile image" };
             await _imageDataService.RegisterNewImageModelAsync(imageModel);
             profile.ImageModel = imageModel;
-            await _dataDbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
           }
           else
           {
@@ -188,9 +190,9 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var profile = await _dataDbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId);
-        _dataDbContext.ProfileModels.Remove(profile);
-        await _dataDbContext.SaveChangesAsync();
+        var profile = await _dbContext.ProfileModels.FirstOrDefaultAsync(x => x.Id == profileId);
+        _dbContext.ProfileModels.Remove(profile);
+        await _dbContext.SaveChangesAsync();
         return true;
       }
       catch (Exception e)

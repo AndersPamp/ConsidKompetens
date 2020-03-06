@@ -97,7 +97,7 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpPut("{id}")]
     [Route("editprofile")]
-    public async Task<ActionResult<ResponseModel>> EditProfile(ProfileModel input)
+    public async Task<ActionResult<ResponseModel>> EditProfile(ProfileModelReq input)
     {
       if (ModelState.IsValid)
       {
@@ -112,7 +112,7 @@ namespace ConsidKompetens_Web.Controllers
             Data = new ResponseData
             {
               ProfileModels = new List<ProfileModel> { result },
-              OfficeModels = new List<OfficeModel> { await _officeDataService.GetOfficeByIdAsync(profile.OfficeModelId) }
+              OfficeModels = new List<OfficeModel> {await _officeDataService.GetOfficeContainingProfileIdAsync(profile.Id) }
             }
           });
         }

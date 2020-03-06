@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ProfileImages\readme.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.44.0.1879" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.2" />
@@ -22,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsidKompetens_Core\ConsidKompetens_Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ProfileImages\" />
+    <Folder Include="Temp\" />
   </ItemGroup>
 
 </Project>
