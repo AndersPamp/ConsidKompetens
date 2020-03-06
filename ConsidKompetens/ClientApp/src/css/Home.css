@@ -167,6 +167,41 @@
   }
 
   .office-list:hover{
-    box-shadow: 1px 1px 5px 2px rgb(135, 135, 136);
+    box-shadow: 1px 1px 5px 2px rgb(173, 173, 173);
     color: rgb(21, 32, 58);
   }
+
+  .list-container{
+    margin: 5%;
+    padding: 4%;
+    box-shadow: 1px 1px 5px 2px rgb(181, 181, 182);
+  }
+
+  .list-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2%;
+    color: #DD0332;
+  }
+
+  .list-container button{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 140%;
+    border-radius: 9px;
+    width: 20%;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #DD0332;
+    color: #DD0332;
+    border: none;
+  }
+
+.list-container button:focus{
+    outline: none;
+}
+
+.list-container button:hover{
+    background-color: #DD0332;;
+    color: white;
+}
+  
