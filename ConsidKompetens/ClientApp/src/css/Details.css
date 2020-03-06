@@ -1,0 +1,63 @@
+.details-header{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid rgb(214, 213, 213);
+}
+
+.user-img{
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+    border: 1px solid black;
+    height: 150px;
+    width: 150px;
+}
+
+.img-container{
+    padding-top: 5%;
+    padding-left: 17%;
+}
+
+.details{
+    padding-bottom: 2%;
+}
+
+.details h4, h6, h5, a {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dev-name{
+    padding-top: 2%;
+    margin-bottom: 0;
+}
+
+.container-list{
+    border-bottom: 1px solid rgb(214, 213, 213);
+}
+
+.about{
+    color: rgb(248, 64, 64);
+    margin-bottom: 0;
+}
+
+.competense-output{
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    margin: 8px 5px 1px 1px;
+    font-size: 110%;
+    border: 1.3px solid rgb(163, 162, 162);
+    border-radius: 15px;
+    text-align: center;
+    color: rgb(128, 122, 122);
+}
+
+.more{
+    padding-left: 70%;
+    color: rgb(248, 64, 64);
+    font-size: 120%;
+}
+
+.more:hover{
+    color: rgb(248, 64, 64);
+}

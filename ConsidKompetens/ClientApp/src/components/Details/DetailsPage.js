@@ -1,27 +1,90 @@
 import React from 'react';
 import HomeHeader from '../Home/HomeHeader';
 import { Container } from 'reactstrap';
-import offices from '../../Helper/Offices.json';
+import Grid from '@material-ui/core/Grid';
+import '../../css/Details.css';
 
 const DetailsPage = () => {
+
+
     return (
           <div className="homeContainer">
             <HomeHeader/>
-             <Container>
-               {offices.map(list => {
-                   return(
-                       <a className='office-list-a' href="/details" key={list.id}>
-                       <div className='office-list'>
-                           <h3>{list.office}</h3>
-                           <h6>Kullagatan 3</h6>
-                           <h6>25 486 Göteborg</h6>
-                           <h6>Tel: 256 256 265</h6>
-                       </div>
-                       </a>
-                   )
-               })}
-              
-            </Container>
+                <Container>
+                        <h1 className='details-header'>Helsingborg</h1>
+                        <div className='container-list'>
+                            <Grid container spacing={0}>
+                                <Grid item xs={5}>
+                                    <div className='img-container'>
+                                        <img className='user-img'
+                                             src='https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg'
+                                             alt="developer"/>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={7}>
+                                <div className='details'>
+                                    <h4 className='dev-name'>Josefin Persson</h4>
+                                    <h6>Backend utvecklare</h6>
+                                    <h5 className='about'>Om mig:</h5>
+                                    <label htmlFor="">Detta är jag...</label>
+                                    <h5 className='about'>Kompetens:</h5>
+                                    <div className='competense-output'>React</div>
+                                    <div className='competense-output'>.Net</div>
+                                    <div className='competense-output'>Episerver</div>
+                                    <a className='more' href='/employee'>Mer info +</a>
+                                </div>
+                                </Grid>
+                            </Grid>
+                        </div>
+                        <div className='container-list'>
+                            <Grid container spacing={0}>
+                                <Grid item xs={5}>
+                                    <div className='img-container'>
+                                        <img className='user-img'
+                                             src='https://www.cfmoller.com/img/C-F-Moeller-Architects-establishes-presence-in-Malmo-img-10347-w400-h400.jpg'
+                                             alt="developer"/>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={7}>
+                                <div className='details'>
+                                    <h4 className='dev-name'>David Persson</h4>
+                                    <h6>Frontend utvecklare</h6>
+                                    <h5 className='about'>Om mig:</h5>
+                                    <label htmlFor="">Detta är jag...</label>
+                                    <h5 className='about'>Kompetens:</h5>
+                                    <div className='competense-output'>Angular</div>
+                                    <div className='competense-output'>CSS</div>
+                                    <div className='competense-output'>HTML</div>
+                                    <a className='more' href='/employee'>Mer info +</a>
+                                </div>
+                                </Grid>
+                            </Grid>
+                        </div>
+                        <div className='container-list'>
+                            <Grid container spacing={0}>
+                                <Grid item xs={5}>
+                                    <div className='img-container'>
+                                        <img className='user-img'
+                                             src='https://accel-software.com/assets/pages/img/people/img3-large.jpg'
+                                             alt="developer"/>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={7}>
+                                <div className='details'>
+                                    <h4 className='dev-name'>Cristofer Persson</h4>
+                                    <h6>Säljare</h6>
+                                    <h5 className='about'>Om mig:</h5>
+                                    <label htmlFor="">Detta är jag...</label>
+                                    <h5 className='about'>Kompetens:</h5>
+                                    <div className='competense-output'>Sälj</div>
+                                    <div className='competense-output'>...</div>
+                                    <div className='competense-output'>...</div>
+                                    <a className='more' href='/employee'>Mer info +</a>
+                                </div>
+                                </Grid>
+                            </Grid>
+                        </div>
+                </Container>
         </div>
     )
 }
