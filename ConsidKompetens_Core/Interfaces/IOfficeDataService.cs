@@ -9,6 +9,7 @@ namespace ConsidKompetens_Core.Interfaces
     Task<List<OfficeModel>> GetOfficesAsync();
     Task<OfficeModel> GetOfficeByIdAsync(int officeId);
     Task<List<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds);
+    Task<OfficeModel> GetOfficeContainingProfileIdAsync(int profileId);
     Task<bool> CreateNewOfficeAsync(OfficeModel officeModel);
     Task<OfficeModel> EditOfficeAsync(OfficeModel officeModel);
   }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsidKompetens_Data.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20200303114946_Initial")]
+    [Migration("20200306123609_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,6 +135,168 @@ namespace ConsidKompetens_Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "062f39f9-5f27-476e-8bce-e7e447f8d874",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a42d7741-bef1-499c-984f-78dfde8394dc",
+                            Email = "test08@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST08@CONSID.SE",
+                            NormalizedUserName = "TEST08@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH+H4aWDMMUw2+5X3rd3QXksLo2N0ttyQPGp6amrO9h9zfpPl4JuvMaHrFi/jAcMrA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5Z4KSSACVENKW2F4TVO4N7XCCR6F6YMF",
+                            TwoFactorEnabled = false,
+                            UserName = "test08@consid.se"
+                        },
+                        new
+                        {
+                            Id = "1eb5b655-755d-4d21-b78c-8d19eeeb19a9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "14cd057c-353b-407b-8dfa-5804c681d831",
+                            Email = "test05@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST05@CONSID.SE",
+                            NormalizedUserName = "TEST05@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPsBbb71lZtdTapbTyDxxUVhJYISTvtunWps5B4NTKLigAkXTU06yBpyXU7/ex4t6w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "FZ7WP5AIFFTV7HSNOGATMWQJODOGJCH5",
+                            TwoFactorEnabled = false,
+                            UserName = "test05@consid.se"
+                        },
+                        new
+                        {
+                            Id = "3a779fe9-15b0-4a10-b607-538393af8ed4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5b303bc4-71a3-4890-96b8-1929402dccd3",
+                            Email = "test06@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST08@CONSID.SE",
+                            NormalizedUserName = "TEST06@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJYouQJ/yNR9wQoeOhwF49Hb+yWSLl+1ZcFG+txxHyTG5CFMqUcO+pwe5JqFtQW8PA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ZBTDM27HGFBTPCF2OKVTNT3W6TL4L5IO",
+                            TwoFactorEnabled = false,
+                            UserName = "test06@consid.se"
+                        },
+                        new
+                        {
+                            Id = "45f21477-00ef-436f-928b-504753249afa",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "45d838ba-f116-488d-9c61-3d33e95d0821",
+                            Email = "test03@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST03@CONSID.SE",
+                            NormalizedUserName = "TEST03@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBukuiXoLi1UFKOy3ciTihooMYcxGKLjSGHZ5usGXL9GS2kriBVCOK5nCWdwQqs8HQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "R5GFLIMSYEXS7GD42SG5WZ2C5WYUTBRY",
+                            TwoFactorEnabled = false,
+                            UserName = "test03@consid.se"
+                        },
+                        new
+                        {
+                            Id = "65c97613-cd49-4aa8-ad5d-f53b05f609f9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "086aef08-c584-4e6d-a209-05f606a046b1",
+                            Email = "test04@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST04@CONSID.SE",
+                            NormalizedUserName = "TEST04@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHAYJycGYv6YVSCEndvwcJRKpAte1XYj7GWrpz/CHfPMYe4nyGBr23YN4uB4TugWeA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "YCKY2RBQBWME52MQ47WMYH3J5DMFRLHS",
+                            TwoFactorEnabled = false,
+                            UserName = "test04@consid.se"
+                        },
+                        new
+                        {
+                            Id = "6c6c2eec-f58b-4728-8b6a-20492648ad83",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f0375821-a978-45fa-bc87-f6abb3f28687",
+                            Email = "test01@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST01@CONSID.SE",
+                            NormalizedUserName = "TEST01@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKVxOyt55J5c8FXP8u5PEuJ7u8RIoKSf8MzcUSrFKSkwKIUP9XmzLNY69MO/Y9dWHA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "Z46LD455L6DQH6MX5IF45TW3FRBSXUOP",
+                            TwoFactorEnabled = false,
+                            UserName = "test01@consid.se"
+                        },
+                        new
+                        {
+                            Id = "84efc798-d9dd-48fe-ad64-e186488bfe88",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "108565f4-3fc9-42df-8116-cc25f1c305fe",
+                            Email = "test09@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST09@CONSID.SE",
+                            NormalizedUserName = "TEST09@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMK2rT1kfBzfMpDWZvbz41enyW5smrBSAZbU0VJNB9xTev3HoRylwiL1gqHe6ta0Zg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "FBZJKSHNPHDJNOC6YIFTRQYRKTQBWWZM",
+                            TwoFactorEnabled = false,
+                            UserName = "test09@consid.se"
+                        },
+                        new
+                        {
+                            Id = "b437b09d-615b-49ff-9317-bfab87d38c84",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "aeaa1a13-cda0-47f9-82be-779246b0a645",
+                            Email = "test02@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST02@CONSID.SE",
+                            NormalizedUserName = "TEST02@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIBrSfEqoUYhAEzvJT+D4h0dYvZUx1DTQiDblQNlOwympB7kJmLUj3QYkRzgYcbW1A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "XNTXT3KJOSOBTRJC4DSIFA3QDQYVQ3OU",
+                            TwoFactorEnabled = false,
+                            UserName = "test02@consid.se"
+                        },
+                        new
+                        {
+                            Id = "d3a961f6-603c-4c53-9e0b-3e49a81c7fc3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a9f4fc74-272d-4a11-86ef-c5c1a3484257",
+                            Email = "test07@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST07@CONSID.SE",
+                            NormalizedUserName = "TEST07@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMHqg4+z3zu2R5Zq2NCWTM0+2uXLJr+SxSuuA2rDyBgV2Hfo63E5HECHq/2cjx0hVg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "YU7JGCVN44WJDFH4GSHA4EKJI527DISU",
+                            TwoFactorEnabled = false,
+                            UserName = "test07@consid.se"
+                        },
+                        new
+                        {
+                            Id = "e9e8c451-f41c-4cf7-bfd0-07650578856e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cd651042-d2ad-41fb-b16a-728efe62e05b",
+                            Email = "test10@consid.se",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST10@CONSID.SE",
+                            NormalizedUserName = "TEST10@CONSID.SE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPf5H1iZD2F1c8FkKTxpBfqL/bPXPuhGa5M2ZuBQ7Spkz6pYPQDvTbSA+msPSong6w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4QMMOJCAOGTBZWEDVBI2DTHF5SC66EFG",
+                            TwoFactorEnabled = false,
+                            UserName = "test10@consid.se"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

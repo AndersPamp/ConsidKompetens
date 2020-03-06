@@ -9,11 +9,12 @@ namespace ConsidKompetens_Core.Models
     public string LastName { get; set; }
     public string AboutMe { get; set; }
     public string Title { get; set; }
-    public int OfficeId { get; set; }
-    public ImageModel ProfileImage { get; set; }
-    public List<CompetenceModel> Competences { get; set; }
+    public int ImageModelId { get; set; }
+    public ImageModel ImageModel { get; set; }
+    public ICollection<CompetenceModel> Competences { get; set; }
     public ushort Experience { get; set; }
-    public LinkModel Links { get; set; }
-    public List<ProjectProfileRole> ProjectProfileRoles { get; set; }
+    public string LinkedInUrl { get; set; }
+    public string ResumeUrl { get; set; }
+    public ICollection<ProjectProfileRole> ProjectProfileRoles { get; set; }
   }
 }

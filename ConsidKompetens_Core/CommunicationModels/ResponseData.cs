@@ -10,5 +10,6 @@ namespace ConsidKompetens_Core.CommunicationModels
     public List<ProjectModel> ProjectModels { get; set; }
     public List<CompetenceModel> CompetenceModels { get; set; }
     public List<string> Images { get; set; }
+    public string Email { get; set; }
   }
 }
