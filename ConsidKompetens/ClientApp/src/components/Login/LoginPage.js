@@ -42,6 +42,7 @@ const LoginPage = () => {
           .then((response) => {
 
               let token = response.data.bearerToken;
+              console.log(response);
               
           if (response.status === 200) 
           {
@@ -53,6 +54,8 @@ const LoginPage = () => {
           console.log(error);
       });
     };
+
+
 
     const handleChange = (event) => {
       setUserLogin({...userLogin, [event.target.name]: event.target.value});

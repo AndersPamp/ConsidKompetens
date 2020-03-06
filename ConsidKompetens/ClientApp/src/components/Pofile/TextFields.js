@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {ProfileContext} from '../../Context/PofileContext';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -19,9 +20,8 @@ const useStyles = makeStyles(theme => ({
 
 const TextFields = () => {
     const classes = useStyles();
-
-  const user = useContext(ProfileContext);
-  const {handleChange} = useContext(ProfileContext);
+    const user = useContext(ProfileContext);
+    const {handleChange} = useContext(ProfileContext);
 
     return(
         <>
@@ -32,7 +32,7 @@ const TextFields = () => {
             id="mui-theme-provider-standard-input one"
             name='firstName'
             value={user.firstName}
-            onChange={handleChange}  
+            onChange={handleChange} 
             />
         <TextField
             className={classes.margin}

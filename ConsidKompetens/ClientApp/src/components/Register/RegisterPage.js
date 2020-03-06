@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
-import {Alert} from 'reactstrap';
 import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
 import {Redirect} from "react-router-dom";

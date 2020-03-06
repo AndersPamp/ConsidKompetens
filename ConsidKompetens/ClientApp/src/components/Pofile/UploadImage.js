@@ -10,7 +10,7 @@ const UploadImage = () => {
         </div>
         <div>
             <form >
-                <input type="file" />
+                {/* <input type="file" /> */}
                 <button type='submit' className='load-img-button'>Ladda upp bild</button>
             </form>
         </div>

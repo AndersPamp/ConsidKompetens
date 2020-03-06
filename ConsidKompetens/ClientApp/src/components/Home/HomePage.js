@@ -7,6 +7,7 @@ import '../../css/Home.css';
 
 const HomePage = () => {
     
+    
     return(
         <>
         <div className="homeContainer">
@@ -26,31 +27,6 @@ const HomePage = () => {
                })}
               
             </Container>
-            {/* <Container>
-               {officeList.map(list => {
-                   return(
-                       <Grid container spacing={0}>
-                            <Grid item xs={4}>
-                                <a className='home-item' href="/details" key={list.officeOne}>{list.officeOne}</a>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <a className='home-item' href="/details" key={list.officeTwo}>{list.officeTwo}</a>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <a className='home-item' href="/details" key={list.officeThree}>{list.officeThree}</a>
-                            </Grid>
-                        </Grid>
-                   )
-               })}
-               <Grid container spacing={0}>
-                            <Grid item xs={4}>
-                                <a className='home-item-extra' href="#" >Kalmar</a>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <a className='home-item-extra' href="#" >Västerås</a>
-                            </Grid>
-                        </Grid>
-            </Container> */}
         </div>
         </>
     )

@@ -9,6 +9,7 @@ const HomeHeader = () => {
 
     function handleLogoOut() {
             localStorage.removeItem('secret');
+            localStorage.removeItem('profile');
             setLoggedOut({loggedOut: true});
     }
 
