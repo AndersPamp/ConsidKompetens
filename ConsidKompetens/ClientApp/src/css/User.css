@@ -83,26 +83,6 @@
     color: white;
 }
 
-.plus-icon{
-    margin-top: 14%;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 9px;
-    width: 50%;
-    background-color: white;
-    box-shadow: 1px 1px 3px 1px #DD0332;
-    color: #DD0332;
-    border: none;
-}
-
-.plus-icon:hover{
-    background-color: #DD0332;
-    color: white;
-}
-
-.plus-icon:focus{
-    outline: none;
-}
-
 .competens{
     display: inline;
 }
@@ -114,11 +94,45 @@
     margin-left: 2%;
     font-size: 110%;
     padding: 3px 15px;
-    border: 1px solid black;
+    border: 1.3px solid rgb(163, 162, 162);
     border-radius: 15px;
     text-align: center;
+    color: rgb(128, 122, 122);
 }
 
 .competense-container{
     margin-top: 2%;
+}
+
+.add-btn{
+    margin-top: 1%;
+    margin-left: 2%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 47%;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #DD0332;
+    color: #DD0332;
+    border: none;
+}
+
+.add-btn:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.add-btn:focus{
+    outline: none;
+}
+
+.delete-competense{
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 5px;
+    color: #DD0332;
+    border: none;
+}
+
+.delete-competense:hover{
+    font-weight: bold;
 }

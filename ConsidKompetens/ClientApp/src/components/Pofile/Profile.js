@@ -45,18 +45,7 @@ const Profile = () => {
 
   const input = useContext(ProfileContext);
   const {handleChange} = useContext(ProfileContext);
-
-  
- // const [competense, setCompetense] = useState([]);
-  const [update, setUpdate] = useState(false);
-  
-  // const toggleComplete = (i) => {
-  //     setCompetense(
-  //       competense.map(
-  //         (competense, k) => k === i ? {...competense,
-  //                       completet: !competense.completet} : competense)
-  //     )
-  // };  
+  const [fName, setFirstName] = useState('');
 
   function submit(e){
       e.preventDefault();
@@ -69,7 +58,6 @@ const Profile = () => {
         {
           localStorage.setItem('profile', result);
           alert('You have update your profile');
-          setUpdate({update: true});
           console.log(result);
           console.log(response);
         }
@@ -78,18 +66,25 @@ const Profile = () => {
     })
   }
 
-//   function submit(e){
-//       e.preventDefault();
-//       axios.put('https://localhost:44323/api/profile/editprofile',profile , { headers: { 'Authorization': `Bearer ${jwt}` } })
-//       .then((response) => {
+  function getProfile(){
+    axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
+    .then((response) => {
+      console.log(response);
+      const user = response.data;
+      setFirstName(user)
       
-//       const result = response.config.data;
-//       console.log(response);
-//       console.log(profile);
-//   }
-//       )
-// }
+      // const profile = response.data;
+      // console.log(profile);
+    })
+  }
 
+  function getUser(e){
+    e.preventDefault();
+    axios.get('https://localhost:44323/api/login', { headers: { 'Authorization': `Bearer ${jwt}` } })
+    .then((response) => {
+      console.log(response);
+    })
+  }
 
   return (
     <>
@@ -101,6 +96,7 @@ const Profile = () => {
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
+                        <label>Hello {fName.firstName}</label>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
@@ -114,14 +110,6 @@ const Profile = () => {
                       <Grid container spacing={0}>
                         <Grid item xs={12}>
                         <Competense/>
-                        {/* <Competense onSubmit={text => setCompetense([{text, completet: false}, ...competense])}/>
-                         <div className='competense-container'>
-                          {competense.map(({text, completet}, i) => (
-                            <div className='competense-output'
-                            key={text} onClick={() => toggleComplete(i)} style={{display: completet ? 'none' : 'inline-block'}}>{text}
-                            </div>
-                          ))}
-                        </div> */}
                         </Grid>
                       </Grid>
                     </div>
@@ -135,12 +123,15 @@ const Profile = () => {
                             id="mui-theme-provider-standard-input three"
                             name='linkedIn'
                             value={input.linkedIn}
-                            onChange={handleChange}   
+                            onChange={handleChange}  
+                            
                             />
                       <UploadCV/>
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button' onClick={submit}>Uppdatera</button>
+                      <button className='button' onClick={getProfile}>Get profile</button>
+                      <button className='button' onClick={getUser}>Get user</button>
                     </div>
                   </Grid>
               </Grid>

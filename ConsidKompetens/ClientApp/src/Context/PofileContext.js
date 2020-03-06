@@ -12,7 +12,8 @@ const ProfileContextProvider = ({children}) => {
             office: '',
             cv: '',
             competense: []
-        })
+        });
+        
      
     const handleChange = (event) => {
         event.preventDefault();
