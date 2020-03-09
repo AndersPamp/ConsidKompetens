@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -44,8 +44,7 @@ const Profile = () => {
   const jwt = localStorage.getItem('secret');
 
   const input = useContext(ProfileContext);
-  const {handleChange} = useContext(ProfileContext);
-  const [fName, setFirstName] = useState('');
+  const {handleChange, initProfile} = useContext(ProfileContext);
 
   function submit(e){
       e.preventDefault();
@@ -66,17 +65,19 @@ const Profile = () => {
     })
   }
 
-  function getProfile(){
-    axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
-    .then((response) => {
-      console.log(response);
-      const user = response.data;
-      setFirstName(user)
-      
-      // const profile = response.data;
-      // console.log(profile);
-    })
+  useEffect(() => {
+    function getProfile() {
+          axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
+          .then((response) => {
+          console.log('response')
+          console.log(response);
+          const user = response.data;
+          initProfile(user);
+          console.log('only once')
+      }).catch(error => console.log(error))
   }
+    getProfile();
+  }, [])
 
   function getUser(e){
     e.preventDefault();
@@ -96,7 +97,7 @@ const Profile = () => {
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
-                        <label>Hello {fName.firstName}</label>
+                        <label>Hello {input && input.firstName}</label>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
@@ -122,7 +123,7 @@ const Profile = () => {
                             label="LinkedIn link"
                             id="mui-theme-provider-standard-input three"
                             name='linkedInUrl'
-                            value={input.linkedInUrl}
+                            value={input && input.linkedInUrl}
                             onChange={handleChange}  
                             
                             />
@@ -130,7 +131,7 @@ const Profile = () => {
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button' onClick={submit}>Uppdatera</button>
-                      <button className='button' onClick={getProfile}>Get profile</button>
+                      {/* <button className='button' onClick={getProfile}>Get profile</button> */}
                       <button className='button' onClick={getUser}>Get user</button>
                     </div>
                   </Grid>

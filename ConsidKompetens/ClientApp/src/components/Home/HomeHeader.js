@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import HomeImage from '../../images/hero-img6.jpg';
+import HomeImage from '../../images/hero-img3.jpg';
 //import SearchIcon from '../../images/search-icon.png';
 import {Redirect} from "react-router-dom";
 

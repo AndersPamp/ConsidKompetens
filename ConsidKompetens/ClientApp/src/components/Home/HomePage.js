@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import offices from '../../Helper/Offices.json';
 import HomeHeader from './HomeHeader';
@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 const theme = createMuiTheme({
   typography: {
-    htmlFontSize: 12,
+    htmlFontSize: 15,
     fontFamily: [
       'Montserrat', 'sans-serif'
     ]
@@ -22,30 +22,39 @@ const HomePage = () => {
     return(
         <>
         <div className="homeContainer">
-           <HomeHeader/>
-             <Container>
-             <div className='list-container'>
-             <h2>Välj kontor</h2>
-               {offices.map(list => {
-                   return(
-                        <ThemeProvider theme={theme} key={list.id}>
+          <Grid container spacing={0}>
+            <Grid item xs={7}>
+              <HomeHeader/>
+            </Grid>
+            <Grid item xs={5}>
+            </Grid>
+              <div className='list-container'>
+              <h2>Välj kontor</h2>
+                {offices.map(list => {
+                    return(
+                          <ThemeProvider theme={theme} key={list.id}>
+                         
                             <FormGroup style={{display: 'inline'}}>
-                                <FormControlLabel 
-                                    control={
-                                    <Checkbox
-                                        value={list.office}
-                                    />
-                                    }
-                                    label={list.office}
-                                />
-                            </FormGroup>
-                        </ThemeProvider>
-                   )
-               })}
-               <br/>
+                             <div className='diven'>
+                                  <FormControlLabel 
+                                      control={
+                                      <Checkbox
+                                          value={list.office}
+                                      />
+                                      }
+                                      label={list.office}
+                                  />
+                                  </div>
+                              </FormGroup>
+                          
+                              
+                          </ThemeProvider>
+                    )
+                })}
+                <br/>
                <button>Sök</button>
                </div>
-            </Container>
+            </Grid>      
         </div>
         </>
     )
