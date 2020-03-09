@@ -18,14 +18,16 @@ const ProfileContextProvider = ({children}) => {
             ]
         });
         
-     
+    const initProfile = (user) => {
+         setProfile(user);
+     } 
     const handleChange = (event) => {
         event.preventDefault();
-        setProfile({...profile, [event.target.name]: event.target.value});
+        setProfile({...profile, [event.target.name]: event.target.value}); 
      }
 
     return(
-        <ProfileContext.Provider value={{...profile, handleChange: handleChange}}>
+        <ProfileContext.Provider value={{...profile, handleChange: handleChange, initProfile: initProfile}}>
                 {children}
         </ProfileContext.Provider>
     )
