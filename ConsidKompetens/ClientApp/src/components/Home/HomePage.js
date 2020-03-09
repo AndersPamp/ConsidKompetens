@@ -28,13 +28,12 @@ const HomePage = () => {
              <h2>Välj kontor</h2>
                {offices.map(list => {
                    return(
-                        <ThemeProvider theme={theme}>
+                        <ThemeProvider theme={theme} key={list.id}>
                             <FormGroup style={{display: 'inline'}}>
-                                <FormControlLabel
+                                <FormControlLabel 
                                     control={
                                     <Checkbox
                                         value={list.office}
-                                        color="error"
                                     />
                                     }
                                     label={list.office}
