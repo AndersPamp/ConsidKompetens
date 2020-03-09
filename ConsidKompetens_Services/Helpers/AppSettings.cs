@@ -8,12 +8,14 @@ namespace ConsidKompetens_Services.Helpers
     public string ImageFilePath { get; set; }
     public string MaxFileSize { get; set; }
     public List<string> AllowedFileExtensions { get; set; }
+    public string ResumeFilePath { get; set; }
+    public List<string> AllowedResumeFileExtensions { get; set; }
+    public string MaxResumeFileSize { get; set; }
     public string EmailAPIKey { get; set; }
     public string EmailFromAddress { get; set; }
     public string EmailConfirmSubject { get; set; }
     public string EmailResetSubject { get; set; }
     public string EmailConfirmFilePath { get; set; }
-    public string IconFilePath { get; set; }
     
   }
 }

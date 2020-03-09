@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
-using ConsidKompetens_Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsidKompetens_Web.Controllers
 {
-  [Route("api/[controller]/[action]")]
+  [Route("api/[controller]")]
   [ApiController]
   [Authorize]
   public class SearchController : ControllerBase
@@ -22,12 +22,12 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpGet]
     [OutputCache(Duration = 30)]
-    public async Task<ActionResult<ResponseModel>> Search(string input)
+    public async Task<ActionResult<ResponseModel>> Search(List<int> officeIds, string input)
     {
       //In js Debounce with input delay
       try
       {
-        return await _searchService.FreeWordSearcAsync(input);
+        return await _searchService.FreeWordSearcAsync(officeIds, input);
       }
       catch (Exception e)
       {

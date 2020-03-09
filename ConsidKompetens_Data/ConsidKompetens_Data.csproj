@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ProfileResumes\" />
     <Folder Include="ProfileImages\" />
     <Folder Include="Temp\" />
   </ItemGroup>

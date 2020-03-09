@@ -7,6 +7,7 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Helpers;
+using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -85,7 +86,7 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          offices.Add(await _dbContext.OfficeModels.Include(x=>x.ProfileModels).FirstOrDefaultAsync(x=>x.Id==officeId));
+          offices.Add(await _dbContext.OfficeModels.Include(x => x.ProfileModels).FirstOrDefaultAsync(x => x.Id == officeId));
         }
         foreach (var office in offices)
         {
@@ -118,12 +119,15 @@ namespace ConsidKompetens_Services.DataServices
         profile.FirstName = input.FirstName;
         profile.LastName = input.LastName;
         profile.Position = input.Position;
+        profile.LinkedInUrl = input.LinkedInUrl;
+        profile.ResumeUrl = input.ResumeUrl;
+
         profile.Modified = DateTime.UtcNow;
-        if (input.OfficeId!=0)
+        if (input.OfficeId != 0)
         {
           _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
         }
-        
+
         await _dbContext.SaveChangesAsync();
 
         return await _dbContext.ProfileModels
@@ -145,7 +149,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           OwnerID = profileOwnerId,
           Created = DateTime.UtcNow,
-          ImageModel = new ImageModel { Created = DateTime.UtcNow, Alt="Profile picture" },
+          ImageModel = new ImageModel { Created = DateTime.UtcNow, Alt = "Profile picture" },
         };
         await _dbContext.ProfileModels.AddAsync(newUserModel);
         await _dbContext.SaveChangesAsync();
@@ -187,6 +191,27 @@ namespace ConsidKompetens_Services.DataServices
         }
       }
       throw new Exception(ImageUploadAsync(profileOwnerId, file).Result.ToString());
+    }
+
+    public async Task<bool> ResumeUploadAsync(string profileOwnerId, IFormFile file)
+    {
+      var profile = await GetProfileByOwnerIdAsync(profileOwnerId);
+      if (file.Length <= int.Parse(_options.Value.MaxResumeFileSize))
+      {
+        if (_options.Value.AllowedResumeFileExtensions.Contains(file.ContentType.Split('/')[1]))
+        {
+          var filePath = Path.Combine(_options.Value.ResumeFilePath, $"{ profileOwnerId}.{file.ContentType.Split('/')[1]}");
+          profile.ResumeUrl = filePath;
+          await _dbContext.SaveChangesAsync();
+          await using (var stream = System.IO.File.Create(filePath))
+          {
+            await file.CopyToAsync(stream);
+          }
+          return true;
+        }
+        throw new Exception("The file you tried to upload is not of a supported type.");
+      }
+      throw new Exception("The file you tried to upload is too big.");
     }
 
     public async Task<bool> DeleteProfileAsync(int profileId)
