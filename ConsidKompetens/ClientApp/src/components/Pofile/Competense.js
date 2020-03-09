@@ -46,7 +46,7 @@ class Competense extends Component {
   render() {
     
      const profile = this.context;
-    profile.competense = this.state.list;
+    profile.competences = this.state.list;
     console.log(profile);
 
     return (
@@ -55,7 +55,7 @@ class Competense extends Component {
                 style={{display: 'block', margin: '10px'}}
                 label="Kompetens"
                 id="mui-theme-provider-standard-input"
-                name='Competense'
+                name='competences'
                 type="text"
                 value={this.state.newItem}
                 onChange={e => this.updateInput("newItem", e.target.value)} 

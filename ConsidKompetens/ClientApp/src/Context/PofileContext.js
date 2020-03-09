@@ -7,12 +7,15 @@ const ProfileContextProvider = ({children}) => {
             firstName: '', 
             lastName: '', 
             aboutMe: '',
-            linkedIn: '',
+            linkedInUrl: '',
             position: '',
             office: '',
-            cv: '',
+            resumeUrl: '',
             imageModel: '',
-            competense: []
+            competences: [
+                {id: [0], 
+                value: ''}
+            ]
         });
         
      

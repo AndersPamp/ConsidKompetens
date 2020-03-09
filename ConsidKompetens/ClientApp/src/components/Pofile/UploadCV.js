@@ -29,8 +29,8 @@ const UploadCV = () => {
                 style={{display: 'block', margin: '25px 5px 5px 5px'}}
                 type='file'
                 id="mui-theme-provider-standard-input four"
-                name='cv'
-                value={profile.cv}
+                name='resumeUrl'
+                value={profile.resumeUrl}
                 onChange={handleChange}  
                 />
             <label className='load-cv'>Ladda upp CV</label>

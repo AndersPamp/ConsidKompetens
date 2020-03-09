@@ -121,8 +121,8 @@ const Profile = () => {
                             style={{display: 'block'}}
                             label="LinkedIn link"
                             id="mui-theme-provider-standard-input three"
-                            name='linkedIn'
-                            value={input.linkedIn}
+                            name='linkedInUrl'
+                            value={input.linkedInUrl}
                             onChange={handleChange}  
                             
                             />
