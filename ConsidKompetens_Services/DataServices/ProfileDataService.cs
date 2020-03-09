@@ -117,7 +117,7 @@ namespace ConsidKompetens_Services.DataServices
         profile.AboutMe = input.AboutMe;
         profile.FirstName = input.FirstName;
         profile.LastName = input.LastName;
-        profile.Title = input.Title;
+        profile.Position = input.Position;
         profile.Modified = DateTime.UtcNow;
         if (input.OfficeId!=0)
         {
@@ -145,7 +145,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           OwnerID = profileOwnerId,
           Created = DateTime.UtcNow,
-          ImageModel = new ImageModel { Created = DateTime.UtcNow },
+          ImageModel = new ImageModel { Created = DateTime.UtcNow, Alt="Profile picture" },
         };
         await _dbContext.ProfileModels.AddAsync(newUserModel);
         await _dbContext.SaveChangesAsync();
