@@ -11,6 +11,7 @@ const ProfileContextProvider = ({children}) => {
             title: '',
             office: '',
             cv: '',
+            imageModel: '',
             competense: []
         });
         
