@@ -29,9 +29,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
@@ -52,7 +49,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 1,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "React"
                         },
@@ -60,7 +56,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 2,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "React"
                         },
@@ -68,7 +63,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 3,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "React"
                         },
@@ -76,7 +70,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 4,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "DOTNET"
                         },
@@ -84,7 +77,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 5,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "DOTNET"
                         },
@@ -92,7 +84,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 6,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "NET is an open source developer platform, created by Microsoft, for building many different types of applications.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "DOTNET"
                         },
@@ -100,7 +91,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 7,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Azure Dev Ops"
                         },
@@ -108,7 +98,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 8,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Azure Dev Ops"
                         },
@@ -116,7 +105,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 9,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps .",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Azure Dev Ops"
                         },
@@ -124,7 +112,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 10,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Episerver"
                         },
@@ -132,7 +119,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 11,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Episerver"
                         },
@@ -140,7 +126,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 12,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Episerver"
                         },
@@ -148,7 +133,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 13,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Data Analytics"
                         },
@@ -156,7 +140,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 14,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Data Analytics"
                         },
@@ -164,7 +147,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 15,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Data analytics is the science of analyzing raw data in order to make conclusions about that information.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Data Analytics"
                         },
@@ -172,7 +154,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 16,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "HTML"
                         },
@@ -180,7 +161,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 17,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "HTML"
                         },
@@ -188,7 +168,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 18,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "HTML"
                         },
@@ -196,7 +175,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 19,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Java Script"
                         },
@@ -204,7 +182,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 20,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Java Script"
                         },
@@ -212,7 +189,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 21,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Java Script"
                         },
@@ -220,7 +196,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 22,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Sharepoint"
                         },
@@ -228,7 +203,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 23,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Sharepoint"
                         },
@@ -236,7 +210,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 24,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "SharePoint is a web-based collaborative platform that integrates with Microsoft Office.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Sharepoint"
                         },
@@ -244,7 +217,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 25,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Umbraco"
                         },
@@ -252,7 +224,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 26,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Umbraco"
                         },
@@ -260,7 +231,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 27,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Umbraco"
                         },
@@ -268,7 +238,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 28,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets.",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Umbraco"
                         },
@@ -276,7 +245,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 29,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "C#"
                         },
@@ -284,7 +252,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 30,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "C#"
                         },
@@ -292,7 +259,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 31,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "C#"
                         },
@@ -300,7 +266,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 32,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "C#"
                         },
@@ -308,7 +273,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 33,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Xamarin"
                         },
@@ -316,7 +280,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 34,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Xamarin"
                         },
@@ -324,7 +287,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 35,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Xamarin"
                         },
@@ -332,7 +294,6 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         {
                             Id = 36,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Description = "Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# ",
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Name = "Xamarin"
                         });

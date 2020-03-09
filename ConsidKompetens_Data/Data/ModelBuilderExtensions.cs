@@ -159,47 +159,47 @@ namespace ConsidKompetens_Data.Data
 
       var competences = new List<CompetenceModel>()
       {
-        new CompetenceModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React", Description="React is a declarative, efficient, and flexible JavaScript library for building user interfaces."},
-        new CompetenceModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React", Description="React is a declarative, efficient, and flexible JavaScript library for building user interfaces."},
-        new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React", Description="React is a declarative, efficient, and flexible JavaScript library for building user interfaces."},
-        new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET", Description="NET is an open source developer platform, created by Microsoft, for building many different types of applications."},
-        new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET", Description="NET is an open source developer platform, created by Microsoft, for building many different types of applications."},
-        new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET", Description="NET is an open source developer platform, created by Microsoft, for building many different types of applications."},
+        new CompetenceModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React"},
+        new CompetenceModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React"},
+        new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="React"},
+        new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET"},
+        new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET"},
+        new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="DOTNET"},
 
-        new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops", Description="Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps ."},
-        new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops", Description="Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps ."},
-        new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops", Description="Azure DevOps is a Software as a service (SaaS) platform from Microsoft that provides an end-to-end DevOps ."},
-        new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver", Description="Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde."},
-        new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver", Description="Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde."},
-        new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver", Description="Episerver kopplar samman e-handel och digital marknadsföring för att hjälpa företag skapa unika kundupplevelser med tydligt affärsvärde."},
+        new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops"},
+        new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops"},
+        new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Azure Dev Ops"},
+        new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver"},
+        new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver"},
+        new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Episerver"},
 
-        new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics", Description="Data analytics is the science of analyzing raw data in order to make conclusions about that information."},
-        new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics", Description="Data analytics is the science of analyzing raw data in order to make conclusions about that information."},
-        new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics", Description="Data analytics is the science of analyzing raw data in order to make conclusions about that information."},
-        new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML", Description="HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages."},
-        new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML", Description="HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages."},
-        new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML", Description="HTML stands for Hyper Text Markup Language. HTML is the standard markup language for Web pages. HTML elements are the building blocks of HTML pages."},
+        new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics"},
+        new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics"},
+        new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Data Analytics"},
+        new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML"},
+        new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML"},
+        new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="HTML"},
 
-        new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script", Description="JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS."},
-        new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script", Description="JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS."},
-        new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script", Description="JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS."},
-        new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint", Description="SharePoint is a web-based collaborative platform that integrates with Microsoft Office."},
-        new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint", Description="SharePoint is a web-based collaborative platform that integrates with Microsoft Office."},
-        new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint", Description="SharePoint is a web-based collaborative platform that integrates with Microsoft Office."},
+        new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script"},
+        new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script"},
+        new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Java Script"},
+        new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint"},
+        new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint"},
+        new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Sharepoint"},
 
-        new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco", Description="Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets."},
-        new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco", Description="Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets."},
-        new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco", Description="Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets."},
-        new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco", Description="Umbraco is an open-source content management system (CMS) platform for publishing content on the World Wide Web and intranets."},
-        new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#", Description="C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,"},
-        new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#", Description="C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,"},
+        new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco"},
+        new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco"},
+        new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco"},
+        new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Umbraco"},
+        new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#"},
+        new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#"},
 
-        new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#", Description="C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,"},
-        new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#", Description="C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic,"},
-        new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin", Description="Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# "},
-        new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin", Description="Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# "},
-        new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin", Description="Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# "},
-        new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin", Description="Xamarin is an open source app platform from Microsoft for building modern & performant iOS and Android apps with C# "}
+        new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#"},
+        new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="C#"},
+        new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin"},
+        new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin"},
+        new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin"},
+        new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Name="Xamarin"}
       };
 
       var projectProfileRoles = new List<ProjectProfileRole>()
@@ -251,7 +251,7 @@ namespace ConsidKompetens_Data.Data
           "to look it up don't bother on the first date I should have grown up in the 40s, shooting it depends on the night " +
           "you're going to be trained to my satisfaction I'm kind of a genius it's huge. Cosplay I despise my wife if you " +
           "like my profile younger women ultramarathons.",
-          Title="Developer",
+          Position="Developer",
           Experience=3,
           ImageModelId=1
           },
@@ -267,7 +267,7 @@ namespace ConsidKompetens_Data.Data
           "I may be somewhat jaded unworthy of serious consideration I am extremely experienced and talented beekeeping I love the " +
           "smell of, no crazy chicks I will love you forever I attract girls who are very good-looking females I grow a creepy " +
           "mustache every February. Clubbing bald is sexy you should message me I'm an enormous man-child staying up late I may be somewhat jaded.",
-          Title="Developer",
+          Position="Developer",
           Experience=7,
           ImageModelId=2
           },
@@ -283,7 +283,7 @@ namespace ConsidKompetens_Data.Data
           "laughing hysterically I should have grown up in the 40s performance art, if that paragraph above turned you off nubile snapchat " +
           "The Game I am a gentleman first and foremost. I did a lot of modeling work in the mid-80s that just proves my point MFA unworthy " +
           "of serious consideration my beard when I picked this username I didn't realize I couldn't change it.",
-          Title="Developer",
+          Position="Developer",
           Experience=12,
           ImageModelId=3
           },
@@ -298,7 +298,7 @@ namespace ConsidKompetens_Data.Data
           AboutMe="Please post your real pictures heyyy my deep, manly voice P90X. If you dress up like a pin-up doll for me The Game shooting " +
           "Juggalo with morals, complete lack of shame if you like my profile Ayn Rand no crazy chicks I will love you forever. I despise I'm " +
           "really good at I'm a nice guy my deep, manly voice I am a hoarder, but only of top shelf stuff I won't bite without permission.",
-          Title="Developer",
+          Position="Developer",
           Experience=6,
           ImageModelId=4
           },
@@ -314,7 +314,7 @@ namespace ConsidKompetens_Data.Data
           "a budget everything destructive that I do I attract girls who are very good-looking if that paragraph above turned you off, " +
           "nubile proper grammar I live in constant amazement of nature and the universe please post your real pictures bald is sexy. " +
           "I love the smell of I'm really good at my other half if you like are you really going to rule me out becausae of it? my last partner told me.",
-          Title="Developer",
+          Position="Developer",
           Experience=5,
           ImageModelId=5
           },
@@ -329,7 +329,7 @@ namespace ConsidKompetens_Data.Data
           AboutMe="My lizard tongue blackjack with morals well-built. Heyyy Think about it! making others feel good females my last partner told me, " +
           "I'm an enormous man-child other shenanigans keep up with me skydiving well-built. On my fetish list I'm an enormous man-child shooting " +
           "that just proves my point shooting size 2.",
-          Title="Developer",
+          Position="Developer",
           Experience=8,
           ImageModelId=6
           },
@@ -345,7 +345,7 @@ namespace ConsidKompetens_Data.Data
           "said proper grammar with lots of self-respect wildly attractive doesn't hurt, when I picked this username I didn't realize I couldn't change it " +
           "I despise I grow a creepy mustache every February staying up late complete lack of shame. Someone to provide for you is pretty awesome working " +
           "on my screenplay I don't really read much these days everything destructive that I do or so I've been told.",
-          Title="Developer",
+          Position="Developer",
           Experience=2,
           ImageModelId=7
           },
@@ -361,7 +361,7 @@ namespace ConsidKompetens_Data.Data
           "could say I'm old-fashioned I will love you forever if you like documentary filmmaker, heyyy I will love you forever Libertarian Ayn Rand unworthy " +
           "of serious consideration. Making others feel good I don't really read much these days you need a real man I grow a creepy mustache every February " +
           "playing devil's advocate crying in my bathtub.",
-          Title="Developer",
+          Position="Developer",
           ImageModelId=8
           },
         new ProfileModel{
@@ -375,7 +375,7 @@ namespace ConsidKompetens_Data.Data
           AboutMe="Be my partner in crime is probably a conspiracy very successsful entrepreneur I will love you forever. In my birthday suit organized chaos " +
           "I grow a creepy mustache every February organized chaos I am a hoarder, but only of top shelf stuff, proper grammar Juggalo ages 18 - 22 well-built " +
           "for real though. Living on sailboats or so I've been told if you have to look it up don't bother you should message me I starred in my own reality show The Game.",
-          Title="Developer",
+          Position="Developer",
           Experience=22,
           ImageModelId=9
           },
@@ -388,7 +388,7 @@ namespace ConsidKompetens_Data.Data
           FirstName="Griselda",
           LastName= "Blanco",
           AboutMe="If you have an innie belly button my other half work hard play hard because I am a paradox. I have an IQ of 140, which means complete lack of shame I am a hoarder, but only of top shelf stuff if you dress up like a pin-up doll for me playing devil's advocate, it's huge looking for a third Libertarian extreme living on sailboats. MFA years ago I discovered Juggalo are you really going to rule me out becausae of it? I did a lot of modeling work in the mid-80s but I only smoke when drinking.",
-          Title="Developer",
+          Position="Developer",
           Experience=14,
           ImageModelId=10
           },
