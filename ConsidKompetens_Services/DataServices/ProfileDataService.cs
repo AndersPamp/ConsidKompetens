@@ -119,8 +119,11 @@ namespace ConsidKompetens_Services.DataServices
         profile.LastName = input.LastName;
         profile.Title = input.Title;
         profile.Modified = DateTime.UtcNow;
-        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
-
+        if (input.OfficeId!=0)
+        {
+          _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
+        }
+        
         await _dbContext.SaveChangesAsync();
 
         return await _dbContext.ProfileModels
