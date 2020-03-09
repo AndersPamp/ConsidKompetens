@@ -151,6 +151,33 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
+    [HttpPut]
+    [Route("UploadResume")]
+    public async Task<ActionResult<IFormFile>>UploadResume([FromForm]IFormFile file)
+    {
+      try
+      {
+        if (await _profileDataService.ResumeUploadAsync(this.User.Identity.Name, file))
+        {
+          var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
+          return Ok(new ResponseModel 
+          {
+            Success=true,
+            Data= new ResponseData
+            {
+              ProfileModels=new List<ProfileModel> {profile},
+              Images=new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url)}
+            }
+          });
+        }
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to upload your resumé, please try again." });
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });        
+      }
+    }
+
     //DELETE: api/ApiWithActions/5
     [HttpDelete("{id}")]
     public async Task<ActionResult<ResponseModel>> Delete(int id)

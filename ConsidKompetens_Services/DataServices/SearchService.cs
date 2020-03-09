@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
@@ -43,7 +42,10 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in selectedOfficeIds)
         {
-          var officeDelta = await _dbContext.OfficeModels.Include(x => x.ProfileModels).FirstOrDefaultAsync(x => x.Id == officeId);
+          var officeDelta = await _dbContext.OfficeModels
+            .Include(x => x.ProfileModels).ThenInclude(x=>x.ImageModel)
+            .Include(x=>x.ProfileModels).ThenInclude(x=>x.Competences)
+            .FirstOrDefaultAsync(x => x.Id == officeId);
           result.Add(officeDelta);
         }
         return result;
@@ -65,7 +67,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           foreach (var competence in user.Competences)
           {
-            if (competence.Name.ToUpper().Contains(competenceInput.ToUpper()))
+            if (competence.Value.ToUpper().Contains(competenceInput.ToUpper()))
             {
               result.Add(user);
             }
@@ -79,37 +81,33 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
     //search first name, last name & competences
-    public async Task<ResponseModel> FreeWordSearcAsync(string input)
+    public async Task<ResponseModel> FreeWordSearcAsync(List<int> officeIds, string input)
     {
       var response = new ResponseModel();
-      var allProfiles = await GetAllProfilesAsync();
       var profiles = new List<ProfileModel>();
-      var allOffices = await _dbContext.OfficeModels.ToListAsync();
+      var allOffices = await GetSelectedOfficesAsync(officeIds);
       var offices = new List<OfficeModel>();
+      
       try
       {
-        foreach (var profile in allProfiles)
+        foreach (var office in allOffices)
         {
-          foreach (var competence in profile.Competences)
+          foreach (var profile in office.ProfileModels)
           {
-            if (competence.Name.ToUpper().Contains(input.ToUpper()))
+            if (profile.FirstName.ToUpper().Contains(input.ToUpper())||profile.LastName.ToUpper().Contains(input.ToUpper()))
             {
               profiles.Add(profile);
+            }
+            foreach (var competence in profile.Competences)
+            {
+              if (competence.Value.ToUpper().Contains(input.ToUpper()))
+              {
+                profiles.Add(profile);
+              }
             }
           }
         }
 
-        var resultFirst = allProfiles.Where(x => x.FirstName.ToUpper().Contains(input.ToUpper()));
-        var resultLast = allProfiles.Where(x => x.LastName.ToUpper().Contains(input.ToUpper()));
-
-        foreach (var first in resultFirst)
-        {
-          profiles.Add(first);
-        }
-        foreach (var last in resultLast)
-        {
-          profiles.Add(last);
-        }
         foreach (var office in allOffices)
         {
           if (office.City.ToUpper().Contains(input.ToUpper()))

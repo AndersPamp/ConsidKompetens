@@ -9,7 +9,7 @@ namespace ConsidKompetens_Core.Interfaces
   {
     Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOffices);
     Task<List<ProfileModel>> GetProfilesByCompetenceAsync(string competenceInput);
-    Task<ResponseModel> FreeWordSearcAsync(string input);
+    Task<ResponseModel> FreeWordSearcAsync(List<int> officeIds, string input);
 
   }
 }
