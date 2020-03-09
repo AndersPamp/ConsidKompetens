@@ -8,7 +8,7 @@ const ProfileContextProvider = ({children}) => {
             lastName: '', 
             aboutMe: '',
             linkedIn: '',
-            title: '',
+            position: '',
             office: '',
             cv: '',
             imageModel: '',
