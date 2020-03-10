@@ -31,7 +31,7 @@ const TextFields = () => {
             label="Förnamn"
             id="mui-theme-provider-standard-input one"
             name='firstName'
-            value={user.firstName}
+            value={user.firstName || ''}
             onChange={handleChange} 
             />
         <TextField
@@ -40,7 +40,7 @@ const TextFields = () => {
             label="Efternamn"
             id="mui-theme-provider-standard-input two"
             name='lastName'
-            value={user.lastName}
+            value={user.lastName || ''}
             onChange={handleChange}   
             />
         <TextField
@@ -50,7 +50,7 @@ const TextFields = () => {
             label="Om mig"
             id="standard-multiline-static"
             name='aboutMe'
-            value={user.aboutMe}
+            value={user.aboutMe || ''}
             onChange={handleChange} 
             />
             </>

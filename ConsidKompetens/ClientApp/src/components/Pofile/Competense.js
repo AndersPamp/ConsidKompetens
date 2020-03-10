@@ -22,7 +22,7 @@ class Competense extends Component {
 
   addItem() {
     const newItem = {
-      id: 1 + Math.random(),
+      compId: 1 + Math.random(),
       value: this.state.newItem.slice()
  
     };
@@ -36,9 +36,9 @@ class Competense extends Component {
     });
   }
 
-  deleteItem(id) {
+  deleteItem(compId) {
     const list = [...this.state.list];
-    const updatedList = list.filter(item => item.id !== id);
+    const updatedList = list.filter(item => item.compId !== compId);
 
     this.setState({ list: updatedList });
   }
@@ -68,9 +68,9 @@ class Competense extends Component {
             <div className='competense-container'>
                 {this.state.list.map(item => {
                 return (
-                  <div key={item.id} className='competense-output'>
+                  <div key={item.compId} className='competense-output'>
                      {item.value}
-                    <button className='delete-competense' onClick={() => this.deleteItem(item.id)}>
+                    <button className='delete-competense' onClick={() => this.deleteItem(item.compId)}>
                       X
                     </button>
                   </div>

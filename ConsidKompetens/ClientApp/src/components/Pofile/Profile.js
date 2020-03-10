@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -69,8 +69,6 @@ const Profile = () => {
     function getProfile() {
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
-          console.log('response')
-          console.log(response);
           const user = response.data;
           initProfile(user);
           console.log('only once')
@@ -97,7 +95,6 @@ const Profile = () => {
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
-                        <label>Hello {input && input.firstName}</label>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
@@ -123,11 +120,11 @@ const Profile = () => {
                             label="LinkedIn link"
                             id="mui-theme-provider-standard-input three"
                             name='linkedInUrl'
-                            value={input && input.linkedInUrl}
+                            value={input.linkedInUrl || ''}
                             onChange={handleChange}  
                             
                             />
-                      <UploadCV/>
+                      {/* <UploadCV/> */}
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button' onClick={submit}>Uppdatera</button>

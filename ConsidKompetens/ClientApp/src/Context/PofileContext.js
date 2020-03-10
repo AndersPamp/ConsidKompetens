@@ -13,14 +13,16 @@ const ProfileContextProvider = ({children}) => {
             resumeUrl: '',
             imageModel: '',
             competences: [
-                {id: [0], 
+                {compId: 0, 
                 value: ''}
             ]
         });
         
     const initProfile = (user) => {
+       
          setProfile(user);
      } 
+
     const handleChange = (event) => {
         event.preventDefault();
         setProfile({...profile, [event.target.name]: event.target.value}); 
