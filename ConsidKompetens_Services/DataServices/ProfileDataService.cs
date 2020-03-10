@@ -7,7 +7,6 @@ using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Helpers;
-using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -46,10 +45,15 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        return await _dbContext.ProfileModels.Include(x => x.Competences)
+        return await _dbContext.ProfileModels
+          .Include(x => x.Competences)
           .Include(x => x.ImageModel)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
+          .Include(x => x.ProjectProfileRoles)
+            .ThenInclude(x => x.ProjectModel)
+            .ThenInclude(x => x.TimePeriod)
+          .Include(x => x.ProjectProfileRoles)
+            .ThenInclude(x => x.ProjectModel)
+            .ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
       }
       catch (Exception e)

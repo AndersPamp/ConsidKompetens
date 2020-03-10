@@ -20,6 +20,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace ConsidKompetens_Web
 {
@@ -55,7 +56,7 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = true;
       });
-      
+
       services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
@@ -64,7 +65,7 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
       services.AddScoped<IImageDataService, ImageDataService>();
-      
+
       services.AddControllers(config =>
       {
         var policy = new AuthorizationPolicyBuilder()
@@ -72,12 +73,12 @@ namespace ConsidKompetens_Web
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
       });
-      
+
       var appSettingsSection = Configuration.GetSection("AppSettings");
       services.Configure<AppSettings>(appSettingsSection);
-      
+
       var appSettings = appSettingsSection.Get<AppSettings>();
-      
+
       var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
       services.AddAuthentication(x =>
