@@ -159,14 +159,12 @@ namespace ConsidKompetens_Web.Controllers
       {
         if (await _profileDataService.ResumeUploadAsync(this.User.Identity.Name, file))
         {
-          var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
           return Ok(new ResponseModel 
           {
             Success=true,
             Data= new ResponseData
             {
-              ProfileModels=new List<ProfileModel> {profile},
-              Images=new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url)}
+              ProfileModels=new List<ProfileModel> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name) }
             }
           });
         }
