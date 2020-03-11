@@ -1,54 +1,22 @@
 //import React, {useState, useContext} from 'react';
-import React, {Component} from 'react';
+import React, {useState, useContext} from 'react';
 import TextField from '@material-ui/core/TextField';
 import {ProfileContext} from '../../Context/PofileContext';
 
 
+const Competense = (props) => {
+  const [newItem, setNewItem] = useState("");
+  const {profile, updateCompetences} = useContext(ProfileContext);
 
-class Competense extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newItem: "",
-      list: []
-    };
-  }
-
-  static contextType = ProfileContext;
- 
-   updateInput(key, value) {
-    this.setState({ [key]: value });
-  }
-
-  addItem() {
-    const newItem = {
-      compId: 1 + Math.random(),
-      value: this.state.newItem.slice()
-    };
-
-    const list = [...this.state.list];
-    list.push(newItem);
-
-    this.setState({
-      list,
-      newItem: ""
-    });
-  }
-
-  deleteItem(compId) {
-    const list = [...this.state.list];
-    const updatedList = list.filter(item => item.compId !== compId);
-
-    this.setState({ list: updatedList });
+  const handleButtonClick = () => {
+    console.log("hello")
+    const testing = Math.floor(Math.random() * 10);
+    updateCompetences({compid: testing, value: newItem});
   }
   
-  render() {
-    
-     const profile = this.context;
-    profile.competences = this.state.list;
-    console.log(profile);
+  const competences = profile.competences || [];
 
-    return (
+  return (
         <div>
             <TextField
                 style={{display: 'block', margin: '10px'}}
@@ -56,18 +24,18 @@ class Competense extends Component {
                 id="mui-theme-provider-standard-input"
                 name='competences'
                 type="text"
-                value={this.state.newItem}
-                onChange={e => this.updateInput("newItem", e.target.value)} 
+                value={newItem}
+                onChange={e => setNewItem(e.target.value)} 
             />
             <button
                 className="add-btn"
-                onClick={() => this.addItem()}
-                disabled={!this.state.newItem.length}>Lägg till
+                onClick={handleButtonClick}
+                >Lägg till
             </button>
             <div className='competense-container'>
-                {this.state.list.map(item => {
+                {competences.map((item, i) => {
                 return (
-                  <div key={item.compId} className='competense-output'>
+                  <div key={i} className='competense-output'>
                      {item.value}
                     <button className='delete-competense' onClick={() => this.deleteItem(item.compId)}>
                       X
@@ -78,8 +46,90 @@ class Competense extends Component {
             </div>
         </div>
     );
-  }
 }
+
+
+// class Competense extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       newItem: "",
+//       list: []
+//     };
+//   }
+
+//   static contextType = ProfileContext;
+ 
+//    updateInput(key, value) {
+//     this.setState({ [key]: value });
+//   }
+
+//   addItem() {
+//     const id = Math.floor(Math.random() * 10);
+//     const newItem = {
+//       value: this.state.newItem.slice()
+//     };
+
+//     const list = [...this.state.list];
+//     list.push(newItem);
+//     this.context.updateCompetences(newItem);
+
+//     // this.setState({
+//     //   newItem: "",
+//     //   list: list
+//     // });
+//   }
+
+//   componentWillUpdate(){
+//     console.log("will update")
+//     if(this.state.list.length !== this.context.competences.length){
+//       this.setState({ list: this.context.competences});
+
+//     }
+//   }
+
+//   deleteItem(compId) {
+//     const list = [...this.state.list];
+//     const updatedList = list.filter(item => item.compId !== compId);
+
+//     this.setState({ list: updatedList });
+//   }
+  
+//   const competences = this.context.competences;
+//   console.log(comptences);
+//   render() {
+//     return (
+//         <div>
+//             <TextField
+//                 style={{display: 'block', margin: '10px'}}
+//                 label="Kompetens"
+//                 id="mui-theme-provider-standard-input"
+//                 name='competences'
+//                 type="text"
+//                 value={this.state.newItem}
+//                 onChange={e => this.updateInput("newItem", e.target.value)} 
+//             />
+//             <button
+//                 className="add-btn"
+//                 onClick={() => this.addItem()}
+//                 disabled={!this.state.newItem.length}>Lägg till
+//             </button>
+//             <div className='competense-container'>
+//                 {competences.map((item, i) => {
+//                 return (
+//                   <div key={item.compId} className='competense-output'>
+//                      {item.value}
+//                     <button className='delete-competense' onClick={() => this.deleteItem(item.compId)}>
+//                       X
+//                     </button>
+//                   </div>
+//                 );
+//               })}
+//             </div>
+//         </div>
+//     );
+//   }
+// }
 
 export default Competense;
 

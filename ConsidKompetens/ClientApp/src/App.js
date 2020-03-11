@@ -9,7 +9,7 @@ import DetailsPage from './components/Details/DetailsPage';
 import Employee from './components/Employee/Employee';
 import ProfileContextProvider from './Context/PofileContext';
 //import NavMenu from './components/Header/NavMenu';
-//import Authenticated from './components/Authenticated/Authenticated';
+import Authenticated from './components/Authenticated/Authenticated';
 import { Footer } from '../src/components';
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
               <Route path="/employee" component={Employee}/>
               <Route path="/profile" component={() => <Profile/>}/>
             </ProfileContextProvider>
-           {/* </Authenticated> */}   
+           {/* </Authenticated>    */}
       <Footer/>
     </div>
   );

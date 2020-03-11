@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -43,7 +43,8 @@ const Profile = () => {
   const classes = useStyles();
   const jwt = localStorage.getItem('secret');
 
-  const input = useContext(ProfileContext);
+const {profile } = useContext(ProfileContext);
+  const input = profile;
   const {handleChange, initProfile} = useContext(ProfileContext);
 
   function submit(e){
@@ -51,7 +52,8 @@ const Profile = () => {
       axios.put('https://localhost:44323/api/profile/editprofile',input , { headers: { 'Authorization': `Bearer ${jwt}` } })
       .then((response) => {
       
-        const result = response.config.data;
+        const result = response.data;
+        console.log(result)
 
         if(response.status === 200)
         {
@@ -72,19 +74,11 @@ const Profile = () => {
           const user = response.data;
           console.log(response);
           initProfile(user);
-          console.log('only once')
+          console.log(user.competences)
       }).catch(error => console.log(error))
   }
     getProfile();
   }, [])
-
-  function getOffice(){
-    axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
-    .then((response) => {
-      console.log(response);
-    })
-  }
-
 
   return (
     <>
@@ -96,7 +90,6 @@ const Profile = () => {
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
-                        <button onClick={getOffice}>Office</button>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
@@ -110,6 +103,7 @@ const Profile = () => {
                       <Grid container spacing={0}>
                         <Grid item xs={12}>
                         <Competense/>
+                        <div></div>
                         </Grid>
                       </Grid>
                     </div>

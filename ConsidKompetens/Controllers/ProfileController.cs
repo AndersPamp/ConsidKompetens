@@ -103,6 +103,7 @@ namespace ConsidKompetens_Web.Controllers
       {
         try
         {
+          //Cannot get profile twice with the same context.
           var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
           var result = await _profileDataService.EditProfileByIdAsync(profile.Id, input);
 

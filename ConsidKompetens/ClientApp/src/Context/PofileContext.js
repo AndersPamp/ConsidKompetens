@@ -19,17 +19,27 @@ const ProfileContextProvider = ({children}) => {
         });
         
     const initProfile = (user) => {
-       
+
          setProfile(user);
+         
      } 
+
+     const updateCompetences = (competence) => {
+         setProfile({...profile, competences: [...profile.competences, competence]})
+     }
 
     const handleChange = (event) => {
         event.preventDefault();
         setProfile({...profile, [event.target.name]: event.target.value}); 
      }
 
+     const actions = {
+         updateCompetences,
+         handleChange
+     }
+
     return(
-        <ProfileContext.Provider value={{...profile, handleChange: handleChange, initProfile: initProfile}}>
+        <ProfileContext.Provider value={{profile, handleChange: handleChange, initProfile: initProfile, updateCompetences: updateCompetences}}>
                 {children}
         </ProfileContext.Provider>
     )

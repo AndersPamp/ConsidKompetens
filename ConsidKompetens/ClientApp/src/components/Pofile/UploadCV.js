@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 class UploadCV extends Component {
 
   state = {
-    file: ''
+    file: null
   }
 
   static contextType = ProfileContext;
@@ -74,14 +74,13 @@ class UploadCV extends Component {
 
   render(){
     const profile = this.context;
-    console.log(this.context);
     profile.resumeUrl = this.state.file;
 
     return(
       <div>
-        <form>
+        <form onChange={e => this.handleFile(e)}>
           <div>
-            <input type="file" name="resumeUrl" onChange={e => this.handleFile(e)}/>
+            <input type="file" name="resumeUrl" />
             <button type='button' onClick={(e) => this.handleUpload(e)}>Upload</button>
           </div>
         </form>

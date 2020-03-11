@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
 
 const SelectForm = () => {
     const classes = useStyles();
-    const user = useContext(ProfileContext);
+    const {profile} = useContext(ProfileContext);
+    const user = profile;
     const {handleChange} = useContext(ProfileContext);
 
     return (

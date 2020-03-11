@@ -214,3 +214,53 @@
   margin: 1%;
   width: 135px;
 }
+
+@media only screen and (max-width: 1300px) {
+  .min-sida-button{
+    left: 75%;
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .min-sida-button{
+    left: 73%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .min-sida-button{
+    left: 71%;
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .homeContainer{
+    padding-bottom: 650px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .min-sida-button{
+    left: 64%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .min-sida-button{
+    left: 20%;
+  }
+  .logga-ut-button{
+    left: 55%;
+  }
+  .homeContainer{
+    padding-bottom: 850px;
+  }
+  .homeImg{
+    display: none;
+  }
+  .list-container{
+    left:2%;
+  }
+    
+}
