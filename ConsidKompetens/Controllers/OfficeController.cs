@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Core.Response_Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,24 +28,24 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpGet]
     [Route("Offices")]
-    public async Task<ActionResult<ResponseModel>> GetAllOffices()
+    public async Task<ActionResult<Response>> GetAllOffices()
     {
       try
       {
-        return Ok(new ResponseModel { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
+        return Ok(new Response { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
       }
       catch (Exception e)
       {
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e });
+        return BadRequest(new Response { Success = false, ErrorMessage = e });
       }
     }
 
     [HttpGet]
-    public async Task<ActionResult<ResponseModel>> Get([FromBody]List<int> officeIds)
+    public async Task<ActionResult<Response>> Get([FromBody]List<int> officeIds)
     {
       try
       {
-        var response = new ResponseModel
+        var response = new Response
         {
           Success = true,
           Data = new ResponseData
@@ -58,30 +58,30 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+        return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ResponseModel>> Post([FromBody]OfficeModel officeModel)
+    public async Task<ActionResult<Response>> Post([FromBody]OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
         try
         {
           await _officeDataService.CreateNewOfficeAsync(officeModel);
-          return Created("", new ResponseModel { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
+          return Created("", new Response { Success = true, Data = new ResponseData { OfficeModels = await _officeDataService.GetOfficesAsync() } });
         }
         catch (Exception e)
         {
-          BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+          BadRequest(new Response { Success = false, ErrorMessage = e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+      return BadRequest(new Response { Success = false, ErrorMessage = _logger.ToString() });
     }
 
     [HttpPut]
-    public async Task<ActionResult<ResponseModel>> Put([FromBody] OfficeModel officeModel)
+    public async Task<ActionResult<Response>> Put([FromBody] OfficeModel officeModel)
     {
       if (ModelState.IsValid)
       {
@@ -92,11 +92,11 @@ namespace ConsidKompetens_Web.Controllers
         }
         catch (Exception e)
         {
-          BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+          BadRequest(new Response { Success = false, ErrorMessage = e.Message });
         }
       }
 
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = _logger.ToString() });
+      return BadRequest(new Response { Success = false, ErrorMessage = _logger.ToString() });
     }
   }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConsidKompetens_Core.CommunicationModels
+namespace ConsidKompetens_Core.Response_Request
 {
-  public class LoginModelReq
+  public class RegisterReq
   {
     [Required]
     [EmailAddress]

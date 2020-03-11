@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Core.Response_Request;
 
 namespace ConsidKompetens_Core.Interfaces
 {
@@ -9,7 +9,7 @@ namespace ConsidKompetens_Core.Interfaces
   {
     Task<List<OfficeModel>> GetSelectedOfficesAsync(List<int> selectedOffices);
     Task<List<ProfileModel>> GetProfilesByCompetenceAsync(string competenceInput);
-    Task<ResponseModel> FreeWordSearcAsync(List<int> officeIds, string input);
+    Task<Response> FreeWordSearcAsync(List<int> officeIds, string input);
 
   }
 }

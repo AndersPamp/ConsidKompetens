@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
@@ -11,20 +13,23 @@ namespace ConsidKompetens_Services.DataServices
   public class OfficeDataService : IOfficeDataService
   {
     private readonly DataDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public OfficeDataService(DataDbContext dbContext)
+    public OfficeDataService(DataDbContext dbContext, IMapper mapper)
     {
       _dbContext = dbContext;
+      _mapper = mapper;
     }
 
-    public async Task<List<OfficeModel>> GetOfficesAsync()
+    public async Task<List<OfficeDTO>> GetOfficesAsync()
     {
       try
       {
-        return await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
+        var offices = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .Include(x => x.ProfileModels).ThenInclude(x => x.ImageModel)
           .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .Include(x => x.ProfileModels).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques).ToListAsync();
+        return _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(offices);
       }
       catch (Exception e)
       {
@@ -32,13 +37,14 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeModel> GetOfficeByIdAsync(int officeId)
+    public async Task<OfficeDTO> GetOfficeByIdAsync(int officeId)
     {
       try
       {
-        return await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
+        var office = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .FirstOrDefaultAsync(x => x.Id == officeId);
+        return _mapper.Map<OfficeModel, OfficeDTO>(office);
       }
       catch (Exception e)
       {
@@ -46,7 +52,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<List<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds)
+    public async Task<List<OfficeDTO>> GetOfficesByIdsAsync(List<int> officeIds)
     {
       var result = new List<OfficeModel>();
       try
@@ -60,7 +66,7 @@ namespace ConsidKompetens_Services.DataServices
 
           result.Add(office);
         }
-        return result;
+        return _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(result);
       }
       catch (Exception e)
       {
@@ -82,7 +88,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeModel> EditOfficeAsync(OfficeModel officeModel)
+    public async Task<OfficeDTO> EditOfficeAsync(OfficeModel officeModel)
     {
       try
       {
@@ -92,7 +98,7 @@ namespace ConsidKompetens_Services.DataServices
         model.TelephoneNumber = officeModel.TelephoneNumber;
         model.Modified = DateTime.Now;
         await _dbContext.SaveChangesAsync();
-        return model;
+        return _mapper.Map<OfficeModel, OfficeDTO>(model);
       }
       catch (Exception e)
       {
@@ -100,12 +106,12 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeModel> GetOfficeContainingProfileIdAsync(int profileId)
+    public async Task<OfficeDTO> GetOfficeContainingProfileIdAsync(int profileId)
     {
       try
       {
         var officeResult = new OfficeModel();
-        var offices = await _dbContext.OfficeModels.Include(x=>x.ProfileModels).ToListAsync();
+        var offices = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ToListAsync();
         foreach (var office in offices)
         {
           foreach (var profile in office.ProfileModels)
@@ -116,7 +122,7 @@ namespace ConsidKompetens_Services.DataServices
             }
           }
         }
-        return officeResult;
+        return _mapper.Map<OfficeModel, OfficeDTO>(officeResult);
       }
       catch (Exception e)
       {

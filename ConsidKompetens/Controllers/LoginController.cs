@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
@@ -24,7 +24,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // POST: api/Login
     [HttpPost]
-    public async Task<IActionResult> Login([FromBody] LoginModelReq loginModel)
+    public async Task<IActionResult> Login([FromBody] LoginReq loginModel)
     {
       if (ModelState.IsValid)
       {
@@ -35,22 +35,22 @@ namespace ConsidKompetens_Web.Controllers
           //2. Generate token if user exists
           var token = _loginService.GenerateToken(user);
 
-          return Ok(new ResponseModel { Success = true, BearerToken = token, Data = new ResponseData { Email = user.Email } });
+          return Ok(new Response { Success = true, BearerToken = token, Data = new ResponseData { Email = user.Email } });
         }
         //3. If user unauth. return UnAuthorized
-        return Unauthorized(new ResponseModel { Success = false, ErrorMessage = "Email-address and/or password - incorrect" });
+        return Unauthorized(new Response { Success = false, ErrorMessage = "Email-address and/or password - incorrect" });
       }
-      return Unauthorized(new ResponseModel { Success = false, ErrorMessage = "Both email-address and password must be submitted" });
+      return Unauthorized(new Response { Success = false, ErrorMessage = "Both email-address and password must be submitted" });
     }
 
     [HttpPost]
     [Route("ResetPassword")]
-    public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordModel input)
+    public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordReq input)
     {
 
       if (!ModelState.IsValid)
       {
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = "The details provided are not complete." });
+        return BadRequest(new Response { Success = false, ErrorMessage = "The details provided are not complete." });
       }
       if (input.Password != input.ConfirmPassword)
       {
@@ -63,10 +63,10 @@ namespace ConsidKompetens_Web.Controllers
       input.Token = System.Net.WebUtility.UrlDecode(input.Token);
       if (await _loginService.ResetPasswordAsync(input))
       {
-        return Ok(new ResponseModel { Success = true });
+        return Ok(new Response { Success = true });
       }
 
-      return StatusCode(500, new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to reset your password." });
+      return StatusCode(500, new Response { Success = false, ErrorMessage = "Something went wrong while trying to reset your password." });
 
     }
 
@@ -83,10 +83,10 @@ namespace ConsidKompetens_Web.Controllers
 
         if (await _loginService.SendResetPasswordEmailAsync(email, link))
         {
-          return Ok(new ResponseModel { Success = true });
+          return Ok(new Response { Success = true });
         }
 
-        return StatusCode(503, new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to send the reset email to your address." });
+        return StatusCode(503, new Response { Success = false, ErrorMessage = "Something went wrong while trying to send the reset email to your address." });
       }
       catch (Exception e)
       {

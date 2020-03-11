@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Models;
 
 namespace ConsidKompetens_Core.Interfaces
 {
   public interface IOfficeDataService
   {
-    Task<List<OfficeModel>> GetOfficesAsync();
-    Task<OfficeModel> GetOfficeByIdAsync(int officeId);
-    Task<List<OfficeModel>> GetOfficesByIdsAsync(List<int> officeIds);
-    Task<OfficeModel> GetOfficeContainingProfileIdAsync(int profileId);
+    Task<List<OfficeDTO>> GetOfficesAsync();
+    Task<OfficeDTO> GetOfficeByIdAsync(int officeId);
+    Task<List<OfficeDTO>> GetOfficesByIdsAsync(List<int> officeIds);
+    Task<OfficeDTO> GetOfficeContainingProfileIdAsync(int profileId);
     Task<bool> CreateNewOfficeAsync(OfficeModel officeModel);
-    Task<OfficeModel> EditOfficeAsync(OfficeModel officeModel);
+    Task<OfficeDTO> EditOfficeAsync(OfficeModel officeModel);
   }
 }

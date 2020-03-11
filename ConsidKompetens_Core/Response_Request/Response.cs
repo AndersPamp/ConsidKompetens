@@ -1,6 +1,6 @@
-﻿namespace ConsidKompetens_Core.CommunicationModels
+﻿namespace ConsidKompetens_Core.Response_Request
 {
-  public class ResponseModel
+  public class Response
   {
     public bool Success { get; set; }
     public dynamic ErrorMessage { get; set; }

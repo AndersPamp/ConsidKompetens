@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using AutoMapper;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Data.Data;
 using IdentityServer4.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,12 @@ namespace ConsidKompetens_Services.DataServices
   public class SearchService : ISearchDataService
   {
     private readonly DataDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public SearchService(DataDbContext dbContext)
+    public SearchService(DataDbContext dbContext, IMapper mapper)
     {
       _dbContext = dbContext;
+      _mapper = mapper;
     }
 
     public async Task<List<ProfileModel>> GetAllProfilesAsync()
@@ -81,9 +85,9 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
     //search first name, last name & competences
-    public async Task<ResponseModel> FreeWordSearcAsync(List<int> officeIds, string input)
+    public async Task<Response> FreeWordSearcAsync(List<int> officeIds, string input)
     {
-      var response = new ResponseModel();
+      var response = new Response();
       var profiles = new List<ProfileModel>();
       var allOffices = await GetSelectedOfficesAsync(officeIds);
       var offices = new List<OfficeModel>();
@@ -116,8 +120,8 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        response.Data.ProfileModels = profiles;
-        response.Data.OfficeModels = offices;
+        response.Data.ProfileModels = _mapper.Map<List<ProfileModel>, List<ProfileDTO>>(profiles);
+        response.Data.OfficeModels = _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(offices);
         return response;
       }
       catch (Exception e)

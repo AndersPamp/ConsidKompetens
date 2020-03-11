@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Models;
 
 namespace ConsidKompetens_Core.Interfaces
 {
   public interface IImageDataService
   {
-    Task<List<ImageModel>> GetImageModelsAsync();
-    Task<ImageModel> GetImageModelByIdAsync(int id);
-    Task<ImageModel> RegisterNewImageModelAsync(ImageModel imageModel);
-    Task<ImageModel> EditImageModelAsync(int imageId, ImageModel imageModel);
+    Task<List<ImageDTO>> GetImageModelsAsync();
+    Task<ImageDTO> GetImageModelByIdAsync(int id);
+    Task<ImageDTO> RegisterNewImageModelAsync(ImageModel imageModel);
+    Task<ImageDTO> EditImageModelAsync(int imageId, ImageModel imageModel);
   }
 }

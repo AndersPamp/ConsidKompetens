@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -35,10 +35,10 @@ namespace ConsidKompetens_Web.Controllers
       await _signInManager.SignOutAsync();
       if (await _loginService.LogOutUserAsync())
       {
-        return Ok(new ResponseModel { Success = true });
+        return Ok(new Response { Success = true });
       } 
         
-      return BadRequest(new ResponseModel { Success = false, ErrorMessage = "Something went wrong while trying to log out, please try again."});
+      return BadRequest(new Response { Success = false, ErrorMessage = "Something went wrong while trying to log out, please try again."});
     }
   }
 }

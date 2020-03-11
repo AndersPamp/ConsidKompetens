@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
 using ConsidKompetens_Core.Interfaces;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -48,7 +48,7 @@ namespace ConsidKompetens_Services.IdentityServices
       }
     }
 
-    public async Task<IdentityUser> RegisterNewUserAsync(RegisterModelReq newModel)
+    public async Task<IdentityUser> RegisterNewUserAsync(RegisterReq newModel)
     {
       try
       {

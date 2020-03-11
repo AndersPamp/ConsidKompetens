@@ -1,11 +1,13 @@
 using System.IO;
 using System.Text;
+using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.DataServices;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.IdentityServices;
 using ConsidKompetens_Services.Interfaces;
+using ConsidKompetens_Services.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -20,7 +22,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 
 namespace ConsidKompetens_Web
 {
@@ -56,6 +57,9 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = true;
       });
+
+      services.AddAutoMapper(typeof(ModelToDTOProfile));
+      services.AddAutoMapper(typeof(DTOToModelProfile));
 
       services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
       services.AddScoped<ILoginService, LoginService>();

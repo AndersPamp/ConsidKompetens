@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -98,7 +97,7 @@ namespace ConsidKompetens_Services.IdentityServices
       }
     }
 
-    public async Task<bool> ResetPasswordAsync(ResetPasswordModel input)
+    public async Task<bool> ResetPasswordAsync(ResetPasswordReq input)
     {
       try
       {

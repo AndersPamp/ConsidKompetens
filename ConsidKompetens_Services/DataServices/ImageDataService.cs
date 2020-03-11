@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using AutoMapper;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
@@ -12,16 +13,19 @@ namespace ConsidKompetens_Services.DataServices
   public class ImageDataService : IImageDataService
   {
     private readonly DataDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public ImageDataService(DataDbContext dbContext)
+    public ImageDataService(DataDbContext dbContext, IMapper mapper)
     {
       _dbContext = dbContext;
+      _mapper = mapper;
     }
-    public async Task<List<ImageModel>> GetImageModelsAsync()
+    public async Task<List<ImageDTO>> GetImageModelsAsync()
     {
       try
       {
-        return await _dbContext.ImageModels.ToListAsync();
+        var images = await _dbContext.ImageModels.ToListAsync();
+        return _mapper.Map<List<ImageModel>, List<ImageDTO>>(images);
       }
       catch (Exception e)
       {
@@ -29,11 +33,12 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageModel> GetImageModelByIdAsync(int id)
+    public async Task<ImageDTO> GetImageModelByIdAsync(int id)
     {
       try
       {
-        return await _dbContext.ImageModels.FindAsync(id);
+        var image = await _dbContext.ImageModels.FindAsync(id);
+        return _mapper.Map<ImageModel, ImageDTO>(image);
       }
       catch (Exception e)
       {
@@ -41,7 +46,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageModel> RegisterNewImageModelAsync(ImageModel imageModel)
+    public async Task<ImageDTO> RegisterNewImageModelAsync(ImageModel imageModel)
     {
       try
       {
@@ -49,7 +54,7 @@ namespace ConsidKompetens_Services.DataServices
 
         await _dbContext.ImageModels.AddAsync(imageModel);
         await _dbContext.SaveChangesAsync();
-        return imageModel;
+        return _mapper.Map<ImageModel, ImageDTO>(imageModel);
       }
       catch (Exception e)
       {
@@ -57,7 +62,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageModel> EditImageModelAsync(int imageId, ImageModel imageModel)
+    public async Task<ImageDTO> EditImageModelAsync(int imageId, ImageModel imageModel)
     {
       try
       {
@@ -66,7 +71,7 @@ namespace ConsidKompetens_Services.DataServices
         delta.Alt = imageModel.Alt;
         delta.Modified = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
-        return imageModel;
+        return _mapper.Map<ImageModel, ImageDTO>(imageModel);
       }
       catch (Exception e)
       {

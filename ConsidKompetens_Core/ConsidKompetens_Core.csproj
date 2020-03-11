@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommunicationModels\**" />
+    <EmbeddedResource Remove="CommunicationModels\**" />
+    <None Remove="CommunicationModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\LinkModel.cs" />
+    <Compile Remove="Models\SettingsModel.cs" />
     <Compile Remove="Models\SpaPageModel.cs" />
   </ItemGroup>
 

@@ -1,9 +1,9 @@
-﻿using ConsidKompetens_Core.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ConsidKompetens_Core.Models;
 
-namespace ConsidKompetens_Core.CommunicationModels
+namespace ConsidKompetens_Core.Response_Request
 {
-  public class ProfileModelReq
+  public class ProfileReq
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }
