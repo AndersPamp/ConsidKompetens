@@ -24,7 +24,6 @@ class Competense extends Component {
     const newItem = {
       compId: 1 + Math.random(),
       value: this.state.newItem.slice()
- 
     };
 
     const list = [...this.state.list];

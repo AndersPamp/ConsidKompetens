@@ -13,7 +13,7 @@ const ProfileContextProvider = ({children}) => {
             resumeUrl: '',
             imageModel: '',
             competences: [
-                {compId: 0, 
+                {compId: '', 
                 value: ''}
             ]
         });

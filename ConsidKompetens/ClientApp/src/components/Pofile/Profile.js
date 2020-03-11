@@ -70,6 +70,7 @@ const Profile = () => {
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
           const user = response.data;
+          console.log(response);
           initProfile(user);
           console.log('only once')
       }).catch(error => console.log(error))
@@ -77,13 +78,13 @@ const Profile = () => {
     getProfile();
   }, [])
 
-  function getUser(e){
-    e.preventDefault();
-    axios.get('https://localhost:44323/api/login', { headers: { 'Authorization': `Bearer ${jwt}` } })
+  function getOffice(){
+    axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
     .then((response) => {
       console.log(response);
     })
   }
+
 
   return (
     <>
@@ -95,6 +96,7 @@ const Profile = () => {
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
+                        <button onClick={getOffice}>Office</button>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
@@ -124,12 +126,10 @@ const Profile = () => {
                             onChange={handleChange}  
                             
                             />
-                      {/* <UploadCV/> */}
+                      <UploadCV/>
                       <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label>
                       <button className='button' onClick={submit}>Uppdatera</button>
-                      {/* <button className='button' onClick={getProfile}>Get profile</button> */}
-                      <button className='button' onClick={getUser}>Get user</button>
                     </div>
                   </Grid>
               </Grid>
