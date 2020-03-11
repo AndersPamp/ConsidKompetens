@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Models;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Interfaces;
@@ -12,19 +14,23 @@ namespace ConsidKompetens_Services.DataServices
   public class ProjectDataService : IProjectDataService
   {
     private readonly DataDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public ProjectDataService(DataDbContext dbContext)
+    public ProjectDataService(DataDbContext dbContext, IMapper mapper)
     {
       _dbContext = dbContext;
+      _mapper = mapper;
     }
-    public async Task<List<ProjectModel>> GetAllProjectsAsync()
+    public async Task<List<ProjectDTO>> GetAllProjectsAsync()
     {
       try
       {
-        return await _dbContext.ProjectModels
+        var projects = await _dbContext.ProjectModels
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
+
+        return _mapper.Map<List<ProjectModel>, List<ProjectDTO>>(projects);
       }
       catch (Exception e)
       {
@@ -32,15 +38,17 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<List<ProjectModel>> GetProjectsByNameAsync(string input)
+    public async Task<List<ProjectDTO>> GetProjectsByNameAsync(string input)
     {
       try
       {
-        return await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper()))
+        var projects = await _dbContext.ProjectModels.Where(x => x.Name.ToUpper().Contains(input.ToUpper()))
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel)
           .Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
+
+        return _mapper.Map<List<ProjectModel>, List<ProjectDTO>>(projects);
       }
       catch (Exception e)
       {
@@ -48,13 +56,15 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectModel> GetProjectByIdAsync(int id)
+    public async Task<ProjectDTO> GetProjectByIdAsync(int id)
     {
       try
       {
-        return await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
+        var project = await _dbContext.ProjectModels.Include(x => x.ProjectProfileRoles).ThenInclude(p => p.ProfileModel).ThenInclude(p => p.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .FirstOrDefaultAsync(x => x.Id == id);
+
+        return _mapper.Map<ProjectModel, ProjectDTO>(project);
       }
       catch (Exception e)
       {
@@ -62,7 +72,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectModel> EditProjectAsync(ProjectModel projectModel)
+    public async Task<ProjectDTO> EditProjectAsync(ProjectModel projectModel)
     {
       try
       {
@@ -77,7 +87,7 @@ namespace ConsidKompetens_Services.DataServices
         project.ProjectProfileRoles = projectModel.ProjectProfileRoles;
 
         await _dbContext.SaveChangesAsync();
-        return projectModel;
+        return _mapper.Map<ProjectModel, ProjectDTO>(project);
       }
       catch (Exception e)
       {
@@ -85,14 +95,14 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectModel> CreateNewProjectAsync(ProjectModel projectModel)
+    public async Task<ProjectDTO> CreateNewProjectAsync(ProjectModel projectModel)
     {
       try
       {
         projectModel.Created = DateTime.UtcNow;
         await _dbContext.ProjectModels.AddAsync(projectModel);
         await _dbContext.SaveChangesAsync();
-        return projectModel;
+        return _mapper.Map<ProjectModel, ProjectDTO>(projectModel);
       }
       catch (Exception e)
       {

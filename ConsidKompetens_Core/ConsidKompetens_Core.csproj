@@ -5,12 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommunicationModels\**" />
+    <EmbeddedResource Remove="CommunicationModels\**" />
+    <None Remove="CommunicationModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\LinkModel.cs" />
+    <Compile Remove="Models\SettingsModel.cs" />
     <Compile Remove="Models\SpaPageModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.44.0.1879" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.0" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.44.1.1886" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />

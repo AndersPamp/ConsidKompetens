@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
-using ConsidKompetens_Core.Interfaces;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -17,18 +16,14 @@ namespace ConsidKompetens_Web.Controllers
   public class ProjectController : ControllerBase
   {
     private readonly IProjectDataService _projectService;
-    private readonly ILogger<ProjectController> _logger;
-    private readonly IProjectProfileDataService _projectProfileDataService;
 
-    public ProjectController(IProjectDataService projectService, ILogger<ProjectController> logger, IProjectProfileDataService projectProfileDataService)
+    public ProjectController(IProjectDataService projectService)
     {
       _projectService = projectService;
-      _logger = logger;
-      _projectProfileDataService = projectProfileDataService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ResponseModel>>> Get()
+    public async Task<ActionResult<List<Response>>> Get()
     {
       try
       {
@@ -36,17 +31,17 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+        return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ResponseModel>> Get(int id)
+    public async Task<ActionResult<Response>> Get(int id)
     {
       try
       {
-        var deltaList = new List<ProjectModel> { await _projectService.GetProjectByIdAsync(id) };
-        return Ok(new ResponseModel
+        var deltaList = new List<ProjectDTO> { await _projectService.GetProjectByIdAsync(id) };
+        return Ok(new Response
         {
           Success = true,
           Data = new ResponseData { ProjectModels = deltaList }
@@ -54,39 +49,39 @@ namespace ConsidKompetens_Web.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest(new ResponseModel { Success = false, ErrorMessage = e.Message });
+        return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
       }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ResponseModel>> Post(ProjectModel projectModel)
+    public async Task<ActionResult<Response>> Post(ProjectModel projectModel)
     {
       if (ModelState.IsValid)
       {
-        await _projectService.CreateNewProjectAsync(projectModel);
-        return Ok(new ResponseModel { Success = true, Data = new ResponseData { ProjectModels = await _projectService.GetAllProjectsAsync()}});
+        var result = await _projectService.CreateNewProjectAsync(projectModel);
+        return Ok(new Response { Success = true, Data = new ResponseData { ProjectModels = await _projectService.GetAllProjectsAsync()}});
       }
 
-      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
+      return BadRequest(new Response { Success= false, ErrorMessage= ModelState});
     }
 
     [HttpPut]
-    public async Task<ActionResult<ResponseModel>> Put(ProjectModel projectModel)
+    public async Task<ActionResult<Response>> Put(ProjectModel projectModel)
     {
       if (ModelState.IsValid)
       {
         try
         {
-          var deltaProjects = new List<ProjectModel> { await _projectService.EditProjectAsync(projectModel) };
+          var deltaProjects = new List<ProjectDTO> { await _projectService.EditProjectAsync(projectModel) };
 
-          return new ResponseModel { Success= true, Data = new ResponseData{ProjectModels = deltaProjects}};
+          return new Response { Success= true, Data = new ResponseData{ProjectModels = deltaProjects}};
         }
         catch (Exception e)
         {
-          return BadRequest(new ResponseModel { Success= false, ErrorMessage= e.Message });
+          return BadRequest(new Response { Success= false, ErrorMessage= e.Message });
         }
       }
-      return BadRequest(new ResponseModel { Success= false, ErrorMessage= _logger.ToString() });
+      return BadRequest(new Response { Success= false, ErrorMessage= ModelState});
     }
   }
 }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using AutoMapper;
+using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.Helpers;
-using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -19,22 +20,23 @@ namespace ConsidKompetens_Services.DataServices
     private readonly DataDbContext _dbContext;
     private readonly IOptions<AppSettings> _options;
     private readonly IImageDataService _imageDataService;
-    private readonly IOfficeDataService _officeDataService;
+    private readonly IMapper _mapper;
 
-    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService, IOfficeDataService officeDataService)
+    public ProfileDataService(IOptions<AppSettings> options, DataDbContext DataDbContext, IImageDataService imageDataService, IMapper mapper)
     {
       _options = options;
       _dbContext = DataDbContext;
       _imageDataService = imageDataService;
-      _officeDataService = officeDataService;
+      _mapper = mapper;
     }
 
-    public async Task<List<ProfileModel>> GetAllProfilesAsync()
+    public async Task<List<ProfileDTO>> GetAllProfilesAsync()
     {
       try
       {
-        return await _dbContext.ProfileModels.Include(x => x.ImageModel)
+        var profiles = await _dbContext.ProfileModels.Include(x => x.ImageModel)
           .Include(x => x.Competences).ToListAsync();
+        return _mapper.Map<List<ProfileModel>, List<ProfileDTO>>(profiles);
       }
       catch (Exception e)
       {
@@ -42,15 +44,21 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> GetProfileByIdAsync(int profileId)
+    public async Task<ProfileDTO> GetProfileByIdAsync(int profileId)
     {
       try
       {
-        return await _dbContext.ProfileModels.Include(x => x.Competences)
+        var profile = await _dbContext.ProfileModels
+          .Include(x => x.Competences)
           .Include(x => x.ImageModel)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
+          .Include(x => x.ProjectProfileRoles)
+            .ThenInclude(x => x.ProjectModel)
+            .ThenInclude(x => x.TimePeriod)
+          .Include(x => x.ProjectProfileRoles)
+            .ThenInclude(x => x.ProjectModel)
+            .ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.Id == profileId);
+        return _mapper.Map<ProfileModel, ProfileDTO>(profile);
       }
       catch (Exception e)
       {
@@ -58,17 +66,19 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> GetProfileByOwnerIdAsync(string profileOwnerId)
+    public async Task<ProfileDTO> GetProfileByOwnerIdAsync(string profileOwnerId)
     {
       if (profileOwnerId != null)
       {
         try
         {
-          return await _dbContext.ProfileModels.Include(x => x.Competences)
+          var profile = await _dbContext.ProfileModels.Include(x => x.Competences)
             .Include(x => x.ImageModel)
             .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
             .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
             .FirstOrDefaultAsync(x => x.OwnerID == profileOwnerId);
+
+          return _mapper.Map<ProfileModel, ProfileDTO>(profile);
         }
         catch (Exception e)
         {
@@ -78,7 +88,7 @@ namespace ConsidKompetens_Services.DataServices
       throw new Exception("Invalid input");
     }
 
-    public async Task<List<ProfileModel>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
+    public async Task<List<ProfileDTO>> GetProfilesByOfficeIdsAsync(List<int> officeIds)
     {
       var offices = new List<OfficeModel>();
       var profiles = new List<ProfileModel>();
@@ -95,7 +105,7 @@ namespace ConsidKompetens_Services.DataServices
             profiles.Add(profile);
           }
         }
-        return profiles;
+        return _mapper.Map<List<ProfileModel>, List<ProfileDTO>>(profiles);
       }
       catch (Exception e)
       {
@@ -103,7 +113,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> EditProfileByIdAsync(int profileId, ProfileModelReq input)
+    public async Task<ProfileDTO> EditProfileByIdAsync(int profileId, ProfileReq input)
     {
       try
       {
@@ -130,10 +140,12 @@ namespace ConsidKompetens_Services.DataServices
 
         await _dbContext.SaveChangesAsync();
 
-        return await _dbContext.ProfileModels
+        var editedProfile = await _dbContext.ProfileModels
           .Include(x => x.Competences)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel)
           .FirstOrDefaultAsync(x => x.Id == profileId);
+
+        return _mapper.Map<ProfileModel, ProfileDTO>(editedProfile);
       }
       catch (Exception e)
       {
@@ -141,7 +153,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileModel> CreateNewProfileAsync(string profileOwnerId)
+    public async Task<ProfileDTO> CreateNewProfileAsync(string profileOwnerId)
     {
       try
       {
@@ -154,7 +166,7 @@ namespace ConsidKompetens_Services.DataServices
         await _dbContext.ProfileModels.AddAsync(newUserModel);
         await _dbContext.SaveChangesAsync();
 
-        return newUserModel;
+        return _mapper.Map<ProfileModel, ProfileDTO>(newUserModel);
       }
       catch (Exception e)
       {
@@ -164,7 +176,7 @@ namespace ConsidKompetens_Services.DataServices
 
     public async Task<bool> ImageUploadAsync(string profileOwnerId, IFormFile file)
     {
-      var profile = await GetProfileByOwnerIdAsync(profileOwnerId);
+      var profile = await _dbContext.ProfileModels.FirstOrDefaultAsync(x => x.OwnerID == profileOwnerId);
 
       if (file.Length <= int.Parse(_options.Value.MaxFileSize))
       {

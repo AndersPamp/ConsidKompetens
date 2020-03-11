@@ -205,8 +205,8 @@ namespace ConsidKompetens_Data.Data
       var projectProfileRoles = new List<ProjectProfileRole>()
       {
         new ProjectProfileRole{ProjectModelId=1, ProfileModelId=1, RoleModelId=1},
-        new ProjectProfileRole{ProjectModelId=2, ProfileModelId=5, RoleModelId=2},
-        new ProjectProfileRole{ProjectModelId=4, ProfileModelId=6, RoleModelId=2},
+        new ProjectProfileRole{ProjectModelId=1, ProfileModelId=2, RoleModelId=1},
+        new ProjectProfileRole{ProjectModelId=1, ProfileModelId=3, RoleModelId=1},
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=3, RoleModelId=3},
 
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=7, RoleModelId=3},
@@ -218,6 +218,14 @@ namespace ConsidKompetens_Data.Data
         new ProjectProfileRole{ProjectModelId=1, ProfileModelId=2, RoleModelId=6},
         new ProjectProfileRole{ProjectModelId=3, ProfileModelId=9, RoleModelId=6},
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=1, RoleModelId=6},
+      };
+
+      var roles = new List<RoleModel> 
+      {
+        new RoleModel{Id=1, Name="Backend developer"},
+        new RoleModel{Id=2, Name="Frontend developer"},
+        new RoleModel{Id=3, Name="Solution architect"},
+        new RoleModel{Id=4, Name="Project leader"}
       };
 
       var timePeriods = new List<TimePeriod>()
@@ -396,12 +404,14 @@ namespace ConsidKompetens_Data.Data
       };
 
       modelBuilder.Entity<TimePeriod>().HasData(timePeriods);
-      modelBuilder.Entity<ImageModel>().HasData(images);
+      
       modelBuilder.Entity<CompetenceModel>().HasData(competences);
       modelBuilder.Entity<OfficeModel>().HasData(offices);
       modelBuilder.Entity<ProfileModel>().HasData(profiles);
+      modelBuilder.Entity<ImageModel>().HasData(images);
       //modelBuilder.Entity<ProjectProfileRole>().HasData(projectProfileRoles);
       modelBuilder.Entity<ProjectModel>().HasData(projects);
+      modelBuilder.Entity<RoleModel>().HasData(roles);
     }
   }
 }

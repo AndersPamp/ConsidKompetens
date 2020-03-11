@@ -1,11 +1,13 @@
 using System.IO;
 using System.Text;
+using AutoMapper;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Data.Data;
 using ConsidKompetens_Services.DataServices;
 using ConsidKompetens_Services.Helpers;
 using ConsidKompetens_Services.IdentityServices;
 using ConsidKompetens_Services.Interfaces;
+using ConsidKompetens_Services.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -55,7 +57,10 @@ namespace ConsidKompetens_Web
         options.Password.RequireLowercase = true;
         options.SignIn.RequireConfirmedEmail = true;
       });
-      
+
+      services.AddAutoMapper(typeof(ModelToDTOProfile));
+      services.AddAutoMapper(typeof(DTOToModelProfile));
+
       services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRegisterService, RegisterService>();
@@ -64,7 +69,7 @@ namespace ConsidKompetens_Web
       services.AddScoped<IOfficeDataService, OfficeDataService>();
       services.AddScoped<IProjectDataService, ProjectDataService>();
       services.AddScoped<IImageDataService, ImageDataService>();
-      
+
       services.AddControllers(config =>
       {
         var policy = new AuthorizationPolicyBuilder()
@@ -72,12 +77,12 @@ namespace ConsidKompetens_Web
           .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
       });
-      
+
       var appSettingsSection = Configuration.GetSection("AppSettings");
       services.Configure<AppSettings>(appSettingsSection);
-      
+
       var appSettings = appSettingsSection.Get<AppSettings>();
-      
+
       var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
       services.AddAuthentication(x =>

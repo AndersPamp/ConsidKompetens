@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20200309082330_Secundo")]
-    partial class Secundo
+    [Migration("20200310081359_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,17 +28,20 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CompId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ProfileModelId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -50,254 +53,290 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         new
                         {
                             Id = 1,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "React"
+                            Value = "React"
                         },
                         new
                         {
                             Id = 2,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "React"
+                            Value = "React"
                         },
                         new
                         {
                             Id = 3,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "React"
+                            Value = "React"
                         },
                         new
                         {
                             Id = 4,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "DOTNET"
+                            Value = "DOTNET"
                         },
                         new
                         {
                             Id = 5,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "DOTNET"
+                            Value = "DOTNET"
                         },
                         new
                         {
                             Id = 6,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "DOTNET"
+                            Value = "DOTNET"
                         },
                         new
                         {
                             Id = 7,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Azure Dev Ops"
+                            Value = "Azure Dev Ops"
                         },
                         new
                         {
                             Id = 8,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Azure Dev Ops"
+                            Value = "Azure Dev Ops"
                         },
                         new
                         {
                             Id = 9,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Azure Dev Ops"
+                            Value = "Azure Dev Ops"
                         },
                         new
                         {
                             Id = 10,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Episerver"
+                            Value = "Episerver"
                         },
                         new
                         {
                             Id = 11,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Episerver"
+                            Value = "Episerver"
                         },
                         new
                         {
                             Id = 12,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Episerver"
+                            Value = "Episerver"
                         },
                         new
                         {
                             Id = 13,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Data Analytics"
+                            Value = "Data Analytics"
                         },
                         new
                         {
                             Id = 14,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Data Analytics"
+                            Value = "Data Analytics"
                         },
                         new
                         {
                             Id = 15,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Data Analytics"
+                            Value = "Data Analytics"
                         },
                         new
                         {
                             Id = 16,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "HTML"
+                            Value = "HTML"
                         },
                         new
                         {
                             Id = 17,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "HTML"
+                            Value = "HTML"
                         },
                         new
                         {
                             Id = 18,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "HTML"
+                            Value = "HTML"
                         },
                         new
                         {
                             Id = 19,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Java Script"
+                            Value = "Java Script"
                         },
                         new
                         {
                             Id = 20,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Java Script"
+                            Value = "Java Script"
                         },
                         new
                         {
                             Id = 21,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Java Script"
+                            Value = "Java Script"
                         },
                         new
                         {
                             Id = 22,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Sharepoint"
+                            Value = "Sharepoint"
                         },
                         new
                         {
                             Id = 23,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Sharepoint"
+                            Value = "Sharepoint"
                         },
                         new
                         {
                             Id = 24,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Sharepoint"
+                            Value = "Sharepoint"
                         },
                         new
                         {
                             Id = 25,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Umbraco"
+                            Value = "Umbraco"
                         },
                         new
                         {
                             Id = 26,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Umbraco"
+                            Value = "Umbraco"
                         },
                         new
                         {
                             Id = 27,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Umbraco"
+                            Value = "Umbraco"
                         },
                         new
                         {
                             Id = 28,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Umbraco"
+                            Value = "Umbraco"
                         },
                         new
                         {
                             Id = 29,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "C#"
+                            Value = "C#"
                         },
                         new
                         {
                             Id = 30,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "C#"
+                            Value = "C#"
                         },
                         new
                         {
                             Id = 31,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "C#"
+                            Value = "C#"
                         },
                         new
                         {
                             Id = 32,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "C#"
+                            Value = "C#"
                         },
                         new
                         {
                             Id = 33,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Xamarin"
+                            Value = "Xamarin"
                         },
                         new
                         {
                             Id = 34,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Xamarin"
+                            Value = "Xamarin"
                         },
                         new
                         {
                             Id = 35,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Xamarin"
+                            Value = "Xamarin"
                         },
                         new
                         {
                             Id = 36,
+                            CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Name = "Xamarin"
+                            Value = "Xamarin"
                         });
                 });
 
@@ -891,6 +930,36 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasKey("Id");
 
                     b.ToTable("RoleModel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Backend developer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Frontend developer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Solution architect"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Project leader"
+                        });
                 });
 
             modelBuilder.Entity("ConsidKompetens_Core.Models.TechniqueModel", b =>

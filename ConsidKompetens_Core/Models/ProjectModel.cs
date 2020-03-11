@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ConsidKompetens_Core.Models
 {
@@ -9,6 +10,7 @@ namespace ConsidKompetens_Core.Models
     public int TimePeriodId { get; set; }
     public TimePeriod TimePeriod { get; set; }
     public ICollection<TechniqueModel> Techniques { get; set; }
+    [JsonIgnore]
     public ICollection<ProjectProfileRole> ProjectProfileRoles { get; set; }
   }
 }

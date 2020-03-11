@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
+using ConsidKompetens_Core.Response_Request;
 using ConsidKompetens_Services.Interfaces;
 using ConsidKompetens_Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +21,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // POST: api/Register
     [HttpPost]
-    public async Task<IActionResult> Register([FromBody] RegisterModelReq registerModel)
+    public async Task<IActionResult> Register([FromBody] RegisterReq registerModel)
     {
       if (ModelState.IsValid)
       {
@@ -46,19 +46,19 @@ namespace ConsidKompetens_Web.Controllers
                 //var filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
                 //System.IO.File.WriteAllText(Path.Combine(filePath, $"ConfirmEmail---{user.Id}.txt"), link);
 
-              return Created("", new ResponseModel { Success = true });
+              return Created("", new Response { Success = true });
             }
           }
 
-          return BadRequest(new ResponseModel
+          return BadRequest(new Response
           { Success = false, ErrorMessage = "Password not strong enough or invalid email-address" });
         }
 
-        return BadRequest(new ResponseModel
+        return BadRequest(new Response
         { Success = false, ErrorMessage = "A user with the submitted email-address already exists" });
       }
 
-      return BadRequest(new ResponseModel
+      return BadRequest(new Response
       { Success = false, ErrorMessage = "Both email and password must be submitted" });
     }
 
@@ -80,7 +80,7 @@ namespace ConsidKompetens_Web.Controllers
       var result = await _registerService.ConfirmEmailAsync(userId, token);
       if (result)
       {
-        return Ok(new ResponseModel { Success = true });
+        return Ok(new Response { Success = true });
       }
 
       return BadRequest("Confirmation email could not be sent.");

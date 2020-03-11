@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ConsidKompetens_Core.CommunicationModels;
-using ConsidKompetens_Services.Helpers;
+using ConsidKompetens_Core.Response_Request;
 using Microsoft.AspNetCore.Identity;
 
 namespace ConsidKompetens_Services.Interfaces
@@ -11,7 +10,7 @@ namespace ConsidKompetens_Services.Interfaces
     Task<IdentityUser> ValidateUserAsync(string userName, string passWord);
     Task<bool> LogOutUserAsync();
     Task<bool> SendResetPasswordEmailAsync(string email, string link);
-    Task<bool> ResetPasswordAsync(ResetPasswordModel input);
+    Task<bool> ResetPasswordAsync(ResetPasswordReq input);
     Task<string> GenerateResetTokenAsync(IdentityUser user);
     Task<IdentityUser> FindUserByEmailAsync(string email);
   }
