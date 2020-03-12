@@ -10,11 +10,19 @@ const Competense = (props) => {
 
   const handleButtonClick = () => {
     console.log("hello")
-    const testing = Math.floor(Math.random() * 10);
-    updateCompetences({compid: testing, value: newItem});
+    const id = Math.floor(Math.random() * 10);
+    updateCompetences({compid: id, value: newItem});
   }
   
   const competences = profile.competences || [];
+
+  //  deleteItem(id) {
+  //   const list = [...this.state.list];
+  //   const updatedList = list.filter(item => item.id !== id);
+
+  //   this.setState({ list: updatedList });
+  // }
+
 
   return (
         <div>
