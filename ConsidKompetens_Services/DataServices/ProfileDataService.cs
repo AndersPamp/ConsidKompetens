@@ -113,7 +113,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProfileDTO> EditProfileByIdAsync(int profileId, ProfileReq input)
+    public async Task<ProfileDTO> EditProfileByIdAsync(string ownerId, ProfileReq input)
     {
       try
       {
@@ -121,7 +121,7 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
-          .FirstOrDefaultAsync(x => x.Id == profileId);
+          .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
 
         profile.Competences = input.Competences;
         profile.Experience = input.Experience;
@@ -143,7 +143,7 @@ namespace ConsidKompetens_Services.DataServices
         var editedProfile = await _dbContext.ProfileModels
           .Include(x => x.Competences)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel)
-          .FirstOrDefaultAsync(x => x.Id == profileId);
+          .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
 
         return _mapper.Map<ProfileModel, ProfileDTO>(editedProfile);
       }

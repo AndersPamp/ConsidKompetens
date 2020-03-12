@@ -116,9 +116,7 @@ namespace ConsidKompetens_Web.Controllers
       {
         try
         {
-          //Cannot get profile twice with the same context.
-          var profile = await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
-          var result = await _profileDataService.EditProfileByIdAsync(profile.Id, input);
+          var result = await _profileDataService.EditProfileByIdAsync(this.User.Identity.Name, input);
 
           return Ok(new Response
           {
@@ -126,7 +124,7 @@ namespace ConsidKompetens_Web.Controllers
             Data = new ResponseData
             {
               ProfileModels = new List<ProfileDTO> { result },
-              OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileIdAsync(profile.Id) }
+              OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileIdAsync(result.Id) }
             }
           });
         }
