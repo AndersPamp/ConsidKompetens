@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import officeList from '../../Helper/Offices.json';
 import role from '../../Helper/Roles.json';
 import {ProfileContext} from '../../Context/PofileContext';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,23 +23,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
+
 const SelectForm = () => {
     const classes = useStyles();
-    //const [offices, setOffices] = useState([]);
+    const [offices, setOffices] = useState([]);
     const {profile} = useContext(ProfileContext);
     const user = profile;
     const {handleChange} = useContext(ProfileContext);
     const jwt = localStorage.getItem('secret');
 
-    const getOffices = () => {
+useEffect(() => {
+   const getOffices = () => {
         axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
         .then((response) => {
           console.log(response.data);
           const list = response.data.data.officeModels;
           setOffices(list)
          
-        })
+        }).catch(error => console.log(error));
     }
+  getOffices();
+}, []);
+   
 
     return (
         <>
@@ -58,7 +65,6 @@ const SelectForm = () => {
                               })}
                             </Select>
                       </FormControl>
-                      <button onClick={getOffices}>Get offices</button>
                     </>
     )
 }

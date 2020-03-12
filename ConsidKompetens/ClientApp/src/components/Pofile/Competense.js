@@ -13,19 +13,14 @@ const Competense = (props) => {
     updateCompetences({compid: id, value: newItem});
   }
 
-  const handleDelete = (id) => {
-    console.log('Delete');
-    deleteCompeteces({compid: id})
+  const handleDelete = () => {
+    const item = profile.competences.compId;
+    deleteCompeteces({ compId: item});
   }
   
   const competences = profile.competences || [];
+  console.log(competences)
 
-  //  deleteItem(id) {
-  //   const list = [...this.state.list];
-  //   const updatedList = list.filter(item => item.id !== id);
-
-  //   this.setState({ list: updatedList });
-  // }
 
 
   return (
