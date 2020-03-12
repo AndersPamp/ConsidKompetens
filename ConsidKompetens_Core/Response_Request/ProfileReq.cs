@@ -13,6 +13,6 @@ namespace ConsidKompetens_Core.Response_Request
     public string LinkedInUrl { get; set; }
     public string ResumeUrl { get; set; }
     public ushort Experience { get; set; }
-    public List<CompetenceModel> Competences{ get; set; }
+    public ICollection<CompetenceModel> Competences{ get; set; }
   }
 }

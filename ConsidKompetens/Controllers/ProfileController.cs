@@ -82,7 +82,8 @@ namespace ConsidKompetens_Web.Controllers
           Data = new ResponseData
           {
             ProfileModels = new List<ProfileDTO> { profile },
-            Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) }
+            Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) },
+            OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileIdAsync(profile.Id)}
           }
         });
       }
@@ -94,11 +95,17 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpGet]
     [Route("ownerid")]
-    public async Task<ActionResult<ProfileDTO>> GetProfileByOwnerId()
+    public async Task<ActionResult<Response>> GetProfileByOwnerId()
     {
       try
       {
-        return await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name);
+        return new Response{Success = true, Data = new ResponseData
+        {
+          ProfileModels = new List<ProfileDTO> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name)},
+          OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileOwnerIdAsync(this.User.Identity.Name)}
+        }};
+          
+          
       }
       catch (Exception e)
       {
@@ -116,7 +123,7 @@ namespace ConsidKompetens_Web.Controllers
         {
           var result = await _profileDataService.EditProfileByIdAsync(this.User.Identity.Name, input);
 
-          return Ok(new Response
+          return Created("", new Response
           {
             Success = true,
             Data = new ResponseData
