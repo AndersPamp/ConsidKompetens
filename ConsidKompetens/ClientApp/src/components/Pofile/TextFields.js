@@ -22,6 +22,7 @@ const TextFields = () => {
     const classes = useStyles();
     const {profile} = useContext(ProfileContext);
     const user = profile;
+    //const user = useContext(ProfileContext);
     const {handleChange} = useContext(ProfileContext);
 
     return(

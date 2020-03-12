@@ -24,17 +24,29 @@ const useStyles = makeStyles(theme => ({
 
 const SelectForm = () => {
     const classes = useStyles();
+    //const [offices, setOffices] = useState([]);
     const {profile} = useContext(ProfileContext);
     const user = profile;
     const {handleChange} = useContext(ProfileContext);
+    const jwt = localStorage.getItem('secret');
+
+    const getOffices = () => {
+        axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
+        .then((response) => {
+          console.log(response.data);
+          const list = response.data.data.officeModels;
+          setOffices(list)
+         
+        })
+    }
 
     return (
         <>
          <FormControl className={classes.formControl}>
                           <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
-                            <Select name='office' value={user.office || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
-                              {officeList.map(list => {
-                                return <MenuItem  value={list.office} key={list.id}>{list.office}</MenuItem>
+                            <Select name='officeId' value={user.officeId || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                              {offices.map((item, i) => {
+                                return <MenuItem  value={item.id} key={i}>{item.city}</MenuItem>
                               })}
                             </Select>
                       </FormControl>
@@ -46,6 +58,7 @@ const SelectForm = () => {
                               })}
                             </Select>
                       </FormControl>
+                      <button onClick={getOffices}>Get offices</button>
                     </>
     )
 }
