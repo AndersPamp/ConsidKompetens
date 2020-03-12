@@ -1,0 +1,8 @@
+[
+    {"id": 1, "role": "Frontend utvecklare"},
+    {"id": 2, "role": "Backend utvecklare"},
+    {"id": 3, "role": "Fullstack utvecklare"},
+    {"id": 4, "role": "Episerver utvecklare"},
+    {"id": 5, "role": "Projektledare"},
+    {"id": 6, "role": "Säljare"}
+]

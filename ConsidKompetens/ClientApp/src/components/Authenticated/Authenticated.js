@@ -15,9 +15,6 @@ class Authenticated extends Component {
         if (jwt) {
             this.props.history.push('/');
         }
-        else {
-            this.props.history.push('/login');
-        }
     }
 
     render() {

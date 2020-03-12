@@ -9,6 +9,7 @@
     border: 1px solid black;
     height: 200px;
     width: 200px;
+    margin-top: 25px
 }
 
 .img-container{
@@ -64,13 +65,13 @@
 
 .button{
     margin-top: 5%;
+    margin-bottom: 5%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 160px;
+    width: 100%;
     background-color: white;
-    border: 1px solid #DD0332;;
     color: #DD0332;
-    margin-left: 10px;
+    border: 1px solid #DD0332;
 }
 
 .button:focus{
@@ -80,4 +81,58 @@
 .button:hover{
     background-color: #DD0332;;
     color: white;
+}
+
+.competens{
+    display: inline;
+}
+
+.competense-output{
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 5%;
+    margin-left: 2%;
+    font-size: 110%;
+    padding: 3px 15px;
+    border: 1.3px solid rgb(163, 162, 162);
+    border-radius: 15px;
+    text-align: center;
+    color: rgb(128, 122, 122);
+}
+
+.competense-container{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.add-btn{
+    margin-top: 1%;
+    margin-left: 2%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 47%;
+    background-color: white;
+    color: #DD0332;
+    border: 1px solid #DD0332;
+}
+
+.add-btn:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.add-btn:focus{
+    outline: none;
+}
+
+.delete-competense{
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 5px;
+    color: #DD0332;
+    border: none;
+}
+
+.delete-competense:hover{
+    font-weight: bold;
 }

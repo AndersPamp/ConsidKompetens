@@ -4,9 +4,49 @@
     position: relative;
     padding-bottom: 150px;
   }
+
+  .logga-ut-button{
+    position: absolute;
+    top: 2%;
+    left: 86%;
+    background: none;
+    border: none;
+    color: #DD0332;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 160%;
+  }
+
+  .min-sida-button{
+    position: absolute;
+    top: 2%;
+    left: 77%;
+    background: none;
+    border: none;
+    color: #DD0332;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 160%;
+  }
+
+  .min-sida-button:hover, .logga-ut-button:hover{
+    border-bottom: 1px solid #DD0332;
+  }
   
+  .min-sida-button:focus, .logga-ut-button:focus{
+    outline: none;
+    border-bottom: 1px solid #DD0332;
+  }
+
+  .min-sida-button a, .logga-ut-button a{
+    color: #DD0332;
+  }
+
+  .min-sida-button a:hover, .logga-ut-button a:hover{
+    text-decoration: none;
+    color: #DD0332;
+  }
+
   .homeImg{
-    height: 500px;
+    height: 800px;
     width: 100%;
     box-shadow: 0 0 8px 8px white inset;
   }
@@ -116,6 +156,7 @@
     margin: 10px;
     width: 30%;
     margin-left: 2%;
+    margin-top: 5%;
     box-shadow: 1px 1px 5px 2px rgb(226, 226, 226);
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -126,6 +167,100 @@
   }
 
   .office-list:hover{
-    background-color: rgb(21, 32, 58);
-    color: white;
+    box-shadow: 1px 1px 5px 2px rgb(173, 173, 173);
+    color: rgb(21, 32, 58);
   }
+
+  .list-container{
+    position: absolute;
+    left: 45%;
+    top: 5%;
+    margin: 5%;
+    padding: 3%;
+    box-shadow: 1px 1px 5px 2px rgb(181, 181, 182);
+    background-color: white;
+  }
+
+  .list-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2%;
+    color: #DD0332;
+    text-align: center;
+  }
+
+  .list-container button{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 140%;
+    border-radius: 9px;
+    width: 100%;
+    background-color: white;
+    color: #DD0332;
+    border: 1px solid #DD0332;
+  }
+
+.list-container button:focus{
+    outline: none;
+}
+
+.list-container button:hover{
+    background-color: #DD0332;;
+    color: white;
+}
+  
+.diven{
+  display: inline-block;
+  margin: 1%;
+  width: 135px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .min-sida-button{
+    left: 75%;
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .min-sida-button{
+    left: 73%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .min-sida-button{
+    left: 71%;
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .homeContainer{
+    padding-bottom: 650px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .min-sida-button{
+    left: 64%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .min-sida-button{
+    left: 20%;
+  }
+  .logga-ut-button{
+    left: 55%;
+  }
+  .homeContainer{
+    padding-bottom: 850px;
+  }
+  .homeImg{
+    display: none;
+  }
+  .list-container{
+    left:2%;
+  }
+    
+}

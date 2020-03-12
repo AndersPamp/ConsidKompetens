@@ -1,20 +1,18 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/Home/HomePage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
-import UserPage from './components/Users/UserPage';
+import Profile from './components/Pofile/Profile';
 import DetailsPage from './components/Details/DetailsPage';
-import NavMenu from './components/Header/NavMenu';
+import Employee from './components/Employee/Employee';
+import ProfileContextProvider from './Context/PofileContext';
+//import NavMenu from './components/Header/NavMenu';
 import Authenticated from './components/Authenticated/Authenticated';
-// import {getJwt} from '../src/Helper/jwt';
-// import jwt_decode from 'jwt-decode';
 import { Footer } from '../src/components';
 
 function App() {
-
-
   return (
     <div className='App-div'>
         
@@ -23,10 +21,13 @@ function App() {
         
            {/* <Authenticated> */}
               {/* <NavMenu/> */}
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/details" component={DetailsPage}/>
-            <Route path="/user" component={() => <UserPage/>}/>
-           {/* </Authenticated> */}   
+            <ProfileContextProvider>
+              <Route exact path="/" component={HomePage}/>
+              <Route path="/details" component={DetailsPage}/>
+              <Route path="/employee" component={Employee}/>
+              <Route path="/profile" component={() => <Profile/>}/>
+            </ProfileContextProvider>
+           {/* </Authenticated>    */}
       <Footer/>
     </div>
   );

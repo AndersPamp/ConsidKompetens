@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
+//import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
+import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ConsidLogo from '../../images/consid_logo_big.png';
 import '../../css/NavMenu.css';
@@ -10,8 +11,7 @@ class NavMenu extends Component {
 
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true,
-            loggedIn: false
+            collapsed: true
         };
     }
 
@@ -21,23 +21,16 @@ class NavMenu extends Component {
         });
     }
 
-    handleLogOut() {
-        localStorage.removeItem('secret');
-        this.setState({loggedIn: false });
-         alert('logged out');
-        this.props.history.push('/login');
-    }
-
     render(props) {
 
-        const user = localStorage.getItem('secret');
+        //const user = localStorage.getItem('secret');
 
         return (
             <header>
                 <Navbar className='navbar-expand-sm navbar-toggle-sm ng-white border-bottom box-shadow' light>
                     <Container>
                         <NavbarBrand className='NavbarLogo' tag={Link} to='/'><img className='ConsidLogoBig' src={ConsidLogo} alt="Consid logo"/></NavbarBrand>
-                        <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
+                        {/* <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className='navbar-nav flex-grow'>
                                     <NavItem>
@@ -47,7 +40,7 @@ class NavMenu extends Component {
                                         <NavLink tag={Link} className='text-dark links' to='/login'>Logout</NavLink>
                                     </NavItem>
                             </ul>
-                        </Collapse>
+                        </Collapse> */}
                     </Container>
                 </Navbar>
             </header>
