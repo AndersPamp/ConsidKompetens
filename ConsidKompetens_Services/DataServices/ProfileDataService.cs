@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ConsidKompetens_Core.DTO;
@@ -123,7 +124,13 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
 
-        profile.Competences = input.Competences;
+        var competences = input.Competences.Where(x => !profile.Competences.ToList().Exists(i => i.Id == x.Id));
+
+        foreach (var c in competences)
+        {
+          profile.Competences.Add(c);
+        }
+
         profile.Experience = input.Experience;
         profile.AboutMe = input.AboutMe;
         profile.FirstName = input.FirstName;
