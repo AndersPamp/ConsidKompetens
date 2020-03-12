@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ConsidKompetens_Core.DTO;
@@ -67,6 +68,31 @@ namespace ConsidKompetens_Services.DataServices
           result.Add(office);
         }
         return _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(result);
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<OfficeDTO> GetOfficeContainingProfileOwnerIdAsync(string ownerId)
+    {
+      try
+      {
+        var officeResult = new OfficeModel();
+        var offices = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ToListAsync();
+        foreach (var office in offices)
+        {
+          foreach (var profile in office.ProfileModels)
+          {
+            if (profile.OwnerID == ownerId)
+            {
+              officeResult = office;
+            }
+          }
+        }
+
+        return _mapper.Map<OfficeModel, OfficeDTO>(officeResult);
       }
       catch (Exception e)
       {

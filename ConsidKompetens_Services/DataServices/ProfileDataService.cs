@@ -124,14 +124,13 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
 
-        var competences = input.Competences.Where(x => !profile.Competences.ToList().Exists(i => i.Id == x.Id));
+        //var competences = input.Competences.Where(x => !profile.Competences.ToList().Exists(i => i.Id == x.Id));
 
-        foreach (var c in competences)
-        {
-          profile.Competences.Add(c);
-        }
-
-        profile.Experience = input.Experience;
+        //foreach (var c in competences)
+        //{
+        //  profile.Competences.Add(c);
+        //}
+        profile.Competences = input.Competences;
         profile.AboutMe = input.AboutMe;
         profile.FirstName = input.FirstName;
         profile.LastName = input.LastName;
@@ -144,6 +143,8 @@ namespace ConsidKompetens_Services.DataServices
         {
           _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
         }
+        
+        _dbContext.Update(profile);
 
         await _dbContext.SaveChangesAsync();
 

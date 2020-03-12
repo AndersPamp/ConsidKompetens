@@ -11,6 +11,7 @@ namespace ConsidKompetens_Core.Interfaces
     Task<OfficeDTO> GetOfficeByIdAsync(int officeId);
     Task<List<OfficeDTO>> GetOfficesByIdsAsync(List<int> officeIds);
     Task<OfficeDTO> GetOfficeContainingProfileIdAsync(int profileId);
+    Task<OfficeDTO> GetOfficeContainingProfileOwnerIdAsync(string ownerId);
     Task<bool> CreateNewOfficeAsync(OfficeModel officeModel);
     Task<OfficeDTO> EditOfficeAsync(OfficeModel officeModel);
   }
