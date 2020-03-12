@@ -140,12 +140,7 @@ namespace ConsidKompetens_Services.DataServices
 
         await _dbContext.SaveChangesAsync();
 
-        var editedProfile = await _dbContext.ProfileModels
-          .Include(x => x.Competences)
-          .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel)
-          .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
-
-        return _mapper.Map<ProfileModel, ProfileDTO>(editedProfile);
+        return _mapper.Map<ProfileModel, ProfileDTO>(profile);
       }
       catch (Exception e)
       {

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
-using ConsidKompetens_Core.Models;
 using ConsidKompetens_Core.Response_Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
