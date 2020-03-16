@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConsidKompetens_Core.Models
 {
@@ -16,5 +17,7 @@ namespace ConsidKompetens_Core.Models
     public string LinkedInUrl { get; set; }
     public string ResumeUrl { get; set; }
     public ICollection<ProjectProfileRole> ProjectProfileRoles { get; set; }
+    [ForeignKey("OfficeModelRefId")] 
+    public int OfficeModelId { get; set; }
   }
 }
