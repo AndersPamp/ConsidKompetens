@@ -137,14 +137,13 @@ namespace ConsidKompetens_Services.DataServices
         profile.Position = input.Position;
         profile.LinkedInUrl = input.LinkedInUrl;
         profile.ResumeUrl = input.ResumeUrl;
-        profile.OfficeModelId = input.OfficeId;
 
         profile.Modified = DateTime.UtcNow;
 
-        //if (input.OfficeId != 0)
-        //{
-        //  _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
-        //}
+        if (input.OfficeId != 0)
+        {
+          _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
+        }
 
         _dbContext.Update(profile);
 

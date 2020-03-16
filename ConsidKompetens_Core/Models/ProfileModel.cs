@@ -17,7 +17,5 @@ namespace ConsidKompetens_Core.Models
     public string LinkedInUrl { get; set; }
     public string ResumeUrl { get; set; }
     public ICollection<ProjectProfileRole> ProjectProfileRoles { get; set; }
-    [ForeignKey("OfficeModelRefId")] 
-    public int OfficeModelId { get; set; }
   }
 }
