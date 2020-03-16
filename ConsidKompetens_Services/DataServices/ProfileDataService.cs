@@ -139,11 +139,12 @@ namespace ConsidKompetens_Services.DataServices
         profile.ResumeUrl = input.ResumeUrl;
 
         profile.Modified = DateTime.UtcNow;
+
         if (input.OfficeId != 0)
         {
           _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeId;
         }
-        
+
         _dbContext.Update(profile);
 
         await _dbContext.SaveChangesAsync();

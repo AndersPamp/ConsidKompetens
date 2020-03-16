@@ -212,12 +212,12 @@ namespace ConsidKompetens_Data.Data
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=7, RoleModelId=3},
         new ProjectProfileRole{ProjectModelId=2, ProfileModelId=4, RoleModelId=4},
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=8, RoleModelId=4},
-        new ProjectProfileRole{ProjectModelId=3, ProfileModelId=10, RoleModelId=5},
+        new ProjectProfileRole{ProjectModelId=3, ProfileModelId=10, RoleModelId=2},
 
-        new ProjectProfileRole{ProjectModelId=4, ProfileModelId=5, RoleModelId=5},
-        new ProjectProfileRole{ProjectModelId=1, ProfileModelId=2, RoleModelId=6},
-        new ProjectProfileRole{ProjectModelId=3, ProfileModelId=9, RoleModelId=6},
-        new ProjectProfileRole{ProjectModelId=4, ProfileModelId=1, RoleModelId=6},
+        new ProjectProfileRole{ProjectModelId=4, ProfileModelId=5, RoleModelId=3},
+        new ProjectProfileRole{ProjectModelId=1, ProfileModelId=2, RoleModelId=1},
+        new ProjectProfileRole{ProjectModelId=3, ProfileModelId=9, RoleModelId=2},
+        new ProjectProfileRole{ProjectModelId=4, ProfileModelId=1, RoleModelId=3},
       };
 
       var roles = new List<RoleModel> 
@@ -261,7 +261,8 @@ namespace ConsidKompetens_Data.Data
           "like my profile younger women ultramarathons.",
           Position="Developer",
           Experience=3,
-          ImageModelId=1
+          ImageModelId=1,
+          
           },
         new ProfileModel{
           Id=2,
