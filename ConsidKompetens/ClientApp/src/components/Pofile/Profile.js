@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { red } from '@material-ui/core/colors';
@@ -71,8 +71,8 @@ const {profile } = useContext(ProfileContext);
     function getProfile() {
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
-          const user = response.data;
-          console.log(response);
+          const user = response.data.data.profileModels[0];
+          console.log(response.data.data.profileModels[0]);
           initProfile(user);
           console.log(user.competences)
       }).catch(error => console.log(error))

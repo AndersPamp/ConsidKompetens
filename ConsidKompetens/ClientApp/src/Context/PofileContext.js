@@ -31,7 +31,7 @@ const ProfileContextProvider = ({children}) => {
      const deleteCompeteces = (id) => {
          const list = [...profile.competences];
          const updateArray = list.filter(item => item.compId !== id);
-         setProfile({ competences: updateArray});
+         setProfile({...profile, competences: updateArray});
      }
 
     const handleChange = (event) => {

@@ -4,7 +4,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import officeList from '../../Helper/Offices.json';
 import role from '../../Helper/Roles.json';
 import {ProfileContext} from '../../Context/PofileContext';
 import axios from 'axios';

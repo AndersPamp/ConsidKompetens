@@ -11,11 +11,11 @@ const Competense = (props) => {
     console.log("hello")
     const id = Math.floor(Math.random() * 10);
     updateCompetences({compid: id, value: newItem});
+    setNewItem('')
   }
 
-  const handleDelete = () => {
-    const item = profile.competences.compId;
-    deleteCompeteces({ compId: item});
+  const handleDelete = (compId) => {
+    deleteCompeteces(compId);
   }
   
   const competences = profile.competences || [];
@@ -44,7 +44,7 @@ const Competense = (props) => {
                 return (
                   <div key={i} className='competense-output'>
                      {item.value}
-                    <button className='delete-competense' onClick={handleDelete}>
+                    <button className='delete-competense' onClick={() => handleDelete(item.compId)}>
                       X
                     </button>
                   </div>
