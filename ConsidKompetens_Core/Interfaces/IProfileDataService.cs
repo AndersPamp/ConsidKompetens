@@ -8,12 +8,12 @@ namespace ConsidKompetens_Core.Interfaces
 {
   public interface IProfileDataService
   {
-    Task<List<ProfileDTO>> GetAllProfilesAsync();
-    Task<ProfileDTO> GetProfileByIdAsync(int profileId);
-    Task<ProfileDTO> GetProfileByOwnerIdAsync(string profileOwnerId);
-    Task<List<ProfileDTO>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
-    Task<ProfileDTO> EditProfileByIdAsync(string ownerId, ProfileReq input);
-    Task<ProfileDTO> CreateNewProfileAsync(string profileOwnerId);
+    Task<List<ProfileDto>> GetAllProfilesAsync();
+    Task<ProfileDto> GetProfileByIdAsync(int profileId);
+    Task<ProfileDto> GetProfileByOwnerIdAsync(string profileOwnerId);
+    Task<List<ProfileDto>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
+    Task<ProfileDto> EditProfileByIdAsync(string ownerId, ProfileReq input);
+    Task<ProfileDto> CreateNewProfileAsync(string profileOwnerId);
     Task<bool> ImageUploadAsync(string profileOwnerId, IFormFile file);
     Task<bool> ResumeUploadAsync(string profileOwnerId, IFormFile file);
     Task<bool> DeleteProfileAsync(int profileId);

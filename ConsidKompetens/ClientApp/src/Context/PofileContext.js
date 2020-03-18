@@ -9,7 +9,7 @@ const ProfileContextProvider = ({children}) => {
             aboutMe: '',
             linkedInUrl: '',
             position: '',
-            officeId: '',
+            officeDtoFK: '',
             resumeUrl: '',
             imageModel: '',
             competences: [

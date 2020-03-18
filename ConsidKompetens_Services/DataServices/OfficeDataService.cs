@@ -22,7 +22,7 @@ namespace ConsidKompetens_Services.DataServices
       _mapper = mapper;
     }
 
-    public async Task<List<OfficeDTO>> GetOfficesAsync()
+    public async Task<List<OfficeDto>> GetOfficesAsync()
     {
       try
       {
@@ -30,7 +30,7 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProfileModels).ThenInclude(x => x.ImageModel)
           .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .Include(x => x.ProfileModels).ThenInclude(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques).ToListAsync();
-        return _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(offices);
+        return _mapper.Map<List<OfficeModel>, List<OfficeDto>>(offices);
       }
       catch (Exception e)
       {
@@ -38,14 +38,14 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeDTO> GetOfficeByIdAsync(int officeId)
+    public async Task<OfficeDto> GetOfficeByIdAsync(int officeId)
     {
       try
       {
         var office = await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .Include(x => x.ProfileModels).ThenInclude(x => x.Competences)
           .FirstOrDefaultAsync(x => x.Id == officeId);
-        return _mapper.Map<OfficeModel, OfficeDTO>(office);
+        return _mapper.Map<OfficeModel, OfficeDto>(office);
       }
       catch (Exception e)
       {
@@ -53,7 +53,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<List<OfficeDTO>> GetOfficesByIdsAsync(List<int> officeIds)
+    public async Task<List<OfficeDto>> GetOfficesByIdsAsync(List<int> officeIds)
     {
       var result = new List<OfficeModel>();
       try
@@ -67,7 +67,7 @@ namespace ConsidKompetens_Services.DataServices
 
           result.Add(office);
         }
-        return _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(result);
+        return _mapper.Map<List<OfficeModel>, List<OfficeDto>>(result);
       }
       catch (Exception e)
       {
@@ -75,7 +75,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeDTO> GetOfficeContainingProfileOwnerIdAsync(string ownerId)
+    public async Task<OfficeDto> GetOfficeContainingProfileOwnerIdAsync(string ownerId)
     {
       try
       {
@@ -92,7 +92,7 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        return _mapper.Map<OfficeModel, OfficeDTO>(officeResult);
+        return _mapper.Map<OfficeModel, OfficeDto>(officeResult);
       }
       catch (Exception e)
       {
@@ -114,7 +114,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeDTO> EditOfficeAsync(OfficeModel officeModel)
+    public async Task<OfficeDto> EditOfficeAsync(OfficeModel officeModel)
     {
       try
       {
@@ -124,7 +124,7 @@ namespace ConsidKompetens_Services.DataServices
         model.TelephoneNumber = officeModel.TelephoneNumber;
         model.Modified = DateTime.Now;
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<OfficeModel, OfficeDTO>(model);
+        return _mapper.Map<OfficeModel, OfficeDto>(model);
       }
       catch (Exception e)
       {
@@ -132,7 +132,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<OfficeDTO> GetOfficeContainingProfileIdAsync(int profileId)
+    public async Task<OfficeDto> GetOfficeContainingProfileIdAsync(int profileId)
     {
       try
       {
@@ -148,7 +148,7 @@ namespace ConsidKompetens_Services.DataServices
             }
           }
         }
-        return _mapper.Map<OfficeModel, OfficeDTO>(officeResult);
+        return _mapper.Map<OfficeModel, OfficeDto>(officeResult);
       }
       catch (Exception e)
       {

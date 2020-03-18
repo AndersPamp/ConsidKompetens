@@ -120,8 +120,8 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        response.Data.ProfileModels = _mapper.Map<List<ProfileModel>, List<ProfileDTO>>(profiles);
-        response.Data.OfficeModels = _mapper.Map<List<OfficeModel>, List<OfficeDTO>>(offices);
+        response.Data.ProfileModels = _mapper.Map<List<ProfileModel>, List<ProfileDto>>(profiles);
+        response.Data.OfficeModels = _mapper.Map<List<OfficeModel>, List<OfficeDto>>(offices);
         return response;
       }
       catch (Exception e)

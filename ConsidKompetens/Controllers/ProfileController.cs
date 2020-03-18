@@ -42,7 +42,7 @@ namespace ConsidKompetens_Web.Controllers
 
     // GET: api/Profile
     [HttpGet]
-    public async Task<ActionResult<ProfileDTO>> Get()
+    public async Task<ActionResult<ProfileDto>> Get()
     {
       try
       {
@@ -81,9 +81,9 @@ namespace ConsidKompetens_Web.Controllers
           Success = true,
           Data = new ResponseData
           {
-            ProfileModels = new List<ProfileDTO> { profile },
+            ProfileModels = new List<ProfileDto> { profile },
             Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) },
-            OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileIdAsync(profile.Id)}
+            OfficeModels = new List<OfficeDto> { await _officeDataService.GetOfficeContainingProfileIdAsync(profile.Id)}
           }
         });
       }
@@ -101,8 +101,8 @@ namespace ConsidKompetens_Web.Controllers
       {
         return new Response{Success = true, Data = new ResponseData
         {
-          ProfileModels = new List<ProfileDTO> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name)},
-          OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileOwnerIdAsync(this.User.Identity.Name)}
+          ProfileModels = new List<ProfileDto> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name)},
+          OfficeModels = new List<OfficeDto> { await _officeDataService.GetOfficeContainingProfileOwnerIdAsync(this.User.Identity.Name)}
         }};
           
           
@@ -128,8 +128,8 @@ namespace ConsidKompetens_Web.Controllers
             Success = true,
             Data = new ResponseData
             {
-              ProfileModels = new List<ProfileDTO> { result },
-              OfficeModels = new List<OfficeDTO> { await _officeDataService.GetOfficeContainingProfileIdAsync(result.Id) }
+              ProfileModels = new List<ProfileDto> { result },
+              OfficeModels = new List<OfficeDto> { await _officeDataService.GetOfficeContainingProfileIdAsync(result.Id) }
             }
           });
         }
@@ -155,7 +155,7 @@ namespace ConsidKompetens_Web.Controllers
             Success = true,
             Data = new ResponseData
             {
-              ProfileModels = new List<ProfileDTO> { await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID) },
+              ProfileModels = new List<ProfileDto> { await _profileDataService.GetProfileByOwnerIdAsync(profile.OwnerID) },
               Images = new List<string> { Path.Combine(Directory.GetCurrentDirectory(), profile.ImageModel.Url) }
             }
           });
@@ -181,7 +181,7 @@ namespace ConsidKompetens_Web.Controllers
             Success = true,
             Data = new ResponseData
             {
-              ProfileModels = new List<ProfileDTO> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name) }
+              ProfileModels = new List<ProfileDto> { await _profileDataService.GetProfileByOwnerIdAsync(this.User.Identity.Name) }
             }
           });
         }
