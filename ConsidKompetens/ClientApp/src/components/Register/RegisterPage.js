@@ -54,7 +54,7 @@ const RegisterPage = () => {
 
     return(
           <div className='container-login'>
-          {registerad ? <Redirect to="/login" /> : null}
+          {registerad ? <Redirect to="/login"/> : null}
             <ThemeProvider theme={theme}>
                 <img className='image' src={LoginImage} alt="Consid woman"/>
                 <form onSubmit={submitHendler}>

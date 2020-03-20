@@ -8,9 +8,9 @@ import Profile from './components/Pofile/Profile';
 import DetailsPage from './components/Details/DetailsPage';
 import Employee from './components/Employee/Employee';
 import ProfileContextProvider from './Context/PofileContext';
-//import NavMenu from './components/Header/NavMenu';
 //import Authenticated from './components/Authenticated/Authenticated';
 import { Footer } from '../src/components';
+//import AuthContextProvider  from './Context/AuthContext';
 
 function App() {
   return (
@@ -19,15 +19,14 @@ function App() {
         <Route path="/login" component={() => <LoginPage />}/>
         <Route path="/register" component={RegisterPage}/>
         
-           {/* <Authenticated> */}
-              {/* <NavMenu/> */}
+          {/* <AuthContextProvider> */}
             <ProfileContextProvider>
               <Route exact path="/" component={HomePage}/>
               <Route path="/details" component={DetailsPage}/>
               <Route path="/employee" component={Employee}/>
               <Route path="/profile" component={() => <Profile/>}/>
             </ProfileContextProvider>
-           {/* </Authenticated>    */}
+          {/* </AuthContextProvider>  */}
       <Footer/>
     </div>
   );
