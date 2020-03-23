@@ -145,10 +145,9 @@ namespace ConsidKompetens_Services.DataServices
         profile.Position = input.Position;
         profile.LinkedInUrl = input.LinkedInUrl;
         profile.ResumeUrl = input.ResumeUrl;
-        profile.OfficeModelFK = input.OfficeModelFK;
         profile.Modified = DateTime.UtcNow;
-                       
-        _dbContext.ProfileModels.Update(profile);
+        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeModelFK;                       
+        _dbContext.Update(profile);
 
         await _dbContext.SaveChangesAsync();
 

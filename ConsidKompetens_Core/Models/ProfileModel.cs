@@ -10,8 +10,6 @@ namespace ConsidKompetens_Core.Models
     public string LastName { get; set; }
     public string AboutMe { get; set; }
     public string Position { get; set; }
-    [ForeignKey("OfficeModel")]
-    public int OfficeModelFK { get; set; }
     public int ImageModelId { get; set; }
     public ImageModel ImageModel { get; set; }
     public List<CompetenceModel> Competences { get; set; }

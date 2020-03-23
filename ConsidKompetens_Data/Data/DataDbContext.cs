@@ -21,9 +21,9 @@ namespace ConsidKompetens_Data.Data
     {
       base.OnModelCreating(modelBuilder);
 
-      modelBuilder.Entity<ProjectProfileRole>().HasKey(x => new { x.ProjectModelId, x.ProfileModelId, x.RoleModelId });
+      modelBuilder.Entity<ProjectProfileRole>().HasKey(x => new {x.ProjectModelId, x.ProfileModelId, x.RoleModelId});
 
-      //modelBuilder.SeedData();
+      modelBuilder.SeedData();
     }
   }
 }
