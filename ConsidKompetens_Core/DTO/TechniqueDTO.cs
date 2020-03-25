@@ -1,6 +1,6 @@
 ﻿namespace ConsidKompetens_Core.DTO
 {
-  public class TechniqueDTO:BaseDTO
+  public class TechniqueDto:BaseDto
   {
     public string Name { get; set; }
   }

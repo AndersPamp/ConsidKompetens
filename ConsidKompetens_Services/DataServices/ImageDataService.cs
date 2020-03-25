@@ -20,12 +20,12 @@ namespace ConsidKompetens_Services.DataServices
       _dbContext = dbContext;
       _mapper = mapper;
     }
-    public async Task<List<ImageDTO>> GetImageModelsAsync()
+    public async Task<List<ImageDto>> GetImageModelsAsync()
     {
       try
       {
         var images = await _dbContext.ImageModels.ToListAsync();
-        return _mapper.Map<List<ImageModel>, List<ImageDTO>>(images);
+        return _mapper.Map<List<ImageModel>, List<ImageDto>>(images);
       }
       catch (Exception e)
       {
@@ -33,12 +33,12 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageDTO> GetImageModelByIdAsync(int id)
+    public async Task<ImageDto> GetImageModelByIdAsync(int id)
     {
       try
       {
         var image = await _dbContext.ImageModels.FindAsync(id);
-        return _mapper.Map<ImageModel, ImageDTO>(image);
+        return _mapper.Map<ImageModel, ImageDto>(image);
       }
       catch (Exception e)
       {
@@ -46,7 +46,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageDTO> RegisterNewImageModelAsync(ImageModel imageModel)
+    public async Task<ImageDto> RegisterNewImageModelAsync(ImageModel imageModel)
     {
       try
       {
@@ -54,7 +54,7 @@ namespace ConsidKompetens_Services.DataServices
 
         await _dbContext.ImageModels.AddAsync(imageModel);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<ImageModel, ImageDTO>(imageModel);
+        return _mapper.Map<ImageModel, ImageDto>(imageModel);
       }
       catch (Exception e)
       {
@@ -62,7 +62,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageDTO> EditImageModelAsync(int imageId, ImageModel imageModel)
+    public async Task<ImageDto> EditImageModelAsync(int imageId, ImageModel imageModel)
     {
       try
       {
@@ -71,7 +71,7 @@ namespace ConsidKompetens_Services.DataServices
         delta.Alt = imageModel.Alt;
         delta.Modified = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<ImageModel, ImageDTO>(imageModel);
+        return _mapper.Map<ImageModel, ImageDto>(imageModel);
       }
       catch (Exception e)
       {

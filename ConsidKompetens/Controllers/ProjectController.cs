@@ -40,7 +40,7 @@ namespace ConsidKompetens_Web.Controllers
     {
       try
       {
-        var deltaList = new List<ProjectDTO> { await _projectService.GetProjectByIdAsync(id) };
+        var deltaList = new List<ProjectDto> { await _projectService.GetProjectByIdAsync(id) };
         return Ok(new Response
         {
           Success = true,
@@ -72,7 +72,7 @@ namespace ConsidKompetens_Web.Controllers
       {
         try
         {
-          var deltaProjects = new List<ProjectDTO> { await _projectService.EditProjectAsync(projectModel) };
+          var deltaProjects = new List<ProjectDto> { await _projectService.EditProjectAsync(projectModel) };
 
           return new Response { Success= true, Data = new ResponseData{ProjectModels = deltaProjects}};
         }

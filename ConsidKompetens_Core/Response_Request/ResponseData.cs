@@ -5,10 +5,10 @@ namespace ConsidKompetens_Core.Response_Request
 {
   public class ResponseData
   {
-    public List<OfficeDTO> OfficeModels { get; set; }
-    public List<ProfileDTO> ProfileModels { get; set; }
-    public List<ProjectDTO> ProjectModels { get; set; }
-    public List<CompetenceDTO> CompetenceModels { get; set; }
+    public List<OfficeDto> OfficeModels { get; set; }
+    public List<ProfileDto> ProfileModels { get; set; }
+    public List<ProjectDto> ProjectModels { get; set; }
+    public List<CompetenceDto> CompetenceModels { get; set; }
     public List<string> Images { get; set; }
     public string Email { get; set; }
   }

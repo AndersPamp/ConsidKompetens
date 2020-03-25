@@ -2,7 +2,7 @@
 
 namespace ConsidKompetens_Core.DTO
 {
-  public class TimePeriodDTO:BaseDTO
+  public class TimePeriodDto:BaseDto
   {
     public DateTime Start { get; set; }
     public DateTime Stop { get; set; }

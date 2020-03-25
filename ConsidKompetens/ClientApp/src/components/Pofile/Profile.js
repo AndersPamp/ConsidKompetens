@@ -50,15 +50,14 @@ const {profile } = useContext(ProfileContext);
   function submit(e){
       e.preventDefault();
       axios.put('https://localhost:44323/api/profile/editprofile',input , { headers: { 'Authorization': `Bearer ${jwt}` } })
-      .then((response) => {
-      
+        .then((response) => {
         const result = response.data;
         console.log(result)
 
         if(response.status === 200)
         {
           localStorage.setItem('profile', result);
-          alert('You have update your profile');
+          alert('You have updated your profile');
           console.log(result);
           console.log(response);
         }

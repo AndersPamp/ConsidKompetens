@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsidKompetens_Data.Migrations.DataDb
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20200316094713_Initial")]
+    [Migration("20200319122059_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,23 +52,15 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                     b.HasData(
                         new
                         {
+                            Id = 19,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Java Script"
+                        },
+                        new
+                        {
                             Id = 1,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "React"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "React"
-                        },
-                        new
-                        {
-                            Id = 3,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
@@ -84,11 +76,27 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 7,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "DOTNET"
+                            Value = "Azure Dev Ops"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Java Script"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "React"
                         },
                         new
                         {
@@ -100,7 +108,7 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 8,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
@@ -108,11 +116,27 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 21,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Azure Dev Ops"
+                            Value = "Java Script"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "React"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "DOTNET"
                         },
                         new
                         {
@@ -124,23 +148,15 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
+                            Id = 22,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Sharepoint"
+                        },
+                        new
+                        {
                             Id = 10,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Episerver"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Episerver"
-                        },
-                        new
-                        {
-                            Id = 12,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
@@ -156,75 +172,11 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 14,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Data Analytics"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Data Analytics"
-                        },
-                        new
-                        {
                             Id = 16,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Value = "HTML"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "HTML"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "HTML"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Java Script"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Java Script"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Java Script"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Sharepoint"
                         },
                         new
                         {
@@ -236,6 +188,30 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
+                            Id = 11,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Episerver"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Data Analytics"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "HTML"
+                        },
+                        new
+                        {
                             Id = 24,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
@@ -244,31 +220,31 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 12,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Umbraco"
+                            Value = "Episerver"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Data Analytics"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "HTML"
                         },
                         new
                         {
                             Id = 26,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Umbraco"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "Umbraco"
-                        },
-                        new
-                        {
-                            Id = 28,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
@@ -284,35 +260,27 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
-                            Id = 30,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "C#"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "C#"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CompId = 0,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
-                            Value = "C#"
-                        },
-                        new
-                        {
                             Id = 33,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Value = "Xamarin"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Umbraco"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "C#"
                         },
                         new
                         {
@@ -324,11 +292,43 @@ namespace ConsidKompetens_Data.Migrations.DataDb
                         },
                         new
                         {
+                            Id = 27,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Umbraco"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "C#"
+                        },
+                        new
+                        {
                             Id = 35,
                             CompId = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
                             Value = "Xamarin"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "Umbraco"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CompId = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2014),
+                            Value = "C#"
                         },
                         new
                         {

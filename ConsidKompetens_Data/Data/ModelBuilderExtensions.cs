@@ -116,7 +116,7 @@ namespace ConsidKompetens_Data.Data
       modelBuilder.Entity<IdentityUser>().HasData(users);
     }
 
-    public static void SeedData (this ModelBuilder modelBuilder)
+    public static void SeedData(this ModelBuilder modelBuilder)
     {
       var images = new List<ImageModel>()
       {
@@ -159,46 +159,50 @@ namespace ConsidKompetens_Data.Data
 
       var competences = new List<CompetenceModel>()
       {
-        new CompetenceModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
-        new CompetenceModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
-        new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
+        new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+        new CompetenceModel{Id = 1, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React"},
         new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-        new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-        new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-
         new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
-        new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
-        new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
-        new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-        new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-        new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
 
+        new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+        new CompetenceModel{Id = 2, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
+        new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
+        new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
+
+        new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+        new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
+        new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
+        new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
+
+        new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+        new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
         new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-        new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-        new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
         new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
+
+        new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+        new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
+        new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
         new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
+
+        new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+        new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
+        new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
         new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
 
-        new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
-        new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
-        new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
-        new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-        new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-        new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+        new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+        new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
+        new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
 
         new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
         new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-
-        new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
         new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
+
+        new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+        new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
         new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
+
+        new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+        new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
         new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
       };
 
@@ -220,7 +224,7 @@ namespace ConsidKompetens_Data.Data
         new ProjectProfileRole{ProjectModelId=4, ProfileModelId=1, RoleModelId=3},
       };
 
-      var roles = new List<RoleModel> 
+      var roles = new List<RoleModel>
       {
         new RoleModel{Id=1, Name="Backend developer"},
         new RoleModel{Id=2, Name="Frontend developer"},
@@ -251,7 +255,6 @@ namespace ConsidKompetens_Data.Data
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="6c6c2eec-f58b-4728-8b6a-20492648ad83",
-          //OfficeModelId=1,
           FirstName="John",
           LastName= "Doe",
           AboutMe="I am oddly aroused by no crazy chicks see, I told you you're going to be trained to my satisfaction. " +
@@ -261,15 +264,21 @@ namespace ConsidKompetens_Data.Data
           "like my profile younger women ultramarathons.",
           Position="Developer",
           Experience=3,
-          ImageModelId=1,
-          
+          ImageModelId=1
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+          //  new CompetenceModel { Id = 1, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
+          //  new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
+          //  new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //}
+
           },
         new ProfileModel{
           Id=2,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="b437b09d-615b-49ff-9317-bfab87d38c84",
-          //OfficeModelId=1,
           FirstName="Idi",
           LastName= "Amin",
           AboutMe="Complete lack of shame is probably a conspiracy documentary filmmaker I attract girls who are very good-looking. " +
@@ -279,13 +288,19 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=7,
           ImageModelId=2
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+          //  new CompetenceModel { Id = 2, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
+          //  new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
+          //  new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //}
           },
         new ProfileModel{
           Id=3,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="45f21477-00ef-436f-928b-504753249afa",
-          //OfficeModelId=1,
           FirstName="Hozni",
           LastName= "Mubarak",
           AboutMe="If you like please post your real pictures I am oddly aroused by it depends on the night. Shooting laughing hysterically " +
@@ -295,13 +310,19 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=12,
           ImageModelId=3
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+          //  new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
+          //  new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
+          //  new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //}
           },
         new ProfileModel{
           Id=4,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="65c97613-cd49-4aa8-ad5d-f53b05f609f9",
-          //OfficeModelId=2,
           FirstName="Elisabeth",
           LastName= "Höglund",
           AboutMe="Please post your real pictures heyyy my deep, manly voice P90X. If you dress up like a pin-up doll for me The Game shooting " +
@@ -310,13 +331,19 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=6,
           ImageModelId=4
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+          //  new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
+          //  new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
+          //  new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //}
           },
         new ProfileModel{
           Id=5,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="1eb5b655-755d-4d21-b78c-8d19eeeb19a9",
-          //OfficeModelId=2,
           FirstName="Djingis",
           LastName= "Khan",
           AboutMe="If you have an innie belly button you could say I'm old-fashioned MFA on the first date. When I get drunk I don't really keep " +
@@ -326,13 +353,19 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=5,
           ImageModelId=5
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+          //  new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
+          //  new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
+          //  new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //}
           },
         new ProfileModel{
           Id=6,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="3a779fe9-15b0-4a10-b607-538393af8ed4",
-          //OfficeModelId=2,
           FirstName="Emperor",
           LastName= "Hirohito",
           AboutMe="My lizard tongue blackjack with morals well-built. Heyyy Think about it! making others feel good females my last partner told me, " +
@@ -341,13 +374,19 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=8,
           ImageModelId=6
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
+          //  new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
+          //  new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
+          //  new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //}
           },
         new ProfileModel{
           Id=7,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="d3a961f6-603c-4c53-9e0b-3e49a81c7fc3",
-          //OfficeModelId=3,
           FirstName="Reinhard",
           LastName= "Heydrich",
           AboutMe="A fairly successful career in sports performance art years ago I discovered unworthy of serious consideration. The Game that's what she " +
@@ -357,13 +396,18 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=2,
           ImageModelId=7
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+          //  new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
+          //  new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //}
           },
         new ProfileModel{
           Id=8,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="062f39f9-5f27-476e-8bce-e7e447f8d874",
-          //OfficeModelId=3,
           FirstName="Hatte",
           LastName= "Furuhagen",
           AboutMe="If I make fun of you it's because I like you it's huge pics on request I'm really good at. I am a hoarder, but only of top shelf stuff you " +
@@ -372,13 +416,18 @@ namespace ConsidKompetens_Data.Data
           "playing devil's advocate crying in my bathtub.",
           Position="Developer",
           ImageModelId=8
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+          //  new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
+          //  new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //}
           },
         new ProfileModel{
           Id=9,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="84efc798-d9dd-48fe-ad64-e186488bfe88",
-          //OfficeModelId=3,
           FirstName="Biskop",
           LastName= "Brask",
           AboutMe="Be my partner in crime is probably a conspiracy very successsful entrepreneur I will love you forever. In my birthday suit organized chaos " +
@@ -387,25 +436,36 @@ namespace ConsidKompetens_Data.Data
           Position="Developer",
           Experience=22,
           ImageModelId=9
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+          //  new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
+          //  new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //}
           },
         new ProfileModel{
           Id=10,
           Created = new DateTime(2020-03-03),
           Modified = new DateTime(2020-03-03),
           OwnerID="e9e8c451-f41c-4cf7-bfd0-07650578856e",
-          //OfficeModelId=3,
           FirstName="Griselda",
           LastName= "Blanco",
           AboutMe="If you have an innie belly button my other half work hard play hard because I am a paradox. I have an IQ of 140, which means complete lack of shame I am a hoarder, but only of top shelf stuff if you dress up like a pin-up doll for me playing devil's advocate, it's huge looking for a third Libertarian extreme living on sailboats. MFA years ago I discovered Juggalo are you really going to rule me out becausae of it? I did a lot of modeling work in the mid-80s but I only smoke when drinking.",
           Position="Developer",
           Experience=14,
           ImageModelId=10
+          //Competences = new List<CompetenceModel>
+          //{
+          //  new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
+          //  new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
+          //  new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //}
           },
 
       };
 
       modelBuilder.Entity<TimePeriod>().HasData(timePeriods);
-      
+
       modelBuilder.Entity<CompetenceModel>().HasData(competences);
       modelBuilder.Entity<OfficeModel>().HasData(offices);
       modelBuilder.Entity<ProfileModel>().HasData(profiles);

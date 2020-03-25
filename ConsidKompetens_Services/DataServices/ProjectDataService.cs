@@ -21,7 +21,7 @@ namespace ConsidKompetens_Services.DataServices
       _dbContext = dbContext;
       _mapper = mapper;
     }
-    public async Task<List<ProjectDTO>> GetAllProjectsAsync()
+    public async Task<List<ProjectDto>> GetAllProjectsAsync()
     {
       try
       {
@@ -30,7 +30,7 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
 
-        return _mapper.Map<List<ProjectModel>, List<ProjectDTO>>(projects);
+        return _mapper.Map<List<ProjectModel>, List<ProjectDto>>(projects);
       }
       catch (Exception e)
       {
@@ -38,7 +38,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<List<ProjectDTO>> GetProjectsByNameAsync(string input)
+    public async Task<List<ProjectDto>> GetProjectsByNameAsync(string input)
     {
       try
       {
@@ -48,7 +48,7 @@ namespace ConsidKompetens_Services.DataServices
           .Include(p => p.TimePeriod).Include(p => p.Techniques)
           .ToListAsync();
 
-        return _mapper.Map<List<ProjectModel>, List<ProjectDTO>>(projects);
+        return _mapper.Map<List<ProjectModel>, List<ProjectDto>>(projects);
       }
       catch (Exception e)
       {
@@ -56,7 +56,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectDTO> GetProjectByIdAsync(int id)
+    public async Task<ProjectDto> GetProjectByIdAsync(int id)
     {
       try
       {
@@ -64,7 +64,7 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProjectProfileRoles).ThenInclude(p => p.RoleModel).Include(p => p.TimePeriod).Include(p => p.Techniques)
           .FirstOrDefaultAsync(x => x.Id == id);
 
-        return _mapper.Map<ProjectModel, ProjectDTO>(project);
+        return _mapper.Map<ProjectModel, ProjectDto>(project);
       }
       catch (Exception e)
       {
@@ -72,7 +72,7 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectDTO> EditProjectAsync(ProjectModel projectModel)
+    public async Task<ProjectDto> EditProjectAsync(ProjectModel projectModel)
     {
       try
       {
@@ -87,7 +87,7 @@ namespace ConsidKompetens_Services.DataServices
         project.ProjectProfileRoles = projectModel.ProjectProfileRoles;
 
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<ProjectModel, ProjectDTO>(project);
+        return _mapper.Map<ProjectModel, ProjectDto>(project);
       }
       catch (Exception e)
       {
@@ -95,14 +95,14 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ProjectDTO> CreateNewProjectAsync(ProjectModel projectModel)
+    public async Task<ProjectDto> CreateNewProjectAsync(ProjectModel projectModel)
     {
       try
       {
         projectModel.Created = DateTime.UtcNow;
         await _dbContext.ProjectModels.AddAsync(projectModel);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<ProjectModel, ProjectDTO>(projectModel);
+        return _mapper.Map<ProjectModel, ProjectDto>(projectModel);
       }
       catch (Exception e)
       {

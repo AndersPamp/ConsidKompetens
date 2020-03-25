@@ -7,12 +7,12 @@ namespace ConsidKompetens_Core.Interfaces
 {
   public interface IOfficeDataService
   {
-    Task<List<OfficeDTO>> GetOfficesAsync();
-    Task<OfficeDTO> GetOfficeByIdAsync(int officeId);
-    Task<List<OfficeDTO>> GetOfficesByIdsAsync(List<int> officeIds);
-    Task<OfficeDTO> GetOfficeContainingProfileIdAsync(int profileId);
-    Task<OfficeDTO> GetOfficeContainingProfileOwnerIdAsync(string ownerId);
+    Task<List<OfficeDto>> GetOfficesAsync();
+    Task<OfficeDto> GetOfficeByIdAsync(int officeId);
+    Task<List<OfficeDto>> GetOfficesByIdsAsync(List<int> officeIds);
+    Task<OfficeDto> GetOfficeContainingProfileIdAsync(int profileId);
+    Task<OfficeDto> GetOfficeContainingProfileOwnerIdAsync(string ownerId);
     Task<bool> CreateNewOfficeAsync(OfficeModel officeModel);
-    Task<OfficeDTO> EditOfficeAsync(OfficeModel officeModel);
+    Task<OfficeDto> EditOfficeAsync(OfficeModel officeModel);
   }
 }

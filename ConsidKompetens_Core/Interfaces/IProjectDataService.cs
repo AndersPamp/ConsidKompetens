@@ -7,10 +7,10 @@ namespace ConsidKompetens_Services.Interfaces
 {
   public interface IProjectDataService
   {
-    Task<List<ProjectDTO>> GetAllProjectsAsync();
-    Task<List<ProjectDTO>> GetProjectsByNameAsync(string input);
-    Task<ProjectDTO> GetProjectByIdAsync(int id);
-    Task<ProjectDTO> EditProjectAsync(ProjectModel projectModel);
-    Task<ProjectDTO> CreateNewProjectAsync(ProjectModel projectModel);
+    Task<List<ProjectDto>> GetAllProjectsAsync();
+    Task<List<ProjectDto>> GetProjectsByNameAsync(string input);
+    Task<ProjectDto> GetProjectByIdAsync(int id);
+    Task<ProjectDto> EditProjectAsync(ProjectModel projectModel);
+    Task<ProjectDto> CreateNewProjectAsync(ProjectModel projectModel);
   }
 }
