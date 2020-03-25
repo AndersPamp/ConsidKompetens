@@ -50,7 +50,7 @@ useEffect(() => {
         <>
          <FormControl className={classes.formControl}>
                           <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
-                            <Select name='officeId' value={user.officeId || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                            <Select name='officeDtoFK' value={user.officeDtoFK || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
                               {offices.map((item, i) => {
                                 return <MenuItem  value={item.id} key={i}>{item.city}</MenuItem>
                               })}

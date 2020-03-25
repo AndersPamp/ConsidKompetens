@@ -23,7 +23,7 @@ const HomePage = () => {
     
     const [offices, setOffices] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {profile, handleChange} = useContext(ProfileContext);
+    const {profile} = useContext(ProfileContext);
     const user = profile;
     console.log(user)
     const jwt =localStorage.getItem('secret');

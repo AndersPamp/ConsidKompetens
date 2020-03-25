@@ -9,9 +9,12 @@ const ProfileContextProvider = ({children}) => {
             aboutMe: '',
             linkedInUrl: '',
             position: '',
-            officeId: '',
+            officeDtoFK: '',
             resumeUrl: '',
-            imageModel: '',
+            imageModel: {
+                url: '',
+                alt: ''
+            },
             competences: [
                 {compId: '', 
                 value: ''}
@@ -39,6 +42,16 @@ const ProfileContextProvider = ({children}) => {
         setProfile({...profile, [event.target.name]: event.target.value}); 
      }
 
+     const handleUploadResume = (resume) => {
+         setProfile({resumeUrl: resume})
+         debugger
+     }
+
+     const handleUploadImage = (image) => {
+         setProfile({ imageModel: {url: image.name, alt: 'image'}})
+         debugger
+     }
+
     //  const actions = {
     //      updateCompetences,
     //      handleChange,
@@ -49,7 +62,9 @@ const ProfileContextProvider = ({children}) => {
             handleChange: handleChange, 
             initProfile: initProfile, 
             updateCompetences: updateCompetences,
-            deleteCompeteces: deleteCompeteces}}>
+            deleteCompeteces: deleteCompeteces,
+            handleUploadResume: handleUploadResume,
+            handleUploadImage: handleUploadImage}}>
                 {children}
         </ProfileContext.Provider>
     )

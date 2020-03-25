@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {ProfileContext} from '../../Context/PofileContext';
@@ -18,87 +18,54 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const UploadCV = () => {
     const classes = useStyles();
-    const {profile, handleChange} = useContext(ProfileContext);
-    const user = profile;
+    const [file, setFile] = useState(null);
+    const {profile, handleUploadResume} = useContext(ProfileContext);
+    const resume = profile.resumeUrl || '';
+    
     const jwt = localStorage.getItem('secret');
-
-    const handleUpload = () => {
-      const file = user;
-      const formdata = new FormData();
-      formdata.append('image', file);
-
-      axios.put('https://localhost:44323/api/profile/UploadResume', formdata, { headers: { 'Authorization': `Bearer ${jwt}` }})
-       .then((response) => {
-         console.log(response)
-       }).catch(error => console.log(error))
+    const cvMessage = document.getElementById('cvMessage');
+    
+    function fileSelectedHandler(event) {
+      const file = event.target.files[0];
+      setFile(file);
     }
 
-    return (
-        <>
-        <form onChange={() => handleUpload}>
-            <TextField
-                className={classes.margin}
-                style={{display: 'block', margin: '25px 5px 5px 5px'}}
-                type='file'
-                id="mui-theme-provider-standard-input four"
-                name='resumeUrl'
-                value={profile.resumeUrl || ''}
-                onChange={handleChange}  
-                />
-            <label className='load-cv'>Ladda upp CV</label>
-        </form>
-            
-        </>
+    function fileUploadHandler() {
+       if(file === null){
+                cvMessage.style.display = 'block';
+          }else{
+            const fd = new FormData();
+            fd.append('file', file, file.name);
+            handleUploadResume(file);
+            cvMessage.style.display = 'none';
+            axios.put('https://localhost:44323/api/profile/UploadResume', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
+            .then((res) => {
+            console.log(res.data.data.profileModels)
+          })
+        }
+    }
+
+    return(
+      <div className='cv-container'>
+       <label className='load-cv'>Ladda upp CV</label>
+        <div className='input-container'>
+            <input style={{display: 'none'}} id='upload' type="file" onChange={fileSelectedHandler}/>
+            <label className='cv-input' htmlFor="upload">Välj fil</label>
+            {file ? (<label className='uploaded-file'>{file.name}</label>): null}
+        </div>
+        <div className='cv-button-container'>
+            <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
+             <label className='message' id='cvMessage' style={{display: 'none'}}>Du måste välja fil först!</label>
+        </div>
+        
+      </div>
     )
+
+
 }
 
-// class UploadCV extends Component {
-
-//   state = {
-//     file: null
-//   }
-
-//   static contextType = ProfileContext;
-  
-
-//   handleFile(e){
-
-//     let file = e.target.files[0];
-
-//     this.setState({file: file});
-//     console.log(file);
-//   }
-
-//   handleUpload(e){
-//       const jwt = localStorage.getItem('secret');
-//       let file = this.state.file;
-//       let formdata = new FormData();
-//       formdata.append('image', file);
-
-//       axios.put('https://localhost:44323/api/profile/UploadResume', formdata, { headers: { 'Authorization': `Bearer ${jwt}` }})
-//       .then((response) => {
-//         console.log(response)
-//       }).catch(error => console.log(error))
-     
-//   }
-
-//   render(){
-//     const profile = this.context;
-//     profile.resumeUrl = this.state.file;
-
-//     return(
-//       <div>
-//         <form onChange={e => this.handleFile(e)}>
-//           <div>
-//             <input type="file" name="resumeUrl" />
-//             <button type='button' onClick={(e) => this.handleUpload(e)}>Upload</button>
-//           </div>
-//         </form>
-//       </div>
-//     )
-//   }
-// }
 
 export default UploadCV;

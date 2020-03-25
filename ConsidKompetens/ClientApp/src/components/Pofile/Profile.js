@@ -85,6 +85,7 @@ const {profile } = useContext(ProfileContext);
     <NavMenu/>
     <div className='user-container'>
       <Container>
+      <div className='profile-container'>
           <ThemeProvider theme={theme}>
               <Grid container spacing={0}>
                   <Grid item xs={7}>
@@ -121,13 +122,14 @@ const {profile } = useContext(ProfileContext);
                             
                             />
                       <UploadCV/>
-                      <label className='login-text'>Du är inloggad med e-postadressen: </label>
-                      <label className='login-email'>(email)</label>
-                      <button className='button' onClick={submit}>Uppdatera</button>
+                      {/* <label className='login-text'>Du är inloggad med e-postadressen: </label>
+                      <label className='login-email'>(email)</label> */}
                     </div>
                   </Grid>
               </Grid>
+              <button className='button' onClick={submit}>Uppdatera din profil</button>
           </ThemeProvider>
+          </div>
       </Container>
     </div>
     </>
