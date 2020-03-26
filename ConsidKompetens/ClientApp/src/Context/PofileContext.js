@@ -43,12 +43,12 @@ const ProfileContextProvider = ({children}) => {
      }
 
      const handleUploadResume = (resume) => {
-         setProfile({resumeUrl: resume})
+         setProfile({...profile, resumeUrl: resume})
          debugger
      }
 
      const handleUploadImage = (image) => {
-         setProfile({ imageModel: {url: image.name, alt: 'image'}})
+         setProfile({...profile, imageModel: {url: image.name, alt: 'image'}})
          debugger
      }
 

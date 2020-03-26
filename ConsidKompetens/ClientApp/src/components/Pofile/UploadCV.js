@@ -39,7 +39,7 @@ const UploadCV = () => {
           }else{
             const fd = new FormData();
             fd.append('file', file, file.name);
-            handleUploadResume(file);
+            handleUploadResume(file.name);
             cvMessage.style.display = 'none';
             axios.put('https://localhost:44323/api/profile/UploadResume', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
             .then((res) => {
