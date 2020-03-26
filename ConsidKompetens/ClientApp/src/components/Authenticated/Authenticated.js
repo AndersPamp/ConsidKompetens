@@ -1,50 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { UseAuth } from '../../Context/AuthContext';
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
-const Authenticated = ({ component: Component, ...rest}) => {
-    const isAuthenticated = UseAuth();
-  
+ const Authenticated = ({component: Component, ...rest}) => (
 
-    return(
-        <Route {...rest} render={(props) => (
-            isAuthenticated ? (
-                 <Component {...props} />
-            ) : (<Redirect to='/login'/>)
-           
-            )}
-        />
-    );
-}
+ <Route
+     {...rest}
+     render={props => 
+     localStorage.getItem('secret') ? (
+         <Component {...props} />
+     ):(
+         <Redirect to={{
+             pathname: '/login',
+             state: {from: props.location}
+         }}/>
+     
+     )}
+ />
+)
 
 export default Authenticated;
-
-// import React, { Component } from 'react';
-// import { withRouter } from 'react-router-dom';
-
-// class Authenticated extends Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             user: undefined
-//         };
-//     }
-
-//     componentDidMount() {
-//         const jwt = localStorage.getItem('secret');
-//         if (jwt) {
-//             this.props.history.push('/');
-//         }
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 {this.props.children}
-//             </div>
-//         );
-//     }
-// }
-
-// export default withRouter(Authenticated);

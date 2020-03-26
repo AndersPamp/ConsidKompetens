@@ -42,12 +42,12 @@ const HomePage = () => {
 }, []);
 
 
-  // const getOfficeId = () => {
-  //       axios.get('https://localhost:44323/api/office', offices, { headers: { 'Authorization': `Bearer ${jwt}` } })
-  //       .then((response) => {
-  //         console.log(response);
-  //       }).catch(error => console.log(error));
-  //   }
+  const getOfficeId = () => {
+        axios.get('https://localhost:44323/api/office', offices, { headers: { 'Authorization': `Bearer ${jwt}` } })
+        .then((response) => {
+          console.log(response);
+        }).catch(error => console.log(error));
+    }
 
     return(
         <>
@@ -88,7 +88,7 @@ const HomePage = () => {
                     </div>)}
               <br/>
               <button>Sök</button>
-              {/* <button onClick={getOfficeId}>Get office</button> */}
+              <button onClick={getOfficeId}>Get office</button>
             </div>
           </Grid>      
       </div>
