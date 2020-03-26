@@ -40,7 +40,6 @@ const RegisterPage = () => {
         e.preventDefault();
         axios.post('https://localhost:44323/api/register', userRegister)
             .then(response => {
-                alert('User has been registered');
                 setRegisterad({registerad: true});
             })
             .catch(error => {
@@ -54,7 +53,6 @@ const RegisterPage = () => {
 
     return(
           <div className='container-login'>
-          {registerad ? <Redirect to="/login"/> : null}
             <ThemeProvider theme={theme}>
                 <img className='image' src={LoginImage} alt="Consid woman"/>
                 <form onSubmit={submitHendler}>
@@ -84,7 +82,15 @@ const RegisterPage = () => {
                             </div>              
                           </div>
                         </form>
-            </ThemeProvider>   
+            </ThemeProvider>  
+           {registerad ? 
+            ( <div className='popup-window-container'>
+                <h1>Välkomen</h1>
+                <h2>Du är registerad!</h2>
+                <label>{userRegister.UserName}</label>
+                <a href="/login">Klicka här för att logga in</a>
+              </div>)
+           : null} 
           </div> 
     )
 }

@@ -76,7 +76,7 @@
 }
 
 .login-button:hover{
-    background-color: #DD0332;;
+    background-color: #DD0332;
     color: white;
 }
 
@@ -112,4 +112,56 @@
 
 .inner-box{  
     background-color: white;
+}
+
+.popup-window-container{
+    box-shadow: 2px 2px 5px 2px #DD0332;
+    background-color: white;
+    color: rgb(128, 128, 128);
+    height: 250px;
+    width: 650px;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+}
+
+.popup-window-container h1{
+    text-align: center;
+    padding-top: 3%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.popup-window-container h2{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.popup-window-container label{
+    text-align: center;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5%;
+    color: #DD0332;
+}
+
+.popup-window-container a{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #DD0332;
+    padding: 1%;
+    margin-left: 33%;
+    border-radius: 9px;
+    width: 50%;
+    box-shadow: 1px 1px 3px 1px #DD0332;
+    color: #DD0332;
+    border: none;
+}
+
+.popup-window-container a:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.popup-window-container a:focus{
+    outline: none;
 }
