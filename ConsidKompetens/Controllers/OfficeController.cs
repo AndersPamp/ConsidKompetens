@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Models;
@@ -7,6 +8,7 @@ using ConsidKompetens_Core.Response_Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace ConsidKompetens_Web.Controllers
 {
@@ -41,7 +43,8 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<Response>> Get([FromBody]List<int> officeIds)
+    [Route("Profiles")]
+    public async Task<ActionResult<Response>> Get([FromBody]OfficeReq officeIds)
     {
       try
       {
@@ -50,8 +53,8 @@ namespace ConsidKompetens_Web.Controllers
           Success = true,
           Data = new ResponseData
           {
-            ProfileModels = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds),
-            OfficeModels = await _officeDataService.GetOfficesByIdsAsync(officeIds)
+            ProfileModels = await _profileDataService.GetProfilesByOfficeIdsAsync(officeIds.OfficeIds),
+            OfficeModels = await _officeDataService.GetOfficesByIdsAsync(officeIds.OfficeIds)
           }
         };
         return Ok(response);

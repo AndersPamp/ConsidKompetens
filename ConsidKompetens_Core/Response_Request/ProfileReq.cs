@@ -10,7 +10,7 @@ namespace ConsidKompetens_Core.Response_Request
     public string LastName { get; set; }
     public string AboutMe { get; set; }
     public string Position { get; set; }
-    public int OfficeModelFK { get; set; }
+    public int OfficeModelId { get; set; }
     public string LinkedInUrl { get; set; }
     public string ResumeUrl { get; set; }
     public ushort Experience { get; set; }

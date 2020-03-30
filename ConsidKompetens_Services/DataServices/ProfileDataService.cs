@@ -137,8 +137,30 @@ namespace ConsidKompetens_Services.DataServices
         //{
         //  profile.Competences.Add(c);
         //}
+        
+        
+        _dbContext.Entry(profile).CurrentValues.SetValues(input);
+        foreach (var competence in input.Competences)
+        {
+          var existingCompetence = profile.Competences.FirstOrDefault(c => c.Id == competence.Id);
+          if (existingCompetence==null)
+          {
+            profile.Competences.Add(competence);
+          }
+          else
+          {
+            _dbContext.Entry(existingCompetence).CurrentValues.SetValues(competence);
+          }
+        }
 
-        profile.Competences = input.Competences;
+        foreach (var competence in profile.Competences)
+        {
+          if (!input.Competences.Any(c=>c.Id==competence.Id))
+          {
+            _dbContext.Remove(competence);
+          }
+        }
+        //profile.Competences = input.Competences;
         profile.AboutMe = input.AboutMe;
         profile.FirstName = input.FirstName;
         profile.LastName = input.LastName;
@@ -146,9 +168,9 @@ namespace ConsidKompetens_Services.DataServices
         profile.LinkedInUrl = input.LinkedInUrl;
         profile.ResumeUrl = input.ResumeUrl;
         profile.Modified = DateTime.UtcNow;
-        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeModelFK;                       
-        _dbContext.Update(profile);
-
+        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeModelId;                       
+        // _dbContext.Update(profile);
+        _dbContext.ProfileModels.Update(profile);
         await _dbContext.SaveChangesAsync();
 
         return _mapper.Map<ProfileModel, ProfileDto>(profile);
