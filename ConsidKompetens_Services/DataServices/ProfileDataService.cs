@@ -123,7 +123,7 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var profile = await _dbContext.ProfileModels.AsNoTracking().Include(x => x.Competences)
+        var profile = await _dbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
