@@ -123,7 +123,8 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var profile = await _dbContext.ProfileModels.AsNoTracking().Include(x => x.Competences)
+        
+        var existingProfile = await _dbContext.ProfileModels.Include(x => x.Competences)
           .Include(x => x.ImageModel)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
@@ -137,15 +138,28 @@ namespace ConsidKompetens_Services.DataServices
         //{
         //  profile.Competences.Add(c);
         //}
+
+
+        //_dbContext.Entry(existingProfile).CurrentValues.SetValues(input);
+
+        if (input.OfficeModelId!=0)
+        {
+          _dbContext.Entry(existingProfile).Property("OfficeModelId").CurrentValue = input.OfficeModelId;
+        }
         
-        
-        _dbContext.Entry(profile).CurrentValues.SetValues(input);
+        existingProfile.AboutMe = input.AboutMe;
+        existingProfile.FirstName = input.FirstName;
+        existingProfile.LastName = input.LastName;
+        existingProfile.Position = input.Position;
+        existingProfile.LinkedInUrl = input.LinkedInUrl;
+        existingProfile.ResumeUrl = input.ResumeUrl;
+        existingProfile.Modified = DateTime.UtcNow;
         foreach (var competence in input.Competences)
         {
-          var existingCompetence = profile.Competences.FirstOrDefault(c => c.Id == competence.Id);
+          var existingCompetence = existingProfile.Competences.FirstOrDefault(c => c.Id == competence.Id);
           if (existingCompetence==null)
           {
-            profile.Competences.Add(competence);
+            existingProfile.Competences.Add(competence);
           }
           else
           {
@@ -153,7 +167,7 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        foreach (var competence in profile.Competences)
+        foreach (var competence in existingProfile.Competences)
         {
           if (!input.Competences.Any(c=>c.Id==competence.Id))
           {
@@ -161,19 +175,13 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
         //profile.Competences = input.Competences;
-        profile.AboutMe = input.AboutMe;
-        profile.FirstName = input.FirstName;
-        profile.LastName = input.LastName;
-        profile.Position = input.Position;
-        profile.LinkedInUrl = input.LinkedInUrl;
-        profile.ResumeUrl = input.ResumeUrl;
-        profile.Modified = DateTime.UtcNow;
-        _dbContext.Entry(profile).Property("OfficeModelId").CurrentValue = input.OfficeModelId;                       
-        // _dbContext.Update(profile);
-        _dbContext.ProfileModels.Update(profile);
+
+                               
+        _dbContext.Update(existingProfile);
+        //_dbContext.ProfileModels.Update(profile);
         await _dbContext.SaveChangesAsync();
 
-        return _mapper.Map<ProfileModel, ProfileDto>(profile);
+        return _mapper.Map<ProfileModel, ProfileDto>(existingProfile);
       }
       catch (Exception e)
       {

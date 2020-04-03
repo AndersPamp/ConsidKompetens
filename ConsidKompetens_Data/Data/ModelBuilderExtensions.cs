@@ -466,7 +466,7 @@ namespace ConsidKompetens_Data.Data
 
       modelBuilder.Entity<TimePeriod>().HasData(timePeriods);
 
-      modelBuilder.Entity<CompetenceModel>().HasData(competences);
+      //modelBuilder.Entity<CompetenceModel>().HasData(competences);
       modelBuilder.Entity<OfficeModel>().HasData(offices);
       modelBuilder.Entity<ProfileModel>().HasData(profiles);
       modelBuilder.Entity<ImageModel>().HasData(images);
