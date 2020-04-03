@@ -2,7 +2,7 @@
     text-align: center;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-bottom: 1px solid rgb(214, 213, 213);
+    color: rgb(128, 128, 128);
 }
 
 .user-img{
@@ -33,7 +33,9 @@
 }
 
 .container-list{
-    border-bottom: 1px solid rgb(214, 213, 213);
+    box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
+    margin-bottom: 2%;
+    padding-bottom: 2%;
 }
 
 .about{
@@ -61,3 +63,4 @@
 .more:hover{
     color: rgb(248, 64, 64);
 }
+

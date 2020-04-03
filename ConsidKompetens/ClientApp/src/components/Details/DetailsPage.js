@@ -3,14 +3,18 @@ import DetailsHeader from './DetailsHeader';
 import { Container } from 'reactstrap';
 import Grid from '@material-ui/core/Grid';
 import '../../css/Details.css';
+import HomeImage from '../../images/hero-img3.jpg';
+import NavMenu from '../Header/NavMenu';
 
 const DetailsPage = () => {
 
 
     return (
           <div className="homeContainer">
-            <DetailsHeader/>
+            {/* <DetailsHeader/> */}
                 <Container>
+                <NavMenu/>
+                
                         <h1 className='details-header'>Helsingborg</h1>
                         <div className='container-list'>
                             <Grid container spacing={0}>

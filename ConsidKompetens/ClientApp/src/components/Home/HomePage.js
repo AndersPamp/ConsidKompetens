@@ -8,6 +8,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {ProfileContext} from '../../Context/PofileContext';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const theme = createMuiTheme({
@@ -27,6 +28,7 @@ const HomePage = () => {
     const user = profile;
     console.log(user)
     const jwt =localStorage.getItem('secret');
+    const history = useHistory();
 
     useEffect(() => {
    const getOffices = () => {
@@ -43,16 +45,26 @@ const HomePage = () => {
 
 
   const getOfficeId = () => {
-        axios.get('https://localhost:44323/api/office', offices, { headers: { 'Authorization': `Bearer ${jwt}` } })
+    
+    const officeIds = offices.map((i) => i.id);
+    //const officeIds = [1, 2, 3];
+        axios.get('https://localhost:44323/api/office/profiles', officeIds, { 
+          headers: { 'Authorization': `Bearer ${jwt}` , 'content-type': 'application/json'}})
         .then((response) => {
           console.log(response);
         }).catch(error => console.log(error));
+    }
+
+    function officeHandler() {
+      history.push("/details");
+     
     }
 
     return(
         <>
         <div className="homeContainer">
           <Grid container spacing={0}>
+          
             <Grid item xs={7}>
               <HomeHeader/>
             </Grid>
@@ -87,7 +99,7 @@ const HomePage = () => {
                       </div>
                     </div>)}
               <br/>
-              <button>Sök</button>
+              <button onClick={officeHandler}>Sök</button>
               <button onClick={getOfficeId}>Get office</button>
             </div>
           </Grid>      
