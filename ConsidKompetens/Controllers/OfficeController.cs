@@ -42,9 +42,9 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
-    [HttpGet]
+    [HttpPost]
     [Route("Profiles")]
-    public async Task<ActionResult<Response>> Get([FromBody]OfficeReq officeIds)
+    public async Task<ActionResult<Response>> GetOfficesByIds([FromBody]OfficeReq officeIds)
     {
       try
       {
