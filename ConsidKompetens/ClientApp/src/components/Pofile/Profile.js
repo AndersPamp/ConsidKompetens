@@ -71,7 +71,7 @@ const {profile } = useContext(ProfileContext);
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
           const user = response.data.data.profileModels[0];
-          console.log(response.data.data.profileModels[0]);
+          console.log(response.data);
           initProfile(user);
           console.log(user.competences)
       }).catch(error => console.log(error))
