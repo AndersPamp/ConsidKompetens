@@ -8,26 +8,23 @@ import Profile from './components/Pofile/Profile';
 import DetailsPage from './components/Details/DetailsPage';
 import Employee from './components/Employee/Employee';
 import ProfileContextProvider from './Context/PofileContext';
-//import NavMenu from './components/Header/NavMenu';
-//import Authenticated from './components/Authenticated/Authenticated';
 import { Footer } from '../src/components';
+import Authenticated from './components/Authenticated/Authenticated';
 
 function App() {
+
+  
+
   return (
     <div className='App-div'>
-        
         <Route path="/login" component={() => <LoginPage />}/>
         <Route path="/register" component={RegisterPage}/>
-        
-           {/* <Authenticated> */}
-              {/* <NavMenu/> */}
             <ProfileContextProvider>
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/details" component={DetailsPage}/>
-              <Route path="/employee" component={Employee}/>
-              <Route path="/profile" component={() => <Profile/>}/>
+              <Authenticated exact path="/" component={HomePage}/>
+              <Authenticated path="/details" component={DetailsPage}/>
+              <Authenticated path="/employee" component={Employee}/>
+              <Authenticated path="/profile" component={() => <Profile/>}/>
             </ProfileContextProvider>
-           {/* </Authenticated>    */}
       <Footer/>
     </div>
   );

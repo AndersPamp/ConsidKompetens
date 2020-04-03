@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
-class Authenticated extends Component {
-    constructor(props) {
-        super(props);
+ const Authenticated = ({component: Component, ...rest}) => (
 
-        this.state = {
-            user: undefined
-        };
-    }
+ <Route
+     {...rest}
+     render={props => 
+     localStorage.getItem('secret') ? (
+         <Component {...props} />
+     ):(
+         <Redirect to={{
+             pathname: '/login',
+             state: {from: props.location}
+         }}/>
+     
+     )}
+ />
+)
 
-    componentDidMount() {
-        const jwt = localStorage.getItem('secret');
-        if (jwt) {
-            this.props.history.push('/');
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
-export default withRouter(Authenticated);
+export default Authenticated;

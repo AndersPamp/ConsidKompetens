@@ -47,7 +47,6 @@ const LoginPage = () => {
           if (response.status === 200) 
           {
             localStorage.setItem('secret', token);
-            alert('You are logged in');
             setLoggedIn({loggedIn: true});
           }
         }).catch((error) => {

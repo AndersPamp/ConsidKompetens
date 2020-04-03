@@ -43,7 +43,11 @@
     font-family: 'Montserrat', sans-serif;
     display: block;
     margin-left: 10px;
-    color: rgb(102, 101, 101);
+    margin-bottom: 0;
+    color: rgb(129, 129, 129);
+    padding-top: 2%;
+    width: 70%;
+    font-size: 90%;
 }
 
 .login-text{
@@ -64,14 +68,17 @@
 }
 
 .button{
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 5%;
+    margin-left: 25%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 100%;
+    width: 50%;
     background-color: white;
     color: #DD0332;
     border: 1px solid #DD0332;
+    align-content: center;
+    
 }
 
 .button:focus{
@@ -136,3 +143,94 @@
 .delete-competense:hover{
     font-weight: bold;
 }
+
+.cv-container{
+    padding-top: 8%;
+}
+
+.cv-input{
+    padding-left: 3%;
+    padding-right: 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(141, 141, 141);
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.cv-input:hover, .img-input:hover {
+    color: #DD0332;
+}
+
+.img-input{
+    padding-left: 13%;
+    padding-right: 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(141, 141, 141);
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.cv-input{
+    padding-left: 3%;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(141, 141, 141);
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.uploaded-file{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 21px;
+    color: #DD0332;
+}
+
+.upload-img{
+    padding-top: 2%;
+    padding-left: 4%;
+}
+
+.image-preview{
+    width: 200px;
+    height: 200px;
+    min-height: 100px;
+    border: 1px solid #b6b5b5;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+.image-preview__image{
+    display: none;
+    width: 100%;
+}
+
+.input-container{
+    display: inline;
+}
+
+.cv-button-container{
+    border-top: 1px solid gray;
+    padding-top: 10px;
+    width: 75%;
+}
+
+.message{
+    font-family: 'Montserrat', sans-serif;
+    color: #DD0332;
+    font-weight: bold;
+    padding-left: 2%;
+    padding-top: 4%;
+}
+
+.profile-container{
+    box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
+    padding: 20px;
+    margin-top: 4%;
+}
+
