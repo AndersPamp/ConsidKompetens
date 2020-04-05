@@ -44,7 +44,7 @@ namespace ConsidKompetens_Web.Controllers
 
     [HttpPost]
     [Route("Profiles")]
-    public async Task<ActionResult<Response>> GetOfficesByIds([FromBody]OfficeReq officeIds)
+    public async Task<ActionResult<Response>> PostOfficesByIds([FromBody]OfficeReq officeIds)
     {
       try
       {
