@@ -42,6 +42,32 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
+    [HttpGet]
+    [Route("Profiles")]
+    public async Task<ActionResult<Response>> GetOfficesByIds(string officeIds)
+    {
+      try
+      {
+        //var intArray = JsonConvert.DeserializeObject<List<int>>(officeIds);
+        var intOnlyString = new string(officeIds.ToCharArray().Where(c=>char.IsDigit(c)).ToArray());
+        var intArray = intOnlyString.Select(digit => int.Parse(digit.ToString())).ToList();
+        var response = new Response
+        {
+          Success = true,
+          Data = new ResponseData
+          {
+            ProfileModels = await _profileDataService.GetProfilesByOfficeIdsAsync(intArray),
+            OfficeModels = await _officeDataService.GetOfficesByIdsAsync(intArray)
+          }
+        };
+        return Ok(response);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
+      }
+      
+    }
     [HttpPost]
     [Route("Profiles")]
     public async Task<ActionResult<Response>> PostOfficesByIds([FromBody]OfficeReq officeIds)
