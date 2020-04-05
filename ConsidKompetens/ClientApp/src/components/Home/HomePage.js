@@ -46,10 +46,10 @@ const HomePage = () => {
 
   const getOfficeId = () => {
     
-    const officeIds = offices.map((i) => i.id);
-    //const officeIds = [1, 2, 3];
-        axios.get('https://localhost:44323/api/office/profiles', officeIds, { 
-          headers: { 'Authorization': `Bearer ${jwt}` , 'content-type': 'application/json'}})
+    //const officeIds = offices.map((i) => i.id);
+    const officeIds = [1, 2, 3];
+        axios.post('https://localhost:44323/api/office/profiles', officeIds, { 
+          headers: { 'Authorization': `Bearer ${jwt}`}})
         .then((response) => {
           console.log(response);
         }).catch(error => console.log(error));
