@@ -48,7 +48,8 @@ const ProfileContextProvider = ({children}) => {
      }
 
      const handleUploadImage = (image) => {
-         setProfile({...profile, imageModel: {url: image.name, alt: 'image'}})
+         setProfile({...profile, imageModel: {image}})
+         console.log(profile)
          debugger
      }
 

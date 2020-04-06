@@ -43,7 +43,8 @@ const UploadImage = () => {
                 
                 const fd = new FormData();
                 fd.append('file', image, image.name);
-                handleUploadImage(image)
+                handleUploadImage({url: image.name, alt: 'profile pic'})
+                debugger
                 message.style.display = 'none';
                 axios.put('https://localhost:44323/api/profile/UploadImage', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
                 .then((response) => {
