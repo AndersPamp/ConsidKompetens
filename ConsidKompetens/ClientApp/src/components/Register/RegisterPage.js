@@ -4,7 +4,6 @@ import { ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styl
 import { red } from '@material-ui/core/colors';
 import '../../css/Login.css';
 import LoginImage from '../../images/consid.woman.jpg';
-import {Redirect} from "react-router-dom";
 import axios from 'axios/index';
 
 const useStyles = makeStyles(theme => ({

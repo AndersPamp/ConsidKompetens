@@ -1,29 +1,12 @@
 import React, {useState, useContext} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import {ProfileContext} from '../../Context/PofileContext';
 import axios from 'axios';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  }
-}));
 
 
 const UploadCV = () => {
-    const classes = useStyles();
     const [file, setFile] = useState(null);
-    const {profile, handleUploadResume} = useContext(ProfileContext);
-    const resume = profile.resumeUrl || '';
+    const {handleUploadResume} = useContext(ProfileContext);
     
     const jwt = localStorage.getItem('secret');
     const cvMessage = document.getElementById('cvMessage');

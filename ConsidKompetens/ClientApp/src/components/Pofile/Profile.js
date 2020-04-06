@@ -68,6 +68,7 @@ const {profile } = useContext(ProfileContext);
 
   useEffect(() => {
     function getProfile() {
+          const jwt = localStorage.getItem('secret');
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
           const user = response.data.data.profileModels[0];

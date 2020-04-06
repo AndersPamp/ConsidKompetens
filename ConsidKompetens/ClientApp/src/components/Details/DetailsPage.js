@@ -1,9 +1,7 @@
 import React from 'react';
-import DetailsHeader from './DetailsHeader';
 import { Container } from 'reactstrap';
 import Grid from '@material-ui/core/Grid';
 import '../../css/Details.css';
-import HomeImage from '../../images/hero-img3.jpg';
 import NavMenu from '../Header/NavMenu';
 
 const DetailsPage = () => {

@@ -30,10 +30,11 @@ const SelectForm = () => {
     const {profile} = useContext(ProfileContext);
     const user = profile;
     const {handleChange} = useContext(ProfileContext);
-    const jwt = localStorage.getItem('secret');
+    
 
 useEffect(() => {
    const getOffices = () => {
+        const jwt = localStorage.getItem('secret');
         axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
         .then((response) => {
           console.log(response.data);
