@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const UploadCV = () => {
     const [file, setFile] = useState(null);
-    const {handleUploadResume} = useContext(ProfileContext);
+    const {profile, handleUploadResume} = useContext(ProfileContext);
     
     const jwt = localStorage.getItem('secret');
     const cvMessage = document.getElementById('cvMessage');
@@ -37,7 +37,8 @@ const UploadCV = () => {
         <div className='input-container'>
             <input style={{display: 'none'}} id='upload' type="file" onChange={fileSelectedHandler}/>
             <label className='cv-input' htmlFor="upload">Välj fil</label>
-            {file ? (<label className='uploaded-file'>{file.name}</label>): null}
+            {file ? (<label className='uploaded-file'>{file.name}</label>): (<label className='uploaded-file'>{profile.resumeUrl}</label>)}
+            
         </div>
         <div className='cv-button-container'>
             <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
