@@ -2,14 +2,13 @@ import React, {useState, useContext} from 'react';
 import {ProfileContext} from '../../Context/PofileContext';
 import axios from 'axios';
 
-
-
 const UploadCV = () => {
     const [file, setFile] = useState(null);
     const {profile, handleUploadResume} = useContext(ProfileContext);
     
     const jwt = localStorage.getItem('secret');
     const cvMessage = document.getElementById('cvMessage');
+    const cvdoneMessage = document.getElementById('cvdoneMessage');
     
     function fileSelectedHandler(event) {
       const file = event.target.files[0];
@@ -26,7 +25,8 @@ const UploadCV = () => {
             cvMessage.style.display = 'none';
             axios.put('https://localhost:44323/api/profile/UploadResume', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
             .then((res) => {
-            console.log(res.data.data.profileModels)
+              console.log(res.data.data.profileModels);
+              cvdoneMessage.style.display = 'block';
           })
         }
     }
@@ -37,19 +37,19 @@ const UploadCV = () => {
         <div className='input-container'>
             <input style={{display: 'none'}} id='upload' type="file" onChange={fileSelectedHandler}/>
             <label className='cv-input' htmlFor="upload">Välj fil</label>
-            {file ? (<label className='uploaded-file'>{file.name}</label>): (<label className='uploaded-file'>{profile.resumeUrl}</label>)}
-            
+            {file ? 
+              (<label className='uploaded-file'>{file.name}</label>)
+              : (<label className='uploaded-file'>{profile.resumeUrl}</label>)
+            }   
         </div>
         <div className='cv-button-container'>
             <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
              <label className='message' id='cvMessage' style={{display: 'none'}}>Du måste välja fil först!</label>
+             <label className='doneMessage' id='cvdoneMessage' style={{display: 'none'}}>Din fil är sparad!</label>
         </div>
         
       </div>
     )
-
-
 }
-
 
 export default UploadCV;

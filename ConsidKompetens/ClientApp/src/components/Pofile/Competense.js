@@ -19,9 +19,6 @@ const Competense = (props) => {
   }
   
   const competences = profile.competences || [];
-  console.log(competences)
-
-
 
   return (
         <div>

@@ -220,7 +220,7 @@
     width: 75%;
 }
 
-.message{
+.message, .doneMessage{
     font-family: 'Montserrat', sans-serif;
     color: #DD0332;
     font-weight: bold;

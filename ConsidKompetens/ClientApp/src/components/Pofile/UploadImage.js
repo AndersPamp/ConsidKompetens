@@ -10,6 +10,7 @@ const UploadImage = () => {
     const previewImage = document.getElementById("image-preview__image");
     const previwDefaultText = document.getElementById('image-preview__default-text');
     const message = document.getElementById('message');
+    const doneMessage = document.getElementById('doneMessage');
 
     
 
@@ -38,19 +39,18 @@ const UploadImage = () => {
 
     function fileUploadHandler() {
         if(image === null){
-                message.style.display = 'block';
-            }else{
-                
-                const fd = new FormData();
-                fd.append('file', image, image.name);
-                handleUploadImage({url: image.name, alt: 'profile pic'})
-                debugger
-                message.style.display = 'none';
-                axios.put('https://localhost:44323/api/profile/UploadImage', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
-                .then((response) => {
-                console.log(response)
-                }).catch(error => console.log(error))
-            }
+            message.style.display = 'block';
+        }else{
+            const fd = new FormData();
+            fd.append('file', image, image.name);
+            handleUploadImage({url: image.name, alt: 'profile pic'})
+            message.style.display = 'none';
+            axios.put('https://localhost:44323/api/profile/UploadImage', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
+            .then((response) => {
+                console.log(response);
+                doneMessage.style.display = 'block';
+            }).catch(error => console.log(error))
+        }
     }
 
     return(
@@ -65,6 +65,7 @@ const UploadImage = () => {
                     <label className='img-input' style={{display:'block'}} htmlFor="inpFile">Välj bild</label>
                     <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
                     <label className='message' id='message' style={{display: 'none'}}>Du måste välja bild först!</label>
+                    <label className='doneMessage' id='doneMessage' style={{display: 'none'}}>Din bild är sparad!</label>
                 </div>
             </div>
         </div>
