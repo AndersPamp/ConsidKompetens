@@ -1,19 +1,37 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Container } from 'reactstrap';
 import Grid from '@material-ui/core/Grid';
 import '../../css/Details.css';
 import NavMenu from '../Header/NavMenu';
+import {ProfileContext}  from '../../Context/PofileContext';
+import axios from 'axios';
 
 const DetailsPage = () => {
 
+    const {chosenOffices} = useContext(ProfileContext);
+    console.log(chosenOffices);
+
+
+    useEffect(() => {
+        function getOfficeId() {
+            //const officeIds = offices.map((i) => i.id);
+            //const officeIds = [1, 2, 3];
+            //const officeIds = chosenOffices.id;
+            const jwt =localStorage.getItem('secret');
+            axios.get('https://localhost:44323/api/office/profiles',  { headers: { 'Authorization': `Bearer ${jwt}` }})
+            .then((response) => {
+                console.log(response);
+            }).catch(error => console.log(error));
+        }
+        getOfficeId();
+    }, []);
 
     return (
           <div className="homeContainer">
             {/* <DetailsHeader/> */}
                 <Container>
                 <NavMenu/>
-                
-                        <h1 className='details-header'>Helsingborg</h1>
+                        <h1 className='details-header'>{chosenOffices.city}</h1>
                         <div className='container-list'>
                             <Grid container spacing={0}>
                                 <Grid item xs={5}>

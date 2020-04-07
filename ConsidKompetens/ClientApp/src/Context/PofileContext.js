@@ -3,6 +3,12 @@ import React, { useState, createContext } from 'react';
 export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({children}) => {
+    const [ chosenOffices, setChosenOffices ] = useState({
+            
+            office:    {id: '', 
+                city: ''}
+            
+    });
     const [ profile, setProfile ] = useState({
             firstName: '', 
             lastName: '', 
@@ -20,12 +26,14 @@ const ProfileContextProvider = ({children}) => {
                 value: ''}
             ]
         });
-        
-    const initProfile = (user) => {
 
-         setProfile(user);
-         
+    const initProfile = (user) => {
+         setProfile(user);       
      } 
+
+     const initChosenOffice = (offices) => {
+         setChosenOffices(offices);
+     }
 
      const updateCompetences = (competence) => {
          setProfile({...profile, competences: [...profile.competences, competence]})
@@ -44,13 +52,10 @@ const ProfileContextProvider = ({children}) => {
 
      const handleUploadResume = (resume) => {
          setProfile({...profile, resumeUrl: resume})
-         debugger
      }
 
      const handleUploadImage = (image) => {
          setProfile({...profile, imageModel: {image}})
-         console.log(profile)
-         debugger
      }
 
     //  const actions = {
@@ -59,13 +64,14 @@ const ProfileContextProvider = ({children}) => {
     //  }
 
     return(
-        <ProfileContext.Provider value={{profile, 
+        <ProfileContext.Provider value={{profile, chosenOffices, 
             handleChange: handleChange, 
             initProfile: initProfile, 
             updateCompetences: updateCompetences,
             deleteCompeteces: deleteCompeteces,
             handleUploadResume: handleUploadResume,
-            handleUploadImage: handleUploadImage}}>
+            handleUploadImage: handleUploadImage,
+            initChosenOffice: initChosenOffice}}>
                 {children}
         </ProfileContext.Provider>
     )

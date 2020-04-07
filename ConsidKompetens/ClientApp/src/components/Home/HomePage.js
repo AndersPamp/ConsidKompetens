@@ -24,7 +24,7 @@ const HomePage = () => {
     const [offices, setOffices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState([{id: '', city: ''}]);
-    const {profile} = useContext(ProfileContext);
+    const {profile, initChosenOffice} = useContext(ProfileContext);
     const user = profile;
     console.log(user)
    
@@ -44,24 +44,12 @@ const HomePage = () => {
   getOffices();
 }, []);
 
-
-  function getOfficeId() {
-    //const officeIds = offices.map((i) => i.id);
-    //const officeIds = [1, 2, 3];
-        const jwt =localStorage.getItem('secret');
-        axios.get('https://localhost:44323/api/office/profiles', { headers: { 'Authorization': `Bearer ${jwt}` }})
-        .then((response) => {
-          console.log(response);
-        }).catch(error => console.log(error));
-    }
-
     function officeHandler() {
-      
+       const id = selected.id;
+       const city = selected.city;
+      initChosenOffice({id: id, city: city});
       history.push("/details");
-     
     }
-
-
 
     return(
         <>
@@ -84,7 +72,8 @@ const HomePage = () => {
                                   control={
                                   <Checkbox
                                       value={list.id}
-                                      onClick={() => setSelected({id: list.id, city: list.city})}
+                                      
+                                       onClick={() => setSelected({id: list.id, city: list.city})}
                                   />
                                   }
                                   label={list.city}
@@ -103,9 +92,7 @@ const HomePage = () => {
                       </div>
                     </div>)}
               <br/>
-              <label htmlFor="">{selected.id}+{selected.city}</label>
               <button onClick={officeHandler}>Sök</button>
-              <button onClick={getOfficeId}>Get office</button>
             </div>
           </Grid>      
       </div>
