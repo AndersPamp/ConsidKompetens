@@ -115,7 +115,7 @@
 }
 
 .popup-window-container{
-    box-shadow: 2px 2px 5px 2px #DD0332;
+    box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
     background-color: white;
     color: rgb(128, 128, 128);
     height: 250px;
@@ -152,9 +152,9 @@
     margin-left: 33%;
     border-radius: 9px;
     width: 50%;
-    box-shadow: 1px 1px 3px 1px #DD0332;
+    border: 1px solid #DD0332;
     color: #DD0332;
-    border: none;
+   
 }
 
 .popup-window-container a:hover{

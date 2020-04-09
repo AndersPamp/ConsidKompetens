@@ -1,11 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import NavMenu from '../Header/NavMenu';
 import { Container } from 'reactstrap';
 import Grid from '@material-ui/core/Grid';
 import LinkedIn from '../../images/linkedin.png';
 import '../../css/Employee.css';
+import axios from 'axios';
 
 const Employee = () => {
+
+    const id = 11;
+    const jwt = localStorage.getItem('secret');
+    const baseUrl = 'https://localhost:44323/api/profile';
+    
+
+    function getUser(){
+        axios.get(`${baseUrl}/${id}`,   { headers: { 'Authorization': `Bearer ${jwt}` }})
+        .then((response) => {
+            console.log(response);
+        })
+    }
+
     return(
         
     <div>
@@ -46,6 +60,7 @@ const Employee = () => {
 
                 <img src="" alt="cv"/>
                 <img src={LinkedIn} alt="linkedIn"/>
+                <button onClick={getUser}>Get profile</button>
             </div>
         </Container>
     </div>
