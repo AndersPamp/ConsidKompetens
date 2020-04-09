@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const DetailsPage = () => {
 
-    const {chosenOffices} = useContext(ProfileContext);
+    const {chosenOffices, initProfileId} = useContext(ProfileContext);
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     console.log(chosenOffices);
@@ -25,10 +25,13 @@ const DetailsPage = () => {
                 const user = response.data.data.profileModels;
                 setProfiles(user);
                 setLoading(false);
+                initProfileId(profiles);
             }).catch(error => console.log(error));
         }
         getOfficeId();
     }, []);
+
+    
 
     return (
           <div className="homeContainer">
