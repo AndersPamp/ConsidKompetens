@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.DTO;
 using ConsidKompetens_Core.Interfaces;
@@ -24,21 +25,6 @@ namespace ConsidKompetens_Web.Controllers
       _profileDataService = profileDataService;
       _officeDataService = officeDataService;
     }
-
-    //public class ProfileResponse
-    //{
-    //  public IEnumerable<RelatedProfileResponse> Profiles { get; set; }
-    //}
-
-
-    //public class RelatedProfileResponse
-    //{
-    //  public static RelatedProfileResponse Map(ProfileModel profile)
-    //  {
-    //    return new RelatedProfileResponse();
-    //  }
-    //}
-
 
     // GET: api/Profile
     [HttpGet]
@@ -113,6 +99,22 @@ namespace ConsidKompetens_Web.Controllers
       }
     }
 
+    [HttpGet]
+    [Route("filter")]
+    public async Task<ActionResult<List<ProfileDto>>> GetProfilesByIdsAsync(string profileIds)
+    {
+      try
+      {
+        var intOnlyString=new string(profileIds.ToCharArray().Where(c=>char.IsDigit(c)).ToArray());
+        var intArray = intOnlyString.Select(digit => int.Parse(digit.ToString())).ToList();
+
+        return Ok(new Response{ Success = true, Data = {ProfileModels = await _profileDataService.GetProfilesByIdsAsync(intArray)}}) ;
+      }
+      catch (Exception e)
+      {
+        return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
+      }
+    }
     [HttpPut("{id}")]
     [Route("editprofile")]
     public async Task<ActionResult<Response>> EditProfile(ProfileReq input)

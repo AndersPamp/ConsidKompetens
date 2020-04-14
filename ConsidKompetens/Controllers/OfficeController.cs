@@ -48,9 +48,10 @@ namespace ConsidKompetens_Web.Controllers
     {
       try
       {
-        //var intArray = JsonConvert.DeserializeObject<List<int>>(officeIds);
-        var intOnlyString = new string(officeIds.ToCharArray().Where(c=>char.IsDigit(c)).ToArray());
-        var intArray = intOnlyString.Select(digit => int.Parse(digit.ToString())).ToList();
+        var splitString = officeIds.Split(',');
+        var intArray = splitString.Select(digit => int.Parse(digit)).ToList();
+        //var intOnlyString = new string(officeIds.ToCharArray().Where(c=>char.IsDigit(c)).ToArray());
+        //var intArray = intOnlyString.Select(digit => int.Parse(digit.ToString())).ToList();
         var response = new Response
         {
           Success = true,

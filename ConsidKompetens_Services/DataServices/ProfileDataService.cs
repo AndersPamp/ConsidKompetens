@@ -68,6 +68,25 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
+    public async Task<List<ProfileDto>> GetProfilesByIdsAsync(List<int> profileIds)
+    {
+      try
+      {
+        var profiles=new List<ProfileModel>();
+        foreach (var profileId in profileIds)
+        {
+          profiles.Add(await _dbContext.ProfileModels.FindAsync(profileId));
+        }
+
+        return _mapper.Map<List<ProfileModel>, List<ProfileDto>>(profiles);
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+
     public async Task<ProfileDto> GetProfileByOwnerIdAsync(string profileOwnerId)
     {
       if (profileOwnerId != null)
@@ -99,7 +118,8 @@ namespace ConsidKompetens_Services.DataServices
       {
         foreach (var officeId in officeIds)
         {
-          offices.Add(await _dbContext.OfficeModels.Include(x => x.ProfileModels)
+          offices.Add(await _dbContext.OfficeModels.Include(x => x.ProfileModels).ThenInclude(x=>x.ImageModel)
+            .Include(x=>x.ProfileModels).ThenInclude(x=>x.Competences)
             .FirstOrDefaultAsync(x => x.Id == officeId));
         }
 
@@ -129,18 +149,6 @@ namespace ConsidKompetens_Services.DataServices
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.TimePeriod)
           .Include(x => x.ProjectProfileRoles).ThenInclude(x => x.ProjectModel).ThenInclude(x => x.Techniques)
           .FirstOrDefaultAsync(x => x.OwnerID == ownerId);
-
-        /*var competences = await _dbContext.CompetenceModels.Where(x => x.ProfileModelFK == profile.Id).ToListAsync();
-        competences = input.Competences;
-        _dbContext.CompetenceModels.UpdateRange(competences);*/
-        //var competences = input.Competences.Where(x => !profile.Competences.ToList().Exists(i => i.Id == x.Id));
-        //foreach (var c in competences)
-        //{
-        //  profile.Competences.Add(c);
-        //}
-
-
-        //_dbContext.Entry(existingProfile).CurrentValues.SetValues(input);
 
         if (input.OfficeModelId!=0)
         {
@@ -174,11 +182,7 @@ namespace ConsidKompetens_Services.DataServices
             _dbContext.Remove(competence);
           }
         }
-        //profile.Competences = input.Competences;
-
-                               
         _dbContext.Update(existingProfile);
-        //_dbContext.ProfileModels.Update(profile);
         await _dbContext.SaveChangesAsync();
 
         return _mapper.Map<ProfileModel, ProfileDto>(existingProfile);
