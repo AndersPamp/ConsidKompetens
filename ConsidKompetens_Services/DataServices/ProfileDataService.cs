@@ -201,7 +201,7 @@ namespace ConsidKompetens_Services.DataServices
         {
           OwnerID = profileOwnerId,
           Created = DateTime.UtcNow,
-          ImageModel = new ImageModel { Created = DateTime.UtcNow, Alt = "Profile picture" },
+          ImageModel = new ImageModel { Created = DateTime.UtcNow, Alt = "Profile picture" , Url = ""}
         };
         await _dbContext.ProfileModels.AddAsync(newUserModel);
         await _dbContext.SaveChangesAsync();
