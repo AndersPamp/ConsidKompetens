@@ -20,7 +20,7 @@ namespace ConsidKompetens_Web.Controllers
       _searchService = searchService;
     }
 
-    [HttpGet]
+    [HttpPost]
     [OutputCache(Duration = 30)]
     public async Task<ActionResult<Response>> Search(List<int> officeIds, string input)
     {
