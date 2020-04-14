@@ -33,12 +33,11 @@ namespace ConsidKompetens_Services.DataServices
       }
     }
 
-    public async Task<ImageDto> GetImageModelByIdAsync(int id)
+    public async Task<ImageModel> GetImageModelByIdAsync(int id)
     {
       try
       {
-        var image = await _dbContext.ImageModels.FindAsync(id);
-        return _mapper.Map<ImageModel, ImageDto>(image);
+        return await _dbContext.ImageModels.FindAsync(id); 
       }
       catch (Exception e)
       {
@@ -66,10 +65,11 @@ namespace ConsidKompetens_Services.DataServices
     {
       try
       {
-        var delta = await GetImageModelByIdAsync(imageId);
-        delta.Url = imageModel.Url;
-        delta.Alt = imageModel.Alt;
-        delta.Modified = DateTime.UtcNow;
+        var existingImageModel = await GetImageModelByIdAsync(imageId);
+        existingImageModel.Url = imageModel.Url;
+        existingImageModel.Alt = imageModel.Alt;
+        existingImageModel.Modified = DateTime.UtcNow;
+        _dbContext.Update(existingImageModel);
         await _dbContext.SaveChangesAsync();
         return _mapper.Map<ImageModel, ImageDto>(imageModel);
       }

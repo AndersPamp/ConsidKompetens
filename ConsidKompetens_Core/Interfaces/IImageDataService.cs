@@ -8,7 +8,7 @@ namespace ConsidKompetens_Core.Interfaces
   public interface IImageDataService
   {
     Task<List<ImageDto>> GetImageModelsAsync();
-    Task<ImageDto> GetImageModelByIdAsync(int id);
+    Task<ImageModel> GetImageModelByIdAsync(int id);
     Task<ImageDto> RegisterNewImageModelAsync(ImageModel imageModel);
     Task<ImageDto> EditImageModelAsync(int imageId, ImageModel imageModel);
   }
