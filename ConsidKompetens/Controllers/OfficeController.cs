@@ -69,7 +69,7 @@ namespace ConsidKompetens_Web.Controllers
       }
       
     }
-    [HttpPost]
+    /*[HttpPost]
     [Route("Profiles")]
     public async Task<ActionResult<Response>> PostOfficesByIds([FromBody]OfficeReq officeIds)
     {
@@ -90,7 +90,7 @@ namespace ConsidKompetens_Web.Controllers
       {
         return BadRequest(new Response { Success = false, ErrorMessage = e.Message });
       }
-    }
+    }*/
 
     [HttpPost]
     public async Task<ActionResult<Response>> Post([FromBody]OfficeModel officeModel)
