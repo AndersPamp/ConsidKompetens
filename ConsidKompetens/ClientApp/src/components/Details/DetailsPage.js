@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import '../../css/Details.css';
 import NavMenu from '../Header/NavMenu';
 import {ProfileContext}  from '../../Context/PofileContext';
+import SearchIcon from '../../images/search-icon.png';
 import axios from 'axios';
 
 const DetailsPage = () => {
@@ -39,6 +40,8 @@ const DetailsPage = () => {
                 <Container>
                 <NavMenu/>
                         <h1 className='details-header'>{chosenOffices.city}</h1>
+                        <input className="homeInput" type="text" placeholder="Sök.."/>
+                        <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
                         {!loading ? (profiles.map((user, i) =>
                         {
                             return(

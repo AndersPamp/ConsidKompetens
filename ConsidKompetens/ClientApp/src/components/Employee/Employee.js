@@ -12,7 +12,7 @@ const Employee = () => {
     const {profileId, chosenOffice} = useContext(ProfileContext);
     const [employee, setEmployee] = useState([]);
     const [loading, setLoading] = useState(true);
-    const id = 10;
+    const id = 11;
     const jwt = localStorage.getItem('secret');
     const baseUrl = 'https://localhost:44323/api/profile';
  

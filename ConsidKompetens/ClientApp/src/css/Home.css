@@ -52,13 +52,12 @@
   }
   
   .homeInput{
-    position: absolute;
     border-radius: 10px;
-    border: none;
-    top: 8%;
-    width: 50%;
-    left: 25%;
-    padding-left: 10px;
+    border: 1px solid grey;
+    width: 80%;
+    padding-left: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
     font-size: 150%;
     font-family: 'Montserrat', sans-serif;
   }
@@ -68,12 +67,9 @@
   }
 
   .search-button{
-      position: absolute;
-      top: 8%;
-      left: 76%;
       border: none;
       outline: none;
-      background: none;
+      background-color: gray;
   }
 
   .search-button:focus{
