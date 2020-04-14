@@ -5,33 +5,41 @@ import '../../css/Details.css';
 import NavMenu from '../Header/NavMenu';
 import {ProfileContext}  from '../../Context/PofileContext';
 import SearchIcon from '../../images/search-icon.png';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const DetailsPage = () => {
 
-    const {chosenOffices, initProfileId} = useContext(ProfileContext);
-    const [profiles, setProfiles] = useState([]);
+    const {chosenOffices, initProfileId, profile, initProfile} = useContext(ProfileContext);
+    const [selected, setSelected] = useState([{id: ''}])
     const [loading, setLoading] = useState(true);
+    const [dots, setDots] = useState(true);
     console.log(chosenOffices);
+    
 
-
+    const history = useHistory();
     useEffect(() => {
         function getOfficeId() {
             const officeids = chosenOffices.id;
-            console.log(officeids)
             const jwt =localStorage.getItem('secret');
             axios.get('https://localhost:44323/api/office/profiles', {params: {officeids: officeids} ,headers: { 'Authorization': `Bearer ${jwt}` }})
             .then((response) => {
                 console.log(response.data.data.profileModels);
                 const user = response.data.data.profileModels;
-                setProfiles(user);
+                initProfile(user);
                 setLoading(false);
-                initProfileId(profiles);
             }).catch(error => console.log(error));
         }
         getOfficeId();
     }, []);
 
+    function getId(){
+        const id = selected.id;
+        initProfileId({id: id});
+        setDots(false)
+        history.push("/employee");
+        
+    }
     
 
     return (
@@ -42,7 +50,7 @@ const DetailsPage = () => {
                         <h1 className='details-header'>{chosenOffices.city}</h1>
                         <input className="homeInput" type="text" placeholder="Sök.."/>
                         <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
-                        {!loading ? (profiles.map((user, i) =>
+                        {!loading ? (profile.map((user, i) =>
                         {
                             return(
                                 <div className='container-list' key={i}>
@@ -64,7 +72,8 @@ const DetailsPage = () => {
                                     <div className='competense-output'>React</div>
                                     <div className='competense-output'>.Net</div>
                                     <div className='competense-output'>Episerver</div>
-                                    <a className='more' href='/employee'>Mer info +</a>
+                                    {/* <a className='more' href='/employee' onClick={() => setSelected({id: user.id}), getId}>Mer info +</a> */}
+                                    {dots ? <button className='info-button' onClick={() => setSelected({id: user.id}, setDots(false))}>. . .</button> : <button className='info-button-more' onClick={getId}>Mer info +</button> } 
                                 </div>
                                 </Grid>
                             </Grid>

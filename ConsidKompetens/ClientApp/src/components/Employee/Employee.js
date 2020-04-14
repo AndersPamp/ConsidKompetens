@@ -10,11 +10,14 @@ import axios from 'axios';
 const Employee = () => {
 
     const {profileId, chosenOffice} = useContext(ProfileContext);
+    console.log(profileId)
     const [employee, setEmployee] = useState([]);
     const [loading, setLoading] = useState(true);
-    const id = 11;
+    const id = profileId.id;
     const jwt = localStorage.getItem('secret');
     const baseUrl = 'https://localhost:44323/api/profile';
+
+    
  
     useEffect(() => {
         function getUser(){

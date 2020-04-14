@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const UploadImage = () => {
 
-    const {handleUploadImage} = useContext(ProfileContext);
+    const {handleUploadImage, profile} = useContext(ProfileContext);
     const [image, setImage] = useState(null);
     const jwt = localStorage.getItem('secret');
     const previewImage = document.getElementById("image-preview__image");
