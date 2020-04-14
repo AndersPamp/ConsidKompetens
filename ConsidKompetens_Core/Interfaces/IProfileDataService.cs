@@ -10,6 +10,7 @@ namespace ConsidKompetens_Core.Interfaces
   {
     Task<List<ProfileDto>> GetAllProfilesAsync();
     Task<ProfileDto> GetProfileByIdAsync(int profileId);
+    Task<List<ProfileDto>> GetProfilesByIdsAsync(List<int> profileIds);
     Task<ProfileDto> GetProfileByOwnerIdAsync(string profileOwnerId);
     Task<List<ProfileDto>> GetProfilesByOfficeIdsAsync(List<int> officeIds);
     Task<ProfileDto> EditProfileByIdAsync(string ownerId, ProfileReq input);
