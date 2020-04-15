@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import '../../css/Details.css';
 import NavMenu from '../Header/NavMenu';
 import {ProfileContext}  from '../../Context/PofileContext';
-import SearchIcon from '../../images/search-icon.png';
+import SearchIcon from '../../images/SearchIconDark.png';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 

@@ -43,7 +43,7 @@ const Profile = () => {
   const classes = useStyles();
   const jwt = localStorage.getItem('secret');
 
-const {profile } = useContext(ProfileContext);
+const {profile, initUrl } = useContext(ProfileContext);
   const input = profile;
   const {handleChange, initProfile} = useContext(ProfileContext);
 

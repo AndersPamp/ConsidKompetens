@@ -73,7 +73,7 @@ const ProfileContextProvider = ({children}) => {
     //  }
 
     return(
-        <ProfileContext.Provider value={{profile, chosenOffices, profileId, 
+        <ProfileContext.Provider value={{profile, chosenOffices, profileId,
             handleChange: handleChange, 
             initProfile: initProfile, 
             updateCompetences: updateCompetences,
