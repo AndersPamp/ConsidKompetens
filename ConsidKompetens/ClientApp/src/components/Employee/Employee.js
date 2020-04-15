@@ -51,14 +51,9 @@ const Employee = () => {
                             <h4 className='office'>Kontor</h4>
                             <h3>Helsingborg</h3>
                             <h4 className='competense'>Kompetens</h4>
-                            <div className='competense-output'>React</div>
-                            <div className='competense-output'>Episerver</div>
-                            <div className='competense-output'>.Net</div>
-                            <div className='competense-output'>CSS</div>
-                            <div className='competense-output'>HTML</div>
-                            <div className='competense-output'>C#</div>
-                            <div className='competense-output'>JavaScript</div>
-                            <div className='competense-output'>Java</div>
+                            {list.competences.map((comp) => {
+                                return(<div className='competense-output'>{comp.value}</div>)
+                            })}
                         </Grid>
                         <Grid item xs={5}>
                             <div className='img-container'>

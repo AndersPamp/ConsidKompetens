@@ -69,9 +69,8 @@ const DetailsPage = () => {
                                     <h5 className='about'>Om mig:</h5>
                                     <label htmlFor="">{user.aboutMe}</label>
                                     <h5 className='about'>Kompetens:</h5>
-                                    <div className='competense-output'>React</div>
-                                    <div className='competense-output'>.Net</div>
-                                    <div className='competense-output'>Episerver</div>
+                                    {user.competences.map((comp) => {
+                                        return(<div className='competense-output'>{comp.value}</div>)})}
                                     {/* <a className='more' href='/employee' onClick={() => setSelected({id: user.id}), getId}>Mer info +</a> */}
                                     {dots ? <button className='info-button' onClick={() => setSelected({id: user.id}, setDots(false))}>. . .</button> : <button className='info-button-more' onClick={getId}>Mer info +</button> } 
                                 </div>
