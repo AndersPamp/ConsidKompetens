@@ -11,7 +11,6 @@ const UploadImage = () => {
     const previwDefaultText = document.getElementById('image-preview__default-text');
     const message = document.getElementById('message');
     const doneMessage = document.getElementById('doneMessage');
-
     
 
      function fileSelectedHandler(event) {
@@ -58,8 +57,8 @@ const UploadImage = () => {
         <div>
             <div className='img-container'>
                 <div className='image-preview' id='imagePreview'>
-                    <img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
-                    <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span>
+                   <img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
+                     <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span> 
                 </div>
                 <div className='upload-img'>
                     <input style={{display: 'none'}}  type="file" id='inpFile' name='inpFile' accept='image/*' onChange={fileSelectedHandler}/>
