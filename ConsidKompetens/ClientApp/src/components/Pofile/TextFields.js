@@ -45,16 +45,6 @@ const TextFields = () => {
             value={user.lastName || ''}
             onChange={handleChange}   
             />
-        <TextField
-            className={classes.margin}
-            style={{display: 'block'}}
-            multiline
-            label="Om mig"
-            id="standard-multiline-static"
-            name='aboutMe'
-            value={user.aboutMe || ''}
-            onChange={handleChange} 
-            />
             </>
     )
 }

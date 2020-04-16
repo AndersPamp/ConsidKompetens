@@ -42,10 +42,10 @@ const theme = createMuiTheme({
 const Profile = () => {
   const classes = useStyles();
   const jwt = localStorage.getItem('secret');
-
-const {profile, initUrl } = useContext(ProfileContext);
+  const {profile, initUrl } = useContext(ProfileContext);
   const input = profile;
   const {handleChange, initProfile} = useContext(ProfileContext);
+  const updateMessage = document.getElementById('updateMessage');
 
   function submit(e){
       e.preventDefault();
@@ -53,7 +53,8 @@ const {profile, initUrl } = useContext(ProfileContext);
         .then((response) => {
         const result = response.data;
         console.log(result)
-
+        
+        updateMessage.style.display = 'block';
         if(response.status === 200)
         {
           localStorage.setItem('profile', result);
@@ -71,6 +72,7 @@ const {profile, initUrl } = useContext(ProfileContext);
           const jwt = localStorage.getItem('secret');
           axios.get('https://localhost:44323/api/profile/ownerid', { headers: { 'Authorization': `Bearer ${jwt}` } })
           .then((response) => {
+            console.log(response)
           const user = response.data.data.profileModels[0];
           console.log(user)
           initProfile(user);
@@ -90,27 +92,7 @@ const {profile, initUrl } = useContext(ProfileContext);
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
-                      </div>
-                  </Grid>
-                  <Grid item xs={5}>
-                  <UploadImage/>
-                  </Grid>
-              </Grid>
-              <Grid container spacing={0}>
-                  <Grid item xs={6}>
-                    <div className='grid-one'>
-                     <SelectForm/>
-                      <Grid container spacing={0}>
-                        <Grid item xs={12}>
-                        <Competense/>
-                        <div></div>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <div className='grid-two'>
-                      <TextField
+                        <TextField
                             className={classes.margin}
                             style={{display: 'block'}}
                             label="LinkedIn link"
@@ -120,13 +102,49 @@ const {profile, initUrl } = useContext(ProfileContext);
                             onChange={handleChange}  
                             
                             />
+                             <TextField
+                                className={classes.margin}
+                                style={{display: 'block'}}
+                                multiline
+                                label="Om mig"
+                                id="standard-multiline-static two"
+                                name='aboutMe'
+                                value={input.aboutMe || ''}
+                                onChange={handleChange} 
+                              />
+                            <SelectForm/>
+                            <Competense/>
                       <UploadCV/>
+                       
+                      
+                      </div>
+                  </Grid>
+                  <Grid item xs={5}>
+                  <UploadImage/>
+                  </Grid>
+              </Grid>
+              <Grid container spacing={0}>
+                  <Grid item xs={6}>
+                    <div className='grid-one'>
+                    
+                      <Grid container spacing={0}>
+                        <Grid item xs={12}>
+                        
+                        <div></div>
+                        </Grid>
+                      </Grid>
+                    </div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <div className='grid-two'>
+                      
                       {/* <label className='login-text'>Du är inloggad med e-postadressen: </label>
                       <label className='login-email'>(email)</label> */}
                     </div>
                   </Grid>
               </Grid>
               <button className='button' onClick={submit}>Uppdatera din profil</button>
+              <label className='updateMessage' id='updateMessage' style={{display: 'none'}}>Din profil är uppdaterad!</label>
           </ThemeProvider>
           </div>
       </Container>

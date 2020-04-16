@@ -43,7 +43,7 @@ const UploadCV = () => {
             }   
         </div>
         <div className='cv-button-container'>
-            <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
+            <button className="add-btn-cv" onClick={fileUploadHandler}>Lägg till</button>
              <label className='message' id='cvMessage' style={{display: 'none'}}>Du måste välja fil först!</label>
              <label className='doneMessage' id='cvdoneMessage' style={{display: 'none'}}>Din fil är sparad!</label>
         </div>

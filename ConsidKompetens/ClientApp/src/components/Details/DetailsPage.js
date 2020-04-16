@@ -13,6 +13,7 @@ const DetailsPage = () => {
     const {chosenOffices, initProfileId, profile, initProfile} = useContext(ProfileContext);
     const [selected, setSelected] = useState([{id: ''}])
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState('');
     const [dots, setDots] = useState(true);
     console.log(chosenOffices);
     
@@ -40,6 +41,10 @@ const DetailsPage = () => {
         history.push("/employee");
         
     }
+
+    function handleChange(e) {
+        setSearch(e.target.value);
+    }
     
 
     return (
@@ -48,7 +53,7 @@ const DetailsPage = () => {
                 <Container>
                 <NavMenu/>
                         <h1 className='details-header'>{chosenOffices.city}</h1>
-                        <input className="homeInput" type="text" placeholder="Sök.."/>
+                        <input onChange={handleChange} className="homeInput" type="text" placeholder="Sök.."/>
                         <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
                         {!loading ? (profile.map((user, i) =>
                         {
@@ -69,8 +74,8 @@ const DetailsPage = () => {
                                     <h5 className='about'>Om mig:</h5>
                                     <label htmlFor="">{user.aboutMe}</label>
                                     <h5 className='about'>Kompetens:</h5>
-                                    {user.competences.map((comp) => {
-                                        return(<div className='competense-output'>{comp.value}</div>)})}
+                                    {user.competences.map((comp, x) => {
+                                        return(<div key={x} className='competense-output'>{comp.value}</div>)})}
                                     {/* <a className='more' href='/employee' onClick={() => setSelected({id: user.id}), getId}>Mer info +</a> */}
                                     {dots ? <button className='info-button' onClick={() => setSelected({id: user.id}, setDots(false))}>. . .</button> : <button className='info-button-more' onClick={getId}>Mer info +</button> } 
                                 </div>
@@ -79,13 +84,15 @@ const DetailsPage = () => {
                         </div>
                             )
                         }
-                        )) : (<div className='loading'>
-                      <div className="d-flex justify-content-center">
-                        <div className="spinner-border" role="status">
-                          <span className="sr-only">Loading...</span>
+                    )) : (
+                        <div className='loading'>
+                            <div className="d-flex justify-content-center">
+                                <div className="spinner-border" role="status">
+                                <span className="sr-only">Loading...</span>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>)}
+                    )}
                 </Container>
         </div>
     )

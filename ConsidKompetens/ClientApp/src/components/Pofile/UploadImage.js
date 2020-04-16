@@ -11,6 +11,7 @@ const UploadImage = () => {
     const previwDefaultText = document.getElementById('image-preview__default-text');
     const message = document.getElementById('message');
     const doneMessage = document.getElementById('doneMessage');
+    const myImage = profile.imageModel.url;
     
 
      function fileSelectedHandler(event) {
@@ -57,13 +58,15 @@ const UploadImage = () => {
         <div>
             <div className='img-container'>
                 <div className='image-preview' id='imagePreview'>
-                   <img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
-                     <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span> 
+                   {!image ? <><img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
+                    <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></> : 
+                     <><img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
+                    <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></>}
                 </div>
                 <div className='upload-img'>
                     <input style={{display: 'none'}}  type="file" id='inpFile' name='inpFile' accept='image/*' onChange={fileSelectedHandler}/>
                     <label className='img-input' style={{display:'block'}} htmlFor="inpFile">Välj bild</label>
-                    <button className="add-btn" onClick={fileUploadHandler}>Lägg till</button>
+                    <button className="add-btn-img" onClick={fileUploadHandler}>Lägg till</button>
                     <label className='message' id='message' style={{display: 'none'}}>Du måste välja bild först!</label>
                     <label className='doneMessage' id='doneMessage' style={{display: 'none'}}>Din bild är sparad!</label>
                 </div>
