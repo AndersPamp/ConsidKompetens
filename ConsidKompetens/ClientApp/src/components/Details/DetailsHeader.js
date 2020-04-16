@@ -18,9 +18,6 @@ const DetailsHeader = () => {
             {loggedOut ? <Redirect to="/login" /> : null} 
             <button className='min-sida-button'><a href="/profile">Min sida</a></button>   
             <button className='logga-ut-button' onClick={handleLogoOut}>Logga ut</button>
-            {/* <input className="homeInput" type="text" placeholder="Sök.."/>
-            <button className='search-button'><img src={SearchIcon} alt="Search-icon"/></button>
-            <label className='home-welcome-label'>Vad letar du efter?</label> */}
             <img className="homeImg" src={HomeImage} alt="ConsidCoffee"/>
         </>
     )

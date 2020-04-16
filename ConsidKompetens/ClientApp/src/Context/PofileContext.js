@@ -4,13 +4,15 @@ export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({children}) => {
     const [profileId, setProfileId] = useState({
-        id: {id: ''}
+        id: {
+            id: ''
+        }
     });
     const [ chosenOffices, setChosenOffices ] = useState({
-            
-            office:    {id: '', 
-                city: ''}
-            
+            office:  {
+                id: '', 
+                city: ''
+            }    
     });
     const [ profile, setProfile ] = useState({
             id: '',
@@ -41,7 +43,6 @@ const ProfileContextProvider = ({children}) => {
 
      const initProfileId = (id) => {
          setProfileId(id);
-         console.log(profileId)
      }
 
      const updateCompetences = (competence) => {

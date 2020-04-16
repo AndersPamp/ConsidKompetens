@@ -22,8 +22,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
 const SelectForm = () => {
     const classes = useStyles();
     const [offices, setOffices] = useState([]);
@@ -31,41 +29,37 @@ const SelectForm = () => {
     const user = profile;
     const {handleChange} = useContext(ProfileContext);
     
-
-useEffect(() => {
-   const getOffices = () => {
-        const jwt = localStorage.getItem('secret');
-        axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
-        .then((response) => {
-          console.log(response.data);
-          const list = response.data.data.officeModels;
-          setOffices(list)
-         
-        }).catch(error => console.log(error));
-    }
-  getOffices();
-}, []);
-   
+  useEffect(() => {
+    const getOffices = () => {
+          const jwt = localStorage.getItem('secret');
+          axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
+          .then((response) => {
+            const list = response.data.data.officeModels;
+            setOffices(list)
+          }).catch(error => console.log(error));
+      }
+    getOffices();
+  }, []);
 
     return (
         <>
          <FormControl className={classes.formControl}>
-                          <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
-                            <Select name='OfficeModelId' value={user.OfficeModelId || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
-                              {offices.map((item, i) => {
-                                return <MenuItem  value={item.id} key={i}>{item.city}</MenuItem>
-                              })}
-                            </Select>
-                      </FormControl>
-                      <FormControl className={classes.formControl}>
-                          <InputLabel id="demo-simple-select-label">Min titel</InputLabel>
-                            <Select name='position' value={user.position || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
-                              {role.map(list => {
-                                return <MenuItem value={list.role} key={list.id}>{list.role}</MenuItem>
-                              })}
-                            </Select>
-                      </FormControl>
-                    </>
+            <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
+              <Select name='OfficeModelId' value={user.OfficeModelId || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                {offices.map((item, i) => {
+                    return <MenuItem  value={item.id} key={i}>{item.city}</MenuItem>
+                })}
+              </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Min titel</InputLabel>
+              <Select name='position' value={user.position || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
+                {role.map(list => {
+                  return <MenuItem value={list.role} key={list.id}>{list.role}</MenuItem>
+                })}
+              </Select>
+          </FormControl>
+        </>
     )
 }
 

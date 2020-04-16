@@ -223,6 +223,12 @@
   }
 }
 
+@media only screen and (max-width: 1120px) {
+  .homeContainer{
+    padding-bottom: 300px;
+  }
+}
+
 
 @media only screen and (max-width: 1000px) {
   .min-sida-button{

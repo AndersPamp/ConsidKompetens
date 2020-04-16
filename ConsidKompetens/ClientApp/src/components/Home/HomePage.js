@@ -24,10 +24,7 @@ const HomePage = () => {
     const [offices, setOffices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState([{id: '', city: ''}]);
-    const {profile, initChosenOffice} = useContext(ProfileContext);
-    const user = profile;
-    console.log(user)
-   
+    const {initChosenOffice} = useContext(ProfileContext);
     const history = useHistory();
 
     useEffect(() => {
@@ -35,18 +32,17 @@ const HomePage = () => {
         const jwt =localStorage.getItem('secret');
         axios.get('https://localhost:44323/api/office/offices', { headers: { 'Authorization': `Bearer ${jwt}` } })
         .then((response) => {
-          console.log(response.data);
-          const list = response.data.data.officeModels;
-          setOffices(list)
-          setLoading(false)
+            const list = response.data.data.officeModels;
+            setOffices(list)
+            setLoading(false)
         }).catch(error => console.log(error));
     }
   getOffices();
 }, []);
 
     function officeHandler() {
-       const id = selected.id;
-       const city = selected.city;
+      const id = selected.id;
+      const city = selected.city;
       initChosenOffice({id: id, city: city});
       history.push("/details");
     }
@@ -55,7 +51,6 @@ const HomePage = () => {
         <>
         <div className="homeContainer">
           <Grid container spacing={0}>
-          
             <Grid item xs={7}>
               <HomeHeader/>
             </Grid>
@@ -72,10 +67,8 @@ const HomePage = () => {
                                   control={
                                   <Checkbox
                                       value={list.id}
-                                      
-                                       onClick={() => setSelected({id: list.id, city: list.city})}
-                                  />
-                                  }
+                                      onChange={() => setSelected({id: list.id, city: list.city})}
+                                  />}
                                   label={list.city}
                               />
                               </div>
@@ -83,7 +76,6 @@ const HomePage = () => {
                       </ThemeProvider>
                     )
                   })
-                
                 ): (<div className='loading'>
                       <div className="d-flex justify-content-center">
                         <div className="spinner-border" role="status">
@@ -91,7 +83,7 @@ const HomePage = () => {
                         </div>
                       </div>
                     </div>)}
-              <br/>
+                <br/>
               <button onClick={officeHandler}>Sök</button>
             </div>
           </Grid>      

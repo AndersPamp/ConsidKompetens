@@ -4,32 +4,29 @@ import axios from 'axios';
 
 const UploadImage = () => {
 
-    const {handleUploadImage, profile} = useContext(ProfileContext);
+    const {handleUploadImage} = useContext(ProfileContext);
     const [image, setImage] = useState(null);
     const jwt = localStorage.getItem('secret');
     const previewImage = document.getElementById("image-preview__image");
     const previwDefaultText = document.getElementById('image-preview__default-text');
     const message = document.getElementById('message');
     const doneMessage = document.getElementById('doneMessage');
-    const myImage = profile.imageModel.url;
     
-
-     function fileSelectedHandler(event) {
+    function fileSelectedHandler(event) {
         const file = event.target.files[0]
         setImage(file);
 
         if(file){
-          
-          const reader = new FileReader();
+            const reader = new FileReader();
 
-          previwDefaultText.style.display = 'none';
-          previewImage.style.display = 'block';
+            previwDefaultText.style.display = 'none';
+            previewImage.style.display = 'block';
 
-          reader.addEventListener('load', function() {
+            reader.addEventListener('load', function() {
               previewImage.setAttribute('src', this.result)
-          });
+            });
 
-          reader.readAsDataURL(file);  
+            reader.readAsDataURL(file);  
         }else{
             previwDefaultText.style.display = null;
             previewImage.style.display = null; 
@@ -44,11 +41,9 @@ const UploadImage = () => {
             const fd = new FormData();
             fd.append('file', image, image.name);
             handleUploadImage({url: image.name, alt: 'profile pic'})
-            console.log(image)
             message.style.display = 'none';
             axios.put('https://localhost:44323/api/profile/UploadImage', fd, { headers: { 'Authorization': `Bearer ${jwt}` }})
             .then((response) => {
-                console.log(response);
                 doneMessage.style.display = 'block';
             }).catch(error => console.log(error))
         }
@@ -58,9 +53,9 @@ const UploadImage = () => {
         <div>
             <div className='img-container'>
                 <div className='image-preview' id='imagePreview'>
-                   {!image ? <><img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
-                    <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></> : 
-                     <><img src='' alt="Image preview" id='image-preview__image' className='image-preview__image'/>
+                   {!image ? <><img src='' alt="preview" id='image-preview__image' className='image-preview__image'/>
+                    <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></>
+                    : <><img src='' alt="preview" id='image-preview__image' className='image-preview__image'/>
                     <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></>}
                 </div>
                 <div className='upload-img'>
