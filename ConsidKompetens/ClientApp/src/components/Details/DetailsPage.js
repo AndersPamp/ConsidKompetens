@@ -66,7 +66,7 @@ const DetailsPage = () => {
                                         <h4 className='dev-name'>{user.firstName + ' ' + user.lastName}</h4>
                                         <h6>{user.position}</h6> 
                                         <h5 className='about'>Om mig:</h5>
-                                        <label htmlFor="">{user.aboutMe}</label>
+                                        <label className='output-aboutMe' htmlFor="">{user.aboutMe}</label>
                                         <h5 className='about'>Kompetens:</h5>
                                         {user.competences.map((comp, x) => {
                                             return(<div key={x} className='competense-output'>{comp.value}</div>)})}

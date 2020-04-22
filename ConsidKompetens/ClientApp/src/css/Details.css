@@ -88,4 +88,8 @@
     outline: none;
 }
 
-
+.output-aboutMe{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(128, 122, 122);
+    width: 80%;
+}

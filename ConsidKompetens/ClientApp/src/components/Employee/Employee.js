@@ -44,6 +44,12 @@ const Employee = () => {
                                         {list.competences.map((comp, x) => {
                                             return(<div key={x} className='competense-output'>{comp.value}</div>)
                                         })}
+                                        <h4 className='aboutMe'>Om mig</h4>
+                                        <h5 className='output-about'>{list.aboutMe}</h5>
+                                        <h4 className='aboutMe'>LinkedIn</h4>
+                                        <a className='linked' href={list.linkedInUrl}>{list.linkedInUrl}</a>
+                                        <h4 className='aboutMe'>CV</h4>
+                                        <a className='linked' href={list.resumeUrl}>{list.resumeUrl}</a>
                                     </Grid>
                                     <Grid item xs={5}>
                                         <div className='img-container'>
@@ -53,10 +59,6 @@ const Employee = () => {
                                         <h5 className='title'>{employee.position}</h5>
                                     </Grid>
                                 </Grid>
-                                <h4 className='aboutMe'>Om mig</h4>
-                                <h5>{list.aboutMe}</h5>
-                                <img src="" alt="cv"/>
-                                <img src={LinkedIn} alt="linkedIn"/>
                             </div>
                         )})
                         ): (<div className='loading'>
