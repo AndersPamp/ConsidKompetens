@@ -4,13 +4,14 @@ import axios from 'axios';
 
 const UploadImage = () => {
 
-    const {handleUploadImage} = useContext(ProfileContext);
+    const {handleUploadImage, profile} = useContext(ProfileContext);
     const [image, setImage] = useState(null);
     const jwt = localStorage.getItem('secret');
     const previewImage = document.getElementById("image-preview__image");
     const previwDefaultText = document.getElementById('image-preview__default-text');
     const message = document.getElementById('message');
     const doneMessage = document.getElementById('doneMessage');
+    const display = 'data:image/png;base64, ' + profile.imageModel.url;
     
     function fileSelectedHandler(event) {
         const file = event.target.files[0]
@@ -58,6 +59,7 @@ const UploadImage = () => {
                     : <><img src='' alt="preview" id='image-preview__image' className='image-preview__image'/>
                     <span id='image-preview__default-text' className='image-preview__default-text'>Bild</span></>}
                 </div>
+                <img src={display} alt="000"/>
                 <div className='upload-img'>
                     <input style={{display: 'none'}}  type="file" id='inpFile' name='inpFile' accept='image/*' onChange={fileSelectedHandler}/>
                     <label className='img-input' style={{display:'block'}} htmlFor="inpFile">Välj bild</label>
