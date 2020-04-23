@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
 using ConsidKompetens_Core.Response_Request;
@@ -21,18 +20,19 @@ namespace ConsidKompetens_Web.Controllers
     }
 
     [HttpPost]
-    [OutputCache(Duration = 30)]
-    public async Task<ActionResult<Response>> Search(List<int> officeIds, string input)
+    //[OutputCache(Duration = 30)]
+    public async Task<ActionResult<Response>> Search([FromBody]SearchRequest request)
     {
-      //In js Debounce with input delay
-      try
+      return await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input);
+      //In js use Debounce with input delay
+      /*try
       {
-        return await _searchService.FreeWordSearcAsync(officeIds, input);
+        return await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input);
       }
       catch (Exception e)
       {
         return BadRequest(new Response { Success= false, ErrorMessage= e.Message });
-      }
+      }*/
     }
   }
 }

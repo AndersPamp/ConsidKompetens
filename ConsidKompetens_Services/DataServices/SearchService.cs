@@ -88,8 +88,18 @@ namespace ConsidKompetens_Services.DataServices
     public async Task<Response> FreeWordSearcAsync(List<int> officeIds, string input)
     {
       var response = new Response();
+      response.Data=new ResponseData();
       var profiles = new List<ProfileModel>();
-      var allOffices = await GetSelectedOfficesAsync(officeIds);
+      var allOffices=new List<OfficeModel>();
+      if (officeIds.IsNullOrEmpty())
+      {
+        allOffices = await _dbContext.OfficeModels.ToListAsync();
+      }
+      else
+      {
+        allOffices = await GetSelectedOfficesAsync(officeIds);  
+      }
+      
       var offices = new List<OfficeModel>();
       
       try
@@ -120,8 +130,16 @@ namespace ConsidKompetens_Services.DataServices
           }
         }
 
-        response.Data.ProfileModels = _mapper.Map<List<ProfileModel>, List<ProfileDto>>(profiles);
-        response.Data.OfficeModels = _mapper.Map<List<OfficeModel>, List<OfficeDto>>(offices);
+        if (!profiles.IsNullOrEmpty())
+        {
+          response.Data.ProfileModels = _mapper.Map<List<ProfileModel>, List<ProfileDto>>(profiles);  
+        }
+
+        if (!offices.IsNullOrEmpty())
+        {
+          response.Data.OfficeModels = _mapper.Map<List<OfficeModel>, List<OfficeDto>>(offices);  
+        }
+        
         return response;
       }
       catch (Exception e)

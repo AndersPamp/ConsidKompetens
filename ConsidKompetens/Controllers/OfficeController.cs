@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ConsidKompetens_Core.Interfaces;
@@ -8,7 +7,6 @@ using ConsidKompetens_Core.Response_Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace ConsidKompetens_Web.Controllers
 {

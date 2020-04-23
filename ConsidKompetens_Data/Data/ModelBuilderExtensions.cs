@@ -120,90 +120,90 @@ namespace ConsidKompetens_Data.Data
     {
       var images = new List<ImageModel>()
       {
-        new ImageModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\6c6c2eec-f58b-4728-8b6a-20492648ad83.jpeg", Alt="Profile image"},
-        new ImageModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\b437b09d-615b-49ff-9317-bfab87d38c84.jpeg", Alt="Profile image"},
-        new ImageModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\45f21477-00ef-436f-928b-504753249afa.jpeg", Alt="Profile image"},
-        new ImageModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\65c97613-cd49-4aa8-ad5d-f53b05f609f9.jpeg", Alt="Profile image"},
-        new ImageModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\1eb5b655-755d-4d21-b78c-8d19eeeb19a9.jpeg", Alt="Profile image"},
-        new ImageModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\3a779fe9-15b0-4a10-b607-538393af8ed4.jpeg", Alt="Profile image"},
-        new ImageModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\d3a961f6-603c-4c53-9e0b-3e49a81c7fc3.jpeg", Alt="Profile image"},
-        new ImageModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\062f39f9-5f27-476e-8bce-e7e447f8d874.jpeg", Alt="Profile image"},
-        new ImageModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\84efc798-d9dd-48fe-ad64-e186488bfe88.jpeg", Alt="Profile image"},
-        new ImageModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Url="../ConsidKompetens_Data/ProfileImages\\e9e8c451-f41c-4cf7-bfd0-07650578856e.jpeg", Alt="Profile image"}
+        new ImageModel{Id=1, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\6c6c2eec-f58b-4728-8b6a-20492648ad83.jpeg", Alt="Profile image"},
+        new ImageModel{Id=2, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\b437b09d-615b-49ff-9317-bfab87d38c84.jpeg", Alt="Profile image"},
+        new ImageModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\45f21477-00ef-436f-928b-504753249afa.jpeg", Alt="Profile image"},
+        new ImageModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\65c97613-cd49-4aa8-ad5d-f53b05f609f9.jpeg", Alt="Profile image"},
+        new ImageModel{Id=5, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\1eb5b655-755d-4d21-b78c-8d19eeeb19a9.jpeg", Alt="Profile image"},
+        new ImageModel{Id=6, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\3a779fe9-15b0-4a10-b607-538393af8ed4.jpeg", Alt="Profile image"},
+        new ImageModel{Id=7, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\d3a961f6-603c-4c53-9e0b-3e49a81c7fc3.jpeg", Alt="Profile image"},
+        new ImageModel{Id=8, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\062f39f9-5f27-476e-8bce-e7e447f8d874.jpeg", Alt="Profile image"},
+        new ImageModel{Id=9, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\84efc798-d9dd-48fe-ad64-e186488bfe88.jpeg", Alt="Profile image"},
+        new ImageModel{Id=10, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Url="../ConsidKompetens_Data/ProfileImages\\e9e8c451-f41c-4cf7-bfd0-07650578856e.jpeg", Alt="Profile image"}
       };
 
       var offices = new List<OfficeModel>()
       {
-        new OfficeModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Jönköping", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Stockholm", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Göteborg", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Göteborg - Paradigm", TelephoneNumber="+46 31 761 56 10"},
-        new OfficeModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Malmö", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Uppsala", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Linköping", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Norrköping", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Örebro", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Helsingborg", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Gävle", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Ljungby", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Sundsvall", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Värnamo", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Karlskrona", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Västerås", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Borås", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Växjö", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Nyköping", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Karlshamn", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), City="Kalmar", TelephoneNumber="036-120210"}
+        new OfficeModel{Id=1, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Jönköping", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=2, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Stockholm", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Göteborg", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Göteborg - Paradigm", TelephoneNumber="+46 31 761 56 10"},
+        new OfficeModel{Id=5, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Malmö", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=6, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Uppsala", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=7, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Linköping", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=8, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Norrköping", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=9, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Örebro", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=10, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Helsingborg", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=11, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Gävle", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=12, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Ljungby", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=13, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Sundsvall", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=14, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Värnamo", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=15, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Karlskrona", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=16, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Västerås", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=17, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Borås", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=18, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Växjö", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=19, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Nyköping", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=20, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Karlshamn", TelephoneNumber="036-120210"},
+        new OfficeModel{Id=21, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Kalmar", TelephoneNumber="036-120210"}
       };
 
       var competences = new List<CompetenceModel>()
       {
-        new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+        new CompetenceModel{Id=19, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
         new CompetenceModel{Id = 1, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React"},
-        new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-        new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
+        new CompetenceModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+        new CompetenceModel{Id=7, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"},
 
-        new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+        new CompetenceModel{Id=20, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
         new CompetenceModel{Id = 2, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
-        new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-        new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
+        new CompetenceModel{Id=6, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+        new CompetenceModel{Id=8, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"},
 
-        new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
-        new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
-        new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-        new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"},
+        new CompetenceModel{Id=21, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
+        new CompetenceModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="React"},
+        new CompetenceModel{Id=5, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+        new CompetenceModel{Id=9, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"},
 
-        new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-        new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-        new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-        new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
+        new CompetenceModel{Id=22, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+        new CompetenceModel{Id=10, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+        new CompetenceModel{Id=13, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+        new CompetenceModel{Id=16, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"},
 
-        new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-        new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-        new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-        new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
+        new CompetenceModel{Id=23, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+        new CompetenceModel{Id=11, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+        new CompetenceModel{Id=14, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+        new CompetenceModel{Id=17, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"},
 
-        new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-        new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-        new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-        new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"},
+        new CompetenceModel{Id=24, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+        new CompetenceModel{Id=12, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+        new CompetenceModel{Id=15, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+        new CompetenceModel{Id=18, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"},
 
-        new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
+        new CompetenceModel{Id=26, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+        new CompetenceModel{Id=29, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+        new CompetenceModel{Id=33, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"},
 
-        new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
+        new CompetenceModel{Id=25, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+        new CompetenceModel{Id=30, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+        new CompetenceModel{Id=34, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"},
 
-        new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"},
+        new CompetenceModel{Id=27, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+        new CompetenceModel{Id=31, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+        new CompetenceModel{Id=35, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"},
 
-        new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-        new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-        new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+        new CompetenceModel{Id=28, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+        new CompetenceModel{Id=32, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+        new CompetenceModel{Id=36, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"}
       };
 
       var projectProfileRoles = new List<ProjectProfileRole>()
@@ -234,26 +234,26 @@ namespace ConsidKompetens_Data.Data
 
       var timePeriods = new List<TimePeriod>()
       {
-        new TimePeriod{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Start=new DateTime(2001-06-01), Stop= new DateTime(2002-12-31)},
-        new TimePeriod{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Start=new DateTime(2002-03-01), Stop= new DateTime(2004-05-15)},
-        new TimePeriod{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Start=new DateTime(2003-10-01), Stop= new DateTime(2005-05-20)},
-        new TimePeriod{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Start=new DateTime(2004-08-10), Stop= new DateTime(2010-06-30)}
+        new TimePeriod{Id=1, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Start=new DateTime(2001-06-01), Stop= new DateTime(2002-12-31)},
+        new TimePeriod{Id=2, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Start=new DateTime(2002-03-01), Stop= new DateTime(2004-05-15)},
+        new TimePeriod{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Start=new DateTime(2003-10-01), Stop= new DateTime(2005-05-20)},
+        new TimePeriod{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Start=new DateTime(2004-08-10), Stop= new DateTime(2010-06-30)}
       };
 
       var projects = new List<ProjectModel>()
       {
-        new ProjectModel{Id=1, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03),Name="Öresundskraft", Description="My alter-ego is crossfit giving massages if you like. For real though I live in constant amazement of nature and the universe I don't really read much these days extreme Juggalo, I have an IQ of 140, which means staying up late if you have to look it up don't bother work hard play hard trapped in a sexless marriage. When I get drunk I am extremely experienced and talented you should message me Libertarian my beard my deep, manly voice.", TimePeriodId=1},
-        new ProjectModel{Id=2, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03),Name="Peab", Description="Is pretty awesome that means I am wonderful crossfit performance art. I hope there are good girls left extreme blackjack see, I told you in my birthday suit, if you have a BMI under 25 keep up with me I starred in my own reality show bald is sexy it's huge. Working on my screenplay dive bars laughing hysterically MFA I'm a nice guy clubbing.", TimePeriodId=2},
-        new ProjectModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03),Name="Vinslövs Bangolf", Description="Living on sailboats most cats eventually love me is probably a conspiracy my lizard tongue. Most cats eventually love me I know shirtless pics are a no-no, but P90X P90X full-contact, I will love you forever the fact that you are even considering schooling me I am a gentleman first and foremost I'm the last of a dying breed if you have an innie belly button. I may be somewhat jaded someone to provide for you if I make fun of you it's because I like you you're going to be trained to my satisfaction is pretty awesome I don't really read much these days.", TimePeriodId=3},
-        new ProjectModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03),Name="Kenneths Kennel & Kebab", Description="Most cats eventually love me proper grammar most cats eventually love me dive bars. I am a hoarder, but only of top shelf stuff throwing rocks at trains I starred in my own reality show staying up late motorcycle collection, I have an IQ of 140, which means if you dress up like a pin-up doll for me extreme everything destructive that I do full-contact. Really only soft drugs size 2 throwing rocks at trains friendzone one time in middle school I don't really keep a budget.", TimePeriodId=4}
+        new ProjectModel{Id=1, Created = DateTime.UtcNow,Modified=DateTime.UtcNow,Name="Öresundskraft", Description="My alter-ego is crossfit giving massages if you like. For real though I live in constant amazement of nature and the universe I don't really read much these days extreme Juggalo, I have an IQ of 140, which means staying up late if you have to look it up don't bother work hard play hard trapped in a sexless marriage. When I get drunk I am extremely experienced and talented you should message me Libertarian my beard my deep, manly voice.", TimePeriodId=1},
+        new ProjectModel{Id=2, Created = DateTime.UtcNow,Modified=DateTime.UtcNow,Name="Peab", Description="Is pretty awesome that means I am wonderful crossfit performance art. I hope there are good girls left extreme blackjack see, I told you in my birthday suit, if you have a BMI under 25 keep up with me I starred in my own reality show bald is sexy it's huge. Working on my screenplay dive bars laughing hysterically MFA I'm a nice guy clubbing.", TimePeriodId=2},
+        new ProjectModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow,Name="Vinslövs Bangolf", Description="Living on sailboats most cats eventually love me is probably a conspiracy my lizard tongue. Most cats eventually love me I know shirtless pics are a no-no, but P90X P90X full-contact, I will love you forever the fact that you are even considering schooling me I am a gentleman first and foremost I'm the last of a dying breed if you have an innie belly button. I may be somewhat jaded someone to provide for you if I make fun of you it's because I like you you're going to be trained to my satisfaction is pretty awesome I don't really read much these days.", TimePeriodId=3},
+        new ProjectModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow,Name="Kenneths Kennel & Kebab", Description="Most cats eventually love me proper grammar most cats eventually love me dive bars. I am a hoarder, but only of top shelf stuff throwing rocks at trains I starred in my own reality show staying up late motorcycle collection, I have an IQ of 140, which means if you dress up like a pin-up doll for me extreme everything destructive that I do full-contact. Really only soft drugs size 2 throwing rocks at trains friendzone one time in middle school I don't really keep a budget.", TimePeriodId=4}
       };
 
       var profiles = new List<ProfileModel>()
       {
         new ProfileModel{
           Id=1,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="6c6c2eec-f58b-4728-8b6a-20492648ad83",
           FirstName="John",
           LastName= "Doe",
@@ -267,17 +267,17 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=1
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=19, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+          //  new CompetenceModel{Id=19, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
           //  new CompetenceModel { Id = 1, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
-          //  new CompetenceModel{Id=4, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-          //  new CompetenceModel{Id=7, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //  new CompetenceModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+          //  new CompetenceModel{Id=7, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"}
           //}
 
           },
         new ProfileModel{
           Id=2,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="b437b09d-615b-49ff-9317-bfab87d38c84",
           FirstName="Idi",
           LastName= "Amin",
@@ -290,16 +290,16 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=2
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=20, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
+          //  new CompetenceModel{Id=20, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
           //  new CompetenceModel { Id = 2, Created = new DateTime(2020 - 03 - 03), Modified = new DateTime(2020 - 03 - 03), Value = "React" },
-          //  new CompetenceModel{Id=6, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-          //  new CompetenceModel{Id=8, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //  new CompetenceModel{Id=6, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+          //  new CompetenceModel{Id=8, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"}
           //}
           },
         new ProfileModel{
           Id=3,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="45f21477-00ef-436f-928b-504753249afa",
           FirstName="Hozni",
           LastName= "Mubarak",
@@ -312,16 +312,16 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=3
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=21, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Java Script"},
-          //  new CompetenceModel{Id=3, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="React"},
-          //  new CompetenceModel{Id=5, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="DOTNET"},
-          //  new CompetenceModel{Id=9, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Azure Dev Ops"}
+          //  new CompetenceModel{Id=21, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Java Script"},
+          //  new CompetenceModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="React"},
+          //  new CompetenceModel{Id=5, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="DOTNET"},
+          //  new CompetenceModel{Id=9, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Azure Dev Ops"}
           //}
           },
         new ProfileModel{
           Id=4,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="65c97613-cd49-4aa8-ad5d-f53b05f609f9",
           FirstName="Elisabeth",
           LastName= "Höglund",
@@ -333,16 +333,16 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=4
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=22, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-          //  new CompetenceModel{Id=10, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-          //  new CompetenceModel{Id=13, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-          //  new CompetenceModel{Id=16, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //  new CompetenceModel{Id=22, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+          //  new CompetenceModel{Id=10, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+          //  new CompetenceModel{Id=13, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+          //  new CompetenceModel{Id=16, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"}
           //}
           },
         new ProfileModel{
           Id=5,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="1eb5b655-755d-4d21-b78c-8d19eeeb19a9",
           FirstName="Djingis",
           LastName= "Khan",
@@ -355,16 +355,16 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=5
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=23, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-          //  new CompetenceModel{Id=11, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-          //  new CompetenceModel{Id=14, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-          //  new CompetenceModel{Id=17, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //  new CompetenceModel{Id=23, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+          //  new CompetenceModel{Id=11, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+          //  new CompetenceModel{Id=14, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+          //  new CompetenceModel{Id=17, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"}
           //}
           },
         new ProfileModel{
           Id=6,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="3a779fe9-15b0-4a10-b607-538393af8ed4",
           FirstName="Emperor",
           LastName= "Hirohito",
@@ -376,16 +376,16 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=6
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=24, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Sharepoint"},
-          //  new CompetenceModel{Id=12, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Episerver"},
-          //  new CompetenceModel{Id=15, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Data Analytics"},
-          //  new CompetenceModel{Id=18, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="HTML"}
+          //  new CompetenceModel{Id=24, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Sharepoint"},
+          //  new CompetenceModel{Id=12, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Episerver"},
+          //  new CompetenceModel{Id=15, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Data Analytics"},
+          //  new CompetenceModel{Id=18, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="HTML"}
           //}
           },
         new ProfileModel{
           Id=7,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="d3a961f6-603c-4c53-9e0b-3e49a81c7fc3",
           FirstName="Reinhard",
           LastName= "Heydrich",
@@ -398,15 +398,15 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=7
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=26, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-          //  new CompetenceModel{Id=29, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-          //  new CompetenceModel{Id=33, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //  new CompetenceModel{Id=26, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+          //  new CompetenceModel{Id=29, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+          //  new CompetenceModel{Id=33, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"}
           //}
           },
         new ProfileModel{
           Id=8,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="062f39f9-5f27-476e-8bce-e7e447f8d874",
           FirstName="Hatte",
           LastName= "Furuhagen",
@@ -418,15 +418,15 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=8
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=25, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-          //  new CompetenceModel{Id=30, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-          //  new CompetenceModel{Id=34, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //  new CompetenceModel{Id=25, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+          //  new CompetenceModel{Id=30, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+          //  new CompetenceModel{Id=34, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"}
           //}
           },
         new ProfileModel{
           Id=9,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="84efc798-d9dd-48fe-ad64-e186488bfe88",
           FirstName="Biskop",
           LastName= "Brask",
@@ -438,15 +438,15 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=9
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=27, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-          //  new CompetenceModel{Id=31, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-          //  new CompetenceModel{Id=35, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //  new CompetenceModel{Id=27, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+          //  new CompetenceModel{Id=31, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+          //  new CompetenceModel{Id=35, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"}
           //}
           },
         new ProfileModel{
           Id=10,
-          Created = new DateTime(2020-03-03),
-          Modified = new DateTime(2020-03-03),
+          Created = DateTime.UtcNow,
+          Modified = DateTime.UtcNow,
           OwnerID="e9e8c451-f41c-4cf7-bfd0-07650578856e",
           FirstName="Griselda",
           LastName= "Blanco",
@@ -456,9 +456,9 @@ namespace ConsidKompetens_Data.Data
           ImageModelId=10
           //Competences = new List<CompetenceModel>
           //{
-          //  new CompetenceModel{Id=28, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Umbraco"},
-          //  new CompetenceModel{Id=32, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="C#"},
-          //  new CompetenceModel{Id=36, Created = new DateTime(2020-03-03),Modified=new DateTime(2020-03-03), Value="Xamarin"}
+          //  new CompetenceModel{Id=28, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Umbraco"},
+          //  new CompetenceModel{Id=32, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="C#"},
+          //  new CompetenceModel{Id=36, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, Value="Xamarin"}
           //}
           },
 
