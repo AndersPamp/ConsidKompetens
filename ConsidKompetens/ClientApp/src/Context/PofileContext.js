@@ -3,14 +3,19 @@ import React, { useState, createContext } from 'react';
 export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({children}) => {
-    const [profileId, setProfileId] = useState('');
+    const [profileId, setProfileId] = useState({
+        id: {
+            id: ''
+        }
+    });
     const [ chosenOffices, setChosenOffices ] = useState({
-            
-            office:    {id: '', 
-                city: ''}
-            
+            office:  {
+                id: '', 
+                city: ''
+            }    
     });
     const [ profile, setProfile ] = useState({
+            id: '',
             firstName: '', 
             lastName: '', 
             aboutMe: '',
@@ -69,7 +74,7 @@ const ProfileContextProvider = ({children}) => {
     //  }
 
     return(
-        <ProfileContext.Provider value={{profile, chosenOffices, profileId, 
+        <ProfileContext.Provider value={{profile, chosenOffices, profileId,
             handleChange: handleChange, 
             initProfile: initProfile, 
             updateCompetences: updateCompetences,

@@ -64,3 +64,32 @@
     color: rgb(248, 64, 64);
 }
 
+.info-button{
+    color: rgb(248, 64, 64);
+    border: none;
+    padding-left: 80%;
+    font-size: 220%;
+    background-color: white;
+}
+
+.info-button:focus{
+   outline: none;
+}
+
+.info-button-more{
+    color: rgb(248, 64, 64);
+    border: none;
+    padding-left: 80%;
+    font-size: 120%;
+    background-color: white;
+}
+
+.info-button-more:focus{
+    outline: none;
+}
+
+.output-aboutMe{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(128, 122, 122);
+    width: 80%;
+}

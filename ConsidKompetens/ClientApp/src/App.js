@@ -13,18 +13,16 @@ import Authenticated from './components/Authenticated/Authenticated';
 
 function App() {
 
-  
-
   return (
     <div className='App-div'>
         <Route path="/login" component={() => <LoginPage />}/>
         <Route path="/register" component={RegisterPage}/>
-            <ProfileContextProvider>
-              <Authenticated exact path="/" component={HomePage}/>
-              <Authenticated path="/details" component={DetailsPage}/>
-              <Authenticated path="/employee" component={Employee}/>
-              <Authenticated path="/profile" component={() => <Profile/>}/>
-            </ProfileContextProvider>
+          <ProfileContextProvider>
+            <Authenticated exact path="/" component={HomePage}/>
+            <Authenticated path="/details" component={DetailsPage}/>
+            <Authenticated path="/employee" component={Employee}/>
+            <Authenticated path="/profile" component={() => <Profile/>}/>
+          </ProfileContextProvider>
       <Footer/>
     </div>
   );

@@ -17,6 +17,8 @@
 
 .emp-container{
     margin-left: 2%;
+    margin-top: 3%;
+    padding-bottom: 20%;
 }
 
 .emp-container h4, h3, h5{
@@ -59,4 +61,19 @@
 .aboutMe{
     color: rgb(248, 64, 64);
     margin-top: 3%;
+}
+
+.output-about{
+    font-family: 'Montserrat', sans-serif;
+    width: 80%;
+}
+
+.linkedin{
+    padding-left: 80%;
+}
+
+.linked{
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 120%;
 }

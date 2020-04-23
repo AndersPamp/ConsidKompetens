@@ -22,12 +22,11 @@ const TextFields = () => {
     const classes = useStyles();
     const {profile} = useContext(ProfileContext);
     const user = profile;
-    //const user = useContext(ProfileContext);
     const {handleChange} = useContext(ProfileContext);
 
     return(
         <>
-        <TextField
+          <TextField
             className={classes.margin}
             style={{display: 'block'}}
             label="Förnamn"
@@ -35,8 +34,8 @@ const TextFields = () => {
             name='firstName'
             value={user.firstName || ''}
             onChange={handleChange} 
-            />
-        <TextField
+          />
+          <TextField
             className={classes.margin}
             style={{display: 'block'}}
             label="Efternamn"
@@ -44,18 +43,8 @@ const TextFields = () => {
             name='lastName'
             value={user.lastName || ''}
             onChange={handleChange}   
-            />
-        <TextField
-            className={classes.margin}
-            style={{display: 'block'}}
-            multiline
-            label="Om mig"
-            id="standard-multiline-static"
-            name='aboutMe'
-            value={user.aboutMe || ''}
-            onChange={handleChange} 
-            />
-            </>
+          />
+        </>
     )
 }
 

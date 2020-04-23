@@ -53,13 +53,14 @@
   
   .homeInput{
     border-radius: 10px;
-    border: 1px solid grey;
-    width: 80%;
+    border: 1px solid rgb(179, 177, 177);
+    width: 85%;
     padding-left: 20px;
     margin-left: 50px;
     margin-bottom: 20px;
     font-size: 150%;
     font-family: 'Montserrat', sans-serif;
+    color: grey;
   }
 
   .homeInput:focus{
@@ -69,7 +70,7 @@
   .search-button{
       border: none;
       outline: none;
-      background-color: gray;
+      background: none;
   }
 
   .search-button:focus{
@@ -78,7 +79,8 @@
 
   .search-button img{
     height: 30px;
-    margin: auto;
+    margin-bottom: 7px;
+    margin-left: 15px;
   }
 
   .search-button img:hover{
@@ -218,6 +220,12 @@
 @media only screen and (max-width: 1300px) {
   .min-sida-button{
     left: 75%;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .homeContainer{
+    padding-bottom: 300px;
   }
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ConsidLogo from '../../images/consid_logo_big.png';
@@ -22,31 +21,16 @@ class NavMenu extends Component {
     }
 
     render(props) {
-
-        //const user = localStorage.getItem('secret');
-
         return (
             <header>
                 <Navbar className='navbar-expand-sm navbar-toggle-sm ng-white border-bottom box-shadow' light>
                     <Container>
                         <NavbarBrand className='NavbarLogo' tag={Link} to='/'><img className='ConsidLogoBig' src={ConsidLogo} alt="Consid logo"/></NavbarBrand>
-                        {/* <NavbarToggler onClick={this.toggleNavbar} className='mr-2'/>
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className='navbar-nav flex-grow'>
-                                    <NavItem>
-                                        <NavLink tag={Link} className='text-dark links' to='/user'>Min sida</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink tag={Link} className='text-dark links' to='/login'>Logout</NavLink>
-                                    </NavItem>
-                            </ul>
-                        </Collapse> */}
                     </Container>
                 </Navbar>
             </header>
         ) 
-    }
-   
+    } 
 }
 
 export default NavMenu;

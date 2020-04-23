@@ -55,41 +55,40 @@ const RegisterPage = () => {
             <ThemeProvider theme={theme}>
                 <img className='image' src={LoginImage} alt="Consid woman"/>
                 <form onSubmit={submitHendler}>
-                        <div className='box'>
-                            <div className='inner-box'>
-                                <label className='login-label'>Registrera</label>
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        id='mui-theme-provider-standard-input 1' 
-                                        label='E-post:'
-                                        name= 'UserName'
-                                        value={userRegister.userName}
-                                        onChange={handleChange}>
-                                </TextField>
-                                <TextField 
-                                        className={classes.margin} 
-                                        style={{display: 'block'}} 
-                                        type='password' 
-                                        id='mui-theme-provider-standard-input 2' 
-                                        label='Lösenord:'
-                                        name= 'PassWord'
-                                        value={userRegister.passWord}
-                                        onChange={handleChange}>
-                                </TextField> 
-                                <button type='submit' className='login-button'>Registrera</button>
-                            </div>              
-                          </div>
-                        </form>
+                  <div className='box'>
+                      <div className='inner-box'>
+                          <label className='login-label'>Registrera</label>
+                          <TextField 
+                              className={classes.margin} 
+                              style={{display: 'block'}} 
+                              id='mui-theme-provider-standard-input 1' 
+                              label='E-post:'
+                              name= 'UserName'
+                              value={userRegister.userName}
+                              onChange={handleChange}>
+                          </TextField>
+                          <TextField 
+                              className={classes.margin} 
+                              style={{display: 'block'}} 
+                              type='password' 
+                              id='mui-theme-provider-standard-input 2' 
+                              label='Lösenord:'
+                              name= 'PassWord'
+                              value={userRegister.passWord}
+                              onChange={handleChange}>
+                          </TextField> 
+                          <button type='submit' className='login-button'>Registrera</button>
+                      </div>              
+                    </div>
+                </form>
             </ThemeProvider>  
            {registerad ? 
-            ( <div className='popup-window-container'>
+              (<div className='popup-window-container'>
                 <h1>Välkomen</h1>
                 <h2>Du är registerad!</h2>
                 <label>{userRegister.UserName}</label>
                 <a href="/login">Klicka här för att logga in</a>
-              </div>)
-           : null} 
+              </div>) : null} 
           </div> 
     )
 }

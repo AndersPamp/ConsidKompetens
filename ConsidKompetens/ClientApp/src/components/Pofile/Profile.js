@@ -42,25 +42,16 @@ const theme = createMuiTheme({
 const Profile = () => {
   const classes = useStyles();
   const jwt = localStorage.getItem('secret');
-
-const {profile } = useContext(ProfileContext);
+  const {profile } = useContext(ProfileContext);
   const input = profile;
   const {handleChange, initProfile} = useContext(ProfileContext);
+  const updateMessage = document.getElementById('updateMessage');
 
   function submit(e){
       e.preventDefault();
       axios.put('https://localhost:44323/api/profile/editprofile',input , { headers: { 'Authorization': `Bearer ${jwt}` } })
         .then((response) => {
-        const result = response.data;
-        console.log(result)
-
-        if(response.status === 200)
-        {
-          localStorage.setItem('profile', result);
-          alert('You have updated your profile');
-          console.log(result);
-          console.log(response);
-        }
+        updateMessage.style.display = 'block';
     }).catch((error) => {
       console.log(error);
     })
@@ -83,50 +74,41 @@ const {profile } = useContext(ProfileContext);
     <NavMenu/>
     <div className='user-container'>
       <Container>
-      <div className='profile-container'>
+        <div className='profile-container'>
           <ThemeProvider theme={theme}>
               <Grid container spacing={0}>
                   <Grid item xs={7}>
                       <div className='textfield-container'>
                         <TextFields/>
+                        <TextField
+                          className={classes.margin}
+                          style={{display: 'block'}}
+                          label="LinkedIn link"
+                          id="mui-theme-provider-standard-input three"
+                          name='linkedInUrl'
+                          value={input.linkedInUrl || ''}
+                          onChange={handleChange}/>
+                        <TextField
+                          className={classes.margin}
+                          style={{display: 'block'}}
+                          multiline
+                          label="Om mig"
+                          id="standard-multiline-static two"
+                          name='aboutMe'
+                          value={input.aboutMe || ''}
+                          onChange={handleChange} />
+                        <SelectForm/>
+                        <Competense/>
+                        <UploadCV/>
                       </div>
                   </Grid>
                   <Grid item xs={5}>
-                  <UploadImage/>
-                  </Grid>
-              </Grid>
-              <Grid container spacing={0}>
-                  <Grid item xs={6}>
-                    <div className='grid-one'>
-                     <SelectForm/>
-                      <Grid container spacing={0}>
-                        <Grid item xs={12}>
-                        <Competense/>
-                        <div></div>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <div className='grid-two'>
-                      <TextField
-                            className={classes.margin}
-                            style={{display: 'block'}}
-                            label="LinkedIn link"
-                            id="mui-theme-provider-standard-input three"
-                            name='linkedInUrl'
-                            value={input.linkedInUrl || ''}
-                            onChange={handleChange}  
-                            
-                            />
-                      <UploadCV/>
-                      {/* <label className='login-text'>Du är inloggad med e-postadressen: </label>
-                      <label className='login-email'>(email)</label> */}
-                    </div>
+                    <UploadImage/>
                   </Grid>
               </Grid>
               <button className='button' onClick={submit}>Uppdatera din profil</button>
-          </ThemeProvider>
+              <label className='updateMessage' id='updateMessage' style={{display: 'none'}}>Din profil är uppdaterad!</label>
+            </ThemeProvider>
           </div>
       </Container>
     </div>

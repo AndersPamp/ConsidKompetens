@@ -117,7 +117,7 @@
     margin-left: 2%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 47%;
+    width: 40%;
     background-color: white;
     color: #DD0332;
     border: 1px solid #DD0332;
@@ -129,6 +129,46 @@
 }
 
 .add-btn:focus{
+    outline: none;
+}
+
+.add-btn-cv{
+    margin-top: 1%;
+    margin-left: 2%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 90%;
+    background-color: white;
+    color: #DD0332;
+    border: 1px solid #DD0332;
+}
+
+.add-btn-cv:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.add-btn-cv:focus{
+    outline: none;
+}
+
+.add-btn-img{
+    margin-top: 1%;
+    margin-left: 2%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 9px;
+    width: 45%;
+    background-color: white;
+    color: #DD0332;
+    border: 1px solid #DD0332;
+}
+
+.add-btn-img:hover{
+    background-color: #DD0332;
+    color: white;
+}
+
+.add-btn-img:focus{
     outline: none;
 }
 
@@ -144,9 +184,6 @@
     font-weight: bold;
 }
 
-.cv-container{
-    padding-top: 8%;
-}
 
 .cv-input{
     padding-left: 3%;
@@ -215,9 +252,9 @@
 }
 
 .cv-button-container{
-    border-top: 1px solid gray;
     padding-top: 10px;
-    width: 75%;
+    border-top: 1px solid grey;
+    width: 45%;
 }
 
 .message, .doneMessage{
@@ -230,7 +267,17 @@
 
 .profile-container{
     box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
-    padding: 20px;
+    padding-left: 60px;
+    padding-top: 20px;
     margin-top: 4%;
+    padding-bottom: 20px;
+}
+
+.updateMessage{
+    font-family: 'Montserrat', sans-serif;
+    color: #DD0332;
+    font-weight: bold;
+    padding-left: 2%;
+    text-align: center;
 }
 
