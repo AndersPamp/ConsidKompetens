@@ -26,7 +26,8 @@ const Employee = () => {
         }).catch(error => console.log(error)); 
     }
         getUser();
-    }, []) 
+    }, []); 
+
 
     return(   
         <div>
@@ -53,7 +54,7 @@ const Employee = () => {
                                     </Grid>
                                     <Grid item xs={5}>
                                         <div className='img-container'>
-                                            <img className='user-img' src="https://accel-software.com/assets/pages/img/people/img3-large.jpg" alt="employee"/>
+                                            <img className='user-img' src="https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg" alt="employee"/>
                                         </div>
                                         <h3 className='name'>{list.firstName + ' ' + list.lastName}</h3>
                                         <h5 className='title'>{employee.position}</h5>
