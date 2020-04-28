@@ -137,7 +137,7 @@ namespace ConsidKompetens_Data.Data
         new OfficeModel{Id=1, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Jönköping", TelephoneNumber="036-120210"},
         new OfficeModel{Id=2, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Stockholm", TelephoneNumber="036-120210"},
         new OfficeModel{Id=3, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Göteborg", TelephoneNumber="036-120210"},
-        new OfficeModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Göteborg - Paradigm", TelephoneNumber="+46 31 761 56 10"},
+        new OfficeModel{Id=4, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Göteborg Paradigm", TelephoneNumber="+46 31 761 56 10"},
         new OfficeModel{Id=5, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Malmö", TelephoneNumber="036-120210"},
         new OfficeModel{Id=6, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Uppsala", TelephoneNumber="036-120210"},
         new OfficeModel{Id=7, Created = DateTime.UtcNow,Modified=DateTime.UtcNow, City="Linköping", TelephoneNumber="036-120210"},

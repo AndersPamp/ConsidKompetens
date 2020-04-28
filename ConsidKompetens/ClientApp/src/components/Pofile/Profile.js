@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: 450
   }
 }));
 
@@ -81,25 +81,27 @@ const Profile = () => {
                       <div className='textfield-container'>
                         <TextFields/>
                         <TextField
-                          className={classes.margin}
+                          className={classes.margin, classes.formControl}
                           style={{display: 'block'}}
                           label="LinkedIn link"
+                          fullWidth
                           id="mui-theme-provider-standard-input three"
                           name='linkedInUrl'
                           value={input.linkedInUrl || ''}
                           onChange={handleChange}/>
                         <TextField
-                          className={classes.margin}
+                          className={classes.margin, classes.formControl}
                           style={{display: 'block'}}
                           multiline
+                          fullWidth
                           label="Om mig"
                           id="standard-multiline-static two"
                           name='aboutMe'
                           value={input.aboutMe || ''}
                           onChange={handleChange} />
                         <SelectForm/>
-                        <Competense/>
                         <UploadCV/>
+                        <Competense/>
                       </div>
                   </Grid>
                   <Grid item xs={5}>

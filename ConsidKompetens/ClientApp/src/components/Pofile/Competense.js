@@ -22,9 +22,10 @@ const Competense = (props) => {
   return (
         <div>
             <TextField
-              style={{display: 'block', margin: '10px'}}
+              style={{display: 'block', margin: '10px', width: '450px'}}
               label="Kompetens"
               id="mui-theme-provider-standard-input"
+              fullWidth
               name='competences'
               type="text"
               value={newItem}

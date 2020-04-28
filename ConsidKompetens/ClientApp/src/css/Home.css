@@ -49,6 +49,7 @@
     height: 800px;
     width: 100%;
     box-shadow: 0 0 8px 8px white inset;
+    opacity: 80%;
   }
   
   .homeInput{
@@ -172,7 +173,7 @@
   .list-container{
     position: absolute;
     left: 45%;
-    top: 5%;
+    top: 0;
     margin: 5%;
     padding: 3%;
     box-shadow: 1px 1px 5px 2px rgb(181, 181, 182);
@@ -188,7 +189,6 @@
 
   .list-container button{
     margin-top: 2%;
-    margin-bottom: 2%;
     font-family: 'Montserrat', sans-serif;
     font-size: 140%;
     border-radius: 9px;
@@ -210,7 +210,8 @@
 .diven{
   display: inline-block;
   margin: 1%;
-  width: 135px;
+  padding-left: 5%;
+  width: 185px;
 }
 
 .loading{

@@ -114,10 +114,10 @@
 
 .add-btn{
     margin-top: 1%;
-    margin-left: 2%;
+    margin-left: 3%;
     font-family: 'Montserrat', sans-serif;
     border-radius: 9px;
-    width: 40%;
+    width: 66%;
     background-color: white;
     color: #DD0332;
     border: 1px solid #DD0332;
@@ -208,7 +208,8 @@
 }
 
 .cv-input{
-    padding-left: 3%;
+    padding-top: 2%;
+    padding-left: 7px;
     font-family: 'Montserrat', sans-serif;
     color: rgb(141, 141, 141);
     cursor: pointer;
@@ -253,8 +254,9 @@
 
 .cv-button-container{
     padding-top: 10px;
-    border-top: 1px solid grey;
-    width: 45%;
+    margin-left: 5px;
+    border-top: 1px solid rgb(155, 155, 155);
+    width: 74%;
 }
 
 .message, .doneMessage{

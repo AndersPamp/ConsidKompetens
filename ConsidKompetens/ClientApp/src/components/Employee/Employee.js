@@ -6,6 +6,7 @@ import LinkedIn from '../../images/linkedin.png';
 import {ProfileContext} from '../../Context/PofileContext';
 import '../../css/Employee.css';
 import axios from 'axios';
+import placeholderImg from '../../images/img-person-placeholder.jpg';
 
 const Employee = () => {
 
@@ -54,7 +55,7 @@ const Employee = () => {
                                     </Grid>
                                     <Grid item xs={5}>
                                         <div className='img-container'>
-                                            <img className='user-img' src="https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg" alt="employee"/>
+                                            <img className='user-img' src={placeholderImg} alt="employee"/>
                                         </div>
                                         <h3 className='name'>{list.firstName + ' ' + list.lastName}</h3>
                                         <h5 className='title'>{employee.position}</h5>

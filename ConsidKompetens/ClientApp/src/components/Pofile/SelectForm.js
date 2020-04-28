@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: 450
   }
 }));
 
@@ -44,7 +44,7 @@ const SelectForm = () => {
     return (
         <>
          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Kontor</InputLabel>
+            <InputLabel id="demo-simple-select-label" fullWidth>Kontor</InputLabel>
               <Select name='OfficeModelId' value={user.OfficeModelId || ''} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select">
                 {offices.map((item, i) => {
                     return <MenuItem  value={item.id} key={i}>{item.city}</MenuItem>

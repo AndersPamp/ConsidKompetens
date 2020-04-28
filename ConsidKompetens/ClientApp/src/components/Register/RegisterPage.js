@@ -78,6 +78,9 @@ const RegisterPage = () => {
                               onChange={handleChange}>
                           </TextField> 
                           <button type='submit' className='login-button'>Registrera</button>
+                          <button className='login-password-button'>
+                              <a className='login-forgot-password' href="/login">Har du redan profil?</a>
+                          </button> 
                       </div>              
                     </div>
                 </form>
@@ -87,7 +90,7 @@ const RegisterPage = () => {
                 <h1>Välkomen</h1>
                 <h2>Du är registerad!</h2>
                 <label>{userRegister.UserName}</label>
-                <a href="/login">Klicka här för att logga in</a>
+                <a href="/login">Logga in</a>
               </div>) : null} 
           </div> 
     )

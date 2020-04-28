@@ -38,6 +38,10 @@
     color: black;
 }
 
+.login-password-button:focus{
+    outline: none;
+}
+
 .login-password-button{
     padding-left: 65px;
     border: none;
@@ -63,6 +67,10 @@
     display: block;
 }
 
+.login-password-button2:focus{
+    outline: none;
+}
+
 .login-button{
     margin-top: 8%;
     margin-bottom: 5%;
@@ -84,6 +92,7 @@
     outline: none;
 }
 
+
 /*-----*/
 
 .container-login{
@@ -98,6 +107,7 @@
     width: 50%;
     box-shadow: 0 0 8px 8px white inset;
     margin-left: 0;
+    opacity: 80%;
 }
 
 .box{
@@ -118,16 +128,16 @@
     box-shadow: 2px 2px 5px 2px rgb(226, 225, 225);
     background-color: white;
     color: rgb(128, 128, 128);
-    height: 250px;
-    width: 650px;
+    height: 650px;
+    width: 645px;
     position: absolute;
-    top: 10%;
-    left: 25%;
+    top: 5%;
+    left: 40%;
 }
 
 .popup-window-container h1{
     text-align: center;
-    padding-top: 3%;
+    padding-top: 20%;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -149,10 +159,12 @@
     text-align: center;
     color: #DD0332;
     padding: 1%;
+    padding-left: 80px;
+    padding-right: 80px;
     margin-left: 33%;
     border-radius: 9px;
     width: 50%;
-    border: 1px solid #DD0332;
+    box-shadow: 1px 1px 3px 1px #DD0332;
     color: #DD0332;
    
 }
@@ -160,6 +172,7 @@
 .popup-window-container a:hover{
     background-color: #DD0332;
     color: white;
+    text-decoration: none;
 }
 
 .popup-window-container a:focus{

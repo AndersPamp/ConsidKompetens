@@ -31,10 +31,9 @@ const UploadCV = () => {
 
     return(
       <div className='cv-container'>
-       <label className='load-cv'>Ladda upp CV</label>
         <div className='input-container'>
             <input style={{display: 'none'}} id='upload' type="file" onChange={fileSelectedHandler}/>
-            <label className='cv-input' htmlFor="upload">Välj fil</label>
+            <label className='cv-input' htmlFor="upload">Ladda upp CV</label>
             {file ? 
                 (<label className='uploaded-file'>{file.name}</label>)
               : (<label className='uploaded-file'>{profile.resumeUrl}</label>)

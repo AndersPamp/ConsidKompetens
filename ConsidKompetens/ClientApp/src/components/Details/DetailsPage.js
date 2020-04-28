@@ -7,6 +7,7 @@ import {ProfileContext}  from '../../Context/PofileContext';
 import SearchIcon from '../../images/SearchIconDark.png';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import placeholderImg from '../../images/img-person-placeholder.jpg';
 
 const DetailsPage = () => {
 
@@ -18,8 +19,8 @@ const DetailsPage = () => {
     const [isReasult, setIsResult] = useState(false);
     const [dots, setDots] = useState(true);
     const baseUrlSerach = 'https://localhost:44323/api/search';
-    
     const history = useHistory();
+    
     useEffect(() => {
         function getOfficeId() {
             const officeids = chosenOffices.id;
@@ -37,7 +38,7 @@ const DetailsPage = () => {
    
         function getSearch() {
             const jwt = localStorage.getItem('secret');
-            const officeids = [1];
+            const officeids = [5];
             //const officeids = chosenOffices.id;
             const config = {
             headers: {
@@ -85,7 +86,7 @@ const DetailsPage = () => {
                                     <Grid item xs={5}>
                                         <div className='img-container'>
                                             <img className='user-img'
-                                                    src='https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg'
+                                                    src={placeholderImg}
                                                     alt="developer"/>
                                         </div>
                                     </Grid>
@@ -128,7 +129,7 @@ const DetailsPage = () => {
                                     <Grid item xs={5}>
                                         <div className='img-container'>
                                             <img className='user-img'
-                                                    src='https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg'
+                                                    src={placeholderImg}
                                                     alt="developer"/>
                                         </div>
                                     </Grid>

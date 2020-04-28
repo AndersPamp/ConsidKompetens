@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: 450
   }
 }));
 
@@ -27,18 +27,20 @@ const TextFields = () => {
     return(
         <>
           <TextField
-            className={classes.margin}
+            className={classes.margin, classes.formControl}
             style={{display: 'block'}}
             label="Förnamn"
+            fullWidth
             id="mui-theme-provider-standard-input one"
             name='firstName'
             value={user.firstName || ''}
             onChange={handleChange} 
           />
           <TextField
-            className={classes.margin}
+            className={classes.margin, classes.formControl}
             style={{display: 'block'}}
             label="Efternamn"
+            fullWidth
             id="mui-theme-provider-standard-input two"
             name='lastName'
             value={user.lastName || ''}
