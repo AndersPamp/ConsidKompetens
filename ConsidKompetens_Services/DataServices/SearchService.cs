@@ -112,12 +112,16 @@ namespace ConsidKompetens_Services.DataServices
             {
               profiles.Add(profile);
             }
-            foreach (var competence in profile.Competences)
+
+            if (!profile.Competences.IsNullOrEmpty())
             {
-              if (competence.Value.ToUpper().Contains(input.ToUpper()))
+              foreach (var competence in profile.Competences)
               {
-                profiles.Add(profile);
-              }
+                if (competence.Value.ToUpper().Contains(input.ToUpper()))
+                {
+                  profiles.Add(profile);
+                }
+              }  
             }
           }
         }

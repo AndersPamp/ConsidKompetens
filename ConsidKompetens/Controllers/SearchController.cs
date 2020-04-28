@@ -23,16 +23,16 @@ namespace ConsidKompetens_Web.Controllers
     //[OutputCache(Duration = 30)]
     public async Task<ActionResult<Response>> Search([FromBody]SearchRequest request)
     {
-      return await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input);
+      //return await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input);
       //In js use Debounce with input delay
-      /*try
+      try
       {
-        return await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input);
+        return Ok(await _searchService.FreeWordSearcAsync(request.OfficeIds, request.Input));
       }
       catch (Exception e)
       {
         return BadRequest(new Response { Success= false, ErrorMessage= e.Message });
-      }*/
+      }
     }
   }
 }
